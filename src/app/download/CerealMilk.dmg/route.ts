@@ -27,7 +27,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const FALLBACK_URL =
-  "https://github.com/cerealmilk-sh/product-releases/releases/latest/download/CerealMilk.dmg";
+  "https://github.com/cerealmilk-sh/product-releases/releases/latest/download/Cereal.Milk.dmg";
 const PAUSED_PATH = "/download";
 
 async function destination(req: NextRequest): Promise<URL> {
