@@ -1,5 +1,5 @@
 // /privacy, the privacy policy for BOTH surfaces: this website (analytics,
-// cookies, forms) and the 80x product (the Mac app plus the hosted service it
+// cookies, forms) and the Cereal Milk product (the Mac app plus the hosted service it
 // syncs to). Plain, honest, and structured; written as disclosure, not as
 // reviewed-by-counsel boilerplate. Linked from the consent banner
 // (public/consent-analytics.js), the footer, and the /terms "Your data"
@@ -15,12 +15,12 @@ import { AUTHOR, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy policy",
-  description: `How ${SITE_NAME} handles your data, on this site and in the 80x app and hosted service: what is collected, where it is stored, who processes it, and how to get it deleted.`,
+  description: `How ${SITE_NAME} handles your data, on this site and in the Cereal Milk app and hosted service: what is collected, where it is stored, who processes it, and how to get it deleted.`,
   alternates: { canonical: "/privacy" },
 };
 
 const POLICY = `
-This policy covers two things: **this website** (80x.ai) and **the ${SITE_NAME}
+This policy covers two things: **this website** (cerealmilk.sh) and **the ${SITE_NAME}
 product** (the Mac app and the hosted service it syncs to). Both are run by
 ${SITE_NAME}. Questions and requests go straight to the founder:
 **${AUTHOR.email}**.
@@ -73,7 +73,7 @@ forwards to PostHog's US cloud) rather than a third-party domain. This is a
 reliability measure so the data is not silently dropped by network filters; it
 does not change what is collected or who processes it.
 
-## The 80x product
+## The Cereal Milk product
 
 The ${SITE_NAME} Mac app puts your WhatsApp, LinkedIn, and Gmail in one window
 and syncs the conversations you choose to your CRM (Attio or Affinity) through
@@ -116,7 +116,7 @@ first-party copy of the same events for our own dashboards.
 
 The hosted service runs on **Fly.io** in Frankfurt, Germany (EU), with the
 database on **Supabase** (Postgres). Website hosting is **Vercel**. Sign-in
-and billing run on **Clerk**; payment processing through **Stripe** is planned,
+run your own model credentials; nothing is processed through our servers,
 and card details would be held by the payment processor, never by us. Product
 and site analytics are **PostHog** (US region). Transactional and lifecycle
 email is **Resend**.
@@ -128,7 +128,6 @@ The third parties that process data on our behalf:
 - **Fly.io**, application hosting (Frankfurt, EU)
 - **Supabase**, database hosting (Postgres)
 - **Vercel**, website hosting
-- **Clerk**, authentication and billing
 - **PostHog**, analytics and telemetry (US region)
 - **Resend**, email delivery
 
@@ -176,7 +175,7 @@ export default function Page() {
           as="h1"
           kicker="Legal"
           title="Privacy policy"
-          lede="What this site and the 80x product collect, where it is stored, who processes it, and how to get it deleted."
+          lede="What this site and the Cereal Milk product collect, where it is stored, who processes it, and how to get it deleted."
         />
         <div className="mt-10">
           <Prose source={POLICY} />

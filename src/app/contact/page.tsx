@@ -34,7 +34,7 @@ function stripLede(md: string, lede: string): string {
 const ERRORS: Record<string, string> = {
   email: "Please enter a valid work email so we can reply.",
   message: "Please add a short message so we know what you need.",
-  "1": "Something went wrong sending that. Email daniel@80x.ai directly and it will get through.",
+  "1": "Something went wrong sending that. Email daniel@cerealmilk.sh directly and it will get through.",
 };
 
 export default async function Page({
@@ -178,7 +178,7 @@ export default async function Page({
                   className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--color-accent)]"
                 />
                 <span>
-                  Also send me The 80x Field Notes, one email when new guides or
+                  Also send me The Cereal Milk Field Notes, one email when new guides or
                   tools ship. Optional, unsubscribe anytime.
                 </span>
               </label>

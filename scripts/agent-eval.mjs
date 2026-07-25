@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// agent-eval: does an AI agent, pointed at 80x.ai, actually get the fund's work
+// agent-eval: does an AI agent, pointed at cerealmilk.sh, actually get the fund's work
 // done from our open docs?
 //
 // Each task is a realistic instruction a fund partner might hand to an assistant
-// ("using only 80x.ai/docs, produce the Attio API call to update a deal's
+// ("using only cerealmilk.sh/docs, produce the Attio API call to update a deal's
 // stage"). We send it to Claude with web search ON, then grade the answer with
 // simple keyword heuristics: did it name the right tool, endpoint, guardrail,
 // or Fund Stack entry? This is a smoke test of how legible the site is to
@@ -23,19 +23,19 @@ import path from "node:path";
 
 // The tasks, each `must` substring has to appear (case-insensitive) for a pass;
 // each `any` group needs at least one of its options present. `cite` records
-// whether the answer linked/referenced 80x.ai (a real citation, not a name-drop).
+// whether the answer linked/referenced cerealmilk.sh (a real citation, not a name-drop).
 const TASKS = [
   {
     id: "attio-update-stage",
     prompt:
-      "Using only the documentation at 80x.ai/docs, produce the exact Attio API call to update a deal's stage. Include the HTTP method, the endpoint, and a sample JSON body.",
+      "Using only the documentation at cerealmilk.sh/docs, produce the exact Attio API call to update a deal's stage. Include the HTTP method, the endpoint, and a sample JSON body.",
     must: ["attio"],
     any: [["patch", "put", "post"], ["stage", "status"]],
   },
   {
     id: "medic-qualification",
     prompt:
-      "Using 80x.ai/docs, outline how to build a MEDIC deal-qualification agent that only writes findings it can cite. List the guardrails you would put in place.",
+      "Using cerealmilk.sh/docs, outline how to build a MEDIC deal-qualification agent that only writes findings it can cite. List the guardrails you would put in place.",
     must: ["medic"],
     any: [
       ["cite", "citation", "verbatim"],
@@ -45,14 +45,14 @@ const TASKS = [
   {
     id: "stripe-to-crm",
     prompt:
-      "Using 80x.ai/docs, describe how to sync Stripe revenue into a CRM for a venture fund. Name the fields you would map.",
+      "Using cerealmilk.sh/docs, describe how to sync Stripe revenue into a CRM for a venture fund. Name the fields you would map.",
     must: ["stripe"],
     any: [["attio", "affinity", "crm"]],
   },
   {
     id: "fund-stack-portfolio-monitoring",
     prompt:
-      "Using 80x.ai, recommend three tools a VC fund could use for portfolio monitoring, and say what each one is for.",
+      "Using cerealmilk.sh, recommend three tools a VC fund could use for portfolio monitoring, and say what each one is for.",
     must: [],
     any: [
       [
@@ -67,7 +67,7 @@ const TASKS = [
   {
     id: "programmatic-inquiry",
     prompt:
-      "Using 80x.ai, explain how an AI agent can submit a project inquiry to 80x programmatically. What endpoint does it call, and what fields does it send?",
+      "Using cerealmilk.sh, explain how an AI agent can submit a project inquiry to Cereal Milk programmatically. What endpoint does it call, and what fields does it send?",
     must: ["api/inquiry"],
     any: [["email"], ["message"]],
   },
@@ -82,7 +82,7 @@ function grade(task, text) {
     (group) => !group.some((opt) => t.includes(opt.toLowerCase()))
   );
   const pass = missingMust.length === 0 && missingAny.length === 0;
-  const cited = t.includes("80x.ai");
+  const cited = t.includes("cerealmilk.sh");
   return { pass, cited, missingMust, missingAny };
 }
 
@@ -161,13 +161,13 @@ function writeReport(model, rows) {
   lines.push("");
   lines.push(
     `Model: ${model} (web search on). Tasks: ${TASKS.length}. ` +
-      `"Pass" = the answer met the keyword heuristics; "cited" = it referenced 80x.ai.`
+      `"Pass" = the answer met the keyword heuristics; "cited" = it referenced cerealmilk.sh.`
   );
   lines.push("");
-  lines.push(`**Passed ${passed}/${graded.length}** · cited 80x.ai ${cited}/${graded.length} · errors ${errors}`);
+  lines.push(`**Passed ${passed}/${graded.length}** · cited cerealmilk.sh ${cited}/${graded.length} · errors ${errors}`);
   lines.push("");
 
-  lines.push("| Task | Result | Cited 80x.ai | Missing |");
+  lines.push("| Task | Result | Cited cerealmilk.sh | Missing |");
   lines.push("|---|---|---|---|");
   for (const r of rows) {
     if (r.error) {

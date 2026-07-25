@@ -14,7 +14,7 @@
 // electron-updater manifest (src/lib/desktop-release.ts) rather than
 // /releases/latest/download/: two release lines publish to product-releases
 // (legacy Mac v1.4-b* and desktop-v*), so "latest" flips with whichever
-// ships most recently, and the legacy line carries no evergreen 80x.dmg
+// ships most recently, and the legacy line carries no evergreen CerealMilk.dmg
 // asset. If the manifest cannot be read, the old /releases/latest/ URL is
 // the fallback.
 
@@ -27,7 +27,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const FALLBACK_URL =
-  "https://github.com/80x-org/product-releases/releases/latest/download/80x.dmg";
+  "https://github.com/cerealmilk-sh/product-releases/releases/latest/download/CerealMilk.dmg";
 const PAUSED_PATH = "/download";
 
 async function destination(req: NextRequest): Promise<URL> {
@@ -41,7 +41,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   // invocation alive until after() callbacks settle).
   after(() =>
     logDownload(req, {
-      asset: "80x.dmg",
+      asset: "CerealMilk.dmg",
       event: "dmg_download_requested",
       outcome: SELF_SERVE_DOWNLOADS ? "served" : "paused",
     }).catch(() => undefined)

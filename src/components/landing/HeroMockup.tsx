@@ -1,8 +1,8 @@
 "use client";
 
-// The hero's hand-built facsimile of the real 80x shell: the OFFICIAL
+// The hero's hand-built facsimile of the real Cereal Milk shell: the OFFICIAL
 // WhatsApp Web fills the window (native toolbar on top, a chat open), and the
-// 80x inspector is docked on the right, a slim section rail (Insights · CRM ·
+// Cereal Milk inspector is docked on the right, a slim section rail (Insights · CRM ·
 // Compose · Tools · View) fused to the selected CRM panel. One frame carries the
 // whole argument: it's the real WhatsApp Web (your number stays yours), a private
 // friendship, one deal-relevant line, a single deliberate share, and the CRM
@@ -40,7 +40,7 @@ import {
   useReveal,
 } from "@/components/landing/kit";
 
-/* The native macOS toolbar 80x draws around the web view. Exported (with
+/* The native macOS toolbar Cereal Milk draws around the web view. Exported (with
    SectionRail, ChatPane, CrmPanel) so HeroTransform can assemble the same
    shell piece by piece as the visitor scrolls: one source of truth for what
    the product looks like. */
@@ -115,7 +115,7 @@ const RAIL = [
 export function SectionRail({ active = "CRM" }: { active?: string }) {
   return (
     <div className="hidden w-[64px] shrink-0 flex-col items-center gap-1.5 border-r border-edge bg-panel pt-2.5 sm:flex">
-      <span className="mb-1 text-[9px] font-semibold tracking-[-0.01em] text-accent">80x</span>
+      <span className="mb-1 text-[9px] font-semibold tracking-[-0.01em] text-accent">Cereal Milk</span>
       {RAIL.map(({ label, Icon }) => {
         const on = label === active;
         return (
@@ -265,7 +265,7 @@ export function HeroMockup() {
           {/* The real WhatsApp Web, the dominant pane. */}
           <ChatPane shared={shared} />
 
-          {/* The 80x inspector, docked on the right. */}
+          {/* The Cereal Milk inspector, docked on the right. */}
           <div className="border-t border-edge md:border-l md:border-t-0">
             <CrmPanel synced={shared} />
           </div>

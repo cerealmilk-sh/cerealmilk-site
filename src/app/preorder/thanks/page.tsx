@@ -13,7 +13,7 @@ import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Your founding seat is reserved",
-  description: "Your 80x founding seat is reserved. Here is what happens next.",
+  description: "Your Cereal Milk founding seat is reserved. Here is what happens next.",
   alternates: { canonical: "/preorder/thanks" },
   robots: { index: false, follow: false },
 };
@@ -24,7 +24,7 @@ const QUIET_LINK =
 const NEXT_STEPS = [
   {
     title: "Right now",
-    body: "A confirmation email is on its way from Daniel, the founder. If it is not in your inbox in a few minutes, check spam once, then reply to anything from 80x and a human sorts it out.",
+    body: "A confirmation email is on its way from Daniel, the founder. If it is not in your inbox in a few minutes, check spam once, then reply to anything from Cereal Milk and a human sorts it out.",
   },
   {
     title: "When your wave opens",
@@ -37,7 +37,7 @@ const NEXT_STEPS = [
 ];
 
 const SHARE_TEXT =
-  "I just reserved a founding seat for 80x, the Mac app that puts WhatsApp, LinkedIn, and Gmail in one window and files the threads that matter to your CRM. No card to reserve:";
+  "I just reserved a founding seat for Cereal Milk, the Mac app that puts WhatsApp, LinkedIn, and Gmail in one window and files the threads that matter to your CRM. No card to reserve:";
 const SHARE_URL = `${SITE_URL}/preorder?src=referral`;
 
 export default function Page() {
@@ -75,14 +75,14 @@ export default function Page() {
               One ask, while you wait
             </p>
             <p className="mt-3 max-w-[58ch] text-[15px] leading-relaxed text-ink-dim">
-              Founding seats are capped, and the fastest way to get 80x into
+              Founding seats are capped, and the fastest way to get Cereal Milk into
               your world is the person you already trade deals with. If one
               name came to mind, send them the link.
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-4">
               <a
                 href={`mailto:?subject=${encodeURIComponent(
-                  "Worth a look: 80x"
+                  "Worth a look: Cereal Milk"
                 )}&body=${encodeURIComponent(`${SHARE_TEXT} ${SHARE_URL}`)}`}
                 className={QUIET_LINK}
                 data-track="referral_click"

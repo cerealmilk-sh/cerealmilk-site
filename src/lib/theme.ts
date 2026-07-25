@@ -1,4 +1,4 @@
-// Theme · 80x runs two palettes: a pure-black Geist dark (the default) and a
+// Theme · Cereal Milk runs two palettes: a pure-black Geist dark (the default) and a
 // Geist-light mirror. The choice lives in `<html data-theme>` and persists in
 // localStorage. Dark is the default: a saved preference wins, and a
 // `?theme=light|dark` URL param is honored for the session (applied, never

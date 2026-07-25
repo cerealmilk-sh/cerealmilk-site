@@ -1,4 +1,4 @@
-80x for service providers: clients don't email you, they text you. Agencies, consultancies, recruiters, brokers: the work is sold in WhatsApp and kept alive in DMs. 80x puts every client channel in one keyboard-first Mac window and files scope, decisions, and referrals to Attio or Affinity, so the relationship has a record the whole firm can stand on.
+Cereal Milk for service providers: clients don't email you, they text you. Agencies, consultancies, recruiters, brokers: the work is sold in WhatsApp and kept alive in DMs. Cereal Milk puts every client channel in one keyboard-first Mac window and files scope, decisions, and referrals to Attio or Affinity, so the relationship has a record the whole firm can stand on.
 
 ## The whole engagement lives in one thread
 
@@ -21,4 +21,4 @@ Two plans, per user: Starter $30 a month or $300 a year, Business $40 a month or
 ## Get it
 
 - [Book a demo](/demo): 30 minutes on a screen-share with the founder.
-- [Download 80x for Mac](/download): create your account in the app and the full product is free for 7 days, no card. macOS 26 or later.
+- [Download Cereal Milk for Mac](/download): create your account in the app and the full product is free for 7 days, no card. macOS 26 or later.

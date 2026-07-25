@@ -42,7 +42,7 @@ export async function GET(
     readFile(join(process.cwd(), "src/app/og/_fonts/Geist-SemiBold.ttf")),
     readFile(join(process.cwd(), "public/icon-512.png")),
   ]);
-  // The brand mark (lime "80x") as a data URI, so every share card carries the
+  // The brand mark (lime "Cereal Milk") as a data URI, so every share card carries the
   // real logo instead of a plain text wordmark.
   const mark = `data:image/png;base64,${markPng.toString("base64")}`;
 
@@ -59,7 +59,7 @@ export async function GET(
 
   const label =
     entry.section === "home"
-      ? "80x"
+      ? "Cereal Milk"
       : entry.section === "product"
         ? "Product"
         : entry.section === "book"
@@ -90,7 +90,7 @@ export async function GET(
           {/* eslint-disable-next-line @next/next/no-img-element -- satori renders to a static raster; next/image is not available here */}
           <img
             src={mark}
-            alt="80x"
+            alt="Cereal Milk"
             width={72}
             height={72}
             style={{ borderRadius: 16 }}
@@ -155,7 +155,7 @@ export async function GET(
           ) : (
             <div style={{ fontSize: 26, color: INK_DIM }}>{SITE_TAGLINE}</div>
           )}
-          <div style={{ fontSize: 26, fontWeight: 600, color: INK }}>80x.ai</div>
+          <div style={{ fontSize: 26, fontWeight: 600, color: INK }}>cerealmilk.sh</div>
         </div>
       </div>
     ),

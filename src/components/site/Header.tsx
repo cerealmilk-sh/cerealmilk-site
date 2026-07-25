@@ -55,7 +55,7 @@ export function Header() {
             <Link
               href="/"
               className="flex select-none items-center text-foreground transition-colors hover:text-foreground/80 focus-visible:outline-none"
-              aria-label="80x · home"
+              aria-label="Cereal Milk · home"
             >
               <Logo size={28} />
             </Link>

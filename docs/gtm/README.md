@@ -1,11 +1,11 @@
-# 80x · GTM & Lifecycle Email System
+# Cereal Milk · GTM & Lifecycle Email System
 
-> Moved here from the standalone `80x-gtm` repo (now archived) on 2026-06-20 so
+> Moved here from the standalone `Cereal Milk-gtm` repo (now archived) on 2026-06-20 so
 > the GTM docs live alongside the code they describe (`src/lib/drip/*`).
 > `sequences.md` is **derived** from `src/lib/drip/sequences.ts`, keep it in sync
 > when the copy in code changes.
 
-A reference for the lifecycle-email ("drip") motion built into this 80x landing
+A reference for the lifecycle-email ("drip") motion built into this Cereal Milk landing
 app. This doc set is **documentation only**, the code lives in `src/lib/drip/`
 and the `/api/{cron/drip,lifecycle,webhooks/clerk}` routes. Use it to review the
 strategy, the email copy, and the wiring, then to operate or extend the system.
@@ -20,7 +20,7 @@ strategy, the email copy, and the wiring, then to operate or extend the system.
 
 ```
                          ┌─────────────────────────────────────────────┐
-   Visitor               │                 80x.ai                      │
+   Visitor               │                 cerealmilk.sh                      │
    ───────►  "Request access" (waitlist)  ─────────────┐               │
                          └─────────────────────────────│───────────────┘
                                                         ▼
@@ -48,7 +48,7 @@ strategy, the email copy, and the wiring, then to operate or extend the system.
                        +10 how's it feeling? (feedback)      POST /api/lifecycle
 ```
 
-**Why this shape.** 80x captures a warm, high-intent waitlist (founders,
+**Why this shape.** Cereal Milk captures a warm, high-intent waitlist (founders,
 investors, dealmakers who live in WhatsApp/LinkedIn DMs) but, before this, only
 emailed them **once**. The nurture drip turns that silence into a sequence that
 either converts a lead to a pre-order or keeps them warm until their wave opens.
@@ -76,7 +76,7 @@ to their **first synced thread** matters more than any nurture email.
 
 ## 3. The two sequences
 
-Plain-text-first, founder voice (signed "Daniel, Founder, 80x"), each with a
+Plain-text-first, founder voice (signed "Daniel, Founder, Cereal Milk"), each with a
 one-click unsubscribe footer. The renderer turns one set of "blocks" into both a
 `text/plain` part and a minimal mirrored HTML part, so a CTA can be a real link
 without the email looking like a designed template.
@@ -100,7 +100,7 @@ without the email looking like a designed template.
 | N1 | +2 | Where your best deals go to die | Agitate the pain; ask a reply |
 | N2 | +4 | Will this get my WhatsApp number banned? | Kill the #1 objection |
 | N3 | +7 | Some conversations were never meant for the record | Differentiate on privacy |
-| N4 | +10 | A day in the 80x cockpit | Show the product |
+| N4 | +10 | A day in the Cereal Milk cockpit | Show the product |
 | N5 | +14 | Want to skip the line? | The pre-order offer |
 | N6 | +21 | Should I keep you on the list? | Breakup / list hygiene |
 
@@ -111,11 +111,11 @@ starter receives fewer emails.
 
 | # | Day | Subject | Skips if |
 |---|-----|---------|----------|
-| A1 | +0 | You're in, let's get 80x set up | (never; sent instantly on purchase) |
+| A1 | +0 | You're in, let's get Cereal Milk set up | (never; sent instantly on purchase) |
 | A2 | +1 | Step 1: connect WhatsApp & LinkedIn | `whatsappConnected && linkedinConnected` |
 | A3 | +3 | Step 2: link Attio or Affinity | `crmLinked` |
 | A4 | +5 | Share your first thread (the 2-minute version) | `firstSync` |
-| A5 | +10 | How's 80x feeling? | (never; feedback ask) |
+| A5 | +10 | How's Cereal Milk feeling? | (never; feedback ask) |
 
 > Full copy for every email is in [`copy/sequences.md`](copy/sequences.md).
 
@@ -123,7 +123,7 @@ starter receives fewer emails.
 
 ## 4. Architecture (where the code lives)
 
-All in `80x-landing`:
+All in `cereal-milk-site`:
 
 ```
 src/lib/drip/
@@ -199,7 +199,7 @@ welcome email + site work unchanged.
 Manual cron trigger (smoke test):
 
 ```bash
-curl -X POST https://www.80x.ai/api/cron/drip \
+curl -X POST https://cerealmilk.sh/api/cron/drip \
   -H "Authorization: Bearer $CRON_SECRET"
 # → {"ok":true,"enabled":true,"processed":N,"sent":M}
 ```
@@ -233,5 +233,5 @@ curl -X POST https://www.80x.ai/api/cron/drip \
 
 ---
 
-*Generated as a review artifact for the 80x GTM build. Source of truth is the
-code in `80x-landing`.*
+*Generated as a review artifact for the Cereal Milk GTM build. Source of truth is the
+code in `cereal-milk-site`.*

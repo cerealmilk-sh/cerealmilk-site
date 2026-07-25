@@ -1,11 +1,11 @@
-// The evergreen Windows installer path, the sibling of /download/80x.dmg:
+// The evergreen Windows installer path, the sibling of /download/CerealMilk.dmg:
 // every GET is logged SERVER-side (see src/lib/download-track.ts for the
 // privacy contract) and then redirected:
 //   SELF_SERVE_DOWNLOADS on  → 307 to the current desktop-line Windows exe
 //   SELF_SERVE_DOWNLOADS off → 307 to the /download page (outcome: "paused",
 //                              blocked demand, never counted as a download)
 //
-// The Windows asset on product-releases is versioned (80x-Setup-<v>.exe),
+// The Windows asset on product-releases is versioned (CerealMilk-Setup-<v>.exe),
 // so unlike the dmg there is no stable /releases/latest/download/ name;
 // the destination is resolved from the desktop release channel's
 // electron-updater manifest (src/lib/desktop-release.ts). If the manifest
@@ -21,7 +21,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const FALLBACK_URL =
-  "https://github.com/80x-org/product-releases/releases/latest";
+  "https://github.com/cerealmilk-sh/product-releases/releases/latest";
 const PAUSED_PATH = "/download";
 
 async function destination(req: NextRequest): Promise<URL> {
@@ -35,7 +35,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   // invocation alive until after() callbacks settle).
   after(() =>
     logDownload(req, {
-      asset: "80x.exe",
+      asset: "CerealMilk.exe",
       event: "exe_download_requested",
       outcome: SELF_SERVE_DOWNLOADS ? "served" : "paused",
     }).catch(() => undefined)

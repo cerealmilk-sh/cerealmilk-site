@@ -6,7 +6,7 @@
 // The key file lives at public/23f5d7103249b53cf9291b33294744db.txt, if you
 // rotate the key, change BOTH that filename/content and KEY below.
 
-const SITE = "https://80x.ai";
+const SITE = "https://cerealmilk.sh";
 const KEY = "23f5d7103249b53cf9291b33294744db";
 
 const res = await fetch(`${SITE}/sitemap.xml`);
@@ -25,7 +25,7 @@ const ping = await fetch("https://api.indexnow.org/indexnow", {
   method: "POST",
   headers: { "content-type": "application/json; charset=utf-8" },
   body: JSON.stringify({
-    host: "80x.ai",
+    host: "cerealmilk.sh",
     key: KEY,
     keyLocation: `${SITE}/${KEY}.txt`,
     urlList: urls,

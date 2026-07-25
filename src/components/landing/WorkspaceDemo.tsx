@@ -1,7 +1,7 @@
 // The hero product frame, reference anatomy: a 16/10 windowed mock under a
 // soft white glow, three panes (sidebar · conversation · inspector), and a
 // row of feature chips beneath. All static markup; the content is the real
-// 80x anatomy: channel groups on the left, the open chat in the middle, the
+// Cereal Milk anatomy: channel groups on the left, the open chat in the middle, the
 // CRM record docked on the right. Numbers and labels mirror what the product
 // actually shows; nothing here fakes a capability.
 
@@ -199,7 +199,7 @@ export function WorkspaceDemo() {
                         <div>
                           <div className="mb-5 flex items-start gap-4">
                             <div className="whitespace-pre text-[11px] leading-none text-brand-light">
-                              {"▛ 80x ▜\n▙ ─── ▟"}
+                              {"▛ Cereal Milk ▜\n▙ ─── ▟"}
                             </div>
                             <div className="text-[11px] text-muted-foreground">
                               <div>

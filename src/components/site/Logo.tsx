@@ -1,4 +1,4 @@
-// The 80x studio mark (brand pack "1c"): the real Geist Mono Bold "80x"
+// The Cereal Milk studio mark (brand pack "1c"): the real Geist Mono Bold "Cereal Milk"
 // outlined to paths, ink (#0B0B09) on the brand lime (#E4F222). Self-contained,
 // no font dependency, no network request: so it renders identically here, as
 // the favicon (src/app/icon.svg), and as the app icon (public/icon-*.png), all
@@ -12,7 +12,7 @@
 
 const VIEWBOX = 1024;
 
-// The glyph block: "80x" in Geist Mono Bold, outlined. The matrix flips the
+// The glyph block: "Cereal Milk" in Geist Mono Bold, outlined. The matrix flips the
 // font's y-up outlines into SVG space and centers the block in the artboard.
 const GLYPHS = (
   <g
@@ -32,8 +32,8 @@ const GLYPHS = (
 );
 
 /**
- * Logo: the square lime "80x" badge. This IS the wordmark (the mark spells
- * "80x"), so it stands alone in the header, footer, and mobile menu.
+ * Logo: the square lime "Cereal Milk" badge. This IS the wordmark (the mark spells
+ * "Cereal Milk"), so it stands alone in the header, footer, and mobile menu.
  *
  * @param size    edge length in px (default 30)
  * @param radius  corner rounding as a fraction of the edge (default 0.16, a
@@ -43,7 +43,7 @@ export function Logo({
   size = 30,
   radius = 0.16,
   className,
-  title = "80x",
+  title = "Cereal Milk",
 }: {
   size?: number;
   radius?: number;

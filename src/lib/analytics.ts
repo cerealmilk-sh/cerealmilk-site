@@ -7,7 +7,7 @@
 // by consent-analytics.js form the rest of the taxonomy: demo_cta_clicked
 // (every Book-a-demo/Book-a-call pill, with {src}), demo_email_clicked (/demo
 // email fallback), ribbon_get_app_clicked, whatsapp_message_clicked (the
-// floating founder button), get_started_cta_clicked (every Get 80x pill, with
+// floating founder button), get_started_cta_clicked (every Get Cereal Milk pill, with
 // {src}, now pointing at /download), and dmg_download_clicked (the /download
 // page's DMG button; reinstated 2026-07-14 with the download-first funnel:
 // the server-side dmg_download_requested in the DMG route is the ground
@@ -34,7 +34,7 @@ export function track(
 // they actually gave us: { email, name?, lead_source }. Because the loader
 // runs PostHog with person_profiles: "identified_only", this call is what
 // upgrades the anonymous visitor into a person profile; when they later sign
-// in at app.80x.ai the Clerk identify() merges the named lead journey into
+// identified users are merged into the anonymised lead journey
 // that same person.
 export function setPerson(props: Record<string, unknown>): void {
   if (typeof window === "undefined") return;

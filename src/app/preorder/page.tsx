@@ -19,8 +19,7 @@ import {
 // lands here; the page's one job is to turn intent into a reservation. The
 // narrative (pre-order plan, agreement) renders from src/content/brandscript.ts
 // and every price from src/lib/pricing.ts. Reservation mode: no card, no
-// charge, no payment code; the dormant /get Clerk lane is the seam for real
-// capture later. Copy mirror: src/content/preorder.md, keep in sync.
+// charge, no payment code; the waitlist form below is the capture point. Copy mirror: src/content/preorder.md, keep in sync.
 
 const entry = pageByPath("/preorder")!;
 export const metadata = pageMetadata(entry);
@@ -38,7 +37,7 @@ const PREORDER_FAQ: { q: string; a: string; aNode?: React.ReactNode }[] = [
     a: "No. There is no card field on this page. You pay nothing until your seat is set up and you have decided to keep it; billing starts on the plan you locked, and the free trial still applies first.",
   },
   {
-    q: "Is 80x live yet?",
+    q: "Is Cereal Milk live yet?",
     a: "Yes, in waves. The app ships today to funds being onboarded personally. Pre-ordering puts you in the founding cohort so your wave opens sooner, not on a someday list.",
   },
   {
@@ -47,10 +46,10 @@ const PREORDER_FAQ: { q: string; a: string; aNode?: React.ReactNode }[] = [
   },
   {
     q: "I'm not on a Mac.",
-    a: "80x is Mac-first today and a Windows client is in development. Reserve with your work email and note Windows on the setup call, and your seat waits for the Windows build.",
+    a: "Cereal Milk is Mac-first today and a Windows client is in development. Reserve with your work email and note Windows on the setup call, and your seat waits for the Windows build.",
     aNode: (
       <>
-        80x is Mac-first today and a Windows client is in development. Reserve
+        Cereal Milk is Mac-first today and a Windows client is in development. Reserve
         with your work email and{" "}
         <Link href="/contact" className={QUIET_LINK}>
           tell us you&apos;re on Windows
@@ -61,10 +60,10 @@ const PREORDER_FAQ: { q: string; a: string; aNode?: React.ReactNode }[] = [
   },
   {
     q: "What happens to my data?",
-    a: "The same rules as every 80x install: every thread starts private, the sharing gate is enforced on the server, and your Repository lives on your Mac and exports in one click. Reserving stores only your name, email, and chosen plan.",
+    a: "The same rules as every Cereal Milk install: every thread starts private, the sharing gate is enforced on the server, and your Repository lives on your Mac and exports in one click. Reserving stores only your name, email, and chosen plan.",
     aNode: (
       <>
-        The same rules as every 80x install: every thread starts private, the
+        The same rules as every Cereal Milk install: every thread starts private, the
         sharing gate is{" "}
         <Link href="/security" className={QUIET_LINK}>
           enforced on the server
@@ -82,7 +81,7 @@ export default function Page() {
       <JsonLd
         data={graph(
           breadcrumbNode("/preorder", [
-            { name: "Pre-order 80x", path: "/preorder" },
+            { name: "Pre-order Cereal Milk", path: "/preorder" },
           ]),
           faqNode("/preorder", PREORDER_FAQ)
         )}
@@ -97,7 +96,7 @@ export default function Page() {
             as="h1"
             kicker="The founding offer"
             title="Reserve your founding seat"
-            lede="80x rolls out in waves, and every install is set up personally with the founder. Reserving takes two minutes and no card: you lock today's published pricing, and you get first access when your wave opens."
+            lede="Cereal Milk rolls out in waves, and every install is set up personally with the founder. Reserving takes two minutes and no card: you lock today's published pricing, and you get first access when your wave opens."
           />
           <p className="mt-8 max-w-[54ch] text-[15px] leading-relaxed text-ink-dim">
             Built by the team that ran deal-ops engineering for{" "}

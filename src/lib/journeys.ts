@@ -67,7 +67,7 @@ export const JOURNEYS: Record<string, NextStop[]> = {
       href: "/download",
       kicker: "Get the app",
       title: "See it on your own Mac",
-      blurb: "Get 80x and watch what it does and does not do.",
+      blurb: "Get Cereal Milk and watch what it does and does not do.",
     },
     {
       href: "/pricing",
@@ -94,7 +94,7 @@ export const JOURNEYS: Record<string, NextStop[]> = {
     {
       href: "/",
       kicker: "Product",
-      title: "What 80x is",
+      title: "What Cereal Milk is",
       blurb: "The three channels, the CRM inspector, and the privacy gate.",
     },
     {
@@ -114,7 +114,7 @@ export const JOURNEYS: Record<string, NextStop[]> = {
     {
       href: "/about",
       kicker: "Company",
-      title: "Where 80x comes from",
+      title: "Where Cereal Milk comes from",
       blurb: "62 projects for 68 funds, productized.",
     },
     {
@@ -128,13 +128,13 @@ export const JOURNEYS: Record<string, NextStop[]> = {
     {
       href: "/download",
       kicker: "Get the app",
-      title: "Download 80x for Mac",
+      title: "Download Cereal Milk for Mac",
       blurb: "Free for 7 days when you create your account. No card.",
     },
     {
       href: "/",
       kicker: "Product",
-      title: "What 80x is",
+      title: "What Cereal Milk is",
       blurb: "The communication platform for people who close in chat.",
     },
   ],

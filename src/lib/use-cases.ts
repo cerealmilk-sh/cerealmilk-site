@@ -1,7 +1,7 @@
 // The /for/* use-case layer (the Wispr Flow model): the homepage sells the
 // platform, industry-agnostic; each use-case page sells the same product in
 // one audience's own language. One typed list drives the routes, the home
-// "who runs 80x" cards, the footer column, and the registry entries, so
+// "who runs Cereal Milk" cards, the footer column, and the registry entries, so
 // adding an audience is one object here + one thin page.tsx + one markdown
 // mirror.
 //
@@ -25,7 +25,7 @@ export interface UseCase {
   slug: string;
   /** Short label for nav, cards, and footer ("Venture capital"). */
   label: string;
-  /** Registry title (becomes "<title> · 80x"). */
+  /** Registry title (becomes "<title> · Cereal Milk"). */
   metaTitle: string;
   /** Registry meta description (~155 chars). */
   metaDescription: string;
@@ -53,14 +53,14 @@ export const USE_CASES: UseCase[] = [
   {
     slug: "venture-capital",
     label: "Venture capital",
-    metaTitle: "80x for venture capital",
+    metaTitle: "Cereal Milk for venture capital",
     metaDescription:
       "The deal messenger for venture capital: WhatsApp, LinkedIn, and Gmail in one Mac window, with the Attio or Affinity record live beside every chat. Private by default.",
     teaser:
       "Sourcing in DMs, diligence in group chats, LPs on WhatsApp. Every conversation a deal moves through, filed to the pipeline.",
-    kicker: "80x for venture capital",
+    kicker: "Cereal Milk for venture capital",
     h1: ["The deal messenger", "for venture capital."],
-    lede: "Sourcing happens in DMs. Diligence happens in group chats. LPs live on WhatsApp. 80x puts every channel a deal moves through in one keyboard-first Mac window, with the Attio or Affinity record live beside every chat, and every deal on the record.",
+    lede: "Sourcing happens in DMs. Diligence happens in group chats. LPs live on WhatsApp. Cereal Milk puts every channel a deal moves through in one keyboard-first Mac window, with the Attio or Affinity record live beside every chat, and every deal on the record.",
     leaksTitle: "Your best deals have no record",
     leaksLede:
       "The deals that make a fund are hashed out in chat. None of it reaches the CRM.",
@@ -101,21 +101,21 @@ export const USE_CASES: UseCase[] = [
     proofKicker: "Built from inside the workflow",
     proofTitle: "Born in venture. Still deepest here.",
     proofBody:
-      "80x was built by the team that ran deal-ops engineering for 68 venture funds and firms, from first-time managers to long-established multi-stage firms. Deployed across the fund, every partner's WhatsApp, LinkedIn, and Gmail files to one clean CRM: intros stop dying in someone's DMs, and “who knows this founder” has one true answer.",
+      "Cereal Milk was built by the team that ran deal-ops engineering for 68 venture funds and firms, from first-time managers to long-established multi-stage firms. Deployed across the fund, every partner's WhatsApp, LinkedIn, and Gmail files to one clean CRM: intros stop dying in someone's DMs, and “who knows this founder” has one true answer.",
     closer:
       "Your competition is still scrolling for the deck. Close the tabs. Open the cockpit.",
   },
   {
     slug: "b2b-startups",
     label: "B2B startups",
-    metaTitle: "80x for B2B startups",
+    metaTitle: "Cereal Milk for B2B startups",
     metaDescription:
       "Founder-led sales finally has a system of record: WhatsApp, LinkedIn, and Gmail in one Mac window, every lead and every promise filed to Attio or Affinity.",
     teaser:
       "Founder-led sales lives in WhatsApp and LinkedIn. Every lead, every promise, and every investor thread, on the record.",
-    kicker: "80x for B2B startups",
+    kicker: "Cereal Milk for B2B startups",
     h1: ["Founder-led sales finally has", "a system of record."],
-    lede: "Your best pipeline is in WhatsApp threads and LinkedIn DMs, not your CRM. 80x puts every channel a prospect moves through in one keyboard-first Mac window, files the lines that matter to Attio or Affinity, and keeps every promise you make on the record.",
+    lede: "Your best pipeline is in WhatsApp threads and LinkedIn DMs, not your CRM. Cereal Milk puts every channel a prospect moves through in one keyboard-first Mac window, files the lines that matter to Attio or Affinity, and keeps every promise you make on the record.",
     leaksTitle: "Your pipeline is forty scrolls up",
     leaksLede:
       "The revenue that keeps a startup alive is closed in chat. None of it reaches the CRM.",
@@ -156,21 +156,21 @@ export const USE_CASES: UseCase[] = [
     proofKicker: "Proven where deals move fastest",
     proofTitle: "The machine that keeps a fund's pipeline true",
     proofBody:
-      "80x was built by the team that ran deal-ops engineering for 68 venture funds and firms. The same machine now keeps a startup's pipeline true: founder-led sales, fundraising threads, and customer relationships filed to one clean CRM, without anyone doing data entry.",
+      "Cereal Milk was built by the team that ran deal-ops engineering for 68 venture funds and firms. The same machine now keeps a startup's pipeline true: founder-led sales, fundraising threads, and customer relationships filed to one clean CRM, without anyone doing data entry.",
     closer:
       "Your next customer is already in your DMs. Close the tabs. Open the cockpit.",
   },
   {
     slug: "service-providers",
     label: "Service providers",
-    metaTitle: "80x for service providers",
+    metaTitle: "Cereal Milk for service providers",
     metaDescription:
       "For agencies, consultancies, recruiters, and brokers: every client channel in one Mac window, scope and referrals filed to Attio or Affinity, private by default.",
     teaser:
       "Clients buy in chat and stay in chat. Scope, renewals, and referrals, filed to the relationship instead of your memory.",
-    kicker: "80x for service providers",
+    kicker: "Cereal Milk for service providers",
     h1: ["Clients don't email you.", "They text you."],
-    lede: "Agencies, consultancies, recruiters, brokers: the work is sold in WhatsApp and kept alive in DMs. 80x puts every client channel in one keyboard-first Mac window and files scope, decisions, and referrals to Attio or Affinity, so the relationship has a record the whole firm can stand on.",
+    lede: "Agencies, consultancies, recruiters, brokers: the work is sold in WhatsApp and kept alive in DMs. Cereal Milk puts every client channel in one keyboard-first Mac window and files scope, decisions, and referrals to Attio or Affinity, so the relationship has a record the whole firm can stand on.",
     leaksTitle: "The whole engagement lives in one thread",
     leaksLede:
       "The conversations that pay the firm are hashed out in chat. None of it reaches the record.",

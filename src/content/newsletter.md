@@ -1,4 +1,4 @@
-The 80x Field Notes is one email when something ships from 80x: new releases, new capabilities, and field notes from the build. No spam, unsubscribe anytime.
+The Cereal Milk Field Notes is one email when something ships from Cereal Milk: new releases, new capabilities, and field notes from the build. No spam, unsubscribe anytime.
 
 ## What a subscriber gets
 

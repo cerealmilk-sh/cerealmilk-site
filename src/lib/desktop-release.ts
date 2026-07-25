@@ -1,7 +1,7 @@
 // Resolves the current desktop-app installer URLs from the release channel's
 // own electron-updater manifests, so the evergreen download routes never
 // hard-code a version and never depend on GitHub's "latest release" ordering
-// (two release lines publish to 80x-org/product-releases: the legacy Mac
+// (two release lines publish to cerealmilk-sh/product-releases: the legacy Mac
 // v1.4-b* line and the desktop-v* line that ships both the Mac dmg and the
 // Windows exe; whichever publishes most recently is "latest").
 //
@@ -13,7 +13,7 @@
 // a fresh release can take that long to reach the site, which is fine.
 
 const MANIFEST_BASE =
-  "https://raw.githubusercontent.com/80x-org/product-releases/main/desktop";
+  "https://raw.githubusercontent.com/cerealmilk-sh/product-releases/main/desktop";
 
 export async function resolveDesktopAsset(
   channel: "mac" | "windows"

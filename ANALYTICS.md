@@ -1,11 +1,11 @@
-# Analytics · 80x.ai
+# Analytics · cerealmilk.sh
 
-Site-wide, consent-gated web analytics across all three surfaces of `80x.ai`
+Site-wide, consent-gated web analytics across all three surfaces of `cerealmilk.sh`
 (landing, `/docs`, `/sentry`). **PostHog** (US cloud) for traffic, funnels,
 conversion events, and session replay; **Vercel Speed Insights** for Core Web
 Vitals. Because `/docs` and `/sentry` are reverse-proxied under the apex, all
 three are same-origin and share **one** consent choice and **one** dataset.
-The signed-in app at `app.80x.ai` and the Mac app report into the **same
+The signed-in app at `app.cerealmilk.sh` and the Mac app report into the **same
 PostHog project**, so the whole journey (first pageview to paying seat) is one
 funnel; see "Identity stitching" below.
 
@@ -33,7 +33,7 @@ sessions ON**
 
 ### 2. Turn on the Vercel products (landing project)
 
-In the **`80x`** Vercel project dashboard (team `eightyx`; that project owns
+In the **`Cereal Milk`** Vercel project dashboard (team `cerealmilk`; that project owns
 the apex domain):
 - **Speed Insights** tab → Enable. (The `<SpeedInsights/>` component is already
   in `layout.tsx`; the dashboard toggle starts collection.)
@@ -51,10 +51,10 @@ That's it. Deploy, accept the banner on the live site, and data flows.
 | Loads the script + `<SpeedInsights/>` | `src/app/layout.tsx` |
 | Typed event + person helpers (`track()`, `setPerson()`) | `src/lib/analytics.ts` |
 | Fire-once-on-mount tracker (for redirect conversions) | `src/components/site/TrackEvent.tsx` |
-| Server-side download logging (dmg + exe share it) | `src/lib/download-track.ts`, routes `src/app/download/80x.dmg/route.ts`, `src/app/download/80x.exe/route.ts` |
+| Server-side download logging (dmg + exe share it) | `src/lib/download-track.ts`, routes `src/app/download/CerealMilk.dmg/route.ts`, `src/app/download/CerealMilk.exe/route.ts` |
 | Privacy & cookies policy + "change choice" button | `src/app/privacy/page.tsx`, `src/components/site/ConsentReset.tsx` |
 | Docs injection | `growth-docs/src/components/Head.astro` |
-| Sentry injection | `skill-audit/webapp/public/sentry/index.html` (repo `80x-djh/skill-audit`) |
+| Sentry injection | `skill-audit/webapp/public/sentry/index.html` (repo `cerealmilk-sh/skill-audit`) |
 
 **One file, three sites.** `consent-analytics.js` lives only in the landing's
 `/public` and is loaded from the apex by all three surfaces. Change tracking
@@ -63,7 +63,7 @@ it, a feature: preview traffic never pollutes the data.)
 
 **Consent.** First visit shows a banner. **Accept** → PostHog loads, sets
 first-party cookies, starts replay. **Decline** (or ignore) → nothing loads,
-no cookies, no requests. Choice stored in `localStorage['80x-consent']` and
+no cookies, no requests. Choice stored in `localStorage['cereal-milk-consent']` and
 shared across all three surfaces. Withdraw/change any time on `/privacy`.
 
 ---
@@ -74,9 +74,9 @@ Fired via `track(...)` (React) or a `data-track="…"` attribute (any element):
 
 | Event | Where it fires |
 |---|---|
-| `get_started_cta_clicked` | every Get 80x pill, header/hero/home-pricing/footer (`data-track`, props `{src}`, plus `plan` on the home pricing cards), pointing at `/download` |
+| `get_started_cta_clicked` | every Get Cereal Milk pill, header/hero/home-pricing/footer (`data-track`, props `{src}`, plus `plan` on the home pricing cards), pointing at `/download` |
 | `dmg_download_clicked` / `exe_download_clicked` | the `/download` interstitial's manual Mac/Windows download links (`data-track`, props `{src}`; client-side click, consent-gated) |
-| `dmg_download_requested` / `exe_download_requested` | **server-side**, the `/download/80x.dmg` and `/download/80x.exe` route handlers: every GET, consent-independent and ad-blocker-proof, anonymous random `distinct_id`, props `{outcome, asset, source, kind, country}`. The ground truth for downloads |
+| `dmg_download_requested` / `exe_download_requested` | **server-side**, the `/download/CerealMilk.dmg` and `/download/CerealMilk.exe` route handlers: every GET, consent-independent and ad-blocker-proof, anonymous random `distinct_id`, props `{outcome, asset, source, kind, country}`. The ground truth for downloads |
 | `buy_cta_clicked` | the `/pricing` Buy buttons (`data-track`, props `{src, plan}`) |
 | `demo_cta_clicked` | every Book-a-demo link (`data-track`, props `{src}`) |
 | `demo_email_clicked` | the `/demo` email fallback link (`data-track`) |
@@ -110,8 +110,8 @@ The point: a named lead's anonymous browsing, their trial, and their paid seat
 should all be one PostHog person. Three pieces make that happen:
 
 1. **`cross_subdomain_cookie: true`** in the loader scopes the PostHog cookie
-   to `.80x.ai` (not host-only), so the anonymous `distinct_id` minted on the
-   marketing site is the same one the signed-in app at `app.80x.ai` sees.
+   to `.cerealmilk.sh` (not host-only), so the anonymous `distinct_id` minted on the
+   marketing site is the same one the signed-in app at `app.cerealmilk.sh` sees.
 2. **`window.setPerson(props)`, lead enrichment.** The loader runs PostHog
    with `person_profiles: "identified_only"`, so anonymous visitors have no
    person profile at all. When a visitor self-identifies in a form (demo
@@ -122,7 +122,7 @@ should all be one PostHog person. Three pieces make that happen:
    still a lead. Only fields the visitor actually typed are sent.
 3. **`identify()` on sign-in.** The app's PostHogProvider calls
    `identify(clerkUserId, { email, name })` when someone signs in at
-   `app.80x.ai`. Because of (1) the pre-signup journey and the signed-in
+   `app.cerealmilk.sh`. Because of (1) the pre-signup journey and the signed-in
    session share a `distinct_id`, so PostHog merges them, and because of (2)
    the merged person already carries the lead properties. The Mac app
    identifies with the **same Clerk userId** (fetched via `/api/app/me`), so
@@ -137,7 +137,7 @@ posts, newsletter, DMs, directory submissions, so you know what actually works.
 PostHog reads UTMs automatically.
 
 ```
-https://80x.ai/writing/<post>?utm_source=linkedin&utm_medium=social&utm_campaign=fieldnotes-2026-07
+https://cerealmilk.sh/writing/<post>?utm_source=linkedin&utm_medium=social&utm_campaign=fieldnotes-2026-07
 ```
 - `utm_source`: where it's posted (linkedin, x, newsletter, hn, reddit)
 - `utm_medium`: social | email | referral | paid
@@ -172,7 +172,7 @@ rates to see how traffic splits between download-now and talk-first.
 **Legacy: the pre-order funnel.** Before the download-first flip the canonical
 funnel was `preorder_cta_clicked` → `/preorder` pageview → `preorder_started`
 → `preorder_submitted` → `preorder_confirmed` → `referral_click`.
-`preorder_cta_clicked` no longer fires (the CTAs became Get 80x), but the
+`preorder_cta_clicked` no longer fires (the CTAs became Get Cereal Milk), but the
 `/preorder` pages and their events still exist for inbound links; treat that
 funnel as historical.
 

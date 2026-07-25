@@ -1,19 +1,19 @@
 # growth-landing CLAUDE.md
 
-The **80x.ai** product site: the marketing site for the 80x Mac app ("the deal
+The **cerealmilk.sh** product site: the marketing site for the Cereal Milk Mac app ("the deal
 messenger for venture capital"), the demo/download funnel, the `/docs` proxy,
-and the home of 80x's machine-facing surfaces (SEO + agent) and lifecycle
-email. Part of the `~/github` workspace (`80x-org/growth-landing`); see
+and the home of Cereal Milk's machine-facing surfaces (SEO + agent) and lifecycle
+email. Part of the `~/github` workspace (`cerealmilk-sh/growth-landing`); see
 `~/github/CLAUDE.md` for the org-wide map.
 
-**History:** until 2026-07-09 this repo served the 80x studio/agency site.
+**History:** until 2026-07-09 this repo served the Cereal Milk studio/agency site.
 That site is archived in full at branch `archive/studio-site-2026-07-08` /
 tag `studio-site-2026-07-08`; its routes 308-redirect to the product pages
 (see next.config.ts).
 
 ## Stack
 
-Next.js **App Router** + TypeScript, deployed on **Vercel** (team `eightyx`).
+Next.js **App Router** + TypeScript, deployed on **Vercel** (team `cerealmilk`).
 Content-driven: pages render from markdown in `src/content/` through
 `src/lib/content.ts`, indexed by `src/lib/registry.ts`.
 
@@ -53,17 +53,17 @@ npm install && npm run dev          # also: build · lint · geo-audit · indexn
 
 ## Deploy & conventions (important)
 
-- **Vercel, team `eightyx`.** Deploy: `vercel deploy --prod --scope eightyx`
+- **Vercel, team `cerealmilk`.** Deploy: `vercel deploy --prod --scope cerealmilk`
   from this dir. Commits MUST be authored **`daniel@bastoni.xyz`** (already
   pinned as this repo's `user.email`) or Vercel silently marks the build
   `BLOCKED`.
 - **No em dashes** anywhere in copy, comments and docs included. Hard rule: reads as AI slop.
   Replace by role (comma/colon/period).
-- **Naming law:** the product is **80x**. Backchannel and Cereal Milk are
+- **Naming law:** the product is **Cereal Milk**. Backchannel and Cereal Milk are
   retired names; never reintroduce them.
 - The `/docs` + `/sentry` rewrites must stay FIRST in next.config.ts.
-- Secrets (Resend, Upstash/KV, Clerk, CRON/LIFECYCLE guards) live in Vercel
+- Secrets (Resend, Upstash/KV, CRON/LIFECYCLE guards) live in Vercel
   env, see `~/github/ops/secrets-inventory.md`. Drip runbook:
   `~/github/ops/runbooks/email-drip.md`.
-- Push via the `80x-djh` account. Commit/push only when asked; branch off
+- Push via the `cerealmilk-sh` account. Commit/push only when asked; branch off
   `main` first.

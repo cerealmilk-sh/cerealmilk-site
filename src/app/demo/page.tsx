@@ -41,8 +41,8 @@ export default function Page() {
         <SectionHeading
           as="h1"
           kicker="Book a demo"
-          title="See 80x on your own pipeline"
-          lede="30 minutes on a screen-share with Daniel Hull, the founder. Tell us who you are, pick a time, and come with questions. If 80x is not right for you, he will say so on the call."
+          title="See Cereal Milk on your own pipeline"
+          lede="30 minutes on a screen-share with Daniel Hull, the founder. Tell us who you are, pick a time, and come with questions. If Cereal Milk is not right for you, he will say so on the call."
         />
 
         <div className="relative mt-10 border border-edge bg-bg p-6 sm:p-8">
@@ -67,7 +67,7 @@ export default function Page() {
             ))}
           </ul>
           <p className="mt-5 font-mono text-[12.5px] text-ink-faint">
-            80x is a Mac app · requires macOS 26 or later
+            Cereal Milk is a Mac app · requires macOS 26 or later
           </p>
         </div>
 
@@ -82,7 +82,7 @@ export default function Page() {
           </a>{" "}
           and Dan replies with times within a day. Or read about{" "}
           <Link href="/download" className={QUIET_LINK}>
-            getting 80x for Mac
+            getting Cereal Milk for Mac
           </Link>{" "}
           first.
         </p>

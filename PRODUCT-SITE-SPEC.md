@@ -1,13 +1,13 @@
-# PRODUCT-SITE-SPEC: 80x.ai as the product site
+# PRODUCT-SITE-SPEC: cerealmilk.sh as the product site
 
-**Status:** live spec since 2026-07-09, when 80x.ai was re-architected from the
-studio/agency site into the marketing site for the 80x Mac app. The studio site
+**Status:** live spec since 2026-07-09, when cerealmilk.sh was re-architected from the
+studio/agency site into the marketing site for the Cereal Milk Mac app. The studio site
 is archived in full: branch `archive/studio-site-2026-07-08`, tag
 `studio-site-2026-07-08`. Restore any page from there.
 
 ## What the site is
 
-80x.ai sells one thing: the 80x Mac app, "the deal messenger for venture
+cerealmilk.sh sells one thing: the Cereal Milk Mac app, "the deal messenger for venture
 capital". A native Mac app that puts the official WhatsApp Web, LinkedIn, and
 Gmail in one window, docks the Attio/Affinity record beside every chat, and
 syncs only the conversations the user chooses (server-enforced privacy gate).
@@ -26,11 +26,11 @@ Founder-led, product-led sales (see `product-backend/BILLING-MODEL.md`):
 - **Secondary: Download → `/download`** (free individual tier, the wedge).
   The page is a superset.sh-style interstitial: it detects the visitor's
   platform client-side (`src/lib/platform.ts`) and auto-starts the right
-  installer, `/download/80x.dmg` on Mac or `/download/80x.exe` on Windows,
+  installer, `/download/CerealMilk.dmg` on Mac or `/download/CerealMilk.exe` on Windows,
   with a manual platform picker anywhere else. Both evergreen file routes
   first-party-log the hit (`src/lib/download-track.ts`), then 307 to the
   current installer resolved from the desktop release manifests on the
-  public `80x-org/product-releases` repo (`src/lib/desktop-release.ts`).
+  public `cerealmilk-sh/product-releases` repo (`src/lib/desktop-release.ts`).
 - **Pricing is published** (`/pricing`): per-fund anchor from
   `FUND_PRICE_ANCHOR` in site.ts ($12,000/yr, provisional until the
   van Westendorp survey), "custom for larger funds", supported paid pilots.
@@ -59,16 +59,8 @@ images all derive from the registry.
 - `/docs` and `/sentry` rewrites MUST stay first in `next.config.ts`.
 - The email drip engine (`src/lib/drip/` + `/api/cron/drip` in vercel.json)
   is load-bearing; do not break the api routes.
-- Deploys: commits authored `daniel@bastoni.xyz`, push via `80x-djh`,
-  `vercel deploy --prod --scope eightyx`.
-
-## Dormant, deliberately kept
-
-`/get`, `/onboard`, `/account`, `/sso-callback` (Clerk self-serve checkout,
-the second lane) are redirected to `/download` in next.config.ts until
-self-serve billing turns on. Their components live in
-`src/components/landing/` alongside `HeroMockup` (used on the homepage) and
-`kit.tsx`.
+- Deploys: commits authored `daniel@bastoni.xyz`, push via `cerealmilk-sh`,
+  `vercel deploy --prod --scope cerealmilk`.
 
 ## Redirect map for removed studio routes
 

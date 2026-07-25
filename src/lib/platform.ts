@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 // download UX: the server render is platform-neutral (navigator does not
 // exist), detection runs once after hydration, and the download surfaces
 // (the CTA labels, the /download interstitial) swap to match the visitor's
-// machine. 80x ships two desktop builds, a Mac dmg and a Windows exe, so
+// machine. Cereal Milk ships two desktop builds, a Mac dmg and a Windows exe, so
 // those two platforms get a direct download and everything else (Linux,
 // phones, tablets, undetected) gets a manual platform picker.
 
@@ -42,8 +42,8 @@ export function usePlatform(): Platform {
 
 // What each downloadable platform is called and which evergreen route serves
 // it (route handlers that first-party-log the hit, then 307 to the current
-// installer on 80x-org/product-releases).
+// installer on cerealmilk-sh/product-releases).
 export const PLATFORM_DOWNLOAD = {
-  [Platform.Mac]: { label: "macOS", path: "/download/80x.dmg" },
-  [Platform.Windows]: { label: "Windows", path: "/download/80x.exe" },
+  [Platform.Mac]: { label: "macOS", path: "/download/CerealMilk.dmg" },
+  [Platform.Windows]: { label: "Windows", path: "/download/CerealMilk.exe" },
 } as const;

@@ -1,7 +1,7 @@
-# VERCEL-GEIST-SPEC: the 80x web presence design system (2026-07-02)
+# VERCEL-GEIST-SPEC: the Cereal Milk web presence design system (2026-07-02)
 
 This is the **single source of truth** for the Vercel/Next.js-style revamp of
-80x.ai (the `~/80x-landing` Next.js site) and 80x.ai/docs (the `~/80x-docs`
+cerealmilk.sh (the `~/cereal-milk-site` Next.js site) and cerealmilk.sh/docs (the `~/Cereal Milk-docs`
 Astro/Starlight site). Every agent working on the revamp reads this file first
 and treats it as the contract. The goal: a visitor should think "this could be
 a Vercel property": the same restraint, the same grid discipline, the same
@@ -149,7 +149,7 @@ hand-roll their own versions.
   border-edge`.
 - Container: `max-w-[1080px] mx-auto px-6` (this container width is THE
   container for the whole site).
-- Left: `80x` wordmark (Geist 600, 18px, tracking -0.02em). No logo redesign.
+- Left: `Cereal Milk` wordmark (Geist 600, 18px, tracking -0.02em). No logo redesign.
 - Nav (14px, ink-dim → hover ink, gap-6): `Services ⌄` `Tools ⌄` `Resources ⌄`
   `Work` `Docs`. Chevron 10px, rotates 180° when open.
 - Right: ThemeToggle (quiet icon button) · `Contact` **secondary pill** (h-8)
@@ -190,7 +190,7 @@ Vercel-style: `border-t border-edge`, bg-bg, py-16. Container grid: 4–5
 columns of links: column heading 14px ink, links 14px ink-dim → hover ink,
 leading-8. Keep every existing footer link and the Field Notes subscribe block
 (restyle: 14px input `bg-transparent border border-edge-2 rounded-md h-10` +
-primary pill submit). Bottom row: `80x` mark, © line, theme toggle.
+primary pill submit). Bottom row: `Cereal Milk` mark, © line, theme toggle.
 
 ### 5.4 Page-end CTA (`Terminus.tsx`)
 Keep the component API; restyle as a bordered section (hairline top) with h2 +
@@ -218,7 +218,7 @@ primary/secondary pill pair.
 6. **Homepage keeps `title.absolute`** (root segment ignores the title
    template).
 7. **Copy freeze**: no copy changes anywhere. The canonical sentence
-   "80x is an agentic-engineering studio that builds AI systems for
+   "Cereal Milk is an agentic-engineering studio that builds AI systems for
    venture-capital funds." stays byte-identical. Do not touch
    `src/lib/registry.ts`, `src/lib/site.ts`, `src/lib/meta.ts`,
    `src/lib/jsonld.ts`, `src/content/**`, `src/app/api/**`, `next.config.ts`,
@@ -234,11 +234,11 @@ primary/secondary pill pair.
 12. `/account /get /onboard /sso-callback` are redirected to `/app` in
     next.config, leave their components untouched (dead surfaces).
 
-## 7. Docs site (~/80x-docs): nextjs.org/docs replica
+## 7. Docs site (~/Cereal Milk-docs): nextjs.org/docs replica
 
 - **Fonts**: Geist Sans + Geist Mono, self-hosted: copy the variable woff2
-  files from `~/80x-landing/node_modules/geist/dist/fonts/**` into
-  `~/80x-docs/public/fonts/`, declare `@font-face` in `src/styles/custom.css`
+  files from `~/cereal-milk-site/node_modules/geist/dist/fonts/**` into
+  `~/Cereal Milk-docs/public/fonts/`, declare `@font-face` in `src/styles/custom.css`
   with URLs under `/docs/fonts/…` (the site is served under base `/docs`).
   Replace Inter/General Sans usage entirely.
 - **Palette**: same §2 tokens. Dark: bg #000, sidebar/current-page link in
@@ -247,7 +247,7 @@ primary/secondary pill pair.
   #1f1f1f / #333. Light mirror per §2. Map through Starlight's `--sl-color-*`
   custom properties + the existing `--x-*` token layer (course components
   depend on `--x-*`, keep every existing `--x-*` variable defined).
-- **Header**: black, hairline bottom; wordmark `80x` (+ `/ Docs` separator
+- **Header**: black, hairline bottom; wordmark `Cereal Milk` (+ `/ Docs` separator
   style welcome); search input as a dark rounded field with a bordered `⌘K`
   kbd chip; `HeaderCta` = white pill (`Book a call`) + secondary pill.
 - **Sidebar**: section labels 14px #ededed weight 600; links 14px #a1a1a1;
@@ -269,7 +269,7 @@ primary/secondary pill pair.
 - **Do not** touch content prose (`src/content/**`), astro.config.mjs (fonts
   go through custom.css so no config change is needed), `site.config.mjs`, or
   the Pagefind setup. Pagefind UI must remain styled/usable.
-- Build with `npm run build` from `~/80x-docs` (expects 47 pages with the WIP
+- Build with `npm run build` from `~/Cereal Milk-docs` (expects 47 pages with the WIP
   learn content present).
 
 ## 8. Verification bar

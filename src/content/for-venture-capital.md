@@ -1,4 +1,4 @@
-80x for venture capital: the deal messenger. Sourcing happens in DMs, diligence happens in group chats, LPs live on WhatsApp. 80x puts every channel a deal moves through in one keyboard-first Mac window, with the Attio or Affinity record live beside every chat, and every deal on the record.
+Cereal Milk for venture capital: the deal messenger. Sourcing happens in DMs, diligence happens in group chats, LPs live on WhatsApp. Cereal Milk puts every channel a deal moves through in one keyboard-first Mac window, with the Attio or Affinity record live beside every chat, and every deal on the record.
 
 ## Your best deals have no record
 
@@ -12,7 +12,7 @@ The deals that make a fund are hashed out in chat. None of it reaches the CRM. T
 
 ## Born in venture. Still deepest here.
 
-80x was built by the team that ran deal-ops engineering for 68 venture funds and firms, from first-time managers to long-established multi-stage firms. Deployed across the fund, every partner's WhatsApp, LinkedIn, and Gmail files to one clean CRM: intros stop dying in someone's DMs, and "who knows this founder" has one true answer. The privacy gate is enforced on the server; see [Security and privacy](/security).
+Cereal Milk was built by the team that ran deal-ops engineering for 68 venture funds and firms, from first-time managers to long-established multi-stage firms. Deployed across the fund, every partner's WhatsApp, LinkedIn, and Gmail files to one clean CRM: intros stop dying in someone's DMs, and "who knows this founder" has one true answer. The privacy gate is enforced on the server; see [Security and privacy](/security).
 
 ## Pricing
 
@@ -21,4 +21,4 @@ Two plans, per user: Starter $30 a month or $300 a year, Business $40 a month or
 ## Get it
 
 - [Book a demo](/demo): 30 minutes on a screen-share with the founder, on a live pipeline.
-- [Download 80x for Mac](/download): create your account in the app and the full product is free for 7 days, no card. macOS 26 or later.
+- [Download Cereal Milk for Mac](/download): create your account in the app and the full product is free for 7 days, no card. macOS 26 or later.

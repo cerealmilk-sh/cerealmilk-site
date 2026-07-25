@@ -1,4 +1,4 @@
-// Single source of truth for 80x pricing (see BILLING-MODEL.md in
+// Single source of truth for Cereal Milk pricing (see BILLING-MODEL.md in
 // product-backend). Two plans, nothing to decipher: Starter for one person,
 // Business for a team. Monthly or yearly, per user. Everything that states a
 // price (the pricing page, the home page, llms.txt, the content mirrors)
@@ -58,7 +58,7 @@ export const BUSINESS = PLANS[1];
 
 // The trial is granted at ACCOUNT CREATION, no card: download the app, sign
 // in, and the backend auto-grants 7 days of full access (the signup trial in
-// product-backend). The live Clerk plans carry their own 7-day trial too
+// product-backend). A 7-day trial is included.
 // (user-payer "starter", org-payer "business_org"), so someone who buys
 // directly also trials first. TRIAL_NOTE quotes the Starter price for
 // surfaces anchored on the Starter number (hero, ribbon).
@@ -73,7 +73,7 @@ export const PRICE_LINE = `Two plans, per user: Starter $${STARTER.monthly} a mo
 
 // The founding pre-order offer. A reservation, not a charge: no card is taken
 // and no payment code runs until self-serve checkout goes live (the dormant
-// /get Clerk lane is the seam). The seat cap is a real commitment, not
+// download page is the entry point). The seat cap is a real commitment, not
 // theater: every install is set up personally on a call, so founding
 // onboarding capacity is genuinely limited, and the cap is honored by hand
 // until checkout automation enforces it.

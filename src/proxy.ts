@@ -1,21 +1,8 @@
-// Next.js 16 renamed `middleware` → `proxy` (same signature). This hosts Clerk
-// and the markdown content negotiation.
-//
-// Rollout-safe: with NO Clerk keys the proxy is a passthrough (plus the .md
-// rewrite), so the live (static) site is unaffected. With BOTH keys set, /get
-// (the paid checkout) is protected, an unauthenticated hit bounces to /app
-// (the product page), where the "Get 80x" sign-in modal lives. Set BOTH
-// CLERK_SECRET_KEY and NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY together (the
-// publishable key ALSO as a Vercel build-time env var).
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+// Next.js 16 renamed `middleware` -> `proxy` (same signature).
+// Hosts the markdown content negotiation for all registry pages.
+
 import { NextResponse, type NextRequest } from "next/server";
 import { PAGES } from "@/lib/registry";
-
-const CLERK_ENABLED = Boolean(
-  process.env.CLERK_SECRET_KEY && process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-);
-
-const isProtected = createRouteMatcher(["/get(.*)"]);
 
 // --- markdown mirrors ---------------------------------------------------------
 // Every registry page is also served as clean markdown (see src/app/api/md/):
@@ -59,22 +46,11 @@ function mdRewrite(req: NextRequest): NextResponse | null {
   return null;
 }
 
-const proxy = CLERK_ENABLED
-  ? clerkMiddleware(async (auth, req) => {
-      const md = mdRewrite(req);
-      if (md) return md;
-      if (isProtected(req)) {
-        await auth.protect({ unauthenticatedUrl: new URL("/app", req.url).toString() });
-      }
-    })
-  : function proxy(req: NextRequest) {
-      return mdRewrite(req) ?? NextResponse.next();
-    };
-
-export default proxy;
+export default function proxy(req: NextRequest) {
+  return mdRewrite(req) ?? NextResponse.next();
+}
 
 export const config = {
-  // Clerk's recommended matcher: skip Next internals + static assets.
   matcher: [
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
     "/(api|trpc)(.*)",

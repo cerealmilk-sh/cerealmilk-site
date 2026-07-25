@@ -1,33 +1,30 @@
 // Single source of truth for the site's public identity. Used by metadata,
 // robots.txt, sitemap.xml, JSON-LD structured data, llms.txt, and the feed.
 // If the domain moves, change SITE_URL here and everything follows.
-//
-// Canonical host is the APEX (www.80x.ai 308s to 80x.ai, flipped 2026-07-02
-// in the Vercel project's domain settings to match these URLs).
 
-export const SITE_URL = "https://80x.ai";
-export const APP_URL = "https://app.80x.ai";
+export const SITE_URL = "https://cerealmilk.sh";
+export const APP_URL = "https://app.cerealmilk.sh";
 
-export const SITE_NAME = "80x";
+export const SITE_NAME = "Cereal Milk";
 
 // The canonical entity sentence. Byte-identical everywhere it appears:
 // llms.txt blockquote, default meta description, Organization JSON-LD.
 // Never paraphrase it (see PRODUCT-SITE-SPEC.md).
 export const CANONICAL_SENTENCE =
-  "80x is a premium native Mac app that puts WhatsApp, LinkedIn, and Gmail in one window and syncs the conversations you choose to Attio or Affinity.";
+  "Cereal Milk is a free desktop app that puts WhatsApp, LinkedIn, and Gmail in one window with a real AI agent in the sidebar that runs on your own model.";
 
 // The canonical person sentence: /about lede, ProfilePage, byline bios.
 export const PERSON_SENTENCE =
-  "Daniel Hull is the founder of 80x, the company behind the 80x Mac app for people who close in chat.";
+  "Daniel Hull is the founder of Cereal Milk, the company behind the Cereal Milk desktop app for people who live in chat.";
 
-export const SITE_TAGLINE = "The communication platform for people who close in chat";
+export const SITE_TAGLINE = "A free desktop agent that lives in your chats";
 
 export const AUTHOR = {
   name: "Daniel Hull",
-  role: "Founder, 80x",
-  email: "daniel@80x.ai",
+  role: "Founder, Cereal Milk",
+  email: "daniel@cerealmilk.sh",
   id: `${SITE_URL}/about#dan`,
-  // Optimised square headshot (public/daniel-hull.jpg, 1200×1200). Single source
+  // Optimised square headshot (public/daniel-hull.jpg, 1200x1200). Single source
   // of truth for Dan's photo: the /about portrait, the Person JSON-LD `image`,
   // and OG cards all resolve from here.
   photo: "/daniel-hull.jpg",
@@ -37,7 +34,7 @@ export const AUTHOR = {
 export const AUTHOR_PHOTO_URL = `${SITE_URL}${AUTHOR.photo}`;
 export const AUTHOR_PHOTO_DIM = 1200;
 
-export const GITHUB_ORG_URL = "https://github.com/80x-org";
+export const GITHUB_ORG_URL = "https://github.com/cerealmilk-sh";
 
 // The founder's YouTube channel (@danieljhull). Kept as an entity `sameAs` on
 // the Person/Organization graph (see src/lib/jsonld.ts).
@@ -45,7 +42,7 @@ export const YOUTUBE_CHANNEL_ID = "UC1MogjCVseg7rGXwtxrdUww";
 export const YOUTUBE_HANDLE = "danieljhull";
 export const YOUTUBE_URL = "https://www.youtube.com/@danieljhull";
 
-export const NEWSLETTER_NAME = "The 80x Field Notes";
+export const NEWSLETTER_NAME = "The Cereal Milk Field Notes";
 export const NEWSLETTER_PITCH =
   "One email when something ships: new releases, new capabilities, and field notes from the build. No spam, unsubscribe anytime.";
 
@@ -56,7 +53,7 @@ export const BOOK_PATH = "/demo";
 // DemoRequestForm and the no-JS form-post redirect in /api/inquiry).
 export const CAL_BOOKING_URL = "https://cal.com/danieljh/30min";
 export const CONTACT_MAILTO =
-  "mailto:daniel@80x.ai?subject=80x%20demo&body=Hi%20Dan%2C%20I%27d%20like%20to%20see%2080x%20on%20our%20pipeline.";
+  "mailto:daniel@cerealmilk.sh?subject=Cereal%20Milk%20demo&body=Hi%20Dan%2C%20I%27d%20like%20to%20see%20Cereal%20Milk.";
 
 // Daniel's WhatsApp, for the floating "Message Daniel" button on every page
 // (src/components/site/WhatsAppButton.tsx). Digits only, no "+" or spaces
@@ -66,44 +63,22 @@ export const CONTACT_WHATSAPP_URL = CONTACT_WHATSAPP
   ? `https://wa.me/${CONTACT_WHATSAPP}?text=${encodeURIComponent("Hi Daniel, ")}`
   : "";
 
-// --- The Mac app -------------------------------------------------------------
+// --- The desktop app ---------------------------------------------------------
 
 // The product now IS the site: the homepage is the product page.
 export const PRODUCT_PATH = "/";
 
-// Self-serve downloads are OPEN again (2026-07-14): the funnel is
-// download-first (the Raycast model). Get 80x -> /download -> DMG -> the app
-// forces account creation on first run -> the account grants a 7-day
-// full-access trial, no card (product-backend signup trial) -> the paywall
-// takes over in-app. The evergreen /download/80x.dmg path is a ROUTE HANDLER
-// (src/app/download/80x.dmg/route.ts) that first-party-logs every hit to the
-// backend download log, then 307s to the latest release DMG. Flipping this
-// back to false re-routes download intent to the /download page (which would
-// then need its call-first copy restored, see git history at 686c754).
+// Self-serve downloads are OPEN. The download-first model: the app is free.
 export const SELF_SERVE_DOWNLOADS = true;
 
-// Where "Get 80x" sends people: the download page, then the evergreen DMG.
+// Where "Get Cereal Milk" sends people: the download page, then the evergreen DMG.
 export const DOWNLOAD_PATH = "/download";
-export const DOWNLOAD_URL = "/download/80x.dmg";
+export const DOWNLOAD_URL = "/download/CerealMilk.dmg";
 
-// Published pricing lives in src/lib/pricing.ts (two plans: Starter and
-// Business; see BILLING-MODEL.md in product-backend). Import PRICE_LINE /
-// PRICE_ANCHOR from there so the numbers can never drift.
+// Public GitHub Releases on the app repo (electron-builder generic provider,
+// feeds auto-generated).
+// TODO(human): update owner/repo once the Cereal Milk GitHub org + app repo exist.
+export const RELEASE_REPO = "TODO-OWNER/TODO-REPO";
 
-// Clerk Billing (the self-serve lane, currently dormant, see /get + /onboard).
-// The live Starter plan slug; Business (team) is org-level, bought on /pricing.
-export const CLERK_PLAN_SLUG = "starter";
-
-// Where Clerk sends the user after a successful subscription (the "Continue"
-// button in the checkout). The install/download page is the natural next step.
-export const CHECKOUT_SUCCESS_URL = "/download";
-
-// The primary CTA sitewide: "Get 80x" -> the download page. Buying happens
-// INSIDE the app after the 7-day trial (the backend checkout below). The live
-// checkout URLs are kept for people who arrive ready to pay (pricing FAQ,
-// llms.txt) and for the trial-to-paid path: app.80x.ai/app/upgrade has live
-// Clerk + Stripe, renders an in-page sign-up for a cold visitor, and the
-// Business checkout creates the team's org and bills per seat.
-export const GET_STARTED_LABEL = "Get 80x";
-export const CHECKOUT_URL = `${APP_URL}/app/upgrade?plan=monthly`;
-export const BUSINESS_CHECKOUT_URL = `${APP_URL}/app/upgrade?plan=business`;
+// The primary CTA sitewide: "Get Cereal Milk" → the download page.
+export const GET_STARTED_LABEL = "Get Cereal Milk";

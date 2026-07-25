@@ -4,7 +4,7 @@ import { markPreordered, startCourse, startWaitlist } from "@/lib/drip/engine";
 import { COURSE_DAY1 } from "@/lib/drip/sequences";
 import { NEWSLETTER_NAME, SITE_URL } from "@/lib/site";
 
-// Every email-capture form on 80x.ai posts here, the studio newsletter forms
+// Every email-capture form on cerealmilk.sh posts here, the studio newsletter forms
 // (header/footer/Terminus, source: "footer" | "home" | "work/…"), the docs
 // site's form (form-encoded POST), and the Mac-app product page (source:
 // "app"). Rollout-safe and provider-agnostic: it forwards each signup to
@@ -20,7 +20,7 @@ import { NEWSLETTER_NAME, SITE_URL } from "@/lib/site";
 // (a transient provider hiccup shouldn't lose a lead or show an error).
 //
 // The `source` field decides the journey:
-//   "app"           → 80x waitlist: a single Day-0 product welcome.
+//   "app"           → Cereal Milk waitlist: a single Day-0 product welcome.
 //                     The payment/onboarding nurture drip is OFF while the app
 //                     is invite-only (see below).
 //   anything else   → Field Notes subscriber: newsletter welcome, NO product
@@ -230,11 +230,11 @@ async function sendPreorderConfirmationEmail(
         : "You locked today's published pricing.";
   await sendEmail({
     to: email,
-    subject: "Your 80x founding seat is reserved",
+    subject: "Your Cereal Milk founding seat is reserved",
     firstName,
     sequence: "welcome",
     blocks: [
-      "I'm Daniel, founder of 80x. Your founding seat is reserved: no charge was made, and none will be until your seat is set up and you decide to keep it.",
+      "I'm Daniel, founder of Cereal Milk. Your founding seat is reserved: no charge was made, and none will be until your seat is set up and you decide to keep it.",
       `${planLine} It never rises for a founding seat, and you can switch plans before setup.`,
       "What happens next: founding seats are onboarded first, in the order they reserved. When your wave opens you get a personal email from me with a link to pick your setup call. Install, accounts, and CRM mapping are done with you in about 30 minutes, and your free trial starts there.",
       "Change your mind anytime before setup: just reply to this email and the reservation is gone, no questions.",
@@ -251,14 +251,14 @@ async function sendProductWelcomeEmail(email: string, name: string) {
   const firstName = name.split(/\s+/).filter(Boolean)[0] || undefined;
   await sendEmail({
     to: email,
-    subject: "Thanks for joining the 80x waitlist",
+    subject: "Thanks for joining the Cereal Milk waitlist",
     firstName,
     sequence: "welcome",
     blocks: [
-      "I'm Daniel, founder of 80x. Thanks for signing up for the 80x waitlist. It genuinely means a lot.",
-      "80x is the native Mac client for WhatsApp & LinkedIn: it syncs the conversations that matter to Attio or Affinity, gives you a command palette and relationship insights, and keeps everything private by default.",
+      "I'm Daniel, founder of Cereal Milk. Thanks for signing up for the Cereal Milk waitlist. It genuinely means a lot.",
+      "Cereal Milk is the native Mac client for WhatsApp & LinkedIn: it syncs the conversations that matter to Attio or Affinity, gives you a command palette and relationship insights, and keeps everything private by default.",
       "We're onboarding new teams in waves, and I'll personally email you the moment a spot opens.",
-      "And if 80x isn't the right fit, just hit reply and tell me why. Whatever's holding you back genuinely shapes what we build next.",
+      "And if Cereal Milk isn't the right fit, just hit reply and tell me why. Whatever's holding you back genuinely shapes what we build next.",
     ],
   });
 }
@@ -289,11 +289,11 @@ async function sendFieldNotesWelcomeEmail(email: string, name: string) {
     firstName,
     sequence: "welcome",
     blocks: [
-      "I'm Daniel, founder of 80x. We make the 80x Mac app: the deal messenger for people who close in chat. It puts WhatsApp, LinkedIn, and Gmail in one native window and files the conversations you choose to Attio or Affinity.",
+      "I'm Daniel, founder of Cereal Milk. We make the Cereal Milk Mac app: the deal messenger for people who close in chat. It puts WhatsApp, LinkedIn, and Gmail in one native window and files the conversations you choose to Attio or Affinity.",
       "You'll get one email when something new ships: a new release, a new capability, or a field note from the build. No schedule, no filler: if nothing shipped, you hear nothing.",
       `In the meantime: the docs cover how we wire AI and agents into deal workflows (${SITE_URL}/docs), and pricing is published in full at ${SITE_URL}/pricing.`,
-      { label: "See 80x on your own pipeline →", href: `${SITE_URL}/demo` },
-      "And if the conversations that pay you happen somewhere 80x doesn't reach yet, hit reply and tell me. I read everything.",
+      { label: "See Cereal Milk on your own pipeline →", href: `${SITE_URL}/demo` },
+      "And if the conversations that pay you happen somewhere Cereal Milk doesn't reach yet, hit reply and tell me. I read everything.",
     ],
   });
 }

@@ -1,4 +1,4 @@
-Pre-order 80x by reserving a founding seat: no card and no charge at reservation. 80x rolls out in waves, and every install is set up personally with the founder. Reserving takes two minutes, locks your pricing at today's published rate, and puts you in the founding cohort for first access when your wave opens. There are 100 founding seats.
+Pre-order Cereal Milk by reserving a founding seat: no card and no charge at reservation. Cereal Milk rolls out in waves, and every install is set up personally with the founder. Reserving takes two minutes, locks your pricing at today's published rate, and puts you in the founding cohort for first access when your wave opens. There are 100 founding seats.
 
 ## How reserving works
 
@@ -18,7 +18,7 @@ Founding pricing locks at today's published rate: Starter $30/user/mo or $300/us
 
 ## Reserve
 
-Reserve at [80x.ai/preorder](/preorder): name, work email, and the plan to lock. Your reservation goes straight to the founder; you get a confirmation email now and a personal email when your wave opens. Not ready? [Book a demo](/demo) and see it on your own pipeline first.
+Reserve at [cerealmilk.sh/preorder](/preorder): name, work email, and the plan to lock. Your reservation goes straight to the founder; you get a confirmation email now and a personal email when your wave opens. Not ready? [Book a demo](/demo) and see it on your own pipeline first.
 
 ## Before you reserve
 
@@ -30,7 +30,7 @@ A founding seat: first access when your wave opens, your install set up personal
 
 No. There is no card field on the page. You pay nothing until your seat is set up and you have decided to keep it; billing starts on the plan you locked, and the free trial still applies first.
 
-### Is 80x live yet?
+### Is Cereal Milk live yet?
 
 Yes, in waves. The app ships today to funds being onboarded personally. Pre-ordering puts you in the founding cohort so your wave opens sooner, not on a someday list.
 
@@ -40,8 +40,8 @@ Reply to any email from us and the reservation is gone. No charge was made, so t
 
 ### I'm not on a Mac.
 
-80x is Mac-first today and a Windows client is in development. Reserve with your work email and [tell us you're on Windows](/contact), and your seat waits for the Windows build.
+Cereal Milk is Mac-first today and a Windows client is in development. Reserve with your work email and [tell us you're on Windows](/contact), and your seat waits for the Windows build.
 
 ### What happens to my data?
 
-The same rules as every 80x install: every thread starts private, the sharing gate is [enforced on the server](/security), and your Repository lives on your Mac and exports in one click. Reserving stores only your name, email, and chosen plan.
+The same rules as every Cereal Milk install: every thread starts private, the sharing gate is [enforced on the server](/security), and your Repository lives on your Mac and exports in one click. Reserving stores only your name, email, and chosen plan.

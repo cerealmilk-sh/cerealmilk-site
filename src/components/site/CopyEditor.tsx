@@ -18,7 +18,7 @@ import { useCallback, useEffect, useState } from "react";
 // overrides file and deploys production via /api/dev/publish.
 
 const IS_PROD = process.env.NODE_ENV === "production";
-const EDIT_KEY = "80x:copy-editing"; // survive the fast-refresh reload after Save
+const EDIT_KEY = "Cereal Milk:copy-editing"; // survive the fast-refresh reload after Save
 
 type Status = { kind: "idle" | "busy" | "ok" | "err"; msg: string; url?: string };
 
@@ -127,7 +127,7 @@ export function CopyEditor() {
       const data = (await res.json()) as { liveUrl?: string; committed?: boolean };
       setStatus({
         kind: "ok",
-        msg: data.committed ? "Published to 80x.ai." : "Nothing new to publish.",
+        msg: data.committed ? "Published to cerealmilk.sh." : "Nothing new to publish.",
         url: data.liveUrl,
       });
     } catch (err) {
@@ -213,7 +213,7 @@ export function CopyEditor() {
               Save
             </Btn>
             <Btn onClick={publish} disabled={status.kind === "busy"} accent>
-              Publish → 80x.ai
+              Publish → cerealmilk.sh
             </Btn>
             <Btn onClick={() => setEditing(false)} ghost>
               Done

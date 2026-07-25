@@ -18,7 +18,7 @@ export type Section = "home" | "product" | "company" | "book";
 export interface PageEntry {
   /** Route path, leading slash, no trailing slash (except "/"). */
   path: string;
-  /** Page title without the "· 80x" template suffix. */
+  /** Page title without the "· Cereal Milk" template suffix. */
   title: string;
   /** Answer-style meta description (~155 chars). */
   description: string;
@@ -45,7 +45,7 @@ export const PAGES: PageEntry[] = [
     // footer and the default title for other pages.
     title: "The messenger built for AI agents",
     description:
-      "The messenger built for AI agents. 80x puts WhatsApp, LinkedIn, and Gmail in one native Mac window, files the conversations you choose to Attio or Affinity, and turns your chats into a record your agents can act on. Download it and try the full product free for 7 days, no card; from $30 a month after.",
+      "The messenger built for AI agents. Cereal Milk puts WhatsApp, LinkedIn, and Gmail in one native Mac window, files the conversations you choose to Attio or Affinity, and turns your chats into a record your agents can act on. Download it and try the full product free for 7 days, no card; from $30 a month after.",
     section: "home",
     datePublished: D,
     dateModified: "2026-07-21",
@@ -56,7 +56,7 @@ export const PAGES: PageEntry[] = [
   // --- Use cases (the /for/* layer, see src/lib/use-cases.ts) -------------------
   {
     path: "/for/venture-capital",
-    title: "80x for venture capital",
+    title: "Cereal Milk for venture capital",
     description:
       "The deal messenger for venture capital: WhatsApp, LinkedIn, and Gmail in one Mac window, with the Attio or Affinity record live beside every chat. Private by default.",
     section: "product",
@@ -67,7 +67,7 @@ export const PAGES: PageEntry[] = [
   },
   {
     path: "/for/b2b-startups",
-    title: "80x for B2B startups",
+    title: "Cereal Milk for B2B startups",
     description:
       "Founder-led sales finally has a system of record: WhatsApp, LinkedIn, and Gmail in one Mac window, every lead and every promise filed to Attio or Affinity.",
     section: "product",
@@ -78,7 +78,7 @@ export const PAGES: PageEntry[] = [
   },
   {
     path: "/for/service-providers",
-    title: "80x for service providers",
+    title: "Cereal Milk for service providers",
     description:
       "For agencies, consultancies, recruiters, and brokers: every client channel in one Mac window, scope and referrals filed to Attio or Affinity, private by default.",
     section: "product",
@@ -103,7 +103,7 @@ export const PAGES: PageEntry[] = [
     path: "/security",
     title: "Security and privacy",
     description:
-      "How 80x keeps your number, your accounts, and your conversations safe: no unofficial APIs, on-screen reads only, you always hit send, and a server-enforced privacy gate on CRM sync.",
+      "How Cereal Milk keeps your number, your accounts, and your conversations safe: no unofficial APIs, on-screen reads only, you always hit send, and a server-enforced privacy gate on CRM sync.",
     section: "product",
     datePublished: D,
     dateModified: D,
@@ -112,9 +112,9 @@ export const PAGES: PageEntry[] = [
   },
   {
     path: "/download",
-    title: "Download 80x for Mac and Windows",
+    title: "Download Cereal Milk for Mac and Windows",
     description:
-      "Download 80x for Mac or Windows: WhatsApp in one fast window with an AI agent beside every chat, running on your own Claude, ChatGPT, Gemini, or OpenAI-compatible account. Free, no card. The page detects your platform and starts the right installer automatically.",
+      "Download Cereal Milk for Mac or Windows: WhatsApp in one fast window with an AI agent beside every chat, running on your own Claude, ChatGPT, Gemini, or OpenAI-compatible account. Free, no card. The page detects your platform and starts the right installer automatically.",
     section: "product",
     datePublished: "2026-06-11",
     dateModified: "2026-07-23",
@@ -125,9 +125,9 @@ export const PAGES: PageEntry[] = [
   // --- Book a demo ---------------------------------------------------------------
   {
     path: "/preorder",
-    title: "Pre-order 80x",
+    title: "Pre-order Cereal Milk",
     description:
-      "Reserve a founding seat for 80x: no card, no charge at reservation. Lock today's published pricing, get first access when your wave opens, set up personally with the founder.",
+      "Reserve a founding seat for Cereal Milk: no card, no charge at reservation. Lock today's published pricing, get first access when your wave opens, set up personally with the founder.",
     section: "book",
     datePublished: "2026-07-14",
     dateModified: "2026-07-14",
@@ -138,7 +138,7 @@ export const PAGES: PageEntry[] = [
     path: "/demo",
     title: "Book a demo",
     description:
-      "Book a 30-minute demo of 80x. On a screen-share, Dan walks you through the app on a live pipeline: WhatsApp, LinkedIn, and Gmail syncing into Attio or Affinity. Or send a brief by email.",
+      "Book a 30-minute demo of Cereal Milk. On a screen-share, Dan walks you through the app on a live pipeline: WhatsApp, LinkedIn, and Gmail syncing into Attio or Affinity. Or send a brief by email.",
     section: "book",
     datePublished: D,
     dateModified: D,
@@ -147,9 +147,9 @@ export const PAGES: PageEntry[] = [
   },
   {
     path: "/contact",
-    title: "Contact 80x",
+    title: "Contact Cereal Milk",
     description:
-      "Contact 80x about the Mac app, team pilots, or press. Send a short brief and Daniel replies from daniel@80x.ai within one business day.",
+      "Contact Cereal Milk about the Mac app, team pilots, or press. Send a short brief and Daniel replies from daniel@cerealmilk.sh within one business day.",
     section: "book",
     datePublished: "2026-07-02",
     dateModified: D,
@@ -162,7 +162,7 @@ export const PAGES: PageEntry[] = [
     path: "/about",
     title: "About",
     description:
-      "Daniel Hull is the founder of 80x, the company behind the 80x Mac app for people who close in chat. 80x grew out of an engineering studio that shipped 62 projects for 68 funds and firms.",
+      "Daniel Hull is the founder of Cereal Milk, the company behind the Cereal Milk Mac app for people who close in chat. Cereal Milk grew out of an engineering studio that shipped 62 projects for 68 funds and firms.",
     section: "company",
     datePublished: "2026-07-02",
     dateModified: D,
@@ -171,9 +171,9 @@ export const PAGES: PageEntry[] = [
   },
   {
     path: "/careers",
-    title: "Careers at 80x",
+    title: "Careers at Cereal Milk",
     description:
-      "80x is hiring two founding roles: a Forward-Deployed Agentic Engineer and a Developer Advocate. Remote, worldwide, building the communication platform for people who close in chat.",
+      "Cereal Milk is hiring two founding roles: a Forward-Deployed Agentic Engineer and a Developer Advocate. Remote, worldwide, building the communication platform for people who close in chat.",
     section: "company",
     datePublished: "2026-07-03",
     dateModified: D,
@@ -182,9 +182,9 @@ export const PAGES: PageEntry[] = [
   },
   {
     path: "/newsletter",
-    title: "The 80x Field Notes",
+    title: "The Cereal Milk Field Notes",
     description:
-      "The 80x Field Notes is one email when something ships from 80x: new releases, new capabilities, and field notes from the build. No spam, unsubscribe anytime.",
+      "The Cereal Milk Field Notes is one email when something ships from Cereal Milk: new releases, new capabilities, and field notes from the build. No spam, unsubscribe anytime.",
     section: "company",
     datePublished: "2026-07-02",
     dateModified: D,

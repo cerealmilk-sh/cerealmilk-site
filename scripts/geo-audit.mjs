@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-// geo-audit, the 80x AI-search rank tracker.
+// geo-audit, the Cereal Milk AI-search rank tracker.
 //
 // Runs the target ICP prompts (the queries fund partners actually type) against
 // the answer engines that matter: OpenAI, Anthropic, Perplexity, each with web
 // search ON where the API supports it, and records, per prompt/provider:
-//   • does 80x appear at all?
-//   • is 80x.ai cited/linked (a real citation, not just a name-drop)?
+//   • does Cereal Milk appear at all?
+//   • is cerealmilk.sh cited/linked (a real citation, not just a name-drop)?
 //   • which competitors got mentioned?
 // It writes a dated markdown report under docs/geo/audits/ so you can diff month
-// over month and watch 80x climb.
+// over month and watch Cereal Milk climb.
 //
 // Keys (set the ones you have; a provider with no key is skipped, not fatal):
 //   export OPENAI_API_KEY=sk-...
@@ -57,8 +57,8 @@ const COMPETITORS = (process.env.COMPETITORS || "")
 
 function detect(text) {
   const t = (text || "").toLowerCase();
-  const mentioned = /\b80x\b/.test(t) || t.includes("80x.ai");
-  const cited = t.includes("80x.ai");
+  const mentioned = t.includes("cerealmilk.sh") || /\bCereal Milk\b/i.test(t);
+  const cited = t.includes("cerealmilk.sh");
   const competitors = COMPETITORS.filter((c) => t.includes(c.toLowerCase()));
   return { mentioned, cited, competitors };
 }
@@ -133,7 +133,7 @@ async function askPerplexity(prompt) {
   const data = await r.json();
   const msg = data.choices?.[0]?.message?.content || "";
   const citations = (data.citations || []).join(" ");
-  // Fold citation URLs into the text so 80x.ai links count as cited.
+  // Fold citation URLs into the text so cerealmilk.sh links count as cited.
   return citations ? `${msg}\n\nCitations: ${citations}` : msg;
 }
 
@@ -194,14 +194,14 @@ function writeReport(active, rows) {
   lines.push("");
   lines.push(
     `Providers: ${active.map((p) => p.name).join(", ")}. Prompts: ${PROMPTS.length}. ` +
-      `"Mentioned" = 80x named at all; "cited" = 80x.ai linked/referenced.`
+      `"Mentioned" = Cereal Milk named at all; "cited" = cerealmilk.sh linked/referenced.`
   );
   lines.push("");
 
   // Per-provider summary.
   lines.push("## Summary");
   lines.push("");
-  lines.push("| Provider | Mentioned | Cited (80x.ai) | Errors |");
+  lines.push("| Provider | Mentioned | Cited (cerealmilk.sh) | Errors |");
   lines.push("|---|---|---|---|");
   for (const p of active) {
     const r = rows.filter((x) => x.provider === p.name);

@@ -1,4 +1,4 @@
-// 80x Intercom-inbox primitive kit.
+// Cereal Milk Intercom-inbox primitive kit.
 // The shared vocabulary every surface is built from. See DESIGN-INTERCOM.md.
 export { cx } from "@/components/ui/cx";
 export { Frame } from "@/components/ui/Frame";

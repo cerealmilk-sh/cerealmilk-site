@@ -1,8 +1,8 @@
-80x is hiring two founding roles. We build the communication platform for people who close in chat: a premium native Mac app that puts WhatsApp, LinkedIn, and Gmail in one window and syncs the conversations its users choose to Attio or Affinity. Born in venture capital, deployed anywhere deals live in chat. Both roles are remote, worldwide, and report to the founder.
+Cereal Milk is hiring two founding roles. We build the communication platform for people who close in chat: a premium native Mac app that puts WhatsApp, LinkedIn, and Gmail in one window and syncs the conversations its users choose to Attio or Affinity. Born in venture capital, deployed anywhere deals live in chat. Both roles are remote, worldwide, and report to the founder.
 
-## Why 80x
+## Why Cereal Milk
 
-80x grew out of an engineering studio that shipped 62 projects for 68 venture funds and firms, so the product was built inside the exact workflows it now sells into. The company is small, the product is live, and funds are deployed by hand: forward-deployed engineering plus a genuinely open body of documentation is the whole go-to-market, and these two roles own it.
+Cereal Milk grew out of an engineering studio that shipped 62 projects for 68 venture funds and firms, so the product was built inside the exact workflows it now sells into. The company is small, the product is live, and funds are deployed by hand: forward-deployed engineering plus a genuinely open body of documentation is the whole go-to-market, and these two roles own it.
 
 You would be one of the first hires. That means real scope from day one, a direct line to the founder, and your name on the work, not a ticket queue.
 
@@ -19,7 +19,7 @@ You would be one of the first hires. That means real scope from day one, a direc
 
 **Remote (worldwide) · Full-time · Founding role**
 
-Sit with a venture fund and make its 80x deployment succeed: the pilot setup, the CRM mapping, the automations around it, and the product improvements each rollout demands. You own the deployment end to end, then feed what you learned back into the app.
+Sit with a venture fund and make its Cereal Milk deployment succeed: the pilot setup, the CRM mapping, the automations around it, and the product improvements each rollout demands. You own the deployment end to end, then feed what you learned back into the app.
 
 **What you'll do**
 
@@ -39,13 +39,13 @@ Sit with a venture fund and make its 80x deployment succeed: the pilot setup, th
 
 **Remote (worldwide) · Full-time · Founding role**
 
-Own 80x's open surface area: the documentation, the Field Notes, the open-source tools, the videos. This is the content engine that brings funds to the product, and you'd run it.
+Own Cereal Milk's open surface area: the documentation, the Field Notes, the open-source tools, the videos. This is the content engine that brings funds to the product, and you'd run it.
 
 **What you'll do**
 
 - Turn real deployments into clear, teachable documentation a non-engineer partner at a fund can actually follow.
 - Ship small open-source tools that make the docs runnable.
-- Write the Field Notes and script the videos that put 80x in front of funds.
+- Write the Field Notes and script the videos that put Cereal Milk in front of funds.
 - Instrument what works: you'll live in the analytics and the AI-search audits and tell us what to build next.
 
 **You might be a fit if you**
@@ -57,6 +57,6 @@ Own 80x's open surface area: the documentation, the Field Notes, the open-source
 
 ## How to apply
 
-Email [daniel@80x.ai](mailto:daniel@80x.ai) with a short note on which role fits you and one thing you've shipped that you're proud of: a repo, a piece of writing, an automation, anything real. No cover letter needed. Daniel, the founder, reads every one and replies personally.
+Email [daniel@cerealmilk.sh](mailto:daniel@cerealmilk.sh) with a short note on which role fits you and one thing you've shipped that you're proud of: a repo, a piece of writing, an automation, anything real. No cover letter needed. Daniel, the founder, reads every one and replies personally.
 
 Not sure you're a fit but want to talk anyway? [Send a note](/contact), we'd still like to hear from you.

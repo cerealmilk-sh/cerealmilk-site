@@ -1,5 +1,5 @@
 // The server-side download log shared by the two evergreen download routes
-// (/download/80x.dmg and /download/80x.exe). Every GET is logged SERVER-side
+// (/download/CerealMilk.dmg and /download/CerealMilk.exe). Every GET is logged SERVER-side
 // (independent of cookies, consent banners, and ad-blockers); the route then
 // 307s to the installer. This is why "has anyone downloaded the app?" is
 // answerable first-party: GitHub only keeps an aggregate counter, the
@@ -14,14 +14,14 @@
 //
 // Env (rollout-safe: unset ⇒ the redirect still works, hits go unlogged):
 //   DOWNLOAD_TRACK_SECRET: shared secret; same value as the backend's
-//                           X80_DOWNLOAD_SECRET (see ops/secrets-inventory.md)
+//                           DOWNLOAD_TRACK_SECRET (see ops/secrets-inventory.md)
 //   DOWNLOAD_TRACK_URL:    override the backend endpoint (defaults to prod)
 
 import { createHash, randomUUID } from "node:crypto";
 import type { NextRequest } from "next/server";
 
 const TRACK_URL =
-  process.env.DOWNLOAD_TRACK_URL ?? "https://app.80x.ai/api/track/download";
+  process.env.DOWNLOAD_TRACK_URL ?? "https://app.cerealmilk.sh/api/track/download";
 // The public (client-side) PostHog project key, same project as the web +
 // app dataset; safe to commit, see ANALYTICS.md. Server-side capture so
 // download counts also land in PostHog insights: anonymous (random per-hit
@@ -29,7 +29,7 @@ const TRACK_URL =
 // without the consent banner.
 const POSTHOG_KEY =
   process.env.NEXT_PUBLIC_POSTHOG_KEY ??
-  "phc_vwBzqqZUjnEEpuqQhMqPgCkaC9iqWokmSWKp4FSH29jW";
+  "TODO(human)-phc_set_NEXT_PUBLIC_POSTHOG_KEY";
 const POSTHOG_CAPTURE = "https://us.i.posthog.com/capture/";
 
 const BOT_RE =
@@ -49,7 +49,7 @@ function clientIp(req: NextRequest): string {
 export async function logDownload(
   req: NextRequest,
   opts: {
-    /** The evergreen asset name, e.g. "80x.dmg" / "80x.exe". */
+    /** The evergreen asset name, e.g. "CerealMilk.dmg" / "CerealMilk.exe". */
     asset: string;
     /** The PostHog event, e.g. "dmg_download_requested". */
     event: string;

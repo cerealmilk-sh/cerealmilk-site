@@ -1,7 +1,7 @@
 "use client";
 
 // The /download interstitial, the superset.sh downloads anatomy carried on
-// the 80x skin: a chrome-less page (logo top-left, no site nav), a left
+// the Cereal Milk skin: a chrome-less page (logo top-left, no site nav), a left
 // column with the platform-aware message, the product frame on the right,
 // and the file download firing itself ~600ms after the visitor's platform
 // is known. Mac gets the dmg, Windows gets the exe; anything else (Linux,
@@ -55,7 +55,7 @@ export function DownloadInterstitial() {
       : null;
   const href = target
     ? `${target.path}?src=${encodeURIComponent(src)}`
-    : null;
+    : undefined;
   const clickEvent =
     platform === Platform.Windows ? "exe_download_clicked" : "dmg_download_clicked";
 
@@ -76,7 +76,7 @@ export function DownloadInterstitial() {
       >
         <Link
           href="/"
-          aria-label="80x · home"
+          aria-label="Cereal Milk · home"
           className="inline-flex select-none items-center text-foreground transition-colors hover:text-foreground/80"
         >
           <Logo size={28} />
@@ -87,7 +87,7 @@ export function DownloadInterstitial() {
             {target ? (
               <>
                 <h1 className="font-mono text-3xl font-medium tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
-                  You&apos;re about to get 80x
+                  You&apos;re about to get Cereal Milk
                 </h1>
                 <p className="text-sm text-muted-foreground sm:text-base">
                   Your {target.label} download starts automatically. If it
@@ -112,10 +112,10 @@ export function DownloadInterstitial() {
             ) : (
               <>
                 <h1 className="font-mono text-3xl font-medium tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
-                  Get 80x for your platform
+                  Get Cereal Milk for your platform
                 </h1>
                 <p className="text-sm text-muted-foreground sm:text-base">
-                  80x is a desktop app for Mac and Windows. Pick your
+                  Cereal Milk is a desktop app for Mac and Windows. Pick your
                   installer and the download starts right away.
                 </p>
                 <div className="flex flex-wrap items-center gap-2 sm:gap-4">

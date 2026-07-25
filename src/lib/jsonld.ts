@@ -41,7 +41,7 @@ export function rootNodes(): Node[] {
       // profiles go live, see docs/geo/off-site-kit.md.
       sameAs: [GITHUB_ORG_URL, YOUTUBE_URL],
       areaServed: "Worldwide",
-      // How to reach 80x, stated in the graph so a model can describe the path,
+      // How to reach Cereal Milk, stated in the graph so a model can describe the path,
       // not just find a form. Mirrors the /contact page and llms.txt.
       contactPoint: {
         "@type": "ContactPoint",
@@ -221,9 +221,9 @@ export function contactPageNode(): Node {
     "@type": "ContactPage",
     "@id": `${SITE_URL}/contact#contact`,
     url: `${SITE_URL}/contact`,
-    name: "Contact 80x",
+    name: "Contact Cereal Milk",
     description:
-      "Contact 80x about the Mac app, team pilots, or press. Daniel replies from daniel@80x.ai within one business day.",
+      "Contact Cereal Milk about the Mac app, team pilots, or press. Daniel replies from daniel@cerealmilk.sh within one business day.",
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": ORG_ID },
     mainEntity: { "@id": ORG_ID },
@@ -235,7 +235,7 @@ export function profilePageNode(): Node {
     "@type": "ProfilePage",
     "@id": `${SITE_URL}/about#profile`,
     url: `${SITE_URL}/about`,
-    name: "About 80x",
+    name: "About Cereal Milk",
     description: PERSON_SENTENCE,
     mainEntity: { "@id": PERSON_ID },
     isPartOf: { "@id": WEBSITE_ID },

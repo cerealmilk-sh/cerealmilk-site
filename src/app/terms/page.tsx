@@ -1,9 +1,9 @@
-// /terms, the terms of service for the 80x desktop application and this site.
+// /terms, the terms of service for the Cereal Milk desktop application and this site.
 // Plain, honest, and short, matching /privacy. The account-and-platform-risk
 // section (how the app accesses WhatsApp, LinkedIn and Gmail, and what that
 // means for the user's accounts) is the load-bearing part: the disclosure lives
 // here by design rather than as an in-app banner. Linked from the sign-in modal
-// (GetStarted.tsx) and the footer. Self-contained, not registry-driven, so it
+// and the footer. Self-contained, not registry-driven, so it
 // stays independent of the marketing surface.
 
 import type { Metadata } from "next";

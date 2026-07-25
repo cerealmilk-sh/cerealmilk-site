@@ -2,8 +2,8 @@
 
 // The transformation scroller below the hero text. The window starts as the
 // plain WhatsApp desktop app everyone already runs, and scrolling assembles
-// the 80x client around it, live: the native toolbar drops in, the chat list
-// compresses into the 80x section rail, the same chat reskins from WhatsApp
+// the Cereal Milk client around it, live: the native toolbar drops in, the chat list
+// compresses into the Cereal Milk section rail, the same chat reskins from WhatsApp
 // to the product, the CRM inspector docks on the right, and finally the one
 // deal-relevant line files itself to Attio. The point is to let a visitor
 // FEEL what they get: their exact app, wrapped, then filed.
@@ -39,9 +39,9 @@ import {
   WaChatList,
   WaChatPane,
   WaTitlebar,
-  X80_CSS,
+  CMLK_CSS,
   X80Static,
-} from "@/components/landing/X80Shell";
+} from "@/components/landing/CerealMilkShell";
 
 /* --- scrub math ---------------------------------------------------------- */
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
@@ -60,9 +60,9 @@ const STEPS = [
       "This is where your deals already happen: a normal WhatsApp window. The Series A deck sits between padel and the tooth fairy, and none of it reaches your CRM.",
   },
   {
-    label: "Wrapped in 80x",
+    label: "Wrapped in Cereal Milk",
     caption:
-      "80x assembles around it: the same official WhatsApp Web, now in a native Mac shell, LinkedIn and Gmail one tab away, your Attio record docked beside the chat.",
+      "Cereal Milk assembles around it: the same official WhatsApp Web, now in a native Mac shell, LinkedIn and Gmail one tab away, your Attio record docked beside the chat.",
   },
   {
     label: "Filed to the record",
@@ -143,7 +143,7 @@ export function HeroTransform() {
   }, []);
 
   // One progress number fans out into staggered layer scrubs.
-  const tChrome = smooth(ramp(p, 0.06, 0.3)); // 80x toolbar drops in
+  const tChrome = smooth(ramp(p, 0.06, 0.3)); // Cereal Milk toolbar drops in
   const tRail = smooth(ramp(p, 0.16, 0.44)); // chat list compresses into the rail
   const tSkin = smooth(ramp(p, 0.26, 0.54)); // the chat reskins to the product
   const tPanel = smooth(ramp(p, 0.42, 0.68)); // the CRM inspector docks
@@ -151,8 +151,8 @@ export function HeroTransform() {
   const stage = p < 0.2 ? 0 : p < 0.7 ? 1 : 2;
 
   return (
-    <section aria-label="From WhatsApp to 80x">
-      <style dangerouslySetInnerHTML={{ __html: LANDING_CSS + X80_CSS }} />
+    <section aria-label="From WhatsApp to Cereal Milk">
+      <style dangerouslySetInnerHTML={{ __html: LANDING_CSS + CMLK_CSS }} />
 
       {/* Small screens + reduced motion: the assembled client, no theatre. */}
       <div
@@ -175,7 +175,7 @@ export function HeroTransform() {
           >
             <div className="w-full max-w-[1080px]">
               <Frame glow className="x80-wa">
-                {/* Chrome: WhatsApp's titlebar crossfades into the 80x toolbar. */}
+                {/* Chrome: WhatsApp's titlebar crossfades into the Cereal Milk toolbar. */}
                 <div className="relative">
                   <div
                     style={{
@@ -203,7 +203,7 @@ export function HeroTransform() {
                   className="flex"
                   style={{ height: "clamp(380px, calc(100dvh - 354px), 508px)" }}
                 >
-                  {/* Left: the chat list compresses into the 80x section rail. */}
+                  {/* Left: the chat list compresses into the Cereal Milk section rail. */}
                   <div
                     className="relative shrink-0 overflow-hidden"
                     style={{ width: lerp(228, 64, tRail) }}
@@ -222,7 +222,7 @@ export function HeroTransform() {
                     </div>
                   </div>
 
-                  {/* Centre: the same chat, reskinned from WhatsApp to 80x. */}
+                  {/* Centre: the same chat, reskinned from WhatsApp to Cereal Milk. */}
                   <div className="relative min-w-0 flex-1">
                     <div className="absolute inset-0" style={{ opacity: 1 - tSkin }}>
                       <WaChatPane />

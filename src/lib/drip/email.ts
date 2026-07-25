@@ -13,7 +13,6 @@ import type { SequenceId } from "./types";
 // the site uses (sitemap, robots, JSON-LD). Imported from lib/site so links can
 // never drift onto a different host; if the domain moves, it changes there once.
 export const SITE_ORIGIN = SITE_URL;
-export const ONBOARD_URL = `${SITE_ORIGIN}/onboard`;
 export const DOWNLOAD_URL = `${SITE_ORIGIN}/download`;
 export const PREORDER_URL = `${SITE_ORIGIN}/preorder`;
 // The AI-spend course lives on the docs site (served under /docs via the apex
@@ -22,8 +21,8 @@ export const AI_SPEND_COURSE_URL = `${SITE_ORIGIN}/docs/learn/ai-spend`;
 
 // From a Resend-verified sending domain; replies route to the real inbox. Both
 // overridable via env, no code change (same vars the welcome email already used).
-const FROM = process.env.WAITLIST_EMAIL_FROM || "Daniel Hull <daniel@updates.80x.ai>";
-const REPLY_TO = process.env.WAITLIST_EMAIL_REPLY_TO || "daniel@80x.ai";
+const FROM = process.env.WAITLIST_EMAIL_FROM || "Daniel Hull <daniel@updates.cerealmilk.sh>";
+const REPLY_TO = process.env.WAITLIST_EMAIL_REPLY_TO || "daniel@cerealmilk.sh";
 
 // A block is either a paragraph (string) or a CTA link line. Steps describe
 // their body as blocks; the renderer turns the same blocks into both text and
@@ -52,10 +51,10 @@ function greeting(firstName?: string) {
 // paying customer in onboarding. Unsub link is always present.
 function footerLine(ctx: RenderCtx) {
   if (ctx.sequence === "course")
-    return "You signed up for the free Optimize Your Fund's AI Spend email course at 80x.ai.";
+    return "You signed up for the free Optimize Your Fund's AI Spend email course at cerealmilk.sh.";
   return ctx.sequence === "activation"
-    ? "You're getting this because you signed up for 80x."
-    : "You're on the 80x waitlist at 80x.ai.";
+    ? "You're getting this because you signed up for Cereal Milk."
+    : "You're on the Cereal Milk waitlist at cerealmilk.sh.";
 }
 
 export function renderText(blocks: Block[], ctx: RenderCtx): string {
@@ -70,7 +69,7 @@ export function renderText(blocks: Block[], ctx: RenderCtx): string {
     }
     lines.push("");
   }
-  lines.push("Cheers,", "Daniel", "Founder, 80x", "");
+  lines.push("Cheers,", "Daniel", "Founder, Cereal Milk", "");
   lines.push(`${footerLine(ctx)} If you'd rather not hear from me, unsubscribe: ${ctx.unsubUrl}`);
   return lines.join("\n");
 }
@@ -90,7 +89,7 @@ export function renderHtml(blocks: Block[], ctx: RenderCtx): string {
 <body style="margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
   <p style="${p}">${esc(greeting(ctx.firstName))}</p>
 ${body}
-  <p style="${p}">Cheers,<br>Daniel<br>Founder, 80x</p>
+  <p style="${p}">Cheers,<br>Daniel<br>Founder, Cereal Milk</p>
   <p style="margin:0;font-size:13px;line-height:1.5;color:#6b7280;">${esc(footerLine(ctx))} If you'd rather not hear from me, <a href="${ctx.unsubUrl}" style="color:#6b7280;">unsubscribe here</a>.</p>
 </body>
 </html>`;

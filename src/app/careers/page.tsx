@@ -66,7 +66,7 @@ const ROLES: Role[] = [
     location: "Remote · Worldwide",
     type: "Full-time · Founding role",
     summary:
-      "Sit with a venture fund and make its 80x deployment succeed: the pilot setup, the CRM mapping, the automations around it, and the product improvements each rollout demands.",
+      "Sit with a venture fund and make its Cereal Milk deployment succeed: the pilot setup, the CRM mapping, the automations around it, and the product improvements each rollout demands.",
     responsibilities: [
       "Run supported paid pilots: workspace setup, Attio and Affinity mapping, team onboarding.",
       "Build the integration and automation edges each fund needs, and generalize the good ones into the product.",
@@ -86,11 +86,11 @@ const ROLES: Role[] = [
     location: "Remote · Worldwide",
     type: "Full-time · Founding role",
     summary:
-      "Own 80x's open surface area: the documentation, the Field Notes, the open-source tools, the videos. This is the content engine that brings funds to the product, and you'd run it.",
+      "Own Cereal Milk's open surface area: the documentation, the Field Notes, the open-source tools, the videos. This is the content engine that brings funds to the product, and you'd run it.",
     responsibilities: [
       "Turn real deployments into clear, teachable documentation a non-engineer partner at a fund can actually follow.",
       "Ship small open-source tools that make the docs runnable.",
-      "Write the Field Notes and script the videos that put 80x in front of funds.",
+      "Write the Field Notes and script the videos that put Cereal Milk in front of funds.",
       "Instrument what works: you'll live in the analytics and the AI-search audits and tell us what to build next.",
     ],
     profile: [
@@ -104,7 +104,7 @@ const ROLES: Role[] = [
 
 // A prefilled application mailto for a role.
 function applyHref(role: Role): string {
-  const subject = `80x · application: ${role.title}`;
+  const subject = `Cereal Milk · application: ${role.title}`;
   const body = `Hi Daniel,\n\nI'd like to apply for the ${role.title} role.\n\nOne thing I've shipped that I'm proud of:\n\n`;
   return `mailto:${AUTHOR.email}?subject=${encodeURIComponent(
     subject
@@ -152,7 +152,7 @@ export default function Page() {
             as="h1"
             kicker="Careers"
             title="Build the communication platform for people who close in chat"
-            lede="80x is hiring two founding roles. We build a premium native Mac app that puts WhatsApp, LinkedIn, and Gmail in one window and syncs the conversations its users choose to Attio or Affinity. Born in venture capital, deployed anywhere deals live in chat. Both roles are remote and report to the founder."
+            lede="Cereal Milk is hiring two founding roles. We build a premium native Mac app that puts WhatsApp, LinkedIn, and Gmail in one window and syncs the conversations its users choose to Attio or Affinity. Born in venture capital, deployed anywhere deals live in chat. Both roles are remote and report to the founder."
           />
         </div>
         <AgentActions path="/careers" className="mt-6" />
@@ -169,13 +169,13 @@ export default function Page() {
         </div>
       </header>
 
-      {/* Why 80x / how we work */}
+      {/* Why Cereal Milk / how we work */}
       <section aria-labelledby="how-heading" className="border-t border-edge">
         <div className="mx-auto max-w-[1080px] px-6 py-16 sm:py-24">
           <SectionHeading
-            kicker="Why 80x"
+            kicker="Why Cereal Milk"
             title={<span id="how-heading">A small team, a live product, an open body of work</span>}
-            lede="80x grew out of an engineering studio that shipped 62 projects for 68 venture funds, so the product was built inside the exact workflows it sells into. Funds are deployed by hand and the methods ship in the open. You'd be one of the first hires: real scope from day one, a direct line to the founder, and your name on the work."
+            lede="Cereal Milk grew out of an engineering studio that shipped 62 projects for 68 venture funds, so the product was built inside the exact workflows it sells into. Funds are deployed by hand and the methods ship in the open. You'd be one of the first hires: real scope from day one, a direct line to the founder, and your name on the work."
           />
           <FeatureGrid cols={2} className="mt-10">
             {HOW.map((h) => (
@@ -279,7 +279,7 @@ export default function Page() {
             <div className="mt-8 flex flex-wrap gap-3">
               <PillButton
                 href={`mailto:${AUTHOR.email}?subject=${encodeURIComponent(
-                  "80x · application"
+                  "Cereal Milk · application"
                 )}`}
               >
                 Email {AUTHOR.email}

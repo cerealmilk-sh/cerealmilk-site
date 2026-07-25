@@ -1,8 +1,8 @@
 /*
- * 80x.ai, shared consent + analytics loader
+ * cerealmilk.sh, shared consent + analytics loader
  * ------------------------------------------------------------------
- * ONE file, served from the apex (https://80x.ai/consent-analytics.js) and
- * loaded by every 80x surface: the landing (Next), /docs (Astro), and
+ * ONE file, served from the apex (https://cerealmilk.sh/consent-analytics.js) and
+ * loaded by every Cereal Milk surface: the landing (Next), /docs (Astro), and
  * /sentry (static). Because /docs and /sentry are reverse-proxied under the
  * apex, all three are same-origin, so a single consent choice in
  * localStorage governs the whole site.
@@ -31,7 +31,7 @@
 
   // ---- CONFIG ---------------------------------------------------------------
   var POSTHOG_KEY = "phc_vwBzqqZUjnEEpuqQhMqPgCkaC9iqWokmSWKp4FSH29jW";
-  var CONSENT_KEY = "80x-consent"; // localStorage: "granted" | "denied"
+  var CONSENT_KEY = "cereal-milk-consent"; // localStorage: "granted" | "denied"
   var UI_HOST = "https://us.posthog.com"; // toolbar/app host (US cloud)
   var PRIVACY_URL = "/privacy";
   // --------------------------------------------------------------------------
@@ -42,7 +42,7 @@
   if (!POSTHOG_KEY || POSTHOG_KEY.indexOf("REPLACE_ME") !== -1) {
     // Not an error, just not configured yet.
     if (window.console && console.info) {
-      console.info("[80x analytics] PostHog key not set, analytics disabled.");
+      console.info("[Cereal Milk analytics] PostHog key not set, analytics disabled.");
     }
     return;
   }
@@ -142,8 +142,8 @@
       capture_exceptions: true, // JS error tracking on the live site (PostHog Error Tracking)
       capture_performance: { web_vitals: true, network_timing: true }, // Core Web Vitals into PostHog
       persistence: "localStorage+cookie",
-      // Cookie scoped to .80x.ai (not host-only) so the anonymous distinct_id is
-      // shared with the signed-in app at app.80x.ai. When a visitor later signs
+      // Cookie scoped to .cerealmilk.sh (not host-only) so the anonymous distinct_id is
+      // shared with the signed-in app at app.cerealmilk.sh. When a visitor later signs
       // in there, posthog.identify(clerkUserId) merges this pre-signup journey
       // into their identified person, one profile end to end.
       cross_subdomain_cookie: true,
@@ -167,7 +167,7 @@
         // (demo request, newsletter, preorder). With person_profiles set to
         // "identified_only" above, THIS call is what upgrades an anonymous
         // lead into a person profile. When that visitor later signs in at
-        // app.80x.ai, the Clerk identify() there merges this named lead
+        // app.cerealmilk.sh, the Clerk identify() there merges this named lead
         // journey into one person end to end.
         window.setPerson = function (props) {
           try {
@@ -231,7 +231,7 @@
       "#x-consent .x-decline:hover{background:rgba(255,255,255,.08)}" +
       "</style>" +
       "<p><strong style=\"color:#fff;font-weight:600\">A note on privacy.</strong> " +
-      "80x uses privacy-friendly analytics (including session replays with all form inputs masked) " +
+      "Cereal Milk uses privacy-friendly analytics (including session replays with all form inputs masked) " +
       "to understand how the site is used and improve it. Nothing loads until you choose. " +
       'See the <a href="' + PRIVACY_URL + '">privacy &amp; cookies policy</a>.</p>' +
       '<div class="x-row">' +

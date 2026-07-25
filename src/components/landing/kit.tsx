@@ -1,6 +1,6 @@
 "use client";
 
-// 80x · landing-page toolkit.
+// Cereal Milk · landing-page toolkit.
 //
 // Everything the marketing page is built from. Deliberately self-contained: it
 // depends ONLY on the stable @theme color/shadow/radius tokens (bg-bg, bg-panel,

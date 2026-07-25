@@ -1,4 +1,4 @@
-80x for B2B startups: founder-led sales finally has a system of record. Your best pipeline is in WhatsApp threads and LinkedIn DMs, not your CRM. 80x puts every channel a prospect moves through in one keyboard-first Mac window, files the lines that matter to Attio or Affinity, and keeps every promise you make on the record.
+Cereal Milk for B2B startups: founder-led sales finally has a system of record. Your best pipeline is in WhatsApp threads and LinkedIn DMs, not your CRM. Cereal Milk puts every channel a prospect moves through in one keyboard-first Mac window, files the lines that matter to Attio or Affinity, and keeps every promise you make on the record.
 
 ## Your pipeline is forty scrolls up
 
@@ -12,7 +12,7 @@ The revenue that keeps a startup alive is closed in chat. None of it reaches the
 
 ## Proven where deals move fastest
 
-80x was built by the team that ran deal-ops engineering for 68 venture funds and firms. The same machine now keeps a startup's pipeline true: founder-led sales, fundraising threads, and customer relationships filed to one clean CRM, without anyone doing data entry. The privacy gate is enforced on the server; see [Security and privacy](/security).
+Cereal Milk was built by the team that ran deal-ops engineering for 68 venture funds and firms. The same machine now keeps a startup's pipeline true: founder-led sales, fundraising threads, and customer relationships filed to one clean CRM, without anyone doing data entry. The privacy gate is enforced on the server; see [Security and privacy](/security).
 
 ## Pricing
 
@@ -21,4 +21,4 @@ Two plans, per user: Starter $30 a month or $300 a year, Business $40 a month or
 ## Get it
 
 - [Book a demo](/demo): 30 minutes on a screen-share with the founder, on a live pipeline.
-- [Download 80x for Mac](/download): create your account in the app and the full product is free for 7 days, no card. macOS 26 or later.
+- [Download Cereal Milk for Mac](/download): create your account in the app and the full product is free for 7 days, no card. macOS 26 or later.

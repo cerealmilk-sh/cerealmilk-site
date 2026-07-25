@@ -55,7 +55,7 @@ const AI_CRAWLERS = [
 
 export function GET() {
   const lines: string[] = [
-    "# 80x.ai, robots.txt",
+    "# cerealmilk.sh, robots.txt",
     "# Machine-readable site guide: /llms.txt (index) and /llms-full.txt (full content).",
     "# Every content page also has a markdown mirror at <path>.md",
     "",

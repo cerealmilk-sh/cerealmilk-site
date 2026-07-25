@@ -1,7 +1,7 @@
-# Editing & publishing the 80x landing page
+# Editing & publishing the Cereal Milk landing page
 
-This is the standalone marketing site (`80x.xyz`). It's a static Next.js app
-with no database or auth, the product lives separately at `app.80x.xyz`.
+This is the standalone marketing site (`cerealmilk.sh`). It's a static Next.js app
+with no database or auth, the product lives separately at `app.cerealmilk.sh`.
 
 ## Edit copy
 
@@ -31,7 +31,7 @@ The bar links to the live URL when it's done (~1–2 min). Typo? Use **Instant
 Rollback** in the Vercel dashboard.
 
 > Deploying via the CLI means Publish works without the GitHub↔Vercel
-> connection. If you later authorize Vercel's GitHub App on `80x-HQ`
+> connection. If you later authorize Vercel's GitHub App on `cerealmilk-sh`
 > (Vercel → project → Settings → Git), a plain `git push` will *also* auto-deploy.
 >
 > Publish only ships `content.json`. Code/layout changes are normal commits you
@@ -44,7 +44,7 @@ Rollback** in the Vercel dashboard.
 - The editor and the `/api/dev/*` routes are **dev-only**, disabled when
   `NODE_ENV=production`, so the deployed site is pure static HTML/JS with no
   authoring surface.
-- Auth CTAs point at `https://app.80x.xyz` (see `APP_URL` in `LandingPage.tsx`).
+- Auth CTAs point at `https://app.cerealmilk.sh` (see `APP_URL` in `LandingPage.tsx`).
 
 ## AI search & SEO
 
@@ -55,13 +55,13 @@ Rollback** in the Vercel dashboard.
 - `app/robots.ts` and `app/sitemap.ts` generate `/robots.txt` and `/sitemap.xml`;
   robots explicitly allows the major AI crawlers (GPTBot, ClaudeBot, PerplexityBot…).
 - `public/llms.txt` is the plain-text product brief for LLMs and AI search. Keep
-  it factual and current. It's the canonical answer source for "what is 80x".
+  it factual and current. It's the canonical answer source for "what is Cereal Milk".
 - The base host is set once via `SITE_URL` in `src/lib/site.ts`; change it there
   if the domain moves.
 
 ## One-time: DNS cutover
 
-Point `80x.xyz` (+ `www`) at Vercel (records shown in the Vercel dashboard).
+Point `cerealmilk.sh` (+ `www`) at Vercel (records shown in the Vercel dashboard).
 ⚠️ Delete any registrar "URL redirect / parking" record on the apex first. It
 injects a second A record and blocks both routing and TLS. Then drop the apex
 from the Fly app's host-split (`MARKETING_HOSTS` in the product repo's

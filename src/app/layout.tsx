@@ -1,14 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Inter, IBM_Plex_Mono } from "next/font/google";
 import { GeistPixelGrid } from "geist/font/pixel";
 import "./globals.css";
 
 // Typography (the reference system): Inter carries the body, IBM Plex Mono
 // carries the hero display line, kickers, and code, and Geist Pixel Grid
-// (OFL) carries only the hero headline's "AI agents." tail. globals.css
+// (OFL) carries only the hero headline's "agent." tail. globals.css
 // re-points --font-sans/--font-mono to these variables.
 const inter = Inter({
   subsets: ["latin"],
@@ -20,11 +19,6 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
 });
 
-// Auth is rollout-safe: with no Clerk publishable key configured, the site runs
-// exactly as before (no ClerkProvider; the dormant /get checkout modal just
-// advances). Add NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY + CLERK_SECRET_KEY and real
-// Google/Microsoft/Apple OAuth turns on. See GetStarted.tsx + proxy.ts.
-const HAS_CLERK = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 import {
   CANONICAL_SENTENCE,
   SITE_NAME,
@@ -36,10 +30,10 @@ import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { JsonLd } from "@/components/site/JsonLd";
 import { CopyEditor } from "@/components/site/CopyEditor";
 
-// 80x.ai, the product site. This layout carries the site-wide identity: the
-// canonical entity sentence as the default description, the Organization +
+// cerealmilk.sh, the product site. This layout carries the site-wide identity:
+// the canonical entity sentence as the default description, the Organization +
 // WebSite + Person JSON-LD graph on every page, and feed autodiscovery. Pages
-// override title/description per-page; the Mac-app product graph lives ONLY
+// override title/description per-page; the desktop app product graph lives ONLY
 // on the homepage (the product page), see src/app/page.tsx.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -80,23 +74,20 @@ export const metadata: Metadata = {
     },
   },
   category: "technology",
-  // Branding: the canonical 80x mark (lime #E4F222 + ink #0B0B09, real Geist
-  // Mono Bold "80x"). Next auto-links src/app/{favicon.ico,icon.svg,apple-icon.png}
-  // by file convention. We deliberately DON'T set metadata.icons here, since
-  // doing so suppresses that auto-detection. The one non-standard tag (the
-  // Safari pinned-tab mask) is injected directly in <head> below.
+  // Branding: the canonical Cereal Milk mark. Next auto-links
+  // src/app/{favicon.ico,icon.svg,apple-icon.png} by file convention. We
+  // deliberately DON'T set metadata.icons here, since doing so suppresses that
+  // auto-detection.
   manifest: "/manifest.webmanifest",
 };
 
 // Explicit (matches Next's default emission) so mobile layout at 390px can
 // never regress to desktop-width rendering, see VERCEL-GEIST-SPEC.md §8(d).
 // theme-color tracks the page background per scheme so the mobile URL bar blends
-// with the monochrome canvas (the brand lime lives in the manifest/app splash).
+// with the monochrome canvas.
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  // The site is dark-only (the reference system ships one canvas), so the
-  // mobile URL bar always blends with the #111 background.
   themeColor: "#111111",
 };
 
@@ -115,12 +106,12 @@ export default function RootLayout({
       <head>
         {/* Organization + WebSite + Person, the entity graph every page links back to. */}
         <JsonLd data={graph(...rootNodes())} />
-        {/* Safari pinned-tab mask (monochrome 80x mark; the tab tints it lime).
+        {/* Safari pinned-tab mask (monochrome mark; the tab tints it the brand color).
             The .ico/.svg/apple icons are auto-linked from src/app by file convention. */}
         <link rel="mask-icon" href="/mask-icon.svg" color="#E4F222" />
       </head>
       <body className="h-dvh overflow-hidden bg-bg text-ink antialiased">
-        {HAS_CLERK ? <ClerkProvider>{children}</ClerkProvider> : children}
+        {children}
         {/* Site-wide floating "chat with the founder" WhatsApp button, on every
             page, including /app and the legacy flows that skip SiteShell. Wrapped
             in .studio so the panel/edge/ink tokens resolve to the studio skin

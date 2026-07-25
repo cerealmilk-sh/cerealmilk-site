@@ -49,7 +49,7 @@ export function MobileMenu({
               href="/"
               onClick={close}
               className="flex select-none items-center rounded-[9px] transition-opacity hover:opacity-80"
-              aria-label="80x · home"
+              aria-label="Cereal Milk · home"
             >
               <Logo size={30} />
             </Link>

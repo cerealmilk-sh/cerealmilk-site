@@ -44,13 +44,13 @@ function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
     const link = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
     if (link) {
       const [, label, href] = link;
-      const external = /^https?:\/\//.test(href) && !href.startsWith("https://80x.ai");
+      const external = /^https?:\/\//.test(href) && !href.startsWith("https://cerealmilk.sh");
       return external ? (
         <a key={key} href={href} rel="noopener">
           {label}
         </a>
       ) : (
-        <Link key={key} href={href.replace(/^https:\/\/80x\.ai/, "")}>
+        <Link key={key} href={href.replace(/^https:\/\/Cereal Milk\.ai/, "")}>
           {label}
         </Link>
       );

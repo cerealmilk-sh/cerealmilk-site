@@ -20,11 +20,11 @@ import { TypewriterH1 } from "@/components/landing/TypewriterH1";
 import { WorkspaceDemo } from "@/components/landing/WorkspaceDemo";
 
 // The product homepage, a section-for-section build of the reference layout
-// (superset.sh) carrying 80x copy: hero (mono typewriter H1 + two buttons +
+// (superset.sh) carrying Cereal Milk copy: hero (mono typewriter H1 + two buttons +
 // the product frame + chips) -> four alternating feature rows, each beside a
 // floating dark mock window -> the proof band (real numbers in the logo-wall
-// slot; 80x has no customer logos or testimonials and invents none) -> the
-// two-column FAQ (sticky title left, accordion right) -> "Try 80x now." with
+// slot; Cereal Milk has no customer logos or testimonials and invents none) -> the
+// two-column FAQ (sticky title left, accordion right) -> "Try Cereal Milk now." with
 // one download button. The funnel is DOWNLOAD-FIRST (the Raycast model,
 // 2026-07-14): every download CTA points at /download; the app forces account
 // creation on first run and the account grants a 7-day full-access trial, no
@@ -35,7 +35,7 @@ import { WorkspaceDemo } from "@/components/landing/WorkspaceDemo";
 const entry = pageByPath("/")!;
 export const metadata = {
   ...pageMetadata(entry),
-  title: { absolute: `80x · ${entry.title}` },
+  title: { absolute: `Cereal Milk · ${entry.title}` },
 };
 
 const QUIET_LINK =
@@ -48,19 +48,19 @@ const FOOTER_HREF = `${DOWNLOAD_PATH}?src=home-footer`;
 const HOME_FAQ: { q: string; a: string; aNode?: React.ReactNode }[] = [
   {
     q: "Is this a native Mac app?",
-    a: "Yes. 80x is a real, keyboard-first Mac app, not just another browser tab. It runs the official WhatsApp Web, LinkedIn, and Gmail in one native window with a command palette, CRM sync, snippets, and relationship insights, and turns the chats you choose into structured records your agents can act on.",
+    a: "Yes. Cereal Milk is a real, keyboard-first Mac app, not just another browser tab. It runs the official WhatsApp Web, LinkedIn, and Gmail in one native window with a command palette, CRM sync, snippets, and relationship insights, and turns the chats you choose into structured records your agents can act on.",
   },
   {
     q: "What do AI agents get out of it?",
-    a: "Reach. Your deals happen in chat, and chat is the one surface your agents cannot touch. 80x files the conversations you choose to Attio or Affinity and exports any thread as clean Markdown in one click, so the relationships in your phone become structured records your agents can read and act on: draft the follow-up, update the deal, or brief you before the call, all from the same records you sync by hand.",
+    a: "Reach. Your deals happen in chat, and chat is the one surface your agents cannot touch. Cereal Milk files the conversations you choose to Attio or Affinity and exports any thread as clean Markdown in one click, so the relationships in your phone become structured records your agents can read and act on: draft the follow-up, update the deal, or brief you before the call, all from the same records you sync by hand.",
   },
   {
-    q: "Does 80x work with MCP and my other AI tools?",
-    a: "Yes. 80x has a built-in agent that works your threads and your CRM, and it speaks MCP, the Model Context Protocol. Add the servers your stack already exposes, Attio, Affinity, your notes or calendar, with one command, and the agent can use their tools while it works alongside you. It stays hands-off by design: its writes are staged as proposals you review, every tool call is logged, and nothing files to your CRM until you approve it.",
+    q: "Does Cereal Milk work with MCP and my other AI tools?",
+    a: "Yes. Cereal Milk has a built-in agent that works your threads and your CRM, and it speaks MCP, the Model Context Protocol. Add the servers your stack already exposes, Attio, Affinity, your notes or calendar, with one command, and the agent can use their tools while it works alongside you. It stays hands-off by design: its writes are staged as proposals you review, every tool call is logged, and nothing files to your CRM until you approve it.",
   },
   {
-    q: "How does 80x connect to my accounts?",
-    a: "80x runs the official WhatsApp Web and LinkedIn inside Apple's WebKit, the same engine as Safari, so to those services it looks like an ordinary browser. It never bulk-sends, automates, or scrapes; you always hit send yourself, and it reads only the chat you have open, when you ask. Nothing ever acts as you in the background.",
+    q: "How does Cereal Milk connect to my accounts?",
+    a: "Cereal Milk runs the official WhatsApp Web and LinkedIn inside Apple's WebKit, the same engine as Safari, so to those services it looks like an ordinary browser. It never bulk-sends, automates, or scrapes; you always hit send yourself, and it reads only the chat you have open, when you ask. Nothing ever acts as you in the background.",
   },
   {
     q: "Does it read my messages?",
@@ -109,7 +109,7 @@ const HOME_FAQ: { q: string; a: string; aNode?: React.ReactNode }[] = [
   },
   {
     q: "Is there a Windows version?",
-    a: "Yes. 80x ships for Mac and Windows. The download page detects your platform and starts the right installer automatically, so the same button works for everyone.",
+    a: "Yes. Cereal Milk ships for Mac and Windows. The download page detects your platform and starts the right installer automatically, so the same button works for everyone.",
   },
 ];
 
@@ -190,7 +190,7 @@ function ChannelsWindow() {
         <div className="flex items-center gap-2">
           <Lights />
           <span className="ml-2 rounded bg-white/10 px-2 py-0.5 text-xs font-medium text-white/80">
-            80x
+            Cereal Milk
           </span>
         </div>
         <div className="flex items-center gap-1.5 text-white/50">
@@ -286,7 +286,7 @@ function CrmWindow() {
           <div className="flex items-center gap-2">
             <Lights />
             <span className="ml-2 rounded bg-white/10 px-2 py-0.5 text-xs font-medium text-white/80">
-              80x
+              Cereal Milk
             </span>
           </div>
           <div className="flex items-center gap-1.5 text-white/50">
@@ -425,7 +425,7 @@ export default function Page() {
         data={graph(
           softwareAppNode({
             path: "/",
-            name: "80x",
+            name: "Cereal Milk",
             description: entry.description,
             category: "BusinessApplication",
             operatingSystem: "macOS, Windows",
@@ -469,7 +469,7 @@ export default function Page() {
       </div>
 
       {/* 2 · Proof, in the reference's logo-wall slot: real numbers in the
-          same bordered-cell vocabulary. 80x has no customer logos or public
+          same bordered-cell vocabulary. Cereal Milk has no customer logos or public
           testimonials, and this page invents none. */}
       <section aria-labelledby="proof" className="overflow-hidden bg-background py-6 sm:py-12 md:py-18">
         <div className="mx-auto max-w-7xl">
@@ -616,10 +616,10 @@ export default function Page() {
       </section>
 
       {/* 5 · Final CTA: one line, one button. */}
-      <section aria-label="Get 80x" className="relative px-8 py-32 lg:px-[30px]">
+      <section aria-label="Get Cereal Milk" className="relative px-8 py-32 lg:px-[30px]">
         <div className="mx-auto flex max-w-7xl flex-col items-center text-center">
           <h2 className="mb-8 text-3xl font-medium leading-[1.1] tracking-tight text-foreground sm:text-4xl xl:text-5xl">
-            <T id="cta.title">Try 80x now.</T>
+            <T id="cta.title">Try Cereal Milk now.</T>
           </h2>
           <div>
             <DownloadCta href={FOOTER_HREF} src="home-footer" />

@@ -1,7 +1,7 @@
 # Intent-page backlog (GEO Tier 3)
 
 Each target ICP prompt should have one page that IS the best answer to it, so
-80x gets cited when a fund partner asks an answer engine. This file turns each
+Cereal Milk gets cited when a fund partner asks an answer engine. This file turns each
 prompt into an executable page spec. **These are not written here on purpose:**
 they are marketing pages representing the studio, they must clear Dan's
 no-AI-slop / teach-don't-perform bar, and every claim must be true and
@@ -30,7 +30,7 @@ Commercial-intent first (they convert), then how-to (they get cited widely).
 
 ### 1. Who can I hire to automate my VC fund's CRM? `/guides/hire-someone-to-automate-a-vc-crm`
 - **Answer-first thesis:** what kind of firm to look for (spec-first, dry-run,
-  owns-nothing-you-can't-run-yourself), and that 80x is one such studio.
+  owns-nothing-you-can't-run-yourself), and that Cereal Milk is one such studio.
 - **Cite:** the three engagement shapes; the "you own everything" principle.
 - **Links:** /services, /work, /contact. **FAQ:** cost, timeline, data safety.
 
@@ -55,7 +55,7 @@ Commercial-intent first (they convert), then how-to (they get cited widely).
 
 ### 5. Attio vs Affinity for a venture fund `/guides/attio-vs-affinity-for-a-venture-fund`
 - **Thesis:** an honest, non-partisan comparison for fund workflows; where each
-  fits; 80x builds on both. (This is a magnet for AI citation, be genuinely fair.)
+  fits; Cereal Milk builds on both. (This is a magnet for AI citation, be genuinely fair.)
 - **Cite:** production systems run on Attio; largest rescue was an Affinity→Attio
   migration. **Table:** dimensions × Attio/Affinity.
 

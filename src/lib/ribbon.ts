@@ -16,9 +16,9 @@ export const RIBBON = {
   // Bump this string whenever the message changes so past dismissals reset.
   version: "download-first-2026-07-win",
   href: `${DOWNLOAD_PATH}?src=ribbon`,
-  eyebrow: "80x is live",
+  eyebrow: "Cereal Milk is live",
   message: `WhatsApp, LinkedIn, and Gmail in one window, synced to your CRM. Free for ${TRIAL_DAYS} days, no card, then from ${PRICE_ANCHOR} a month`,
-  cta: "Download 80x",
+  cta: "Download Cereal Milk",
   // The [data-track] event auto-captured on click by public/consent-analytics.js.
   track: "get_started_cta_clicked",
 } as const;

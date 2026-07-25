@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ============================================================================
-   80x · Intercom-style inbox · dual theme (light default + dark)
+   Cereal Milk · Intercom-style inbox · dual theme (light default + dark)
    ----------------------------------------------------------------------------
    A faithful re-creation of Intercom's agent Inbox: a calm 3-pane workspace
    (rail · conversation list · conversation · details). LIGHT is the default,
@@ -107,7 +107,7 @@
   --color-muted-foreground: var(--bc-ink-dim);
   --color-border: var(--bc-edge);
 
-  /*, Brand: the ONE chromatic voice (80x lime), used the way the reference
+  /*, Brand: the ONE chromatic voice (Cereal Milk lime), used the way the reference
      system uses its brand hue: translucent tints (bg-brand/10), hairline
      tinted borders (border-brand/20), and a brighter text tone. ---------- */
   --color-brand: var(--bc-brand);
@@ -610,7 +610,7 @@ html[data-ribbon="hidden"] .site-ribbon {
 }
 
 /* ==========================================================================
-   STUDIO: the 80x.ai Vercel/Geist skin (matches the /docs design system).
+   STUDIO: the cerealmilk.sh Vercel/Geist skin (matches the /docs design system).
    ----------------------------------------------------------------------------
    Studio pages (home, services, work, writing, tools, about…) wrap their
    content in `.studio`, which re-points the same --bc-* palette the whole

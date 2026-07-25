@@ -15,9 +15,9 @@ export const dynamic = "force-dynamic";
 
 const execFileAsync = promisify(execFile);
 const CONTENT = "src/components/site/copy-overrides.json";
-// The live product domain. This repo's .vercel link points at the "80x" project,
-// and the eightyx team owns it, so we deploy with --scope eightyx to project 80x.
-const LIVE_URL = "https://80x.ai";
+// The live product domain. This repo's .vercel link points at the "Cereal Milk" project,
+// and the cerealmilk team owns it, so we deploy with --scope cerealmilk to project Cereal Milk.
+const LIVE_URL = "https://cerealmilk.sh";
 
 async function git(args: string[]): Promise<string> {
   const { stdout } = await execFileAsync("git", args, {
@@ -59,7 +59,7 @@ export async function POST() {
     }
 
     // Deploy the working tree to production. Builds remotely (~1–2 min).
-    const deploy = await execFileAsync("vercel", ["deploy", "--prod", "--yes", "--scope", "eightyx"], {
+    const deploy = await execFileAsync("vercel", ["deploy", "--prod", "--yes", "--scope", "cerealmilk"], {
       cwd: process.cwd(),
       env: process.env,
       maxBuffer: 50 * 1024 * 1024,

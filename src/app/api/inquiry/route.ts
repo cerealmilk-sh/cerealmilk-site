@@ -32,7 +32,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const FROM = process.env.WAITLIST_EMAIL_FROM || "80x <daniel@updates.80x.ai>";
+const FROM = process.env.WAITLIST_EMAIL_FROM || "Cereal Milk <daniel@updates.cerealmilk.sh>";
 const TO = process.env.INQUIRY_TO || AUTHOR.email;
 
 function backToForm(params: string, source: "contact" | "demo" = "contact") {
@@ -55,7 +55,7 @@ function onToCalendar(name: string, email: string) {
 export function GET() {
   return NextResponse.json({
     description:
-      "Send an inquiry to 80x (a demo request, a fund pilot, or a question about the Mac app). The message is emailed to the founder, who replies within one business day. This is the same endpoint the 80x.ai/contact form posts to.",
+      "Send an inquiry to Cereal Milk (a demo request, a fund pilot, or a question about the Mac app). The message is emailed to the founder, who replies within one business day. This is the same endpoint the cerealmilk.sh/contact form posts to.",
     method: "POST",
     accepts: [
       "application/json",
@@ -64,18 +64,18 @@ export function GET() {
     ],
     fields: [
       { name: "name", required: false, type: "string", description: "The sender's name." },
-      { name: "email", required: true, type: "string", description: "A valid email 80x can reply to." },
+      { name: "email", required: true, type: "string", description: "A valid email Cereal Milk can reply to." },
       { name: "firm", required: false, type: "string", description: "The fund or firm, and which CRM it runs (Attio or Affinity)." },
       { name: "message", required: true, type: "string", description: "What the sender needs: the problem and what a good outcome looks like." },
       { name: "source", required: false, type: "string", description: "Where the inquiry came from: \"contact\" (default) or \"demo\" (the /demo booking form)." },
-      { name: "subscribe", required: false, type: "boolean", description: "Opt in to The 80x Field Notes newsletter. Never auto-subscribed." },
+      { name: "subscribe", required: false, type: "boolean", description: "Opt in to The Cereal Milk Field Notes newsletter. Never auto-subscribed." },
     ],
     example: {
       name: "Jordan Rivera",
       email: "jordan@examplefund.com",
       firm: "Example Ventures (Attio)",
       message:
-        "We'd like a demo of 80x for our six-person investment team, and to hear how a pilot works.",
+        "We'd like a demo of Cereal Milk for our six-person investment team, and to hear how a pilot works.",
       subscribe: false,
     },
     note: "A JSON POST returns { ok: true } on success; a form POST redirects to /contact?sent=1 (or, for source=demo, on to the booking calendar). A valid email is always required; a message is required except for source=demo, where one is synthesized.",
@@ -125,7 +125,7 @@ export async function POST(req: Request) {
     const teamSize = String(raw.team_size ?? "").trim().slice(0, 40);
     const src = String(raw.src ?? "").trim().slice(0, 40);
     message = [
-      "Demo request via the 80x.ai/demo form.",
+      "Demo request via the cerealmilk.sh/demo form.",
       teamSize ? `Team size: ${teamSize}` : "",
       src && !src.includes("://") ? `Source: ${src}` : "",
     ]
@@ -202,8 +202,8 @@ async function sendInquiry({ name, email, firm, message, source }: Inquiry) {
   const apiKey = process.env.RESEND_API_KEY;
   const subject =
     source === "demo"
-      ? `New 80x demo request, ${firm || name || email}`
-      : `New 80x inquiry, ${firm || name || email}`;
+      ? `New Cereal Milk demo request, ${firm || name || email}`
+      : `New Cereal Milk inquiry, ${firm || name || email}`;
   const lines = [
     `Name:  ${name || "(not given)"}`,
     `Email: ${email}`,
@@ -212,7 +212,7 @@ async function sendInquiry({ name, email, firm, message, source }: Inquiry) {
     "Message:",
     message,
     "",
-    `Submitted via 80x.ai/${source}`,
+    `Submitted via cerealmilk.sh/${source}`,
   ];
   const text = lines.join("\n");
 

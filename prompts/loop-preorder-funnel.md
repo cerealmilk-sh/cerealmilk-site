@@ -2,15 +2,15 @@
 
 You are running this prompt on a **self-paced loop** (`/loop` with no interval). Each
 firing you make **one meaningful, shippable increment** toward a complete pre-order
-funnel for the 80x product, verify it, record it, and schedule the next pass. You are
+funnel for the Cereal Milk product, verify it, record it, and schedule the next pass. You are
 not trying to finish in one shot. You are trying to never lose the thread.
 
 ---
 
 ## 0. Mission
 
-Rebuild the 80x landing experience around a **StoryBrand (SB7) BrandScript** and stand
-up the **complete funnel** that maximises conversion on **pre-orders of the 80x Mac
+Rebuild the Cereal Milk landing experience around a **StoryBrand (SB7) BrandScript** and stand
+up the **complete funnel** that maximises conversion on **pre-orders of the Cereal Milk Mac
 app** (the Repository: git-for-your-relationships).
 
 "Complete funnel" means every stage exists, is wired, is measured, and is optimised:
@@ -37,11 +37,11 @@ When all six hold, call `ScheduleWakeup{ stop: true }` and post a final summary.
 
 - **Repo:** `~/github/growth-landing` — Next.js App Router, TypeScript. Routes in
   `src/app`, shared logic in `src/lib`, UI in `src/components`, content in
-  `src/content`. Push via the **80x-djh** account.
-- **This is the live product domain** (Vercel project `80x`, NOT a stray
+  `src/content`. Push via the **cerealmilk-sh** account.
+- **This is the live product domain** (Vercel project `Cereal Milk`, NOT a stray
   growth-landing project). `main` does **NOT** auto-deploy. Ship with:
-  `vercel deploy --prod --scope eightyx` (build green first). Preview deploys for
-  review-before-prod: `vercel deploy --scope eightyx`.
+  `vercel deploy --prod --scope cerealmilk` (build green first). Preview deploys for
+  review-before-prod: `vercel deploy --scope cerealmilk`.
 - **Deploy-author rule:** deploys must be attributed correctly — confirm the Vercel
   scope/account before promoting to prod.
 - **Pricing is single-sourced** in `src/lib/pricing.ts`. Never hardcode a price
@@ -81,13 +81,13 @@ they know.
   valuable to leave to memory and luck.
 - *Villain (name it):* the silo. Digital amnesia. The scattered inbox.
 
-**3. Guide (80x = the guide, shown with empathy + authority).**
+**3. Guide (Cereal Milk = the guide, shown with empathy + authority).**
 - *Empathy:* We know what it costs to lose a deal because a thread went quiet.
 - *Authority:* Trusted across 68 funds. On-device and private by default. The
   Repository: git for your relationships.
 
 **4. Plan (make the path feel obvious and safe).**
-Product plan, 3 steps: **Connect your accounts → 80x builds your Repository → Never
+Product plan, 3 steps: **Connect your accounts → Cereal Milk builds your Repository → Never
 drop a relationship again.**
 Pre-order plan, 3 steps: **Reserve your seat → Lock founding pricing → Get first
 access at launch.**
@@ -95,7 +95,7 @@ Include an agreement plan (the risk-reversal promises: private by default, cance
 anytime before charge, your data is exportable).
 
 **5. Call to Action.**
-- *Direct (one primary, repeated):* **Pre-order 80x** → `/preorder`.
+- *Direct (one primary, repeated):* **Pre-order Cereal Milk** → `/preorder`.
 - *Transitional (for the not-yet-ready):* Watch the 90-second demo / Read the docs /
   See the Repository. One transitional CTA, not five.
 
@@ -202,7 +202,7 @@ for one firing into sub-steps and track them in state.
 
 ## 6. Conversion checklist (the "maximise conversion" substance — apply in M8, spot-check always)
 
-- **Clarity over cleverness.** A stranger grasps what 80x is and what to do in 5s.
+- **Clarity over cleverness.** A stranger grasps what Cereal Milk is and what to do in 5s.
 - **One primary action.** The direct CTA (Pre-order) is the same words everywhere and
   repeats down the page. Transitional CTA is visually secondary.
 - **Problem before product.** The visitor sees their own pain named before our

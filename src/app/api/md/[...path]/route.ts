@@ -19,7 +19,7 @@ export async function GET(
   const entry = pageByPath(pagePath);
   const md = entry ? pageMarkdown(entry) : null;
   if (!md) {
-    return new Response("Not found. Index of all pages: https://80x.ai/llms.txt\n", {
+    return new Response("Not found. Index of all pages: https://cerealmilk.sh/llms.txt\n", {
       status: 404,
       headers: { "content-type": "text/plain; charset=utf-8" },
     });

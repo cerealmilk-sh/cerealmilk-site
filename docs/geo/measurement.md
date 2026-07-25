@@ -1,8 +1,8 @@
-# Measuring AI search (GEO) for 80x
+# Measuring AI search (GEO) for Cereal Milk
 
 Two complementary signals. Check both monthly.
 
-## 1. Prompt side: are the engines recommending/citing 80x?
+## 1. Prompt side: are the engines recommending/citing Cereal Milk?
 
 Run the audit harness:
 
@@ -16,10 +16,10 @@ npm run geo-audit
 It runs the 20 ICP prompts (see `off-site-kit.md` §5) against each engine with
 web search on and writes `docs/geo/audits/geo-audit-<date>.md`: a per-provider
 mention/citation rate, a per-prompt matrix, and the full answers. Diff each new
-report against the previous month to see 80x climb. Optionally set
+report against the previous month to see Cereal Milk climb. Optionally set
 `COMPETITORS="Foo, Bar"` to tally who else the engines name.
 
-**What good looks like:** "mentioned" rate rising first, then "cited (80x.ai)"
+**What good looks like:** "mentioned" rate rising first, then "cited (cerealmilk.sh)"
 rate rising as the off-site corroboration lands. Commercial-intent prompts
 (#1, #8, #17, #20) matter most.
 
@@ -27,7 +27,7 @@ rate rising as the off-site corroboration lands. Commercial-intent prompts
 
 No new infra needed; read what Vercel already collects.
 
-- **AI crawler hits**: in Vercel → the `80x` project → Logs (or a log drain),
+- **AI crawler hits**: in Vercel → the `Cereal Milk` project → Logs (or a log drain),
   filter request user-agents for: `GPTBot`, `OAI-SearchBot`, `ChatGPT-User`,
   `ClaudeBot`, `Claude-User`, `PerplexityBot`, `Perplexity-User`,
   `Google-Extended`, `Bytespider`, `Amazonbot`. Rising crawl of `/llms.txt`,

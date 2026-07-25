@@ -88,7 +88,7 @@ export default async function Page({
               Book a demo
             </PillButton>
             <PillButton href="/download" variant="secondary" size="lg">
-              Get 80x for Mac
+              Get Cereal Milk for Mac
             </PillButton>
             <Link href="/pricing" className={cx("px-2 text-[14px]", QUIET_LINK)}>
               See pricing
@@ -218,7 +218,7 @@ export default async function Page({
               Book a demo
             </PillButton>
             <PillButton href="/download" variant="secondary" size="lg">
-              Get 80x for Mac
+              Get Cereal Milk for Mac
             </PillButton>
           </div>
           <p className="mt-6 font-mono text-[13px] text-ink-faint">

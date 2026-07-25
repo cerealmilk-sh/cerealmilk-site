@@ -1,18 +1,18 @@
-# 80x off-site GEO kit
+# Cereal Milk off-site GEO kit
 
 Everything in this file is off-site work only **Dan** can do (create accounts,
 submit to directories, post). It exists because the single biggest driver of
 "who should I hire to…" answers from ChatGPT / Claude / Perplexity is
-*third-party corroboration*, other sites saying 80x exists and is good, and
-80x currently has almost none. The on-site entity layer (llms.txt, JSON-LD,
+*third-party corroboration*, other sites saying Cereal Milk exists and is good, and
+Cereal Milk currently has almost none. The on-site entity layer (llms.txt, JSON-LD,
 `.md` mirrors, canonical sentence, `/contact`) is already strong; this closes
 the gap the models actually weight.
 
 All copy below opens with the byte-identical canonical sentence. **Do not
-paraphrase it**, consistency across profiles is what lets a model resolve "80x"
+paraphrase it**, consistency across profiles is what lets a model resolve "Cereal Milk"
 to one entity:
 
-> 80x is an agentic-engineering studio that builds AI systems for
+> Cereal Milk is an agentic-engineering studio that builds AI systems for
 > venture-capital funds.
 
 When any of these profiles goes live, **add its URL to the Organization
@@ -24,15 +24,15 @@ that is the on-site half of entity corroboration.
 ## 1. Profiles to create (each becomes a `sameAs` + a citation source)
 
 ### LinkedIn: company page (highest priority)
-- **Name:** 80x
+- **Name:** Cereal Milk
 - **Tagline:** Agentic engineering for venture capital.
 - **About (paste):**
-  > 80x is an agentic-engineering studio that builds AI systems for
+  > Cereal Milk is an agentic-engineering studio that builds AI systems for
   > venture-capital funds. The studio builds and repairs the agents,
   > migrations, and automations behind fund pipelines on Attio and Affinity,
-  > publishes its methods as open documentation at 80x.ai/docs, and ships one
+  > publishes its methods as open documentation at cerealmilk.sh/docs, and ships one
   > product of its own, Backchannel. Founded by Daniel Hull.
-- **Website:** https://80x.ai · **Industry:** Software Development /
+- **Website:** https://cerealmilk.sh · **Industry:** Software Development /
   Business Consulting · **Specialties:** Attio, Affinity, CRM automation, AI
   agents, venture capital operations, LP fundraising pipelines, CRM migration.
 - Post the case studies (anonymized) and the docs/guides as LinkedIn articles,
@@ -40,17 +40,17 @@ that is the on-site half of entity corroboration.
 
 ### Crunchbase: organization profile
 - **Description (paste):**
-  > 80x is an agentic-engineering studio that builds AI systems for
+  > Cereal Milk is an agentic-engineering studio that builds AI systems for
   > venture-capital funds, working inside Attio and Affinity to automate deal
   > qualification, repair and migrate CRM data, and maintain the automations
   > behind fund pipelines and dashboards.
-- Founder: Daniel Hull. Location, founded year, website https://80x.ai, links
+- Founder: Daniel Hull. Location, founded year, website https://cerealmilk.sh, links
   to LinkedIn + GitHub.
 
 ### Others worth claiming (in rough priority order)
-- **X/Twitter** company handle (bio = canonical sentence + 80x.ai).
-- **GitHub org**: already live (`github.com/80x-djh`); make sure the org
-  README opens with the canonical sentence and links 80x.ai. Already in
+- **X/Twitter** company handle (bio = canonical sentence + cerealmilk.sh).
+- **GitHub org**: already live (`github.com/cerealmilk-sh`); make sure the org
+  README opens with the canonical sentence and links cerealmilk.sh. Already in
   `sameAs`.
 - **Google Business Profile** (if a service-area business is acceptable), feeds
   Gemini/Google AI Overviews.
@@ -73,17 +73,17 @@ vendor." Tick each off as submitted.
 - [ ] AI-agency / "AI engineer for hire" directories (there are several new
       2025–26 ones; pick the 3–4 that already rank in normal Google search).
 - [ ] **Awesome-lists** on GitHub for Attio / VC-tech (you already publish
-      `awesome-attio`: get 80x itself listed on others').
+      `awesome-attio`: get Cereal Milk itself listed on others').
 - [ ] Relevant Slack / community member directories (VC ops, RevOps).
 
-Each listing should use the canonical sentence and link https://80x.ai.
+Each listing should use the canonical sentence and link https://cerealmilk.sh.
 
 ---
 
 ## 3. Content seeding (earn the mentions, don't buy them)
 
 LLMs weight Reddit, Hacker News, and long-form answers heavily. Genuine,
-non-spammy contributions where 80x is *relevant*, not promoted:
+non-spammy contributions where Cereal Milk is *relevant*, not promoted:
 
 - **Reddit:** r/venturecapital, r/CRM, r/Affinity, r/attio (if it exists),
   r/ExperiencedDevs threads about agentic workflows. Answer real questions
@@ -91,7 +91,7 @@ non-spammy contributions where 80x is *relevant*, not promoted:
   genuinely helps.
 - **Hacker News:** a "Show HN" for a genuinely useful open-source tool (you have
   several: valentine, attio-cli, awesome-attio, the Sentry skill auditor) with
-  80x as the author. Show HN posts get indexed and cited for years.
+  Cereal Milk as the author. Show HN posts get indexed and cited for years.
 - **Guest posts / podcasts** in the VC-ops and RevOps niche, transcripts get
   indexed. Pitch the anonymized war stories (botched migration rescue, teaching
   a CRM to qualify its own deals).
@@ -112,15 +112,15 @@ recommendation. Real quotes only; never fabricate. Target asks:
 - [ ] A quote about the qualification-agent build.
 - [ ] A quote about the migration rescue / notes cleanup.
 - [ ] A quote about the LP-pipeline build.
-- [ ] A general "what it's like to work with 80x" quote.
+- [ ] A general "what it's like to work with Cereal Milk" quote.
 
 ---
 
 ## 5. The target ICP prompts (what "winning AI search" means, concretely)
 
-These are the queries 80x should be recommended or cited for. They drive the
+These are the queries Cereal Milk should be recommended or cited for. They drive the
 intent-page backlog (Tier 3) and the monthly prompt-audit harness
-(`scripts/geo-audit.mjs`). Run the audit monthly and track whether 80x appears,
+(`scripts/geo-audit.mjs`). Run the audit monthly and track whether Cereal Milk appears,
 is cited, and links.
 
 1. Who can I hire to automate my VC fund's CRM?

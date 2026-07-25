@@ -1,6 +1,6 @@
 "use client";
 
-// The 80x client, as it actually ships. A hand-built facsimile of the real
+// The Cereal Milk client, as it actually ships. A hand-built facsimile of the real
 // Mac app at its current tip: the D47 Linear structure on the D52 Black Glass
 // default dark theme (Linear Light in the site's light theme), mirroring
 // product-mac-app's IceShell exactly:
@@ -74,7 +74,7 @@ import { Avatar, cx } from "@/components/ui";
    .x80-wa is the WhatsApp facsimile, hardcoded to WhatsApp's own hues in
    both modes: the "before" must read instantly as the app everyone runs.
    =========================================================================== */
-export const X80_CSS = `
+export const CMLK_CSS = `
 .x80-app {
   --x8-chrome: #F9F8F9;
   --x8-buffer: #FFFFFF;
@@ -669,7 +669,7 @@ export function X80Rail() {
         className="mb-2 flex h-[26px] w-[26px] items-center justify-center rounded-md font-mono text-[10px] font-bold"
         style={{ background: "#E4F222", color: "#0B0B09" }}
       >
-        80x
+        Cereal Milk
       </span>
       <RailIcon selected title="Messenger" icon={<MessagesSquare size={16} strokeWidth={2} />} />
       <span className="my-1.5 h-px w-[22px]" style={{ background: "var(--x8-seam)" }} />

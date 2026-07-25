@@ -1,7 +1,7 @@
 import { cx } from "@/components/ui/cx";
 
 /**
- * MarkGlyph, the 80x mark: a central node held open between two
+ * MarkGlyph, the Cereal Milk mark: a central node held open between two
  * parties' arcs (a private channel). Monochrome (currentColor).
  */
 export function MarkGlyph({
@@ -61,7 +61,7 @@ export function MarkTile({
 }
 
 /**
- * Wordmark, the "80x" lockup: the display face, tight, with an
+ * Wordmark, the "Cereal Milk" lockup: the display face, tight, with an
  * optional leading tile. No caps, no tracking.
  */
 export function Wordmark({
@@ -76,7 +76,7 @@ export function Wordmark({
   return (
     <span className={cx("flex items-center gap-2 select-none", className)}>
       {withTile && <MarkTile size={tileSize} />}
-      <span className="bc-display text-[15px] text-ink">80x</span>
+      <span className="bc-display text-[15px] text-ink">Cereal Milk</span>
     </span>
   );
 }

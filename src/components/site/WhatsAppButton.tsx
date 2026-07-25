@@ -17,7 +17,7 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       data-track="whatsapp_message_clicked"
-      aria-label="Chat with Daniel, founder of 80x, on WhatsApp"
+      aria-label="Chat with Daniel, founder of Cereal Milk, on WhatsApp"
       title="Chat with the founder on WhatsApp"
       className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2.5 rounded-full border border-edge bg-panel/90 p-1.5 text-[13.5px] font-medium text-ink shadow-lg backdrop-blur transition-colors hover:border-ink sm:bottom-6 sm:right-6 sm:pr-4"
     >

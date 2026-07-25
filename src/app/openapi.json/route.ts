@@ -1,6 +1,6 @@
 import { SITE_URL } from "@/lib/site";
 
-// /openapi.json, an OpenAPI 3.1 description of 80x's public *action* endpoints,
+// /openapi.json, an OpenAPI 3.1 description of Cereal Milk's public *action* endpoints,
 // so an agent (or any tool that ingests OpenAPI) can discover how to submit an
 // inquiry or join the newsletter without scraping the site. Kept in sync by
 // hand with the routes it documents:
@@ -15,11 +15,11 @@ export function GET() {
   const doc = {
     openapi: "3.1.0",
     info: {
-      title: "80x public API",
+      title: "Cereal Milk public API",
       version: "2026-07-09",
       description:
-        "The public action endpoints on 80x.ai: submit an inquiry (a demo request, a fund pilot, a question) and join The 80x Field Notes. 80x is a native Mac app for venture investors that puts WhatsApp, LinkedIn, and Gmail in one window and syncs the conversations you choose to Attio or Affinity. Download the app at https://80x.ai/download (creating an account starts a 7-day free trial, no card); a walkthrough with the founder can be booked at https://80x.ai/demo.",
-      contact: { name: "80x", email: "daniel@80x.ai", url: `${SITE_URL}/contact` },
+        "The public action endpoints on cerealmilk.sh: submit an inquiry (a demo request, a fund pilot, a question) and join The Cereal Milk Field Notes. Cereal Milk is a native Mac app for venture investors that puts WhatsApp, LinkedIn, and Gmail in one window and syncs the conversations you choose to Attio or Affinity. Download the app at https://cerealmilk.sh/download (creating an account starts a 7-day free trial, no card); a walkthrough with the founder can be booked at https://cerealmilk.sh/demo.",
+      contact: { name: "Cereal Milk", email: "daniel@cerealmilk.sh", url: `${SITE_URL}/contact` },
     },
     servers: [{ url: SITE_URL }],
     paths: {
@@ -38,9 +38,9 @@ export function GET() {
         },
         post: {
           operationId: "submitInquiry",
-          summary: "Send a brief to 80x",
+          summary: "Send a brief to Cereal Milk",
           description:
-            "Emails the brief to the founder, who replies within one business day. Use it to request a demo or a fund pilot, or to ask about the app. The same endpoint the 80x.ai/contact form posts to. Accepts JSON or form-encoded bodies.",
+            "Emails the brief to the founder, who replies within one business day. Use it to request a demo or a fund pilot, or to ask about the app. The same endpoint the cerealmilk.sh/contact form posts to. Accepts JSON or form-encoded bodies.",
           requestBody: {
             required: true,
             content: {
@@ -81,9 +81,9 @@ export function GET() {
       "/api/waitlist": {
         post: {
           operationId: "joinNewsletter",
-          summary: "Join The 80x Field Notes",
+          summary: "Join The Cereal Milk Field Notes",
           description:
-            "Adds an email to the 80x newsletter. One email when something ships: new releases, new capabilities, and field notes from the build. Accepts JSON or form-encoded bodies.",
+            "Adds an email to the Cereal Milk newsletter. One email when something ships: new releases, new capabilities, and field notes from the build. Accepts JSON or form-encoded bodies.",
           requestBody: {
             required: true,
             content: {
@@ -127,7 +127,7 @@ export function GET() {
             email: {
               type: "string",
               format: "email",
-              description: "A valid email 80x can reply to.",
+              description: "A valid email Cereal Milk can reply to.",
             },
             firm: {
               type: "string",
@@ -142,7 +142,7 @@ export function GET() {
             subscribe: {
               type: "boolean",
               description:
-                "Opt in to The 80x Field Notes newsletter. Never auto-subscribed.",
+                "Opt in to The Cereal Milk Field Notes newsletter. Never auto-subscribed.",
             },
           },
         },

@@ -21,7 +21,7 @@ export function Terminus({ source, path }: { source: string; path?: string }) {
       >
         <p className="font-mono text-[13px] text-ink-faint">Book a demo</p>
         <h2 className="mt-3 text-[24px] leading-[1.2] text-ink">
-          See 80x on your own pipeline
+          See Cereal Milk on your own pipeline
         </h2>
         <p className="mt-3 max-w-[34rem] text-[15px] leading-relaxed text-ink-dim">
           Book 30 minutes with the founder: the app live on a real pipeline,

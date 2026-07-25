@@ -77,7 +77,7 @@ export function Footer() {
           <div className="col-span-2 flex flex-col gap-6 md:col-span-1">
             <Link
               href="/"
-              aria-label="80x · home"
+              aria-label="Cereal Milk · home"
               className="inline-block w-fit text-foreground transition-colors hover:text-foreground/80"
             >
               <Logo size={30} />
@@ -142,7 +142,7 @@ export function Footer() {
 
         <div className="mt-14 border-t border-border pt-8">
           <p className="max-w-[72ch] text-sm leading-relaxed text-muted-foreground">
-            80x is an independent product. It runs the official WhatsApp Web,
+            Cereal Milk is an independent product. It runs the official WhatsApp Web,
             LinkedIn, and Gmail inside a native macOS app and is not affiliated
             with, endorsed by, or sponsored by WhatsApp, Meta, LinkedIn,
             Microsoft, Google, Attio, or Affinity. Your conversations stay

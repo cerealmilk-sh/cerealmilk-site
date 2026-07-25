@@ -14,7 +14,7 @@ export function GET() {
     (s): s is string => s !== null
   );
   const out = [
-    "# 80x · full site content",
+    "# Cereal Milk · full site content",
     "",
     `> ${CANONICAL_SENTENCE}`,
     "",

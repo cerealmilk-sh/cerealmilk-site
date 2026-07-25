@@ -28,7 +28,7 @@ export interface Step {
 }
 
 // The nurture CTA: the founding pre-order (reservation, no card). Replaced the
-// old "claim your seat" link into the dormant /onboard Clerk lane 2026-07-14.
+// old "claim your seat" link; replaced with /download 2026-07-25.
 const reserveSeat: Block = {
   label: "Reserve your founding seat →",
   href: PREORDER_URL,
@@ -42,7 +42,7 @@ const nurture: Step[] = [
     blocks: [
       "Quick one. The best conversation you had this week probably happened in a WhatsApp thread or a LinkedIn DM, and there's no record of it anywhere.",
       "The deck that arrives in a thread about padel. The warm intro that lands in a LinkedIn message. Terms hashed out across two apps, between the small talk. None of it reaches your CRM, so a few weeks later you're rebuilding the relationship from memory.",
-      "That's the gap 80x closes: it runs the real WhatsApp Web and LinkedIn in one native Mac window and files the lines that matter to Attio or Affinity, only the ones you pick.",
+      "That's the gap Cereal Milk closes: it runs the real WhatsApp Web and LinkedIn in one native Mac window and files the lines that matter to Attio or Affinity, only the ones you pick.",
       "Where do your deals actually happen: WhatsApp, LinkedIn, both? Hit reply and tell me; it genuinely shapes what we build next.",
     ],
   },
@@ -51,8 +51,8 @@ const nurture: Step[] = [
     afterDays: 4,
     subject: "Will this get my WhatsApp number banned?",
     blocks: [
-      "The first thing people ask me about 80x: will this get my number or LinkedIn account banned? Fair question: most “WhatsApp CRM” tools absolutely will.",
-      "They bolt onto a reverse-engineered API: Baileys, whatsapp-web.js, LinkedIn Voyager scraping. That's what gets accounts banned. 80x uses none of it.",
+      "The first thing people ask me about Cereal Milk: will this get my number or LinkedIn account banned? Fair question: most “WhatsApp CRM” tools absolutely will.",
+      "They bolt onto a reverse-engineered API: Baileys, whatsapp-web.js, LinkedIn Voyager scraping. That's what gets accounts banned. Cereal Milk uses none of it.",
       "Under the hood it's the official web.whatsapp.com and linkedin.com/messaging running inside Apple's WebKit, the same engine as Safari. To WhatsApp and LinkedIn, you're just a person on the web client. Nothing automates, bulk-sends, or scrapes in the background, and you always hit send yourself.",
       "If you'd rather not wait for the next wave, you can reserve a founding seat now: no card, no charge, and your pricing locks at today's published rate.",
       reserveSeat,
@@ -63,7 +63,7 @@ const nurture: Step[] = [
     afterDays: 7,
     subject: "Some conversations were never meant for the record",
     blocks: [
-      "Most CRM tools ask you to trust a toggle. 80x makes the separation a fact of the system.",
+      "Most CRM tools ask you to trust a toggle. Cereal Milk makes the separation a fact of the system.",
       "Every thread is born private. You share a whole conversation as the record, or surface a single line, and the other twelve messages never move. The sync gate lives on the server, so even if a sync ran this instant, a private message would be refused before it left your Mac.",
       "Your padel banter, the contact who vents, the thing someone told you in confidence: the noise stays with you, and only the signal you choose ever leaves. That's not a privacy policy, it's how the product is wired.",
       "When you're ready, your seat is here:",
@@ -73,11 +73,11 @@ const nurture: Step[] = [
   {
     id: "n4-cockpit",
     afterDays: 10,
-    subject: "A day in the 80x cockpit",
+    subject: "A day in the Cereal Milk cockpit",
     blocks: [
-      "Here's what using 80x actually feels like.",
+      "Here's what using Cereal Milk actually feels like.",
       "WhatsApp and LinkedIn live in one window, flip between them with ⌘1 and ⌘2, both sessions stay live. A command palette on ⌘K runs everything: sync a thread, drop a snippet, export a chat as a deal note, jump to a contact, without touching the mouse.",
-      "Sync a conversation and 80x reads it back as a relationship: who leads, who gets the last word, the tone, and how much has actually reached your CRM. A native inspector docks beside the chat showing who you're talking to and their CRM record, so you file the line that matters in one keystroke: no tab-switch, no “I'll log it later.”",
+      "Sync a conversation and Cereal Milk reads it back as a relationship: who leads, who gets the last word, the tone, and how much has actually reached your CRM. A native inspector docks beside the chat showing who you're talking to and their CRM record, so you file the line that matters in one keystroke: no tab-switch, no “I'll log it later.”",
       "It's the client a power user would build for themselves. Want yours set up first?",
       reserveSeat,
     ],
@@ -101,7 +101,7 @@ const nurture: Step[] = [
     subject: "Should I keep you on the list?",
     blocks: [
       "I don't want to clutter your inbox, so this is the last you'll hear from me unless you'd like otherwise.",
-      "If 80x still sounds useful (running WhatsApp and LinkedIn from one native window, with your deals finally reaching the CRM), the founding offer is one form and no card: your seat reserved, your pricing locked, first access when your wave opens.",
+      "If Cereal Milk still sounds useful (running WhatsApp and LinkedIn from one native window, with your deals finally reaching the CRM), the founding offer is one form and no card: your seat reserved, your pricing locked, first access when your wave opens.",
       reserveSeat,
       "And if it's not the right fit, just hit reply and tell me why. Whatever's holding you back genuinely shapes what we build next. Either way, thanks for the time.",
     ],
@@ -112,11 +112,11 @@ const activation: Step[] = [
   {
     id: "a1-welcome",
     afterDays: 0,
-    subject: "You're in, let's get 80x set up",
+    subject: "You're in, let's get Cereal Milk set up",
     blocks: [
-      "You're in: welcome to 80x, and thank you. I'm genuinely glad you're here.",
+      "You're in: welcome to Cereal Milk, and thank you. I'm genuinely glad you're here.",
       "First step is the app itself: download it, drag it to Applications, and create your account. That account starts your 7-day free trial of the full product, no card.",
-      { label: "Download 80x →", href: DOWNLOAD_URL },
+      { label: "Download Cereal Milk →", href: DOWNLOAD_URL },
       "Over the next few days I'll send a couple of short notes to get you to your first synced thread. Prefer a call? Reply and we'll find a time, and your private Slack channel with the founders is the fastest way to reach us.",
     ],
   },
@@ -126,7 +126,7 @@ const activation: Step[] = [
     subject: "Step 1: connect WhatsApp & LinkedIn",
     skipIf: (c) => !!(c.signals.whatsappConnected && c.signals.linkedinConnected),
     blocks: [
-      "Once 80x is open, the first thing to do is connect your two channels.",
+      "Once Cereal Milk is open, the first thing to do is connect your two channels.",
       "Scan the WhatsApp Web QR the way you would in a browser, and sign in to LinkedIn in the next tab. Both sessions stay live in the background, so from then on you flip between them with ⌘1 and ⌘2 without anything reloading.",
       "That's all the channel setup there is, and nothing syncs anywhere yet. Everything stays private until you say so.",
     ],
@@ -137,7 +137,7 @@ const activation: Step[] = [
     subject: "Step 2: link Attio or Affinity",
     skipIf: (c) => !!c.signals.crmLinked,
     blocks: [
-      "Now point 80x at your CRM. Pick Attio or Affinity as the record of choice for your workspace. You can switch later and history re-syncs.",
+      "Now point Cereal Milk at your CRM. Pick Attio or Affinity as the record of choice for your workspace. You can switch later and history re-syncs.",
       "Once it's linked, the inspector beside each chat shows the matching contact and how it matched, so you always know who you're talking to without leaving the thread. A matching phone, email, or LinkedIn profile links in one click; a fuzzy name is only ever suggested, never filed on a stranger.",
       "Stuck on the mapping? That's exactly what your Slack channel is for, reply here too and I'll jump in.",
     ],
@@ -148,7 +148,7 @@ const activation: Step[] = [
     subject: "Share your first thread (the 2-minute version)",
     skipIf: (c) => !!c.signals.firstSync,
     blocks: [
-      "Here's the one action that makes 80x click: share your first thread.",
+      "Here's the one action that makes Cereal Milk click: share your first thread.",
       "Open a conversation that actually matters (a live deal, a warm intro) and hit Sync (or ⌘K → Sync). It files to the matching contact as a clean, timestamped note in your CRM's own voice, deduped so a thread is one note, not thirteen ragged copies. Want to share just one line instead? You can: the rest never moves.",
       "Do it once and the value is obvious. If anything's in the way, reply here or drop it in your Slack channel and we'll sort it in minutes.",
     ],
@@ -156,18 +156,18 @@ const activation: Step[] = [
   {
     id: "a5-habit",
     afterDays: 10,
-    subject: "How's 80x feeling?",
+    subject: "How's Cereal Milk feeling?",
     blocks: [
-      "You've had 80x for a week or so now, how's it feeling?",
+      "You've had Cereal Milk for a week or so now, how's it feeling?",
       "If it's earning its place, the next step is just letting it run: flip your active threads to Shared and every new message files itself, hands-off. And the relationship insights get sharper the more you sync: who leads, the tone, how much has reached the CRM.",
-      "Mostly, though, I want to hear what isn't working. Reply to this, or tell me in your Slack channel: what would make 80x a daily driver for you? Every bit of it shapes what we ship next.",
+      "Mostly, though, I want to hear what isn't working. Reply to this, or tell me in your Slack channel: what would make Cereal Milk a daily driver for you? Every bit of it shapes what we ship next.",
     ],
   },
 ];
 
 // ── AI-spend course ──────────────────────────────────────────────────────────
 // A five-day email version of the docs course "Optimize Your Fund's AI Spend"
-// (80x.ai/docs/learn/ai-spend). Anchored on signup. Day 1 is sent inline by
+// (cerealmilk.sh/docs/learn/ai-spend). Anchored on signup. Day 1 is sent inline by
 // /api/waitlist the moment someone joins (COURSE_DAY1 below), so it works with
 // only RESEND_API_KEY; days 2–5 are this sequence and need the drip store on.
 // Eight chapters, folded into five mornings: 1 · the reframe, 2 · the two
@@ -235,7 +235,7 @@ const course: Step[] = [
       "Then write the one-page policy: audit your seats, decide buy-versus-build for each workflow, set caps that are actually enforced, and put the bill on the calendar once a month. That page is what keeps cost tied to value after the novelty wears off.",
       { label: "Chapter 7: Measure the ROI →", href: ch("measure-the-roi") },
       { label: "Chapter 8: Your fund's AI-spend policy →", href: ch("your-fund-ai-spend-policy") },
-      "That's the course. If you draft an AI-spend policy off the back of it, send it over. I'll give you honest notes. And if there's one fund workflow you want to get right first, tell me about it; that's exactly the kind of thing I build at 80x. Thanks for reading along this week.",
+      "That's the course. If you draft an AI-spend policy off the back of it, send it over. I'll give you honest notes. And if there's one fund workflow you want to get right first, tell me about it; that's exactly the kind of thing I build at Cereal Milk. Thanks for reading along this week.",
     ],
   },
 ];
