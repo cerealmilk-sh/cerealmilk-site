@@ -1,6 +1,8 @@
 // Single source of truth for the site's public identity. Used by metadata,
 // robots.txt, sitemap.xml, JSON-LD structured data, llms.txt, and the feed.
 // If the domain moves, change SITE_URL here and everything follows.
+//
+// Canonical host is the APEX (www.cerealmilk.sh 308s to cerealmilk.sh).
 
 export const SITE_URL = "https://cerealmilk.sh";
 export const APP_URL = "https://app.cerealmilk.sh";
@@ -11,13 +13,13 @@ export const SITE_NAME = "Cereal Milk";
 // llms.txt blockquote, default meta description, Organization JSON-LD.
 // Never paraphrase it (see PRODUCT-SITE-SPEC.md).
 export const CANONICAL_SENTENCE =
-  "Cereal Milk is a free desktop app that puts WhatsApp, LinkedIn, and Gmail in one window with a real AI agent in the sidebar that runs on your own model.";
+  "Cereal Milk is a premium native Mac app that puts WhatsApp, LinkedIn, and Gmail in one window and syncs the conversations you choose to Attio or Affinity.";
 
 // The canonical person sentence: /about lede, ProfilePage, byline bios.
 export const PERSON_SENTENCE =
-  "Daniel Hull is the founder of Cereal Milk, the company behind the Cereal Milk desktop app for people who live in chat.";
+  "Daniel Hull is the founder of Cereal Milk, the company behind the Cereal Milk Mac app for people who close in chat.";
 
-export const SITE_TAGLINE = "A free desktop agent that lives in your chats";
+export const SITE_TAGLINE = "The communication platform for people who close in chat";
 
 export const AUTHOR = {
   name: "Daniel Hull",
@@ -53,7 +55,7 @@ export const BOOK_PATH = "/demo";
 // DemoRequestForm and the no-JS form-post redirect in /api/inquiry).
 export const CAL_BOOKING_URL = "https://cal.com/danieljh/30min";
 export const CONTACT_MAILTO =
-  "mailto:daniel@cerealmilk.sh?subject=Cereal%20Milk%20demo&body=Hi%20Dan%2C%20I%27d%20like%20to%20see%20Cereal%20Milk.";
+  "mailto:daniel@cerealmilk.sh?subject=Cereal%20Milk%20demo&body=Hi%20Dan%2C%20I%27d%20like%20to%20see%20Cereal%20Milk%20on%20our%20pipeline.";
 
 // Daniel's WhatsApp, for the floating "Message Daniel" button on every page
 // (src/components/site/WhatsAppButton.tsx). Digits only, no "+" or spaces
@@ -63,22 +65,36 @@ export const CONTACT_WHATSAPP_URL = CONTACT_WHATSAPP
   ? `https://wa.me/${CONTACT_WHATSAPP}?text=${encodeURIComponent("Hi Daniel, ")}`
   : "";
 
-// --- The desktop app ---------------------------------------------------------
+// --- The Mac app -------------------------------------------------------------
 
 // The product now IS the site: the homepage is the product page.
 export const PRODUCT_PATH = "/";
 
-// Self-serve downloads are OPEN. The download-first model: the app is free.
+// Self-serve downloads are OPEN again (2026-07-14): the funnel is
+// download-first (the Raycast model). Get Cereal Milk -> /download -> DMG -> the app
+// forces account creation on first run -> the account grants a 7-day
+// full-access trial, no card (product-backend signup trial) -> the paywall
+// takes over in-app. The evergreen /download/CerealMilk.dmg path is a ROUTE HANDLER
+// (src/app/download/CerealMilk.dmg/route.ts) that first-party-logs every hit to the
+// backend download log, then 307s to the latest release DMG. Flipping this
+// back to false re-routes download intent to the /download page (which would
+// then need its call-first copy restored, see git history at 686c754).
 export const SELF_SERVE_DOWNLOADS = true;
 
 // Where "Get Cereal Milk" sends people: the download page, then the evergreen DMG.
 export const DOWNLOAD_PATH = "/download";
 export const DOWNLOAD_URL = "/download/CerealMilk.dmg";
 
-// Public GitHub Releases on the app repo (electron-builder generic provider,
-// feeds auto-generated).
-// TODO(human): update owner/repo once the Cereal Milk GitHub org + app repo exist.
-export const RELEASE_REPO = "TODO-OWNER/TODO-REPO";
+// Published pricing lives in src/lib/pricing.ts (two plans: Starter and
+// Business; see BILLING-MODEL.md in product-backend). Import PRICE_LINE /
+// PRICE_ANCHOR from there so the numbers can never drift.
 
-// The primary CTA sitewide: "Get Cereal Milk" → the download page.
+// The primary CTA sitewide: "Get Cereal Milk" -> the download page. Buying happens
+// INSIDE the app after the 7-day trial (the backend checkout below). The live
+// checkout URLs are kept for people who arrive ready to pay (pricing FAQ,
+// llms.txt) and for the trial-to-paid path: app.cerealmilk.sh/app/upgrade has live
+// billing, renders an in-page sign-up for a cold visitor, and the
+// Business checkout creates the team's org and bills per seat.
 export const GET_STARTED_LABEL = "Get Cereal Milk";
+export const CHECKOUT_URL = `${APP_URL}/app/upgrade?plan=monthly`;
+export const BUSINESS_CHECKOUT_URL = `${APP_URL}/app/upgrade?plan=business`;

@@ -1,7 +1,8 @@
-// The Cereal Milk BrandScript: the StoryBrand (SB7) narrative as data.
-// One place to edit the story; the home page renders from here so the copy
-// can never fork. Voice rules: concrete, short, second person, zero jargon,
-// zero em dashes (house law). The customer is the hero; Cereal Milk is the guide.
+// The Cereal Milk BrandScript: the StoryBrand (SB7) narrative for the pre-order
+// funnel, as data. One place to edit the story; the home page and /preorder
+// render from here so the copy can never fork. Voice rules: concrete, short,
+// second person, zero jargon, zero em dashes (house law). The customer is the
+// hero; Cereal Milk is the guide.
 
 export interface PlanStep {
   title: string;
@@ -16,30 +17,30 @@ export interface Cta {
 export const BRANDSCRIPT = {
   // 1 · Character: the hero is the customer, never us.
   character: {
-    who: "Anyone who lives in WhatsApp: founders, dealmakers, operators, friends",
+    who: "A relationship-driven dealmaker: VC, founder, operator",
     wants:
-      "An AI agent that understands their conversations and acts on them, without giving up their privacy or their API keys.",
+      "To never drop a relationship, and to close on the strength of who they know.",
   },
 
   // 2 · Problem: lead with this above the fold. Name the villain.
   problem: {
-    villain: "context loss",
+    villain: "the silo",
     external:
-      "Your important conversations live across WhatsApp, LinkedIn, and Gmail. Your AI has no idea what is going on in any of them.",
+      "The deals that make a fund happen in chat: sourcing in DMs, diligence in group threads, LPs on WhatsApp. None of it reaches the CRM.",
     internal:
-      "The nagging feeling that you are missing something, and the dread of copy-pasting between chat apps and AI tools.",
+      "The nagging fear that a founder is waiting on a reply you forgot you owe.",
     philosophical:
-      "Your AI should work where you work. Chat is the interface, and your conversations are the context it should already have.",
+      "Your best deals should leave a record. A fund runs on who it knows, and that is too valuable to leave to memory and luck.",
   },
 
   // 3 · Guide: empathy first, then authority. Every claim here is true.
   guide: {
     empathy:
-      "We know what it is like to keep six chat windows open while feeding context to an AI tab, one message at a time.",
+      "We know what a quiet thread costs: the deal that closed with whoever answered first.",
     authority: [
-      "Bring your own model: Claude, ChatGPT, Gemini, or any local model. Nothing runs through our servers.",
-      "Free and local-first: runs on your machine, credentials never leave your keychain.",
-      "Open source tools, not unofficial APIs: the official WhatsApp Web, LinkedIn, and Gmail, with DOM scrapers you can audit.",
+      "Built by the team that ran deal-ops engineering for 68 venture funds and firms",
+      "No unofficial APIs: the official clients, your number stays yours",
+      "Private by default, enforced on the server, your data exportable",
     ],
   },
 
@@ -47,73 +48,73 @@ export const BRANDSCRIPT = {
   plan: {
     product: [
       {
-        title: "Download the app",
-        body: "One native desktop window with WhatsApp, LinkedIn, and Gmail, and an AI agent sidebar. Free, no account required.",
+        title: "Connect your accounts",
+        body: "WhatsApp, LinkedIn, and Gmail in one native Mac window. Nothing to import, nothing to migrate.",
       },
       {
-        title: "Connect your model",
-        body: "Sign in with your existing Claude, ChatGPT, or Gemini account, paste an API key, or point it at a local model. Your credentials stay on your machine.",
+        title: "Cereal Milk builds your Repository",
+        body: "Every conversation you choose, filed into one private, searchable record of your network. Git for your relationships.",
       },
       {
-        title: "Put your agent to work",
-        body: "Ask it to summarize conversations, draft replies, search the web, run shell commands, or read and write files. It sees what you see, and acts on your behalf.",
+        title: "Never drop a relationship again",
+        body: "Who is waiting on you, who went quiet, and the context behind every thread, one keystroke away.",
       },
     ] as PlanStep[],
     preorder: [
       {
-        title: "Download the app",
-        body: "One click, no sign-up, no card. The download page detects your platform.",
+        title: "Reserve your seat",
+        body: "One form, no card, two minutes. You are reserving a founding seat, not paying today.",
       },
       {
-        title: "Connect your first model",
-        body: "Claude, ChatGPT, or Gemini. Your existing subscription works. API keys and local models work too.",
+        title: "Lock founding pricing",
+        body: "Your price is the published price on the day you reserve. It never rises for you.",
       },
       {
-        title: "Start asking",
-        body: "Summarize this thread. Draft a reply. What did I miss? Your agent already has the context.",
+        title: "Get first access at launch",
+        body: "Founding seats are set up first, on a call with the founder, before general availability.",
       },
     ] as PlanStep[],
     // The agreement plan: the risk-reversal promises, stated next to every ask.
     agreement: [
-      "Free, local-first: nothing runs through our servers, and we do not see your data.",
-      "Bring your own model: no new subscriptions, no vendor lock-in, no usage limits from us.",
-      "Your credentials never leave your machine: they live in your OS keychain.",
+      "Private by default: every thread starts closed, and the gate is enforced on the server.",
+      "No charge at reservation, and you can cancel anytime before your seat is set up.",
+      "Your data stays yours: on your Mac, exportable in one click, never resold.",
     ],
   },
 
   // 5 · Call to action: one direct CTA, repeated; one transitional, quiet.
   cta: {
-    direct: { label: "Get Cereal Milk", href: "/download" } as Cta,
+    direct: { label: "Pre-order Cereal Milk", href: "/preorder" } as Cta,
     transitional: { label: "Book a demo", href: "/demo" } as Cta,
   },
 
   // 6 · Success: paint the after, concretely.
   success: [
     {
-      title: "Your agent already has the context",
-      body: "Every message you send auto-attaches the open conversation. No copy-paste, no explaining what you are looking at.",
+      title: "Every relationship remembered",
+      body: "The whole history of who you know, searchable in one place, on your machine.",
     },
     {
-      title: "One window, everything you need",
-      body: "WhatsApp, LinkedIn, and Gmail behind icons on the left. Your AI agent in a chat sidebar on the right. No tab switching.",
+      title: "Nothing dropped",
+      body: "You see who is waiting on you before they chase you. Follow-ups happen while they still matter.",
     },
     {
-      title: "You own the stack",
-      body: "Your model, your keys, your machine. Free. No monthly fee, no vendor lock-in, no usage caps from us.",
+      title: "You reply first, so you close",
+      body: "Deals go to whoever answers. With the context one keystroke away, that is you.",
     },
   ],
 
   // 7 · Failure: the stakes, used sparingly. One beat, not a section of dread.
   failure:
-    "The dropped thread. The reply that took three copy-pastes and still missed the context. The AI sitting in another tab, unaware of the conversation you are trying to reference.",
+    "The dropped thread. The intro you forgot to make. The deal that went to whoever replied first. A fund's real pipeline, walking out the door in someone's phone.",
 
   // The one-liner: the hero. `headline` is the H1 (the concrete category);
   // `subline` is the supporting sub-headline that opens the machine mirror.
   // Iterate here, nowhere else.
   oneLiner: {
-    headline: "A desktop agent that knows your chats.",
+    headline: "The messenger built for AI agents.",
     subline:
-      "WhatsApp, LinkedIn, and Gmail in one window. A real AI agent in the sidebar that runs on your own model, your own keys, your own machine. Free.",
+      "WhatsApp, LinkedIn, and Gmail in one native Mac window. Every conversation filed to a record your agents can act on. Built for the AI era.",
   },
 } as const;
 
