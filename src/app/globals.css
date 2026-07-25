@@ -1,0 +1,975 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   80x · Intercom-style inbox · dual theme (light default + dark)
+   ----------------------------------------------------------------------------
+   A faithful re-creation of Intercom's agent Inbox: a calm 3-pane workspace
+   (rail · conversation list · conversation · details). LIGHT is the default,
+   recognizable Intercom look: white panels on a warm light-grey canvas, a
+   confident blue, light-grey customer bubbles on the left and pale-blue
+   teammate bubbles on the right. A DARK theme mirrors the exact same layout on
+   soft near-black surfaces.
+
+   Theming is runtime-swappable: every Tailwind color token resolves through a
+   `--bc-*` indirection variable, and `<html data-theme="dark">` re-points the
+   whole palette in one place. No utility names change between themes, so every
+   component is written once and themes for free.
+
+   The legacy token + utility NAMES from the previous "calm messaging" skin are
+   PRESERVED and re-pointed (`wire`, `orange`, `shared` → the accent; the `.bc-*`
+   decorative utilities are calm, themed no-ops) so nothing breaks.
+   ========================================================================== */
+
+@theme {
+  /* Every color resolves through a swappable --bc-* variable (defined per
+     theme below). Utilities like `bg-panel` / `text-ink` / `bg-accent/12`
+     therefore re-theme purely from the `data-theme` attribute. */
+
+  /*. Surfaces (back → front) ------------------------------------------- */
+  --color-bg: var(--bc-bg);
+  --color-bg-2: var(--bc-bg-2);
+  --color-panel: var(--bc-panel);
+  --color-panel-2: var(--bc-panel-2);
+  --color-panel-3: var(--bc-panel-3);
+  --color-panel-hover: var(--bc-panel-hover);
+  --color-edge: var(--bc-edge);
+  --color-edge-2: var(--bc-edge-2);
+
+  /*. Ink --------------------------------------------------------------- */
+  --color-ink: var(--bc-ink);
+  --color-ink-dim: var(--bc-ink-dim);
+  --color-ink-faint: var(--bc-ink-faint);
+  --color-ink-ghost: var(--bc-ink-ghost);
+
+  /*, Accent, Intercom blue -------------------------------------------- */
+  --color-accent: var(--bc-accent);
+  --color-accent-bright: var(--bc-accent-bright);
+  --color-accent-dim: var(--bc-accent-dim);
+  --color-accent-deep: var(--bc-accent-deep);
+
+  /* Legacy aliases, resolve to the one accent (kept so call sites that
+     still pass tone="wire"/"shared" theme correctly during migration). */
+  --color-wire: var(--bc-accent);
+  --color-wire-bright: var(--bc-accent-bright);
+  --color-wire-dim: var(--bc-accent-bright);
+  --color-wire-deep: var(--bc-accent-deep);
+  --color-shared: var(--bc-accent);
+
+  /*, Geist blue, links / active states on studio + docs surfaces --------- */
+  --color-blue: var(--bc-blue);
+  --color-blue-dim: var(--bc-blue-dim);
+
+  /*, Data-viz palette, the ONE sanctioned place for chromatic color on a
+     marketing surface, beyond the blue. A restrained trio (blue · green ·
+     violet) reused from the code-window syntax hues (§2) so the whole site
+     speaks one color language. Used only inside charts/diagrams that carry
+     signal (SignalChart, sparklines); never as decoration. */
+  --color-viz-1: var(--bc-viz-1);
+  --color-viz-2: var(--bc-viz-2);
+  --color-viz-3: var(--bc-viz-3);
+
+  /*. Message bubbles (Intercom: grey-left / pale-blue-right) ------------ */
+  --color-bubble-in: var(--bc-bubble-in);
+  --color-bubble-in-ink: var(--bc-bubble-in-ink);
+  --color-bubble-out: var(--bc-bubble-out);
+  --color-bubble-out-ink: var(--bc-bubble-out-ink);
+
+  /*. Muted attention (private / not-synced) ---------------------------- */
+  --color-amber: var(--bc-amber);
+  --color-amber-dim: var(--bc-amber-dim);
+  --color-amber-deep: var(--bc-amber-deep);
+  --color-warn: var(--bc-amber);
+
+  /*. Secondary accent (suggestions) ------------------------------------ */
+  --color-iris: var(--bc-iris);
+  --color-iris-dim: var(--bc-iris-dim);
+  --color-iris-deep: var(--bc-iris-deep);
+
+  /*, Channels, near-monochrome; told apart by glyph ------------------- */
+  --color-whatsapp: var(--bc-whatsapp);
+  --color-linkedin: var(--bc-linkedin);
+
+  /*. Danger ------------------------------------------------------------ */
+  --color-danger: var(--bc-danger);
+  --color-danger-dim: var(--bc-danger-dim);
+
+  /*. Ink-on-accent (pill button text; flips with the studio skin) ------- */
+  --color-accent-ink: var(--bc-accent-ink);
+
+  /*, Reference-system aliases (the shadcn vocabulary the homepage, Header,
+     and Footer are written in: bg-background, text-foreground,
+     text-muted-foreground, border-border, bg-card, bg-muted). They resolve
+     through the same --bc-* indirection as everything else. ------------- */
+  --color-background: var(--bc-bg);
+  --color-foreground: var(--bc-ink);
+  --color-card: var(--bc-panel);
+  --color-muted: var(--bc-panel-3);
+  --color-muted-foreground: var(--bc-ink-dim);
+  --color-border: var(--bc-edge);
+
+  /*, Brand: the ONE chromatic voice (80x lime), used the way the reference
+     system uses its brand hue: translucent tints (bg-brand/10), hairline
+     tinted borders (border-brand/20), and a brighter text tone. ---------- */
+  --color-brand: var(--bc-brand);
+  --color-brand-light: var(--bc-brand-light);
+  --color-brand-dark: var(--bc-brand-dark);
+
+  /*, Type, Inter + IBM Plex Mono (loaded via next/font in layout.tsx) ---- */
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "SF Pro Display", sans-serif;
+  --font-mono:
+    var(--font-ibm-plex-mono), ui-monospace, "SF Mono", "SFMono-Regular",
+    "JetBrains Mono", "Cascadia Code", Menlo, Consolas, monospace;
+
+  /*, Type scale, one named ramp (use these, not ad-hoc text-[Npx]) -----
+     caption  metadata, timestamps, micro-labels
+     label    buttons, tags, section eyebrows, menu items
+     body     message text, row titles, values, default copy
+     heading  pane-header titles
+     display  first-run / onboarding hero only                            */
+  --text-caption: 0.75rem; /* 12px */
+  --text-caption--line-height: 1.25;
+  --text-label: 0.8125rem; /* 13px */
+  --text-label--line-height: 1.4;
+  --text-label--font-weight: 600;
+  --text-body: 0.875rem; /* 14px */
+  --text-body--line-height: 1.45;
+  --text-heading: 1rem; /* 16px */
+  --text-heading--line-height: 1.5;
+  --text-heading--font-weight: 600;
+  --text-display: 1.375rem; /* 22px */
+  --text-display--line-height: 1.3;
+  --text-display--font-weight: 600;
+
+  /* Legacy, kept for call sites still on text-2xs (caption is the successor). */
+  --text-2xs: 0.6875rem; /* 11px */
+  --text-2xs--line-height: 1rem;
+
+  /*, Radii, Intercom-soft (smaller than iMessage pills) --------------- */
+  --radius-bubble: 0.75rem; /* 12px */
+
+  /*, Elevation, Intercom leans on soft shadows in light mode ---------- */
+  --shadow-card: var(--bc-shadow-card);
+  --shadow-pop: var(--bc-shadow-pop);
+  --shadow-bubble: var(--bc-shadow-bubble);
+}
+
+/* ==========================================================================
+   LIGHT: the default, recognizable Intercom palette
+   ========================================================================== */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bc-bg: #f3f4f7;
+  --bc-bg-2: #eceef1;
+  --bc-panel: #ffffff;
+  --bc-panel-2: #f3f4f6;
+  --bc-panel-3: #e7e9ee;
+  --bc-panel-hover: #f5f6f8;
+  --bc-edge: #e6e8ec;
+  --bc-edge-2: #d4d7df;
+
+  --bc-ink: #1b1d22;
+  --bc-ink-dim: #54585f;
+  --bc-ink-faint: #868b94;
+  --bc-ink-ghost: #b6bac2;
+
+  --bc-accent: #0064ff;
+  --bc-accent-bright: #2f7dff;
+  --bc-accent-dim: #0050cc;
+  --bc-accent-deep: #e7f0ff;
+  --bc-accent-ink: #ffffff;
+
+  --bc-bubble-in: #eef0f3;
+  --bc-bubble-in-ink: #1b1d22;
+  --bc-bubble-out: #e3edff;
+  --bc-bubble-out-ink: #103159;
+
+  --bc-amber: #98740f;
+  --bc-amber-dim: #b08a2a;
+  --bc-amber-deep: #fbf2da;
+
+  --bc-iris: #5a6792;
+  --bc-iris-dim: #8a93b4;
+  --bc-iris-deep: #eef0f7;
+
+  --bc-whatsapp: #5f6b75;
+  --bc-linkedin: #5f6b75;
+
+  --bc-blue: #0070f3;
+  --bc-blue-dim: #0070f3;
+
+  /* Data-viz trio, deepened for legibility on light surfaces. */
+  --bc-viz-1: #0060df;
+  --bc-viz-2: #16915a;
+  --bc-viz-3: #7c53d4;
+
+  --bc-danger: #e5484d;
+  --bc-danger-dim: #c13a3f;
+
+  --bc-shadow-card: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.05);
+  --bc-shadow-pop: 0 8px 28px rgba(16, 24, 40, 0.14), 0 2px 6px rgba(16, 24, 40, 0.08);
+  --bc-shadow-bubble: 0 1px 1px rgba(16, 24, 40, 0.04);
+
+  --bc-scroll-thumb: #c5c8cf;
+  --bc-scroll-thumb-hover: #b0b4bd;
+
+  /* Avatar tints: soft pastel fill + saturated ink, hue chosen per-name. */
+  --bc-av-bg: 64% 90%;
+  --bc-av-fg: 48% 36%;
+}
+
+/* ==========================================================================
+   DARK: the same Intercom layout on Geist-neutral blacks
+   ========================================================================== */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bc-bg: #0a0a0a;
+  --bc-bg-2: #101010;
+  --bc-panel: #141414;
+  --bc-panel-2: #1f1f1f;
+  --bc-panel-3: #2a2a2a;
+  --bc-panel-hover: #1a1a1a;
+  --bc-edge: #242424;
+  --bc-edge-2: #343434;
+
+  --bc-ink: #ededed;
+  --bc-ink-dim: #a1a1a1;
+  --bc-ink-faint: #707070;
+  --bc-ink-ghost: #464646;
+
+  --bc-accent: #318dff;
+  --bc-accent-bright: #4ca2ff;
+  --bc-accent-dim: #2577e6;
+  --bc-accent-deep: #11243d;
+  --bc-accent-ink: #ffffff;
+
+  --bc-bubble-in: #1d1e23;
+  --bc-bubble-in-ink: #ecedf1;
+  --bc-bubble-out: #18375f;
+  --bc-bubble-out-ink: #dbe8fb;
+
+  --bc-amber: #c4a86a;
+  --bc-amber-dim: #8a784a;
+  --bc-amber-deep: #1d1a10;
+
+  --bc-iris: #8fa0c0;
+  --bc-iris-dim: #5e6a86;
+  --bc-iris-deep: #15181f;
+
+  --bc-whatsapp: #aab3bd;
+  --bc-linkedin: #aab3bd;
+
+  --bc-blue: #52a8ff;
+  --bc-blue-dim: #0070f3;
+
+  /* Data-viz trio: the code-window syntax hues (§2), reused so charts and
+     code speak one color language: property-blue, string-green, fn-violet. */
+  --bc-viz-1: #79c0ff;
+  --bc-viz-2: #62c073;
+  --bc-viz-3: #bf7af0;
+
+  --bc-danger: #ff453a;
+  --bc-danger-dim: #b33b34;
+
+  --bc-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --bc-shadow-pop: 0 12px 34px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.4);
+  --bc-shadow-bubble: none;
+
+  --bc-scroll-thumb: #2a2a2a;
+  --bc-scroll-thumb-hover: #3a3a3a;
+
+  /* Avatar tints, muted fill + light ink for dark surfaces. */
+  --bc-av-bg: 26% 24%;
+  --bc-av-fg: 42% 78%;
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+}
+
+/* A calm, slightly tightened heading voice. */
+.bc-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 28%, transparent);
+}
+
+/* Thin, quiet, themed scrollbars. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bc-scroll-thumb) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--bc-scroll-thumb);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--bc-scroll-thumb-hover);
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Form-control font normalization, in @layer base so text- and font-
+   utilities still win. This file is otherwise un-layered, and un-layered rules beat
+   every @layer (including Tailwind's utility layer): a bare `button { font:
+   inherit }` here was resetting the header's 14px <button> nav trigger (the
+   Resources mega-menu) to the studio 16px base. Same reasoning as the
+   long-standing "NO `color: inherit` here" rule. Tailwind's preflight already
+   normalizes these in @layer base, where utilities can win. */
+@layer base {
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+  }
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-ink-faint);
+}
+
+/* Focus = the Geist blue ring. */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-blue-dim) 75%, transparent);
+  outline-offset: 1px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hide the scrollbar on horizontally scrollable demo strips (the workspace
+   window and the chip row scroll sideways on small screens). */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==========================================================================
+   Material: soft, themed (legacy decorative utilities kept as calm no-ops)
+   ========================================================================== */
+
+/* Soft card elevation (Intercom's panels/popovers float in light mode). */
+.bc-elev {
+  box-shadow: var(--shadow-card);
+}
+.bc-elev-pop {
+  box-shadow: var(--shadow-pop);
+}
+
+/* A themed translucent blur for overlays (dialogs, command palette). */
+.bc-glass {
+  background-color: color-mix(in srgb, var(--color-panel) 86%, transparent);
+  backdrop-filter: blur(24px) saturate(1.1);
+  -webkit-backdrop-filter: blur(24px) saturate(1.1);
+}
+
+.bc-holo-text {
+  color: var(--color-accent);
+}
+.bc-holo-bg {
+  background-color: var(--color-accent);
+}
+.bc-holo-edge {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-accent) 18%, var(--color-edge));
+}
+
+.bc-wire-box {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-accent) 22%, transparent);
+}
+
+/* Guide dots, a faint engineered dot-grid backdrop for framed visuals
+   (Vercel's "Get started in seconds" guides). Quiet enough to read as paper
+   texture, never as content; sits behind a diagram inside a bordered well. */
+.x-dotgrid {
+  background-image: radial-gradient(
+    var(--color-ink-ghost) 0.75px,
+    transparent 0.75px
+  );
+  background-size: 22px 22px;
+  background-position: center;
+  opacity: 0.5;
+}
+
+/* A soft radial fade so a diagram's rings/lines dissolve toward the frame
+   edges instead of ending on a hard crop (used as a mask on orbit visuals). */
+.x-radial-fade {
+  -webkit-mask-image: radial-gradient(ellipse 78% 88% at center, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 78% 88% at center, #000 55%, transparent 100%);
+}
+
+/* ==========================================================================
+   Dot field: a fine engineered dot lattice that dissolves as it falls.
+   ----------------------------------------------------------------------------
+   Ported from agentmail.to's hero backdrop. AgentMail ships ~8,550 <circle>
+   nodes (a hex lattice whose density thins top→bottom, ≈600 KB of markup); we
+   read the same: an engineered field of tiny dots, brightest up top, melting
+   into the page below, from two offset radial-gradient tiles (the hex lattice)
+   under one radial mask (the dissolve). Same effect, no DOM, a few hundred
+   bytes. Self-themes off `--color-ink`: near-black dots on the light studio
+   canvas, near-white on black; dark gets a touch more presence. Render it as an
+   aria-hidden, pointer-events-none layer (see DotField) behind hero content. */
+.x-dotfield {
+  --x-dot: color-mix(in srgb, var(--color-ink) 20%, transparent);
+  --x-cell: 15px;
+  background-image:
+    radial-gradient(var(--x-dot) 0.7px, transparent 0.8px),
+    radial-gradient(var(--x-dot) 0.7px, transparent 0.8px);
+  background-size: var(--x-cell) var(--x-cell);
+  /* second tile offset by half a cell in both axes → a hex/diamond lattice */
+  background-position: 0 0, calc(var(--x-cell) / 2) calc(var(--x-cell) / 2);
+  /* the dissolve: brightest just above the top-center, melting down and out */
+  -webkit-mask-image: radial-gradient(125% 85% at 50% -10%, #000 28%, transparent 76%);
+  mask-image: radial-gradient(125% 85% at 50% -10%, #000 28%, transparent 76%);
+}
+:root[data-theme="dark"] .x-dotfield {
+  --x-dot: color-mix(in srgb, var(--color-ink) 26%, transparent);
+}
+
+/* ==========================================================================
+   Corner brackets: the four-corner frame AgentMail draws around its cards.
+   ----------------------------------------------------------------------------
+   A single hairline border masked down to eight short arms (two per corner) via
+   the same eight-linear-gradient mask AgentMail uses. Put `.x-brackets` on a
+   `position: relative` element; the ::after fills it. The `--x-corner` length is
+   registered (@property) so it can tween, pair with `.x-brackets-grow` to have
+   the arms reach out on hover, exactly like the source. Themed off `--color-edge-2`.
+   ========================================================================== */
+@property --x-corner {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 10px;
+}
+.x-brackets {
+  position: relative;
+}
+.x-brackets::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid var(--color-edge-2);
+  --x-mask:
+    linear-gradient(#000, #000) 0 0 / var(--x-corner) 1px no-repeat,
+    linear-gradient(#000, #000) 100% 0 / var(--x-corner) 1px no-repeat,
+    linear-gradient(#000, #000) 0 100% / var(--x-corner) 1px no-repeat,
+    linear-gradient(#000, #000) 100% 100% / var(--x-corner) 1px no-repeat,
+    linear-gradient(#000, #000) 0 0 / 1px var(--x-corner) no-repeat,
+    linear-gradient(#000, #000) 0 100% / 1px var(--x-corner) no-repeat,
+    linear-gradient(#000, #000) 100% 0 / 1px var(--x-corner) no-repeat,
+    linear-gradient(#000, #000) 100% 100% / 1px var(--x-corner) no-repeat;
+  -webkit-mask: var(--x-mask);
+  mask: var(--x-mask);
+  transition: --x-corner 0.25s ease-out, border-color 0.25s ease-out;
+}
+/* Opt-in hover growth (used on the intent-router cards). */
+.x-brackets-grow:hover::after {
+  --x-corner: 18px;
+  border-color: var(--color-ink-faint);
+}
+
+/* Selection indicator: a small, solid accent bar on the active row/item.
+   `.bc-spine` is kept as an alias so call sites can migrate independently. */
+.bc-selection-bar,
+.bc-spine {
+  background: var(--color-accent);
+  border-radius: 9999px;
+}
+
+/* ==========================================================================
+   Motion: gentle entrances only
+   ========================================================================== */
+@keyframes bc-slide-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.bc-slide-up { animation: bc-slide-up 160ms ease-out; }
+
+@keyframes bc-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.bc-fade-in { animation: bc-fade-in 140ms ease-out; }
+
+@keyframes bc-pop-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.bc-pop-in { animation: bc-pop-in 150ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+
+/* A new message eases up into place. */
+@keyframes bc-bubble-in {
+  from { opacity: 0; transform: translateY(7px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.bc-bubble-in { animation: bc-bubble-in 170ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+
+/* live dot: a soft, slow pulse (uses currentColor). */
+@keyframes bc-live-pulse {
+  0%        { box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 45%, transparent); }
+  70%, 100% { box-shadow: 0 0 0 4px transparent; }
+}
+.bc-live-dot { position: relative; }
+.bc-live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  animation: bc-live-pulse 2.4s ease-out infinite;
+}
+
+/* "share" confirmation: a soft, quick highlight when a message is shared.
+   `.bc-transmit` is kept as an alias so call sites can migrate independently. */
+@keyframes bc-share-flash {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 45%, transparent); }
+  100% { box-shadow: 0 0 0 6px transparent; }
+}
+.bc-share-flash,
+.bc-transmit { animation: bc-share-flash 600ms ease-out; }
+
+/* caret blink, command palette prompt */
+@keyframes bc-blink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0; } }
+.bc-caret { animation: bc-blink 1.1s step-end infinite; }
+
+/* shimmer, skeleton loading */
+@keyframes bc-shimmer { 100% { transform: translateX(100%); } }
+.bc-shimmer { position: relative; overflow: hidden; }
+.bc-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-ink) 6%, transparent),
+    transparent
+  );
+  animation: bc-shimmer 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Global announcement ribbon (src/components/site/Ribbon.tsx). The head init
+   script (RIBBON_INIT_SCRIPT) sets `<html data-ribbon="hidden">` before first
+   paint when the current ribbon was dismissed, and RibbonDismiss sets it on
+   click. This rule hides the bar with no flash and no layout shift. */
+html[data-ribbon="hidden"] .site-ribbon {
+  display: none;
+}
+
+/* ==========================================================================
+   STUDIO: the 80x.ai Vercel/Geist skin (matches the /docs design system).
+   ----------------------------------------------------------------------------
+   Studio pages (home, services, work, writing, tools, about…) wrap their
+   content in `.studio`, which re-points the same --bc-* palette the whole
+   site already themes through: a quiet neutral system in the terminal-tool
+   register (white paper in light, a #111 near-black canvas in dark), with
+   the brand lime #E4F222 held back for ONE role, the accent. Every existing
+   utility (bg-bg, text-ink, bg-accent, border-edge…) works unchanged inside
+   it. Pill buttons use `bg-accent text-accent-ink` so the label flips with
+   the theme: black pill with a white label in light, lime pill with an ink
+   label in dark. Links and active states collapse to the accent hue.
+   The product page at /app keeps the original Intercom palette untouched.
+   ========================================================================== */
+.studio {
+  /* NEUTRAL PAPER. The light canvas is plain white read with near-black ink;
+     structure is carried by quiet hairlines and collapsed-border grids, not
+     colour. The lime survives only in the logo badge and small brand moments,
+     so when the accent does appear it reads as intent. The dark canvas below
+     is the primary art direction; this is its daylight twin. */
+  --bc-bg: #ffffff;
+  --bc-bg-2: #fafafa; /* alternating bands, code wells */
+  --bc-panel: #fafafa;
+  --bc-panel-2: #f5f5f5; /* hover / press */
+  --bc-panel-3: #ebebeb;
+  --bc-panel-hover: #f2f2f2;
+  --bc-edge: rgba(10, 10, 10, 0.09); /* quiet neutral hairline */
+  --bc-edge-2: rgba(10, 10, 10, 0.18);
+
+  --bc-ink: #0a0a0a;
+  --bc-ink-dim: rgba(10, 10, 10, 0.64);
+  --bc-ink-faint: rgba(10, 10, 10, 0.45);
+  --bc-ink-ghost: rgba(10, 10, 10, 0.24);
+
+  /* Accent = ink. The pill is black; its label is white (accent-ink). */
+  --bc-accent: #0a0a0a;
+  --bc-accent-bright: #000000;
+  --bc-accent-dim: #2e2e2e; /* hover, lifted a touch off pure ink */
+  --bc-accent-deep: rgba(10, 10, 10, 0.07);
+  --bc-accent-ink: #ffffff;
+
+  /* Links / active states stay ink on paper; affordance comes from
+     underlines, not hue. */
+  --bc-blue: #0a0a0a;
+  --bc-blue-dim: #0a0a0a;
+
+  /* Data-viz trio: ink lead, two restrained supports. */
+  --bc-viz-1: #0a0a0a;
+  --bc-viz-2: #1c6b45;
+  --bc-viz-3: #5a34b0;
+
+  --bc-danger: #b3241f;
+
+  /* Elevation: soft neutral blurs, in the register of the reference system. */
+  --bc-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --bc-shadow-pop: 0 12px 32px rgba(0, 0, 0, 0.14);
+
+  --bc-scroll-thumb: rgba(10, 10, 10, 0.25);
+  --bc-scroll-thumb-hover: rgba(10, 10, 10, 0.45);
+
+  /* The mark keeps the brand: lime badge, ink glyphs, on both canvases. */
+  --logo-badge: #e4f222;
+  --logo-ink: #0b0b09;
+
+  /* Brand tints on paper: a deepened lime so the /10 wash and /20 border
+     still register on white; the text tone stays legible ink-lime. */
+  --bc-brand: #7a8500;
+  --bc-brand-light: #5d6600;
+  --bc-brand-dark: #4a5200;
+
+  /* Re-declare the Tailwind tokens: custom properties substitute their var()
+     references at the element that declares them, so the @theme mappings on
+     :root resolved --bc-* BEFORE this class re-pointed them. Declaring the
+     same mappings here makes them resolve against the studio palette (and
+     against the dark overrides below, which hit this same element). */
+  --color-bg: var(--bc-bg);
+  --color-bg-2: var(--bc-bg-2);
+  --color-panel: var(--bc-panel);
+  --color-panel-2: var(--bc-panel-2);
+  --color-panel-3: var(--bc-panel-3);
+  --color-panel-hover: var(--bc-panel-hover);
+  --color-edge: var(--bc-edge);
+  --color-edge-2: var(--bc-edge-2);
+  --color-ink: var(--bc-ink);
+  --color-ink-dim: var(--bc-ink-dim);
+  --color-ink-faint: var(--bc-ink-faint);
+  --color-ink-ghost: var(--bc-ink-ghost);
+  --color-accent: var(--bc-accent);
+  --color-accent-bright: var(--bc-accent-bright);
+  --color-accent-dim: var(--bc-accent-dim);
+  --color-accent-deep: var(--bc-accent-deep);
+  --color-accent-ink: var(--bc-accent-ink);
+  --color-blue: var(--bc-blue);
+  --color-blue-dim: var(--bc-blue-dim);
+  --color-viz-1: var(--bc-viz-1);
+  --color-viz-2: var(--bc-viz-2);
+  --color-viz-3: var(--bc-viz-3);
+  --color-danger: var(--bc-danger);
+  --color-background: var(--bc-bg);
+  --color-foreground: var(--bc-ink);
+  --color-card: var(--bc-panel);
+  --color-muted: var(--bc-panel-3);
+  --color-muted-foreground: var(--bc-ink-dim);
+  --color-border: var(--bc-edge);
+  --color-brand: var(--bc-brand);
+  --color-brand-light: var(--bc-brand-light);
+  --color-brand-dark: var(--bc-brand-dark);
+
+  /* Type: Inter everywhere (loaded in layout.tsx); IBM Plex Mono is
+     inherited from @theme for the hero, code, labels, and kickers. */
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "SF Pro Display", sans-serif;
+
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+:root[data-theme="dark"] .studio {
+  /* THE TERMINAL CANVAS, the primary art direction: neutral #111 near-black
+     surfaces, off-white ink, borders at a tenth of white. The lime is the
+     one chromatic voice (lime pill, ink label, lime links), so the page
+     reads like an engineering tool with a single brand signal. */
+  --bc-bg: #111111;
+  --bc-bg-2: #161616;
+  --bc-panel: #171717;
+  --bc-panel-2: #1f1f1f;
+  --bc-panel-3: #262626;
+  --bc-panel-hover: #1a1a1a;
+  --bc-edge: rgba(255, 255, 255, 0.1);
+  --bc-edge-2: rgba(255, 255, 255, 0.2);
+
+  --bc-ink: #fafafa;
+  --bc-ink-dim: #a1a1a1;
+  --bc-ink-faint: rgba(250, 250, 250, 0.45);
+  --bc-ink-ghost: rgba(250, 250, 250, 0.22);
+
+  /* Accent = lime. The pill is lime; its label is the ink (accent-ink). */
+  --bc-accent: #e4f222;
+  --bc-accent-bright: #ecf94a;
+  --bc-accent-dim: #cbd800;
+  --bc-accent-deep: rgba(228, 242, 34, 0.14);
+  --bc-accent-ink: #0b0b09;
+
+  /* Links / active states glow lime on the near-black canvas. */
+  --bc-blue: #e4f222;
+  --bc-blue-dim: #e4f222;
+
+  /* Data-viz trio: lime lead, bright on black. */
+  --bc-viz-1: #e4f222;
+  --bc-viz-2: #8fe36a;
+  --bc-viz-3: #c79cff;
+
+  --bc-danger: #ff5a54;
+
+  --bc-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --bc-shadow-pop: 0 16px 40px rgba(0, 0, 0, 0.6);
+
+  --bc-scroll-thumb: rgba(250, 250, 250, 0.16);
+  --bc-scroll-thumb-hover: rgba(250, 250, 250, 0.28);
+
+  /* The mark stays the lime badge with ink glyphs (pops on black). */
+  --logo-badge: #e4f222;
+  --logo-ink: #0b0b09;
+
+  /* Brand tints on the #111 canvas: the deep lime carries the /10 wash and
+     the /20 border; the light tone is the full-brightness label lime. */
+  --bc-brand: #aab800;
+  --bc-brand-light: #e4f222;
+  --bc-brand-dark: #7a8500;
+}
+
+/* ==========================================================================
+   x-invert: the counter-block. Wrap a full-bleed section in `.x-invert` to
+   flip it to the OPPOSITE of the current canvas, the contrast device that
+   gives the long page its rhythm. On the white canvas it becomes a #111
+   near-black block (lime accents inside: a lime pill with an ink label,
+   off-white type, a lime badge); on the dark canvas it flips the other way,
+   a white band (ink accents inside). It re-points the same --color-* tokens
+   the whole site themes through, so every child utility flips for free.
+   ========================================================================== */
+.studio .x-invert {
+  --color-bg: #111111;
+  --color-bg-2: #161616;
+  --color-panel: #171717;
+  --color-panel-2: #1f1f1f;
+  --color-panel-3: #262626;
+  --color-panel-hover: #1a1a1a;
+  --color-edge: rgba(255, 255, 255, 0.12);
+  --color-edge-2: rgba(255, 255, 255, 0.22);
+  --color-ink: #fafafa;
+  --color-ink-dim: #a1a1a1;
+  --color-ink-faint: rgba(250, 250, 250, 0.46);
+  --color-ink-ghost: rgba(250, 250, 250, 0.24);
+  --color-accent: #e4f222;
+  --color-accent-bright: #ecf94a;
+  --color-accent-dim: #cbd800;
+  --color-accent-deep: rgba(228, 242, 34, 0.14);
+  --color-accent-ink: #0b0b09;
+  --color-blue: #e4f222;
+  --color-blue-dim: #e4f222;
+  --logo-badge: #e4f222;
+  --logo-ink: #0b0b09;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+}
+:root[data-theme="dark"] .studio .x-invert {
+  --color-bg: #ffffff;
+  --color-bg-2: #fafafa;
+  --color-panel: #fafafa;
+  --color-panel-2: #f5f5f5;
+  --color-panel-3: #ebebeb;
+  --color-panel-hover: #f2f2f2;
+  --color-edge: rgba(10, 10, 10, 0.1);
+  --color-edge-2: rgba(10, 10, 10, 0.2);
+  --color-ink: #0a0a0a;
+  --color-ink-dim: rgba(10, 10, 10, 0.64);
+  --color-ink-faint: rgba(10, 10, 10, 0.45);
+  --color-ink-ghost: rgba(10, 10, 10, 0.24);
+  --color-accent: #0a0a0a;
+  --color-accent-bright: #000000;
+  --color-accent-dim: #2e2e2e;
+  --color-accent-deep: rgba(10, 10, 10, 0.07);
+  --color-accent-ink: #ffffff;
+  --color-blue: #0a0a0a;
+  --color-blue-dim: #0a0a0a;
+  --logo-badge: #e4f222;
+  --logo-ink: #0b0b09;
+}
+
+/* Marquee: a full-bleed ink strip with a lime mono ticker, the loud editorial
+   band that makes the yellow page feel engineered and deliberate. Two copies
+   of the track sit end-to-end and translate -50% for a seamless loop; halts
+   under reduced-motion (the global rule freezes it to a static row). */
+@keyframes x-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.x-marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: x-marquee 30s linear infinite;
+}
+.x-marquee:hover .x-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Studio display type, the reference voice: medium (500) with tracking-tight.
+   Lives in @layer base so page-level font-* / tracking-* utilities still win
+   (the stat band's semibold h2, the hero's mono H1). */
+@layer base {
+  .studio h1,
+  .studio h2,
+  .studio h3,
+  .x-display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Prose typography for markdown-rendered studio content. Vercel body style:
+   ink-dim copy on the page bg, ink links with a quiet underline, bordered
+   code chips, and #0a0a0a code windows (see §2/§3 of the design spec). */
+.x-prose {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-ink);
+}
+.x-prose > * + * {
+  margin-top: 1rem;
+}
+.x-prose h2 {
+  margin-top: 2.5rem;
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+.x-prose h3 {
+  margin-top: 1.75rem;
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+.x-prose p,
+.x-prose li {
+  color: var(--color-ink-dim);
+}
+.x-prose strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+.x-prose a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--color-ink) 30%, transparent);
+}
+.x-prose a:hover {
+  text-decoration-color: var(--color-ink);
+}
+.x-prose ul,
+.x-prose ol {
+  padding-left: 1.4rem;
+}
+.x-prose ul {
+  list-style: disc;
+}
+.x-prose ol {
+  list-style: decimal;
+}
+.x-prose li + li {
+  margin-top: 0.35rem;
+}
+.x-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--color-panel-2);
+  border: 1px solid var(--color-edge);
+  border-radius: 0.375rem;
+  padding: 0.1rem 0.35rem;
+}
+.x-prose pre {
+  background: var(--color-bg-2);
+  border: 1px solid var(--color-edge-2);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+}
+.x-prose pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+.x-prose blockquote {
+  border-left: 2px solid var(--color-edge-2);
+  padding-left: 1rem;
+  color: var(--color-ink-dim);
+}
+.x-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.x-prose th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-faint);
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  border-bottom: 1px solid var(--color-edge);
+}
+.x-prose td {
+  padding: 0.6rem 0.75rem 0.6rem 0;
+  border-bottom: 1px solid var(--color-edge);
+  color: var(--color-ink-dim);
+}

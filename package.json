@@ -1,0 +1,35 @@
+{
+  "name": "80x-landing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "check": "node scripts/check-pricing.mjs",
+    "prebuild": "node scripts/check-pricing.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "indexnow": "node scripts/indexnow.mjs",
+    "geo-audit": "node scripts/geo-audit.mjs",
+    "agent-eval": "node scripts/agent-eval.mjs"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^7.5.3",
+    "@vercel/speed-insights": "^2.0.0",
+    "geist": "^1.7.2",
+    "lucide-react": "^1.17.0",
+    "next": "16.2.9",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.9",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
