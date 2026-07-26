@@ -669,9 +669,8 @@ html[data-ribbon="hidden"] .site-ribbon {
   --bc-scroll-thumb: rgba(10, 10, 10, 0.25);
   --bc-scroll-thumb-hover: rgba(10, 10, 10, 0.45);
 
-  /* The mark keeps the brand: lime badge, ink glyphs, on both canvases. */
-  --logo-badge: #e4f222;
-  --logo-ink: #0b0b09;
+  /* The mark: near-black carton tile, silver cells, on both canvases. */
+  --logo-badge: #151110;
 
   /* Brand tints on paper: a deepened lime so the /10 wash and /20 border
      still register on white; the text tone stays legible ink-lime. */
@@ -774,9 +773,8 @@ html[data-ribbon="hidden"] .site-ribbon {
   --bc-scroll-thumb: rgba(250, 250, 250, 0.16);
   --bc-scroll-thumb-hover: rgba(250, 250, 250, 0.28);
 
-  /* The mark stays the lime badge with ink glyphs (pops on black). */
-  --logo-badge: #e4f222;
-  --logo-ink: #0b0b09;
+  /* The mark keeps its near-black tile; the silver cells carry contrast. */
+  --logo-badge: #151110;
 
   /* Brand tints on the #111 canvas: the deep lime carries the /10 wash and
      the /20 border; the light tone is the full-brightness label lime. */
@@ -814,8 +812,7 @@ html[data-ribbon="hidden"] .site-ribbon {
   --color-accent-ink: #0b0b09;
   --color-blue: #e4f222;
   --color-blue-dim: #e4f222;
-  --logo-badge: #e4f222;
-  --logo-ink: #0b0b09;
+  --logo-badge: #151110;
   background-color: var(--color-bg);
   color: var(--color-ink);
 }
@@ -839,8 +836,7 @@ html[data-ribbon="hidden"] .site-ribbon {
   --color-accent-ink: #ffffff;
   --color-blue: #0a0a0a;
   --color-blue-dim: #0a0a0a;
-  --logo-badge: #e4f222;
-  --logo-ink: #0b0b09;
+  --logo-badge: #151110;
 }
 
 /* Marquee: a full-bleed ink strip with a lime mono ticker, the loud editorial

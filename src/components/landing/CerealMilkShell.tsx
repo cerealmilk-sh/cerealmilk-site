@@ -67,6 +67,7 @@ import {
   Zap,
 } from "lucide-react";
 import { Avatar, cx } from "@/components/ui";
+import { Logo } from "@/components/site/Logo";
 
 /* ===========================================================================
    Palette: .x80-app themes the window to the app's real defaults. Light is
@@ -665,11 +666,8 @@ export function X80Rail() {
       className="flex h-full w-full flex-col items-center pt-3"
       style={{ background: "var(--x8-chrome)", borderRight: "1px solid var(--x8-seam)" }}
     >
-      <span
-        className="mb-2 flex h-[26px] w-[26px] items-center justify-center rounded-md font-mono text-[10px] font-bold"
-        style={{ background: "#E4F222", color: "#0B0B09" }}
-      >
-        Cereal Milk
+      <span className="mb-2 flex h-[26px] w-[26px] items-center justify-center">
+        <Logo size={26} radius={0.23} />
       </span>
       <RailIcon selected title="Messenger" icon={<MessagesSquare size={16} strokeWidth={2} />} />
       <span className="my-1.5 h-px w-[22px]" style={{ background: "var(--x8-seam)" }} />

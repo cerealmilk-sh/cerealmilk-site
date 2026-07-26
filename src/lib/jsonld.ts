@@ -34,6 +34,7 @@ export function rootNodes(): Node[] {
       "@id": ORG_ID,
       name: SITE_NAME,
       url: SITE_URL,
+      logo: `${SITE_URL}/icon-512.png`,
       description: CANONICAL_SENTENCE,
       email: AUTHOR.email,
       founder: { "@id": PERSON_ID },
