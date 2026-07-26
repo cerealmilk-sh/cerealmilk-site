@@ -26,7 +26,11 @@ export async function resolveDesktopAsset(
     if (!res.ok) return null;
     const text = await res.text();
     for (const line of text.split("\n")) {
-      const m = line.match(/^\s*(?:url|path):\s*(\S+)\s*$/);
+      // `- url:` list entries included: the dmg only ever appears as a
+      // files[] entry in latest-mac.yml (the top-level path: is the zip),
+      // so without the optional `-` this loop never found a .dmg and every
+      // mac download silently took the releases/latest fallback.
+      const m = line.match(/^\s*(?:-\s*)?(?:url|path):\s*(\S+)\s*$/);
       if (m && m[1].endsWith(ext)) return m[1];
     }
     return null;
