@@ -1,11 +1,12 @@
-# cereal-milk-site CLAUDE.md
+# cerealmilk-site CLAUDE.md
 
 The **cerealmilk.sh** product site: the marketing site for the Cereal Milk
 desktop app ("the messenger built for AI agents": WhatsApp, LinkedIn and Gmail
 in one window with an agent sidebar), the demo/download funnel, the `/docs`
 proxy, and the home of Cereal Milk's machine-facing surfaces (SEO + agent) and
-lifecycle email. GitHub repo `cerealmilk-sh/cereal-milk-site`; the Vercel
-project kept its pre-rebrand name `growth-landing`.
+lifecycle email. GitHub repo `cerealmilk-sh/cerealmilk-site` (renamed from
+`cereal-milk-site` on 2026-07-27; old URLs redirect); the Vercel project
+kept its pre-rebrand name `growth-landing`.
 
 **History:** until 2026-07-09 this repo served the Cereal Milk studio/agency site.
 That site is archived in full at branch `archive/studio-site-2026-07-08` /
