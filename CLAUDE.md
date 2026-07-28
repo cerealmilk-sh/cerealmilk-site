@@ -71,8 +71,9 @@ npm install && npm run dev          # also: build · lint · geo-audit · indexn
   `/docs` and `/sentry` proxies were removed 2026-07-28 (no live docs project;
   `/sentry` was a pre-rebrand leftover). If a docs site ships, its rewrites go
   back first-in-list and `/docs` links return to Header/Footer/llms.txt.
-- Secrets (Resend, Upstash/KV, CRON/LIFECYCLE guards) live in Vercel
-  env, see `~/github/ops/secrets-inventory.md`. Drip runbook:
-  `~/github/ops/runbooks/email-drip.md`.
+- Secrets (Resend, Upstash/KV, CRON/LIFECYCLE guards) live in Vercel env
+  (`vercel env ls`). The old `~/github/ops` repo pointers are dead (repo never
+  migrated); the drip runbook content lives in `docs/gtm/README.md` and the
+  org wiki's cerealmilk-site page.
 - Push via the `cerealmilk-sh` account. Commit/push only when asked; branch off
   `main` first.
