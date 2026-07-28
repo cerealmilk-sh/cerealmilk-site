@@ -1,4 +1,4 @@
-Cereal Milk for B2B startups: founder-led sales finally has a system of record. Your best pipeline is in WhatsApp threads and LinkedIn DMs, not your CRM. Cereal Milk puts every channel a prospect moves through in one keyboard-first Mac window, files the lines that matter to Attio or Affinity, and keeps every promise you make on the record.
+Cereal Milk for B2B startups: founder-led sales, finally with leverage. Your best pipeline is in WhatsApp threads and LinkedIn DMs, not your CRM. Cereal Milk puts every channel a prospect moves through in one keyboard-first desktop window, with an AI agent that drafts the follow-up and keeps every promise you make from slipping.
 
 ## Your pipeline is forty scrolls up
 

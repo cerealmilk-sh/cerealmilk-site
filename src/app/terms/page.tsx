@@ -16,9 +16,6 @@ export const metadata: Metadata = {
   title: "Terms of service",
   description: `The terms that govern the ${SITE_NAME} desktop application, this website, and the ${SITE_NAME} hosted service the app connects to, stated plainly.`,
   alternates: { canonical: "/terms" },
-  openGraph: {
-    images: [{ url: "/og/terms.png", width: 1200, height: 630 }],
-  },
 };
 
 const TERMS = `

@@ -17,9 +17,6 @@ export const metadata: Metadata = {
   title: "Privacy policy",
   description: `How ${SITE_NAME} handles your data on this site, in the desktop app, and in the hosted service: what is collected, where it is stored, and how to get it deleted.`,
   alternates: { canonical: "/privacy" },
-  openGraph: {
-    images: [{ url: "/og/privacy.png", width: 1200, height: 630 }],
-  },
 };
 
 const POLICY = `

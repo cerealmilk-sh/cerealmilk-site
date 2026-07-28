@@ -55,12 +55,12 @@ export const USE_CASES: UseCase[] = [
     label: "Venture capital",
     metaTitle: "Cereal Milk for venture capital",
     metaDescription:
-      "The deal messenger for venture capital: WhatsApp, LinkedIn, and Gmail in one Mac window, with the Attio or Affinity record live beside every chat. Private by default.",
+      "The deal messenger for venture capital: WhatsApp, LinkedIn, and Gmail in one window, with an AI agent that briefs you, drafts replies, and keeps deals moving.",
     teaser:
       "Sourcing in DMs, diligence in group chats, LPs on WhatsApp. Every conversation a deal moves through, filed to the pipeline.",
     kicker: "Cereal Milk for venture capital",
     h1: ["The deal messenger", "for venture capital."],
-    lede: "Sourcing happens in DMs. Diligence happens in group chats. LPs live on WhatsApp. Cereal Milk puts every channel a deal moves through in one keyboard-first Mac window, with the Attio or Affinity record live beside every chat, and every deal on the record.",
+    lede: "Sourcing happens in DMs. Diligence happens in group chats. LPs live on WhatsApp. Cereal Milk puts every channel a deal moves through in one keyboard-first desktop window, with an AI agent beside every chat that briefs you, drafts the reply, and keeps every deal moving.",
     leaksTitle: "Your best deals have no record",
     leaksLede:
       "The deals that make a fund are hashed out in chat. None of it reaches the CRM.",
@@ -110,12 +110,12 @@ export const USE_CASES: UseCase[] = [
     label: "B2B startups",
     metaTitle: "Cereal Milk for B2B startups",
     metaDescription:
-      "Founder-led sales finally has a system of record: WhatsApp, LinkedIn, and Gmail in one Mac window, every lead and every promise filed to Attio or Affinity.",
+      "Founder-led sales in one window: WhatsApp, LinkedIn, and Gmail side by side, with an AI agent that drafts follow-ups and keeps every promise from slipping.",
     teaser:
       "Founder-led sales lives in WhatsApp and LinkedIn. Every lead, every promise, and every investor thread, on the record.",
     kicker: "Cereal Milk for B2B startups",
     h1: ["Founder-led sales finally has", "a system of record."],
-    lede: "Your best pipeline is in WhatsApp threads and LinkedIn DMs, not your CRM. Cereal Milk puts every channel a prospect moves through in one keyboard-first Mac window, files the lines that matter to Attio or Affinity, and keeps every promise you make on the record.",
+    lede: "Your best pipeline is in WhatsApp threads and LinkedIn DMs, not your CRM. Cereal Milk puts every channel a prospect moves through in one keyboard-first desktop window, with an AI agent that drafts the follow-up and keeps every promise you make from slipping.",
     leaksTitle: "Your pipeline is forty scrolls up",
     leaksLede:
       "The revenue that keeps a startup alive is closed in chat. None of it reaches the CRM.",
@@ -165,12 +165,12 @@ export const USE_CASES: UseCase[] = [
     label: "Service providers",
     metaTitle: "Cereal Milk for service providers",
     metaDescription:
-      "For agencies, consultancies, recruiters, and brokers: every client channel in one Mac window, scope and referrals filed to Attio or Affinity, private by default.",
+      "For agencies, consultancies, recruiters, and brokers: every client channel in one window, with an AI agent beside every chat. Private by default.",
     teaser:
       "Clients buy in chat and stay in chat. Scope, renewals, and referrals, filed to the relationship instead of your memory.",
     kicker: "Cereal Milk for service providers",
     h1: ["Clients don't email you.", "They text you."],
-    lede: "Agencies, consultancies, recruiters, brokers: the work is sold in WhatsApp and kept alive in DMs. Cereal Milk puts every client channel in one keyboard-first Mac window and files scope, decisions, and referrals to Attio or Affinity, so the relationship has a record the whole firm can stand on.",
+    lede: "Agencies, consultancies, recruiters, brokers: the work is sold in WhatsApp and kept alive in DMs. Cereal Milk puts every client channel in one keyboard-first desktop window, with an AI agent beside every chat, so the client, the referral, and the prospect are one keystroke apart.",
     leaksTitle: "The whole engagement lives in one thread",
     leaksLede:
       "The conversations that pay the firm are hashed out in chat. None of it reaches the record.",
