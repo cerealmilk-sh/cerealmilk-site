@@ -33,3 +33,6 @@ next-env.d.ts
 
 # ...but keep the committed env contract (placeholders only, no secrets)
 !.env.example
+
+# brand-asset venv
+.venv/
