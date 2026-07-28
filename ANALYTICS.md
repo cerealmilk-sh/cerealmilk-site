@@ -1,10 +1,12 @@
 # Analytics · cerealmilk.sh
 
-Site-wide, consent-gated web analytics across all three surfaces of `cerealmilk.sh`
+Site-wide web analytics across all surfaces of `cerealmilk.sh`
 (landing, `/docs`, `/sentry`). **PostHog** (US cloud) for traffic, funnels,
 conversion events, and session replay; **Vercel Speed Insights** for Core Web
-Vitals. Because `/docs` and `/sentry` are reverse-proxied under the apex, all
-three are same-origin and share **one** consent choice and **one** dataset.
+Vitals. Analytics is **on by default** (no consent banner) with an opt-out
+toggle on `/privacy`. Because `/docs` and `/sentry` are reverse-proxied under
+the apex, all surfaces are same-origin and share **one** opt-out choice and
+**one** dataset.
 The signed-in app at `app.cerealmilk.sh` and the Mac app report into the **same
 PostHog project**, so the whole journey (first pageview to paying seat) is one
 funnel; see "Identity stitching" below.
@@ -38,7 +40,7 @@ the apex domain):
 - **Speed Insights** tab → Enable. (The `<SpeedInsights/>` component is already
   in `layout.tsx`; the dashboard toggle starts collection.)
 
-That's it. Deploy, accept the banner on the live site, and data flows.
+That's it. Deploy, visit the live site, and data flows.
 
 ---
 
@@ -46,13 +48,13 @@ That's it. Deploy, accept the banner on the live site, and data flows.
 
 | Piece | File |
 |---|---|
-| Shared loader + consent banner + `window.track()` + `window.setPerson()` | `public/consent-analytics.js` |
+| Shared loader + opt-out plumbing + `window.track()` + `window.setPerson()` | `public/consent-analytics.js` |
 | Reverse proxy (`/ingest` → PostHog US) + `skipTrailingSlashRedirect` | `next.config.ts` |
 | Loads the script + `<SpeedInsights/>` | `src/app/layout.tsx` |
 | Typed event + person helpers (`track()`, `setPerson()`) | `src/lib/analytics.ts` |
 | Fire-once-on-mount tracker (for redirect conversions) | `src/components/site/TrackEvent.tsx` |
 | Server-side download logging (dmg + exe share it) | `src/lib/download-track.ts`, routes `src/app/download/CerealMilk.dmg/route.ts`, `src/app/download/CerealMilk.exe/route.ts` |
-| Privacy & cookies policy + "change choice" button | `src/app/privacy/page.tsx`, `src/components/site/ConsentReset.tsx` |
+| Privacy & cookies policy + opt-out toggle | `src/app/privacy/page.tsx`, `src/components/site/AnalyticsOptOut.tsx` |
 | Docs injection | `growth-docs/src/components/Head.astro` |
 | Sentry injection | `skill-audit/webapp/public/sentry/index.html` (repo `cerealmilk-sh/skill-audit`) |
 
@@ -61,10 +63,12 @@ That's it. Deploy, accept the banner on the live site, and data flows.
 once, everywhere updates. (Standalone `*.vercel.app` preview domains don't load
 it, a feature: preview traffic never pollutes the data.)
 
-**Consent.** First visit shows a banner. **Accept** → PostHog loads, sets
-first-party cookies, starts replay. **Decline** (or ignore) → nothing loads,
-no cookies, no requests. Choice stored in `localStorage['cereal-milk-consent']` and
-shared across all three surfaces. Withdraw/change any time on `/privacy`.
+**On by default, opt-out honored.** PostHog loads on every visit: first-party
+cookies, autocapture, replay. No banner. The `/privacy` page exposes an
+opt-out toggle (`window.__cmAnalytics`) backed by PostHog's own persisted
+`opt_out_capturing()`, shared across all apex surfaces. A pre-2026-07-29
+banner-era `localStorage['cereal-milk-consent'] = "denied"` is migrated to
+that opt-out on first visit, then the legacy key is removed.
 
 ---
 
@@ -75,8 +79,8 @@ Fired via `track(...)` (React) or a `data-track="…"` attribute (any element):
 | Event | Where it fires |
 |---|---|
 | `get_started_cta_clicked` | every Get Cereal Milk pill, header/hero/home-pricing/footer (`data-track`, props `{src}`, plus `plan` on the home pricing cards), pointing at `/download` |
-| `dmg_download_clicked` / `exe_download_clicked` | the `/download` interstitial's manual Mac/Windows download links (`data-track`, props `{src}`; client-side click, consent-gated) |
-| `dmg_download_requested` / `exe_download_requested` | **server-side**, the `/download/CerealMilk.dmg` and `/download/CerealMilk.exe` route handlers: every GET, consent-independent and ad-blocker-proof, anonymous random `distinct_id`, props `{outcome, asset, source, kind, country}`. The ground truth for downloads |
+| `dmg_download_clicked` / `exe_download_clicked` | the `/download` interstitial's manual Mac/Windows download links (`data-track`, props `{src}`; client-side click) |
+| `dmg_download_requested` / `exe_download_requested` | **server-side**, the `/download/CerealMilk.dmg` and `/download/CerealMilk.exe` route handlers: every GET, client-independent and ad-blocker-proof, anonymous random `distinct_id`, props `{outcome, asset, source, kind, country}`. The ground truth for downloads |
 | `buy_cta_clicked` | the `/pricing` Buy buttons (`data-track`, props `{src, plan}`) |
 | `demo_cta_clicked` | every Book-a-demo link (`data-track`, props `{src}`) |
 | `demo_email_clicked` | the `/demo` email fallback link (`data-track`) |
@@ -190,11 +194,12 @@ funnel as historical.
 
 ## Privacy posture
 
-- Consent-first: nothing client-side runs without opt-in (GDPR-appropriate).
+- On by default with a persistent, honored opt-out on `/privacy`; the policy
+  discloses exactly what is collected.
 - The one server-side event (`dmg_download_requested`) is anonymous by
   construction: random per-hit `distinct_id`, `$process_person_profile:
   false`, no cookie, IPs reduced to a salted hash before leaving the process.
 - US data region; client analytics served first-party via `/ingest`.
 - Session replay masks **all** form inputs and any `[data-ph-mask]` element.
 - Person profiles only for people who self-identify (a form) or sign in.
-- Policy at `/privacy`, linked from the banner and the footer.
+- Policy at `/privacy`, linked from the footer.

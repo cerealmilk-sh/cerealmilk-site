@@ -91,6 +91,17 @@ content goes to the model provider you connected (Claude, ChatGPT, Gemini, or
 your own OpenAI-compatible endpoint) under your agreement with that provider,
 and nowhere else: ${SITE_NAME} runs no model and stores no conversations.
 
+### Anonymous app telemetry
+
+From app version 0.2.6, the desktop app sends anonymous telemetry so crashes
+and bugs get found and fixed: crash signals, scrubbed error summaries (first
+line only, file paths redacted), and usage counts (launches, sign-ins, how
+often the agent is used, update events), each tagged with a random
+per-install id, the app version, and the platform. Never message content,
+never contact data, and never linked to your account. Processor: PostHog (US
+region). The off switch is in the app: Settings, General, "Share anonymous
+usage data".
+
 ### What the hosted service stores
 
 The hosted service stores your account only:
