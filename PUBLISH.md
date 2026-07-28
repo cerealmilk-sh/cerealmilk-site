@@ -10,7 +10,7 @@ npm run build        # prebuild runs the pricing guard (scripts/check-pricing.mj
 vercel deploy --prod
 ```
 
-Vercel project and scope: see CLAUDE.md (project `growth-landing`, scope
+Vercel project and scope: see CLAUDE.md (project `cerealmilk-site`, scope
 `clippycommits-projects` as of 2026-07-25; an org-owned rename is pending).
 A fresh clone needs `vercel link` first, command in CLAUDE.md.
 
