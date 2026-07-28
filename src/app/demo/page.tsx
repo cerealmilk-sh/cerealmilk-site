@@ -24,7 +24,7 @@ const QUIET_LINK =
   "font-medium text-ink underline decoration-edge-2 underline-offset-4 transition-colors hover:decoration-ink-faint";
 
 const AGENDA = [
-  "The app on a live pipeline: WhatsApp, LinkedIn, and Gmail in one window, filing to Attio or Affinity.",
+  "The app on a live pipeline: WhatsApp in one fast window, with the AI agent beside every chat.",
   "The privacy model: what syncs, what is never read, and how the server-enforced gate works.",
   "Rollout and plans. Pricing is published, so the call confirms fit, not the number.",
 ];

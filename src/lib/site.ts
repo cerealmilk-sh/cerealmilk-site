@@ -13,11 +13,11 @@ export const SITE_NAME = "Cereal Milk";
 // llms.txt blockquote, default meta description, Organization JSON-LD.
 // Never paraphrase it (see PRODUCT-SITE-SPEC.md).
 export const CANONICAL_SENTENCE =
-  "Cereal Milk is the messenger built for AI agents: a desktop app for Mac and Windows that puts WhatsApp, LinkedIn, and Gmail in one window, with an AI agent beside every chat running on your own Claude, ChatGPT, Gemini, or OpenAI-compatible account.";
+  "Cereal Milk is the messenger built for AI agents: a desktop app for Mac and Windows that puts WhatsApp in one fast window with an AI agent beside every chat, running on your own Claude, ChatGPT, Gemini, or OpenAI-compatible account.";
 
 // The canonical person sentence: /about lede, ProfilePage, byline bios.
 export const PERSON_SENTENCE =
-  "Daniel Hull is the founder of Cereal Milk, the company behind the Cereal Milk desktop app that puts WhatsApp, LinkedIn, and Gmail in one window with an AI agent beside every chat.";
+  "Daniel Hull is the founder of Cereal Milk, the company behind the Cereal Milk desktop app that puts WhatsApp in one fast window with an AI agent beside every chat.";
 
 export const SITE_TAGLINE = "The messenger built for AI agents";
 

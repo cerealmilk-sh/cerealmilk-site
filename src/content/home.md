@@ -1,4 +1,4 @@
-The messenger built for AI agents. WhatsApp, LinkedIn, and Gmail in one desktop window, on Mac and Windows, with an AI agent beside every chat that runs on your own model account: Claude, ChatGPT, Gemini, or any OpenAI-compatible endpoint. The deals that matter happen in DMs and group threads: sourcing, diligence, sales, and client work that never reach your other tools. Cereal Milk is the client that puts an agent next to those conversations without ever risking your number: it wraps the official web clients, reads only the chat you have open when you ask, and exports any thread as clean Markdown in one click. Private by default; you always hit send yourself. Built by the team that ran deal-ops engineering for 68 venture funds and firms. Cereal Milk is available now: [download it for Mac or Windows](/download), create your account, and the full product is free for 7 days, no card; then Starter is $30 per user a month or $300 a year, cancel anytime, and Business for teams is $40 per user a month, billed per seat. In venture? Start with [Cereal Milk for venture capital](/for/venture-capital). The same machine runs [founder-led sales at B2B startups](/for/b2b-startups) and [client work at service providers](/for/service-providers).
+The messenger built for AI agents. WhatsApp in one fast desktop window, on Mac and Windows, with an AI agent beside every chat that runs on your own model account: Claude, ChatGPT, Gemini, or any OpenAI-compatible endpoint. LinkedIn and Gmail are next. The deals that matter happen in DMs and group threads: sourcing, diligence, sales, and client work that never reach your other tools. Cereal Milk is the client that puts an agent next to those conversations without ever risking your number: it wraps the official web clients, reads only the chat you have open when you ask, and exports any thread as clean Markdown in one click. Private by default; you always hit send yourself. Built by the team that ran deal-ops engineering for 68 venture funds and firms. Cereal Milk is available now: [download it for Mac or Windows](/download), create your account, and the full product is free for 7 days, no card; then Starter is $30 per user a month or $300 a year, cancel anytime, and Business for teams is $40 per user a month, billed per seat. In venture? Start with [Cereal Milk for venture capital](/for/venture-capital). The same machine runs [founder-led sales at B2B startups](/for/b2b-startups) and [client work at service providers](/for/service-providers).
 
 ## The problem
 
@@ -24,7 +24,7 @@ So we built the missing piece: the official clients in one desktop window, an AI
 
 Three steps. Nothing to import, nothing to migrate: open the app, scan a QR code, connect your model.
 
-- **Connect your accounts.** WhatsApp, LinkedIn, and Gmail in one desktop window, on Mac and Windows.
+- **Connect WhatsApp.** Scan the QR and your WhatsApp gets one fast desktop window, on Mac and Windows. LinkedIn and Gmail are next.
 - **Connect your model.** Claude and ChatGPT use the sign-in you already have; Gemini and OpenAI-compatible endpoints take an API key. The agent sits beside every chat.
 - **Never drop a relationship again.** Who is waiting on you, who went quiet, and an agent that summarises any thread, pulls out the commitments, and drafts the follow-up for you to send.
 
@@ -33,7 +33,7 @@ Three steps. Nothing to import, nothing to migrate: open the app, scan a QR code
 Never touch the mouse. ⌘K runs everything: the client a power user would build for themselves, and the one your co-investor asks about when they see it over your shoulder.
 
 - Command palette on ⌘K: every action in the app, fuzzy-searched. Switch, export, snippet, ask the agent. Hit return.
-- Channels on ⌘1 ⌘2 ⌘3: WhatsApp, LinkedIn, Gmail. Every session stays live in one window; nothing reloads or drops.
+- One fast window: your session stays live; nothing reloads or drops. LinkedIn and Gmail join on ⌘1 ⌘2 ⌘3 as they ship.
 - Export this chat on ⌘⇧S: the open conversation as clean Markdown in one keystroke, ready for your agent, your notes, or your CRM.
 - The agent beside the chat: summarise the thread, pull out the commitments, draft the reply. Drafts land in the composer; you always hit send.
 
@@ -49,7 +49,7 @@ Your WhatsApp is your life, not just your deal flow. The agent reads only the ch
 
 Each of these exists because someone asked for it in the field:
 
-- Native notifications: three channels, one place that pings you, so a reply never waits behind a forgotten tab.
+- Native notifications: one place that pings you, so a reply never waits behind a forgotten tab.
 - Voice and video calls: founders call on WhatsApp; mic and camera pass straight through, so calls happen where the thread lives.
 - MCP support: the agent speaks the Model Context Protocol. Add the servers your stack already exposes, your CRM, your notes, your calendar, and the agent can use their tools beside your chats, with writes staged as proposals you review.
 - One-click export: the open chat as a paste-ready note, Markdown or plain text, or the contact card.
@@ -82,7 +82,7 @@ Anyone whose work happens in chat. Cereal Milk was born inside venture fund work
 
 ### Is this a native Mac app?
 
-Yes, and a Windows app too. Cereal Milk is a real, keyboard-first desktop app, not just another browser tab. It runs the official WhatsApp Web, LinkedIn, and Gmail in one window with a command palette, snippets, and an AI agent beside every chat.
+Yes, and a Windows app too. Cereal Milk is a real, keyboard-first desktop app, not just another browser tab. It runs the official WhatsApp Web in one fast window with a command palette, snippets, and an AI agent beside every chat. LinkedIn and Gmail are next.
 
 ### What do AI agents get out of it?
 
@@ -94,7 +94,7 @@ Yes. Cereal Milk has a built-in agent that works alongside you, and it speaks MC
 
 ### How does Cereal Milk connect to my accounts?
 
-Cereal Milk runs the official WhatsApp Web, LinkedIn, and Gmail inside a hardened desktop browser shell, so to those services it looks like an ordinary browser. It never bulk-sends, automates, or scrapes; you always hit send yourself, and the agent reads only the chat you have open, when you ask. Nothing ever acts as you in the background.
+Cereal Milk runs the official WhatsApp Web inside a hardened desktop browser shell, so to WhatsApp it looks like an ordinary browser. It never bulk-sends, automates, or scrapes; you always hit send yourself, and the agent reads only the chat you have open, when you ask. Nothing ever acts as you in the background.
 
 ### Does it read my messages?
 
@@ -106,19 +106,19 @@ Yes. Cereal Milk ships for Mac and Windows. The download page detects your platf
 
 ### Is Cereal Milk a unified inbox?
 
-Yes, in one window rather than one merged list. Cereal Milk keeps WhatsApp, LinkedIn, and Gmail signed in side by side, one keystroke apart, with an AI agent beside every chat. Sessions stay live, notifications land in one place, and you never juggle browser tabs again.
+That is where it is headed. Today Cereal Milk gives WhatsApp its own fast window with an AI agent beside every chat; LinkedIn and Gmail join it next, side by side and one keystroke apart. Sessions stay live, notifications land in one place, and you never juggle browser tabs again.
 
 ### Is Cereal Milk like Superhuman, but for WhatsApp and LinkedIn?
 
-That is a fair shorthand. Cereal Milk brings the keyboard-first, one-window discipline of a fast email client to WhatsApp, LinkedIn, and Gmail together, and adds an AI agent beside every chat, running on your own model account. Superhuman speeds up email; Cereal Milk covers the channels where your deals actually happen.
+That is a fair shorthand. Cereal Milk brings the keyboard-first, one-window discipline of a fast email client to WhatsApp, and adds an AI agent beside every chat, running on your own model account. Superhuman speeds up email; Cereal Milk covers the chats where your deals actually happen, with LinkedIn and Gmail next.
 
 ### Does the AI agent work in LinkedIn messages too?
 
-Yes. The agent sits beside every chat in the window, LinkedIn DMs and email included. Ask it to summarise a thread, pull out commitments, or draft a reply; drafts are typed into the composer and you always hit send yourself. It runs on your own Claude, ChatGPT, Gemini, or OpenAI-compatible account.
+Not yet. Today the agent works beside your WhatsApp chats: summarise a thread, pull out commitments, draft a reply. LinkedIn and Gmail are the next channels, and the agent extends to them as they ship. Drafts always land in the composer and you always hit send yourself.
 
 ### How does Cereal Milk help me triage a full inbox?
 
-One window shows every channel, so triage happens in one pass instead of three apps. Notifications land in one place, you see who is waiting on you and who went quiet, and the agent summarises any thread and pulls out the commitments before you reply.
+Your WhatsApp gets one fast window and one pass of triage. Notifications land in one place, you see who is waiting on you and who went quiet, and the agent summarises any thread and pulls out the commitments before you reply.
 
 ### How does pricing work?
 

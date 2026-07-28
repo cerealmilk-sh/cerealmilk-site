@@ -1,4 +1,4 @@
-Cereal Milk for venture capital: the deal messenger. Sourcing happens in DMs. Diligence happens in group chats. LPs live on WhatsApp. Cereal Milk puts every channel a deal moves through in one keyboard-first desktop window, with an AI agent beside every chat that briefs you, drafts the reply, and keeps every deal moving.
+Cereal Milk for venture capital: the deal messenger. Sourcing happens in DMs. Diligence happens in group chats. LPs live on WhatsApp. Cereal Milk puts your deal-flow WhatsApp in one keyboard-first desktop window, with an AI agent beside every chat that briefs you, drafts the reply, and keeps every deal moving. LinkedIn and Gmail are next.
 
 ## Your best deals have no record
 

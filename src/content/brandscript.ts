@@ -49,11 +49,11 @@ export const BRANDSCRIPT = {
     product: [
       {
         title: "Connect your accounts",
-        body: "WhatsApp, LinkedIn, and Gmail in one native Mac window. Nothing to import, nothing to migrate.",
+        body: "WhatsApp in one fast desktop window on Mac and Windows. Nothing to import, nothing to migrate. LinkedIn and Gmail are next.",
       },
       {
-        title: "Cereal Milk builds your Repository",
-        body: "Every conversation you choose, filed into one private, searchable record of your network. Git for your relationships.",
+        title: "Connect your model",
+        body: "Claude and ChatGPT use the sign-in you already have; Gemini and OpenAI-compatible endpoints take an API key. The agent sits beside every chat.",
       },
       {
         title: "Never drop a relationship again",
@@ -114,7 +114,7 @@ export const BRANDSCRIPT = {
   oneLiner: {
     headline: "The messenger built for AI agents.",
     subline:
-      "WhatsApp, LinkedIn, and Gmail in one desktop window, on Mac and Windows. An AI agent beside every chat, running on your own model account.",
+      "WhatsApp in one fast desktop window, on Mac and Windows, with an AI agent beside every chat on your own model account. LinkedIn and Gmail are next.",
   },
 } as const;
 

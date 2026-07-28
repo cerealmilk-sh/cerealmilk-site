@@ -4,7 +4,7 @@ How Cereal Milk keeps your number, your accounts, and your conversations safe: n
 
 Most "WhatsApp CRM" tools drive your account through a reverse-engineered client: a fake phone or a scripted browser that logs in as you and pulls your message history through an API WhatsApp never published. That is what gets numbers banned.
 
-Cereal Milk does none of that. Under the hood it is the official WhatsApp Web, LinkedIn, and Gmail running inside a hardened desktop browser shell, pinned to a standard desktop browser identity. There is no Baileys, no whatsapp-web.js, no LinkedIn Voyager scraping, and no WhatsApp Business API. To the services you use, Cereal Milk is a browser, because under the hood it is one.
+Cereal Milk does none of that. Under the hood it is the official WhatsApp Web running inside a hardened desktop browser shell, pinned to a standard desktop browser identity; LinkedIn and Gmail follow the same design as they ship. There is no Baileys, no whatsapp-web.js, no LinkedIn Voyager scraping, and no WhatsApp Business API. To the services you use, Cereal Milk is a browser, because under the hood it is one.
 
 ## Human-shaped by design
 

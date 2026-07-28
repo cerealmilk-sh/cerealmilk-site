@@ -18,7 +18,7 @@ export function GET() {
       title: "Cereal Milk public API",
       version: "2026-07-09",
       description:
-        "The public action endpoints on cerealmilk.sh: submit an inquiry (a demo request, a fund pilot, a question) and join The Cereal Milk Field Notes. Cereal Milk is a native Mac app for venture investors that puts WhatsApp, LinkedIn, and Gmail in one window and syncs the conversations you choose to Attio or Affinity. Download the app at https://cerealmilk.sh/download (creating an account starts a 7-day free trial, no card); a walkthrough with the founder can be booked at https://cerealmilk.sh/demo.",
+        "The public action endpoints on cerealmilk.sh: submit an inquiry (a demo request, a fund pilot, a question) and join The Cereal Milk Field Notes. Cereal Milk is the messenger built for AI agents: a desktop app for Mac and Windows that puts WhatsApp in one fast window with an AI agent beside every chat, running on your own model account. Download the app at https://cerealmilk.sh/download (creating an account starts a 7-day free trial, no card); a walkthrough with the founder can be booked at https://cerealmilk.sh/demo.",
       contact: { name: "Cereal Milk", email: "daniel@cerealmilk.sh", url: `${SITE_URL}/contact` },
     },
     servers: [{ url: SITE_URL }],

@@ -45,7 +45,7 @@ export const PAGES: PageEntry[] = [
     // footer and the default title for other pages.
     title: "The messenger built for AI agents",
     description:
-      "The messenger built for AI agents: WhatsApp, LinkedIn, and Gmail in one desktop window, with an AI agent beside every chat on your own model account. Free 7-day trial.",
+      "The messenger built for AI agents: WhatsApp in one fast window with an AI agent beside every chat, on your own model account. LinkedIn and Gmail next. Free 7-day trial.",
     section: "home",
     datePublished: D,
     dateModified: "2026-07-29",
@@ -58,7 +58,7 @@ export const PAGES: PageEntry[] = [
     path: "/for/venture-capital",
     title: "Cereal Milk for venture capital",
     description:
-      "The deal messenger for venture capital: WhatsApp, LinkedIn, and Gmail in one window, with an AI agent that briefs you, drafts replies, and keeps deals moving.",
+      "The deal messenger for venture capital: WhatsApp in one keyboard-first window, with an AI agent that briefs you, drafts replies, and keeps deals moving.",
     section: "product",
     datePublished: D,
     dateModified: "2026-07-29",
@@ -69,7 +69,7 @@ export const PAGES: PageEntry[] = [
     path: "/for/b2b-startups",
     title: "Cereal Milk for B2B startups",
     description:
-      "Founder-led sales in one window: WhatsApp, LinkedIn, and Gmail side by side, with an AI agent that drafts follow-ups and keeps every promise from slipping.",
+      "Founder-led sales in one window: WhatsApp with an AI agent that drafts follow-ups and keeps every promise from slipping. LinkedIn and Gmail are next.",
     section: "product",
     datePublished: D,
     dateModified: "2026-07-29",
@@ -80,7 +80,7 @@ export const PAGES: PageEntry[] = [
     path: "/for/service-providers",
     title: "Cereal Milk for service providers",
     description:
-      "For agencies, consultancies, recruiters, and brokers: every client channel in one window, with an AI agent beside every chat. Private by default.",
+      "For agencies, consultancies, recruiters, and brokers: client WhatsApp in one fast window, with an AI agent beside every chat. Private by default.",
     section: "product",
     datePublished: D,
     dateModified: "2026-07-29",
@@ -138,7 +138,7 @@ export const PAGES: PageEntry[] = [
     path: "/demo",
     title: "Book a demo",
     description:
-      "Book a 30-minute demo of Cereal Milk. On a screen-share, Dan walks you through WhatsApp, LinkedIn, and Gmail in one window with an AI agent beside every chat.",
+      "Book a 30-minute demo of Cereal Milk. On a screen-share, Dan walks you through WhatsApp with an AI agent beside every chat, and what ships next.",
     section: "book",
     datePublished: D,
     dateModified: "2026-07-29",

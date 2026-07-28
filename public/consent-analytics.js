@@ -1,39 +1,34 @@
 /*
- * cerealmilk.sh, shared consent + analytics loader
+ * cerealmilk.sh, shared analytics loader
  * ------------------------------------------------------------------
- * ONE file, served from the apex (https://cerealmilk.sh/consent-analytics.js) and
- * loaded by every Cereal Milk surface: the landing (Next), /docs (Astro), and
- * /sentry (static). Because /docs and /sentry are reverse-proxied under the
- * apex, all three are same-origin, so a single consent choice in
- * localStorage governs the whole site.
+ * ONE file, served from the apex (https://cerealmilk.sh/consent-analytics.js)
+ * and loaded by every Cereal Milk surface. All surfaces are same-origin under
+ * the apex, so they share one dataset and one opt-out choice.
  *
  * What it does:
- *   1. Shows a GDPR consent banner the first time someone visits.
- *   2. Loads PostHog ONLY after "Accept": no cookies, no session replay,
- *      no network calls to PostHog until the visitor opts in. "Decline" is
- *      remembered and nothing loads. After consent, session replay IS
- *      recorded (all form inputs masked), as disclosed in the banner and
- *      in /privacy.
+ *   1. Loads PostHog on every visit (no consent banner; analytics is on by
+ *      default). Session replay is recorded with all form inputs masked, as
+ *      disclosed in /privacy.
+ *   2. Honors an opt-out: /privacy exposes a toggle wired to
+ *      window.__cmAnalytics, which uses PostHog's own persisted
+ *      opt_out_capturing() so the choice sticks across visits.
  *   3. Reverse-proxies PostHog through /ingest (configured in the landing's
  *      next.config.ts) so ad-blockers and corporate networks don't drop the
  *      data.
  *   4. Exposes window.track(event, props) for named conversion events, and
  *      auto-fires an event for any element with a [data-track] attribute.
  *
- * SETUP (one edit): paste your PostHog *project* key below. It is a public,
- * client-side key (like a Stripe publishable key), safe to commit. Create a
- * free project at https://us.posthog.com (US cloud, the project's data
- * region). Until the key is replaced, this file is completely inert:
- * no banner, no tracking, the sites behave exactly as before.
+ * SETUP: the layout injects window.__CM_POSTHOG_KEY from
+ * NEXT_PUBLIC_POSTHOG_KEY (a public client-side key, like a Stripe
+ * publishable key). No key = this file is completely inert.
  */
 (function () {
   "use strict";
 
   // ---- CONFIG ---------------------------------------------------------------
   var POSTHOG_KEY = window.__CM_POSTHOG_KEY || ""; // injected by the layout from NEXT_PUBLIC_POSTHOG_KEY; empty = analytics off
-  var CONSENT_KEY = "cereal-milk-consent"; // localStorage: "granted" | "denied"
+  var LEGACY_CONSENT_KEY = "cereal-milk-consent"; // pre-2026-07-29 banner choice, migrated below
   var UI_HOST = "https://us.posthog.com"; // toolbar/app host (US cloud)
-  var PRIVACY_URL = "/privacy";
   // --------------------------------------------------------------------------
 
   // Bail out entirely if the key hasn't been set yet, or on non-browser / bot
@@ -47,8 +42,8 @@
     return;
   }
 
-  // A no-op tracker until (and unless) PostHog is actually loaded, so callers
-  // can always use window.track(...) without guarding.
+  // A no-op tracker until PostHog is actually loaded, so callers can always
+  // use window.track(...) without guarding.
   if (!window.track) {
     window.track = function () {};
   }
@@ -56,22 +51,6 @@
   // forms can always call it without guarding.
   if (!window.setPerson) {
     window.setPerson = function () {};
-  }
-
-  function getConsent() {
-    try {
-      return localStorage.getItem(CONSENT_KEY);
-    } catch (e) {
-      return null;
-    }
-  }
-
-  function setConsent(value) {
-    try {
-      localStorage.setItem(CONSENT_KEY, value);
-    } catch (e) {
-      /* private mode / storage disabled, proceed for this session only */
-    }
   }
 
   // ---- PostHog ---------------------------------------------------------------
@@ -136,7 +115,7 @@
       capture_pageview: "history_change", // SPA-safe (Next App Router pushState)
       capture_pageleave: true,
       autocapture: true,
-      // Rich, zero-code capture, all still consent-gated and first-party via /ingest:
+      // Rich, zero-code capture, all first-party via /ingest:
       capture_heatmaps: true, // click / scroll / rageclick maps for every page
       capture_dead_clicks: true, // clicks on non-interactive elements = UX friction signal
       capture_exceptions: true, // JS error tracking on the live site (PostHog Error Tracking)
@@ -205,91 +184,47 @@
     true
   );
 
-  // ---- Consent banner --------------------------------------------------------
-  function buildBanner() {
-    var wrap = document.createElement("div");
-    wrap.setAttribute("role", "dialog");
-    wrap.setAttribute("aria-live", "polite");
-    wrap.setAttribute("aria-label", "Privacy consent");
-    wrap.id = "x-consent";
-    wrap.innerHTML =
-      '<style>' +
-      "#x-consent{position:fixed;z-index:2147483000;left:16px;right:16px;bottom:16px;max-width:520px;margin-left:auto;" +
-      "font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;" +
-      "background:#0b0b0c;color:#e9e9ea;border:1px solid rgba(255,255,255,.14);border-radius:16px;" +
-      "box-shadow:0 12px 40px rgba(0,0,0,.45);padding:18px 18px 16px;line-height:1.5;" +
-      "animation:xci .28s ease both}" +
-      "@keyframes xci{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}" +
-      "@media (prefers-reduced-motion:reduce){#x-consent{animation:none}}" +
-      "#x-consent p{margin:0;font-size:13.5px;color:#c7c7c9}" +
-      "#x-consent a{color:#fff;text-decoration:underline;text-underline-offset:2px}" +
-      "#x-consent .x-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}" +
-      "#x-consent button{font:inherit;font-size:13px;font-weight:600;border-radius:999px;padding:8px 16px;cursor:pointer;border:1px solid transparent}" +
-      "#x-consent .x-accept{background:#fff;color:#0b0b0c}" +
-      "#x-consent .x-accept:hover{opacity:.9}" +
-      "#x-consent .x-decline{background:transparent;color:#e9e9ea;border-color:rgba(255,255,255,.22)}" +
-      "#x-consent .x-decline:hover{background:rgba(255,255,255,.08)}" +
-      "</style>" +
-      "<p><strong style=\"color:#fff;font-weight:600\">A note on privacy.</strong> " +
-      "Cereal Milk uses privacy-friendly analytics (including session replays with all form inputs masked) " +
-      "to understand how the site is used and improve it. Nothing loads until you choose. " +
-      'See the <a href="' + PRIVACY_URL + '">privacy &amp; cookies policy</a>.</p>' +
-      '<div class="x-row">' +
-      '<button type="button" class="x-accept">Accept</button>' +
-      '<button type="button" class="x-decline">Decline</button>' +
-      "</div>";
-
-    function dismiss() {
-      if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
-    }
-    wrap.querySelector(".x-accept").addEventListener("click", function () {
-      setConsent("granted");
-      dismiss();
-      loadPostHog();
-    });
-    wrap.querySelector(".x-decline").addEventListener("click", function () {
-      setConsent("denied");
-      dismiss();
-    });
-    return wrap;
-  }
-
-  function showBanner() {
-    function mount() {
-      if (document.getElementById("x-consent")) return;
-      document.body.appendChild(buildBanner());
-    }
-    if (document.body) mount();
-    else document.addEventListener("DOMContentLoaded", mount, { once: true });
-  }
-
   // ---- Boot ------------------------------------------------------------------
-  var consent = getConsent();
-  if (consent === "granted") {
-    loadPostHog();
-  } else if (consent === "denied") {
-    /* respect the prior choice, load nothing */
-  } else {
-    showBanner();
+  loadPostHog();
+
+  // Migrate the old banner-era choice: a stored "denied" becomes a persisted
+  // PostHog opt-out (kept by PostHog itself in localStorage/cookie), then the
+  // legacy key is dropped either way.
+  try {
+    var legacy = localStorage.getItem(LEGACY_CONSENT_KEY);
+    if (legacy === "denied") {
+      window.posthog.opt_out_capturing();
+    }
+    if (legacy !== null) {
+      localStorage.removeItem(LEGACY_CONSENT_KEY);
+    }
+  } catch (e) {
+    /* private mode / storage disabled */
   }
 
-  // Let other code (e.g. a "privacy settings" link) re-open the banner or
-  // change the choice: window.__xConsent.reset() clears and re-prompts.
-  window.__xConsent = {
-    reset: function () {
+  // The /privacy opt-out toggle. PostHog persists the choice itself via
+  // opt_out_capturing / opt_in_capturing, so no extra storage is needed.
+  window.__cmAnalytics = {
+    optOut: function () {
       try {
-        localStorage.removeItem(CONSENT_KEY);
+        window.posthog.opt_out_capturing();
       } catch (e) {}
-      if (window.posthog && window.posthog.opt_out_capturing) {
-        try {
-          window.posthog.opt_out_capturing();
-        } catch (e) {}
-      }
-      showBanner();
     },
-    grant: function () {
-      setConsent("granted");
-      loadPostHog();
+    optIn: function () {
+      try {
+        window.posthog.opt_in_capturing();
+      } catch (e) {}
+    },
+    isOptedOut: function () {
+      try {
+        return !!(
+          window.posthog &&
+          window.posthog.has_opted_out_capturing &&
+          window.posthog.has_opted_out_capturing()
+        );
+      } catch (e) {
+        return false;
+      }
     },
   };
 })();

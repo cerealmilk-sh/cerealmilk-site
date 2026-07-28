@@ -1,4 +1,4 @@
-Cereal Milk for service providers: clients don't email you, they text you. Agencies, consultancies, recruiters, brokers: the work is sold in WhatsApp and kept alive in DMs. Cereal Milk puts every client channel in one keyboard-first desktop window, with an AI agent beside every chat, so the client, the referral, and the prospect are one keystroke apart.
+Cereal Milk for service providers: clients don't email you, they text you. Agencies, consultancies, recruiters, brokers: the work is sold in WhatsApp and kept alive in DMs. Cereal Milk puts every client WhatsApp in one keyboard-first desktop window, with an AI agent beside every chat. LinkedIn and Gmail are next.
 
 ## The whole engagement lives in one thread
 

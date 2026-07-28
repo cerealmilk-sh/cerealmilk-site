@@ -1,9 +1,9 @@
 // The server-side download log shared by the two evergreen download routes
 // (/download/CerealMilk.dmg and /download/CerealMilk.exe). Every GET is logged SERVER-side
-// (independent of cookies, consent banners, and ad-blockers); the route then
+// (independent of cookies, opt-outs, and ad-blockers); the route then
 // 307s to the installer. This is why "has anyone downloaded the app?" is
 // answerable first-party: GitHub only keeps an aggregate counter, the
-// PostHog click event is consent-gated and ad-blockable, and
+// PostHog click event is client-side and ad-blockable, and
 // bookmarks/emails/curl never touch the tracked button.
 //
 // PRIVACY: no cookie is set and no PII is stored. The client IP is reduced
@@ -25,8 +25,7 @@ const TRACK_URL =
 // The public (client-side) PostHog project key, same project as the web +
 // app dataset; safe to commit, see ANALYTICS.md. Server-side capture so
 // download counts also land in PostHog insights: anonymous (random per-hit
-// distinct_id, no cookie, no profile), which is what makes it OK to fire
-// without the consent banner.
+// distinct_id, no cookie, no profile).
 // Empty when NEXT_PUBLIC_POSTHOG_KEY is unset: capture is skipped entirely.
 const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY ?? "";
 const POSTHOG_CAPTURE = "https://us.i.posthog.com/capture/";

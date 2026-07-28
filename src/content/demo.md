@@ -1,4 +1,4 @@
-Book a 30-minute demo of Cereal Milk. On a screen-share, Dan walks you through WhatsApp, LinkedIn, and Gmail in one window with an AI agent beside every chat. Or send a brief by email.
+Book a 30-minute demo of Cereal Milk. On a screen-share, Dan walks you through WhatsApp in one window with an AI agent beside every chat, and what ships next. Or send a brief by email.
 
 ## How booking works
 
@@ -6,7 +6,7 @@ Fill in the short form at [/demo](/demo) (name, work email, company, team size),
 
 ## What the demo covers
 
-- The app on a live pipeline: WhatsApp, LinkedIn, and Gmail in one window, with the agent beside every chat.
+- The app on a live pipeline: WhatsApp in one fast window, with the agent beside every chat.
 - The privacy model: what the agent can read, what it never touches, and how drafts stay yours to send.
 - Rollout and plans. Pricing is published at [/pricing](/pricing), so the call confirms fit, not the number.
 

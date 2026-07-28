@@ -48,7 +48,7 @@ const FOOTER_HREF = `${DOWNLOAD_PATH}?src=home-footer`;
 const HOME_FAQ: { q: string; a: string; aNode?: React.ReactNode }[] = [
   {
     q: "Is this a native Mac app?",
-    a: "Yes, and a Windows app too. Cereal Milk is a real, keyboard-first desktop app, not just another browser tab. It runs the official WhatsApp Web, LinkedIn, and Gmail in one window with a command palette, snippets, and an AI agent beside every chat.",
+    a: "Yes, and a Windows app too. Cereal Milk is a real, keyboard-first desktop app, not just another browser tab. It runs the official WhatsApp Web in one fast window with a command palette, snippets, and an AI agent beside every chat. LinkedIn and Gmail are next.",
   },
   {
     q: "What do AI agents get out of it?",
@@ -60,7 +60,7 @@ const HOME_FAQ: { q: string; a: string; aNode?: React.ReactNode }[] = [
   },
   {
     q: "How does Cereal Milk connect to my accounts?",
-    a: "Cereal Milk runs the official WhatsApp Web, LinkedIn, and Gmail inside a hardened desktop browser shell, so to those services it looks like an ordinary browser. It never bulk-sends, automates, or scrapes; you always hit send yourself, and the agent reads only the chat you have open, when you ask. Nothing ever acts as you in the background.",
+    a: "Cereal Milk runs the official WhatsApp Web inside a hardened desktop browser shell, so to WhatsApp it looks like an ordinary browser. It never bulk-sends, automates, or scrapes; you always hit send yourself, and the agent reads only the chat you have open, when you ask. Nothing ever acts as you in the background.",
   },
   {
     q: "Does it read my messages?",
@@ -114,19 +114,19 @@ const HOME_FAQ: { q: string; a: string; aNode?: React.ReactNode }[] = [
   },
   {
     q: "Is Cereal Milk a unified inbox?",
-    a: "Yes, in one window rather than one merged list. Cereal Milk keeps WhatsApp, LinkedIn, and Gmail signed in side by side, one keystroke apart, with an AI agent beside every chat. Sessions stay live, notifications land in one place, and you never juggle browser tabs again.",
+    a: "That is where it is headed. Today Cereal Milk gives WhatsApp its own fast window with an AI agent beside every chat; LinkedIn and Gmail join it next, side by side and one keystroke apart. Sessions stay live, notifications land in one place, and you never juggle browser tabs again.",
   },
   {
     q: "Is Cereal Milk like Superhuman, but for WhatsApp and LinkedIn?",
-    a: "That is a fair shorthand. Cereal Milk brings the keyboard-first, one-window discipline of a fast email client to WhatsApp, LinkedIn, and Gmail together, and adds an AI agent beside every chat, running on your own model account. Superhuman speeds up email; Cereal Milk covers the channels where your deals actually happen.",
+    a: "That is a fair shorthand. Cereal Milk brings the keyboard-first, one-window discipline of a fast email client to WhatsApp, and adds an AI agent beside every chat, running on your own model account. Superhuman speeds up email; Cereal Milk covers the chats where your deals actually happen, with LinkedIn and Gmail next.",
   },
   {
     q: "Does the AI agent work in LinkedIn messages too?",
-    a: "Yes. The agent sits beside every chat in the window, LinkedIn DMs and email included. Ask it to summarise a thread, pull out commitments, or draft a reply; drafts are typed into the composer and you always hit send yourself. It runs on your own Claude, ChatGPT, Gemini, or OpenAI-compatible account.",
+    a: "Not yet. Today the agent works beside your WhatsApp chats: summarise a thread, pull out commitments, draft a reply. LinkedIn and Gmail are the next channels, and the agent extends to them as they ship. Drafts always land in the composer and you always hit send yourself.",
   },
   {
     q: "How does Cereal Milk help me triage a full inbox?",
-    a: "One window shows every channel, so triage happens in one pass instead of three apps. Notifications land in one place, you see who is waiting on you and who went quiet, and the agent summarises any thread and pulls out the commitments before you reply.",
+    a: "Your WhatsApp gets one fast window and one pass of triage. Notifications land in one place, you see who is waiting on you and who went quiet, and the agent summarises any thread and pulls out the commitments before you reply.",
   },
 ];
 
@@ -448,7 +448,7 @@ export default function Page() {
             operatingSystem: "macOS 12.0 or later (Apple Silicon), Windows 10 or later",
             offers: PLANS.map((p) => ({ name: p.name, price: p.monthly })),
             featureList: [
-              "WhatsApp, LinkedIn, and Gmail in one desktop window on Mac and Windows",
+              "WhatsApp in one fast desktop window on Mac and Windows (LinkedIn and Gmail next)",
               "AI agent beside every chat, on your own Claude, ChatGPT, Gemini, or OpenAI-compatible account",
               "MCP support with review-before-write proposals",
               "Command palette, snippets, and one-click Markdown export of any thread",
@@ -499,7 +499,7 @@ export default function Page() {
           <div className="flex flex-col items-center justify-center gap-2.5 px-4 sm:flex-row sm:gap-3.5">
             {[
               { value: "68", label: "funds and firms behind the practice" },
-              { value: "3", label: "channels your agents can finally reach" },
+              { value: "0", label: "unofficial APIs, so your number stays yours" },
               { value: "1", label: "keystroke exports a chat your agent can act on" },
             ].map((s) => (
               <div
@@ -529,9 +529,9 @@ export default function Page() {
               title={<T id="feat.channels.title">Run every channel in one window</T>}
               lede={
                 <T id="feat.channels.lede">
-                  WhatsApp, LinkedIn, and Gmail stay live in one desktop app on
-                  Mac and Windows. Switch on a keystroke; nothing reloads, nothing
-                  drops, and one place pings you when a founder replies.
+                  WhatsApp stays live in one desktop app on Mac and Windows:
+                  nothing reloads, nothing drops, and one place pings you when a
+                  founder replies. LinkedIn and Gmail are next.
                 </T>
               }
               visual={<ChannelsWindow />}
