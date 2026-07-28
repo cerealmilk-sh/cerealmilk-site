@@ -11,7 +11,7 @@ vercel deploy --prod
 ```
 
 Vercel project and scope: see CLAUDE.md (project `cerealmilk-site`, scope
-`clippycommits-projects` as of 2026-07-25; an org-owned rename is pending).
+`clippycommits-projects`, renamed from its pre-rebrand name 2026-07-29).
 A fresh clone needs `vercel link` first, command in CLAUDE.md.
 
 ## Where things live
