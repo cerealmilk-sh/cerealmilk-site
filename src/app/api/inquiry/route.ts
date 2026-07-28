@@ -6,6 +6,7 @@ import {
   underRateLimit,
   verifyInquiryToken,
 } from "@/lib/inquiry-guard";
+import { getPostHogClient } from "@/lib/posthog-server";
 
 // The /contact inquiry endpoint. Deliberately simple and agent-friendly: it
 // accepts a normal HTML <form> POST (so a browsing agent: ChatGPT Agent,
@@ -182,6 +183,34 @@ export async function POST(req: Request) {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ email, name, source: "contact" }),
     }).catch((err) => console.error("[inquiry] newsletter forward failed", err));
+  }
+
+  // Server-side ground truth: fires for every non-dropped submission so the
+  // conversion is counted even when the client-side TrackEvent is blocked by
+  // an ad-blocker or a no-JS form post.
+  const posthog = getPostHogClient();
+  if (posthog) {
+    const event = source === "demo" ? "demo_request_submitted" : "inquiry_submitted";
+    posthog.identify({
+      distinctId: email,
+      properties: {
+        email,
+        ...(name ? { name } : {}),
+        ...(firm ? { company: firm } : {}),
+        lead_source: source,
+      },
+    });
+    posthog.capture({
+      distinctId: email,
+      event,
+      properties: {
+        source,
+        ...(firm ? { firm } : {}),
+        has_name: Boolean(name),
+        subscribed_newsletter: subscribe,
+      },
+    });
+    await posthog.flush();
   }
 
   if (isJson) return NextResponse.json({ ok: true });
