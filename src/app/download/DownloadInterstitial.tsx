@@ -90,8 +90,12 @@ export function DownloadInterstitial() {
                   You&apos;re about to get Cereal Milk
                 </h1>
                 <p className="text-sm text-muted-foreground sm:text-base">
-                  Your {target.label} download starts automatically. If it
-                  doesn&apos;t, you can{" "}
+                  {/* {" "} before "download": the SWC bundled with this Next
+                      version drops the leading space of a JSX text node that
+                      contains an HTML entity (&apos; below), which glued
+                      "macOS" to "download". */}
+                  Your {target.label}{" "}
+                  download starts automatically. If it doesn&apos;t, you can{" "}
                   <a
                     href={href}
                     data-track={clickEvent}
