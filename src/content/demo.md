@@ -10,7 +10,7 @@ Fill in the short form at [/demo](/demo) (name, work email, company, team size),
 - The privacy model: what syncs, what is never read, and how the server-enforced gate works.
 - Rollout and plans. Pricing is published at [/pricing](/pricing), so the call confirms fit, not the number.
 
-Cereal Milk is a Mac app and requires macOS 12 or later (Apple Silicon).
+Cereal Milk is a desktop app for Mac (macOS 12 or later, Apple Silicon) and Windows (Windows 10 or later).
 
 ## Who you talk to
 

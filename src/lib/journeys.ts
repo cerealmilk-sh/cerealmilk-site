@@ -135,7 +135,7 @@ export const JOURNEYS: Record<string, NextStop[]> = {
       href: "/",
       kicker: "Product",
       title: "What Cereal Milk is",
-      blurb: "The communication platform for people who close in chat.",
+      blurb: "The messenger built for AI agents.",
     },
   ],
   "/contact": [

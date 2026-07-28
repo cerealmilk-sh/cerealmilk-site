@@ -151,7 +151,7 @@ export default function Page() {
           <SectionHeading
             as="h1"
             kicker="Careers"
-            title="Build the communication platform for people who close in chat"
+            title="Build the messenger built for AI agents"
             lede="Cereal Milk is hiring two founding roles. We build a premium native Mac app that puts WhatsApp, LinkedIn, and Gmail in one window and syncs the conversations its users choose to Attio or Affinity. Born in venture capital, deployed anywhere deals live in chat. Both roles are remote and report to the founder."
           />
         </div>

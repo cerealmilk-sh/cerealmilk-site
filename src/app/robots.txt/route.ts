@@ -28,13 +28,14 @@ const AI_CRAWLERS = [
   "Perplexity-User",
   // Google / Apple / Microsoft
   "Google-Extended",
+  "GoogleOther",
+  "Gemini-Deep-Research",
   "Applebot",
   "Applebot-Extended",
   "Bingbot",
   // Meta / Amazon / ByteDance
   "meta-externalagent",
   "meta-externalfetcher",
-  "FacebookBot",
   "Amazonbot",
   "NovaAct",
   "Bytespider",
@@ -47,6 +48,7 @@ const AI_CRAWLERS = [
   "AI2Bot",
   "CCBot",
   "Diffbot",
+  "LinerBot",
   "PanguBot",
   "Timpibot",
   "Webzio-Extended",
@@ -62,9 +64,9 @@ export function GET() {
     "User-agent: *",
     "Allow: /",
     "Disallow: /api/",
-    "",
-    // Content-Signal (contentsignals.org): search, AI input (grounding/RAG),
-    // and AI training are all explicitly welcome.
+    // Content-Signal (contentsignals.org) inside the User-agent: * group so
+    // record-based parsers attach it: search, AI input, and AI training all
+    // explicitly welcome.
     "Content-Signal: search=yes, ai-input=yes, ai-train=yes",
     "",
     ...AI_CRAWLERS.flatMap((ua) => [`User-agent: ${ua}`, "Allow: /", ""]),

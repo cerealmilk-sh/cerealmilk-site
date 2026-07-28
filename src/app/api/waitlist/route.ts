@@ -289,7 +289,7 @@ async function sendFieldNotesWelcomeEmail(email: string, name: string) {
     firstName,
     sequence: "welcome",
     blocks: [
-      "I'm Daniel, founder of Cereal Milk. We make the Cereal Milk Mac app: the deal messenger for people who close in chat. It puts WhatsApp, LinkedIn, and Gmail in one native window and files the conversations you choose to Attio or Affinity.",
+      "I'm Daniel, founder of Cereal Milk. We make the Cereal Milk desktop app: the messenger built for AI agents. It puts WhatsApp, LinkedIn, and Gmail in one window, with an AI agent beside every chat that runs on your own model account.",
       "You'll get one email when something new ships: a new release, a new capability, or a field note from the build. No schedule, no filler: if nothing shipped, you hear nothing.",
       `In the meantime: the docs cover how we wire AI and agents into deal workflows (${SITE_URL}/docs), and pricing is published in full at ${SITE_URL}/pricing.`,
       { label: "See Cereal Milk on your own pipeline →", href: `${SITE_URL}/demo` },

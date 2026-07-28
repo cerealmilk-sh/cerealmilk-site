@@ -70,10 +70,11 @@ export function GET() {
             },
             "303": {
               description:
-                "Form (non-JSON) callers are redirected to /contact?sent=1.",
+                "Form (non-JSON) callers are redirected to /contact?sent=1; for source=demo, on to the Cal.com booking page with name and email prefilled.",
             },
             "400": {
-              description: "A valid email and a message are both required.",
+              description:
+                "Invalid request. A valid email is always required; a message is required except for source=demo, where one is synthesized.",
             },
           },
         },
@@ -121,7 +122,7 @@ export function GET() {
       schemas: {
         Inquiry: {
           type: "object",
-          required: ["email", "message"],
+          required: ["email"],
           properties: {
             name: { type: "string", description: "The sender's name." },
             email: {
@@ -143,6 +144,12 @@ export function GET() {
               type: "boolean",
               description:
                 "Opt in to The Cereal Milk Field Notes newsletter. Never auto-subscribed.",
+            },
+            source: {
+              type: "string",
+              enum: ["contact", "demo"],
+              description:
+                "Where the inquiry came from: contact (default) or demo, the /demo booking form. For source=demo a message is optional.",
             },
           },
         },

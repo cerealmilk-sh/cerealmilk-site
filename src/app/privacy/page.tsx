@@ -15,8 +15,11 @@ import { AUTHOR, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy policy",
-  description: `How ${SITE_NAME} handles your data, on this site and in the Cereal Milk app and hosted service: what is collected, where it is stored, who processes it, and how to get it deleted.`,
+  description: `How ${SITE_NAME} handles your data on this site, in the desktop app, and in the hosted service: what is collected, where it is stored, and how to get it deleted.`,
   alternates: { canonical: "/privacy" },
+  openGraph: {
+    images: [{ url: "/og/privacy.png", width: 1200, height: 630 }],
+  },
 };
 
 const POLICY = `

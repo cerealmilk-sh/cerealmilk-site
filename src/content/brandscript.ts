@@ -114,7 +114,7 @@ export const BRANDSCRIPT = {
   oneLiner: {
     headline: "The messenger built for AI agents.",
     subline:
-      "WhatsApp, LinkedIn, and Gmail in one native Mac window. Every conversation filed to a record your agents can act on. Built for the AI era.",
+      "WhatsApp, LinkedIn, and Gmail in one desktop window, on Mac and Windows. An AI agent beside every chat, running on your own model account.",
   },
 } as const;
 
