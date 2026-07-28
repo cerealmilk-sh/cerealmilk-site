@@ -108,7 +108,7 @@ export default function RootLayout({
         <JsonLd data={graph(...rootNodes())} />
         {/* Safari pinned-tab mask (monochrome mark; the tab tints it the brand color).
             The .ico/.svg/apple icons are auto-linked from src/app by file convention. */}
-        <link rel="mask-icon" href="/mask-icon.svg" color="#151110" />
+        <link rel="mask-icon" href="/mask-icon.svg" color="#0a0a0a" />
       </head>
       <body className="h-dvh overflow-hidden bg-bg text-ink antialiased">
         {children}
