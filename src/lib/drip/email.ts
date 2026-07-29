@@ -15,8 +15,11 @@ import type { SequenceId } from "./types";
 export const SITE_ORIGIN = SITE_URL;
 export const DOWNLOAD_URL = `${SITE_ORIGIN}/download`;
 export const PREORDER_URL = `${SITE_ORIGIN}/preorder`;
-// The AI-spend course lives on the docs site (served under /docs via the apex
-// proxy). Every course email links its chapters back here.
+// The AI-spend course lived on the docs site, served under /docs via the apex
+// proxy. Every course email links its chapters back here. NOTE (2026-07-29):
+// the /docs proxy left next.config.ts on 2026-07-28, so these chapter links
+// 404 until a docs site ships again. Dormant in practice: nothing live posts
+// source "ai-spend-course", so the course sequence cannot currently arm.
 export const AI_SPEND_COURSE_URL = `${SITE_ORIGIN}/docs/learn/ai-spend`;
 
 // From a Resend-verified sending domain; replies route to the real inbox. Both

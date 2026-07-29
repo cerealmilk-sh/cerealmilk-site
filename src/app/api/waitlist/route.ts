@@ -319,7 +319,9 @@ async function sendCourseDay1Email(email: string, name: string) {
 
 // The Field Notes welcome, for everyone who subscribed on the site or the
 // docs. Light product framing, no drip; the next email they get is a real
-// issue. Links go to live pages only (/demo, /pricing, /docs).
+// issue. Links go to live pages only (/demo, /pricing). The /docs link was
+// dropped 2026-07-29: the docs proxy left next.config.ts on 2026-07-28, so
+// /docs 404s. Restore the link here when a docs site ships again.
 async function sendFieldNotesWelcomeEmail(email: string, name: string) {
   const firstName = name.split(/\s+/).filter(Boolean)[0] || undefined;
   await sendEmail({
@@ -330,7 +332,7 @@ async function sendFieldNotesWelcomeEmail(email: string, name: string) {
     blocks: [
       "I'm Daniel, founder of Cereal Milk. We make the Cereal Milk desktop app: the messenger built for AI agents. It puts WhatsApp in one fast window, with an AI agent beside every chat that runs on your own model account. LinkedIn and Gmail are next.",
       "You'll get one email when something new ships: a new release, a new capability, or a field note from the build. No schedule, no filler: if nothing shipped, you hear nothing.",
-      `In the meantime: the docs cover how we wire AI and agents into deal workflows (${SITE_URL}/docs), and pricing is published in full at ${SITE_URL}/pricing.`,
+      `In the meantime, pricing is published in full at ${SITE_URL}/pricing.`,
       { label: "See Cereal Milk on your own pipeline →", href: `${SITE_URL}/demo` },
       "And if the conversations that pay you happen somewhere Cereal Milk doesn't reach yet, hit reply and tell me. I read everything.",
     ],
