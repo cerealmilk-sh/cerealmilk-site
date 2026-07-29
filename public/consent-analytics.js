@@ -121,10 +121,10 @@
       capture_exceptions: true, // JS error tracking on the live site (PostHog Error Tracking)
       capture_performance: { web_vitals: true, network_timing: true }, // Core Web Vitals into PostHog
       persistence: "localStorage+cookie",
-      // Cookie scoped to .cerealmilk.sh (not host-only) so the anonymous distinct_id is
-      // shared with the signed-in app at app.cerealmilk.sh. When a visitor later signs
-      // in there, posthog.identify(clerkUserId) merges this pre-signup journey
-      // into their identified person, one profile end to end.
+      // Cookie scoped to .cerealmilk.sh (not host-only) so the anonymous distinct_id
+      // rides along to signin.cerealmilk.sh, where the auth server reads it on
+      // sign-up/sign-in and sends the $identify that merges this pre-signup
+      // journey into the Better Auth user, one profile end to end.
       cross_subdomain_cookie: true,
       disable_session_recording: false,
       session_recording: {
@@ -145,9 +145,9 @@
         // the visitor's anonymous profile when they self-identify in a form
         // (demo request, newsletter, preorder). With person_profiles set to
         // "identified_only" above, THIS call is what upgrades an anonymous
-        // lead into a person profile. When that visitor later signs in at
-        // app.cerealmilk.sh, the Clerk identify() there merges this named lead
-        // journey into one person end to end.
+        // lead into a person profile. When that visitor later signs up or in
+        // at signin.cerealmilk.sh, the auth server's $identify merges this
+        // named lead journey into the Better Auth user, one person end to end.
         window.setPerson = function (props) {
           try {
             ph.setPersonProperties(props || {});

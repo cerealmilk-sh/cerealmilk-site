@@ -122,14 +122,16 @@ the Resend dashboard and the daily `/api/cron/drip` tick result
 
 ---
 
-## Identity stitching (web → app → Mac app, one person)
+## Identity stitching (web → sign-in → Mac app, one person)
 
-The point: a named lead's anonymous browsing, their trial, and their paid seat
-should all be one PostHog person. Three pieces make that happen:
+The point: a named lead's anonymous browsing, their download, their sign-up,
+and their in-app usage should all be one PostHog person, keyed by the **Better
+Auth userId**. Live since 2026-07-29 (auth server + app ≥ 0.2.14):
 
 1. **`cross_subdomain_cookie: true`** in the loader scopes the PostHog cookie
-   to `.cerealmilk.sh` (not host-only), so the anonymous `distinct_id` minted on the
-   marketing site is the same one the signed-in app at `app.cerealmilk.sh` sees.
+   to `.cerealmilk.sh` (not host-only), so the anonymous `distinct_id` minted
+   on the marketing site rides along with every request to
+   `signin.cerealmilk.sh`.
 2. **`window.setPerson(props)`, lead enrichment.** The loader runs PostHog
    with `person_profiles: "identified_only"`, so anonymous visitors have no
    person profile at all. When a visitor self-identifies in a form (demo
@@ -138,13 +140,26 @@ should all be one PostHog person. Three pieces make that happen:
    `posthog.setPersonProperties()`. That call is what upgrades the anonymous
    visitor into a person profile, now carrying their email, while they are
    still a lead. Only fields the visitor actually typed are sent.
-3. **`identify()` on sign-in.** The app's PostHogProvider calls
-   `identify(userId, { email, name })` when someone signs in at
-   `app.cerealmilk.sh`. Because of (1) the pre-signup journey and the signed-in
-   session share a `distinct_id`, so PostHog merges them, and because of (2)
-   the merged person already carries the lead properties. The Mac app
-   identifies with the **same Better Auth userId** (fetched via `/api/app/me`), so
-   web, app, and desktop are one person end to end.
+3. **Server-side `$identify` at sign-up/sign-in.** The auth server
+   (`cerealmilk` repo, `server/lib/analytics.js`) hooks Better Auth's
+   `databaseHooks`: `user.create` fires `sign_up_complete` (with `$set` email
+   and name) and `session.create` fires `sign_in_complete`, both with
+   `distinct_id` = the Better Auth userId. Because of (1) the request carries
+   the visitor's anonymous cookie, the server also sends `$identify` with
+   `$anon_distinct_id` = that cookie's id, and PostHog merges the whole
+   pre-signup journey (pageviews, CTA clicks, `dmg_download_clicked`) into
+   the user. Ad-blocker-proof, works for the web flow and for the desktop
+   flow (the app signs in through the system browser on the same domain).
+4. **The Mac app identifies with the same userId.** After the sign-in
+   handoff, `src/telemetry.js` sends its own `$identify` (merging the app's
+   random per-install id into the user) and keys every later `app_*` event to
+   the Better Auth userId. So web, sign-in, and desktop are one person end to
+   end, and per-user behaviour is queryable in PostHog under one profile.
+
+The server-side `dmg_download_requested` event deliberately stays anonymous
+(random per-hit id, no cookie): it is the ground-truth download count, not a
+person event. Per-person download attribution comes from the merged
+client-side journey (`dmg_download_clicked` + the funnel around it).
 
 ---
 
@@ -179,7 +194,8 @@ inside it. One step per stage, so drop-off is queryable end to end:
    server-side `dmg_download_requested` / `exe_download_requested` (the ground
    truth; includes bookmark/curl/email traffic the button never sees, and the
    interstitial's auto-download, which fires through the same file routes)
-5. `sign_in_complete` (in-app, same PostHog project, after the forced sign-in)
+5. `sign_in_complete` (server-side from the auth server on every sign-in,
+   keyed by Better Auth userId; the app also fires `app_signed_in`)
 6. `trial_started` (server-side, the backend's automatic 7-day signup grant)
 7. `billing_event` / `subscription_active` (the purchase)
 
