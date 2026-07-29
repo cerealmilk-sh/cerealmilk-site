@@ -53,7 +53,8 @@ export const NEWSLETTER_PITCH =
 export const BOOK_PATH = "/demo";
 // The Cal.com booking page the /demo form hands off to (both the JS flow in
 // DemoRequestForm and the no-JS form-post redirect in /api/inquiry).
-export const CAL_BOOKING_URL = "https://cal.com/danieljh/30min";
+export const CAL_BOOKING_URL =
+  "https://cal.com/clippy/30min?overlayCalendar=true";
 export const CONTACT_MAILTO =
   "mailto:daniel@cerealmilk.sh?subject=Cereal%20Milk%20demo&body=Hi%20Dan%2C%20I%27d%20like%20to%20see%20Cereal%20Milk%20on%20our%20pipeline.";
 
