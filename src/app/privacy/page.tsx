@@ -64,8 +64,8 @@ share your data with advertisers.
 
 ### Forms you fill in
 
-When you send a brief via the contact form, book a demo, or join the Field
-Notes newsletter, we use the details you provide (name, email, and your
+When you send a brief via the contact form, book a demo, or join The
+Breakfast Club newsletter, we use the details you provide (name, email, and your
 message) solely to reply to you and, if you opt in, to send the newsletter.
 Email is sent through Resend, our email provider. That is separate from the
 analytics above and is unaffected by the analytics opt-out. You can

@@ -1,6 +1,6 @@
-# Cereal Milk · Marketing broadcasts (Field Notes)
+# Cereal Milk · Marketing broadcasts (The Breakfast Club)
 
-Ready-to-send one-off emails for the Field Notes list, in the same voice and
+Ready-to-send one-off emails for The Breakfast Club list, in the same voice and
 format as the lifecycle emails: plain-text-first, founder-signed, one idea per
 email, reply-forward. Broadcasts are sent through Resend Broadcasts to the
 audience (`RESEND_AUDIENCE_ID`), which needs the full-access API key; until
@@ -13,7 +13,7 @@ Sending checklist, every time:
   `daniel@cerealmilk.sh`.
 - Resend Broadcasts injects unsubscribe handling; keep the footer line and use
   the `{{{RESEND_UNSUBSCRIBE_URL}}}` merge tag in both parts.
-- The Field Notes promise is "one email when something ships, no filler". If
+- The Breakfast Club promise is "one email when something ships, no filler". If
   the broadcast doesn't announce something real, don't send it.
 - No em dashes. Prices come from `src/lib/pricing.ts`; check before sending.
 
@@ -58,7 +58,7 @@ Cheers,
 Daniel
 Founder, Cereal Milk
 
-You're on The Cereal Milk Field Notes at cerealmilk.sh. If you'd rather not
+You're in The Breakfast Club, the Cereal Milk list at cerealmilk.sh. If you'd rather not
 hear from me, unsubscribe: {{{RESEND_UNSUBSCRIBE_URL}}}
 
 ---
@@ -92,7 +92,7 @@ Cheers,
 Daniel
 Founder, Cereal Milk
 
-You're on The Cereal Milk Field Notes at cerealmilk.sh. If you'd rather not
+You're in The Breakfast Club, the Cereal Milk list at cerealmilk.sh. If you'd rather not
 hear from me, unsubscribe: {{{RESEND_UNSUBSCRIBE_URL}}}
 
 ---
@@ -131,5 +131,5 @@ Cheers,
 Daniel
 Founder, Cereal Milk
 
-You're on The Cereal Milk Field Notes at cerealmilk.sh. If you'd rather not
+You're in The Breakfast Club, the Cereal Milk list at cerealmilk.sh. If you'd rather not
 hear from me, unsubscribe: {{{RESEND_UNSUBSCRIBE_URL}}}

@@ -18,7 +18,7 @@ export function GET() {
       title: "Cereal Milk public API",
       version: "2026-07-09",
       description:
-        "The public action endpoints on cerealmilk.sh: submit an inquiry (a demo request, a fund pilot, a question) and join The Cereal Milk Field Notes. Cereal Milk is the messenger built for AI agents: a desktop app for Mac and Windows that puts WhatsApp in one fast window with an AI agent beside every chat, running on your own model account. Download the app at https://cerealmilk.sh/download (creating an account starts a 7-day free trial, no card); a walkthrough with the founder can be booked at https://cerealmilk.sh/demo.",
+        "The public action endpoints on cerealmilk.sh: submit an inquiry (a demo request, a fund pilot, a question) and join The Breakfast Club, the Cereal Milk newsletter. Cereal Milk is the messenger built for AI agents: a desktop app for Mac and Windows that puts WhatsApp in one fast window with an AI agent beside every chat, running on your own model account. Download the app at https://cerealmilk.sh/download (creating an account starts a 7-day free trial, no card); a walkthrough with the founder can be booked at https://cerealmilk.sh/demo.",
       contact: { name: "Cereal Milk", email: "daniel@cerealmilk.sh", url: `${SITE_URL}/contact` },
     },
     servers: [{ url: SITE_URL }],
@@ -82,9 +82,9 @@ export function GET() {
       "/api/waitlist": {
         post: {
           operationId: "joinNewsletter",
-          summary: "Join The Cereal Milk Field Notes",
+          summary: "Join The Breakfast Club",
           description:
-            "Adds an email to the Cereal Milk newsletter. One email when something ships: new releases, new capabilities, and field notes from the build. Accepts JSON or form-encoded bodies.",
+            "Adds an email to The Breakfast Club, the Cereal Milk newsletter. One email when something ships: new releases, new capabilities, and notes from the build. Accepts JSON or form-encoded bodies.",
           requestBody: {
             required: true,
             content: {
@@ -143,7 +143,7 @@ export function GET() {
             subscribe: {
               type: "boolean",
               description:
-                "Opt in to The Cereal Milk Field Notes newsletter. Never auto-subscribed.",
+                "Opt in to The Breakfast Club, the Cereal Milk newsletter. Never auto-subscribed.",
             },
             source: {
               type: "string",

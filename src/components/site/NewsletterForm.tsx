@@ -1,8 +1,8 @@
 "use client";
 
-// The Field Notes signup, the site's primary CTA. Posts to the same
+// The Breakfast Club signup, the site's primary CTA. Posts to the same
 // /api/waitlist endpoint the product page uses; `source` tells the API this
-// is a newsletter placement (Field Notes welcome, no product drip) and gives
+// is a newsletter placement (Breakfast Club welcome, no product drip) and gives
 // per-placement analytics. Every placement passes a distinct source id.
 //
 // Progressive enhancement: the <form> carries a real action/method (the same

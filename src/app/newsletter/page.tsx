@@ -1,4 +1,4 @@
-// /newsletter, the canonical Field Notes landing and the site-wide capture
+// /newsletter, the canonical Breakfast Club landing and the site-wide capture
 // target. The form sits high on the page; the /api/waitlist form-post flow
 // redirects back here with ?subscribed=1 or ?error=email, rendered by the
 // SubscribeNotice client island (in <Suspense>, so the page stays static).

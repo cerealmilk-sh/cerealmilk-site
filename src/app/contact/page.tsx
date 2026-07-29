@@ -178,7 +178,7 @@ export default async function Page({
                   className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--color-accent)]"
                 />
                 <span>
-                  Also send me The Cereal Milk Field Notes, one email when new guides or
+                  Also send me The Breakfast Club, one email when new guides or
                   tools ship. Optional, unsubscribe anytime.
                 </span>
               </label>

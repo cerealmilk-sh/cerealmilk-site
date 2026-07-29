@@ -5,7 +5,7 @@
 // real link. Rollout-safe: with no RESEND_API_KEY it logs and reports false,
 // never throws.
 
-import { SITE_URL } from "@/lib/site";
+import { NEWSLETTER_NAME, SITE_URL } from "@/lib/site";
 import { unsubUrlFor } from "./unsub";
 import type { SequenceId } from "./types";
 
@@ -40,8 +40,10 @@ function esc(s: string) {
 
 // "welcome" is the inline Day-0 note a signup gets; "ack" is a one-time
 // transactional confirmation (an inquiry or demo request), which carries no
-// unsubscribe machinery because there is no list to leave.
-export type EmailKind = SequenceId | "welcome" | "ack";
+// unsubscribe machinery because there is no list to leave. "newsletter" is a
+// Breakfast Club send: same machinery as "welcome", but its footer names the
+// club, which a product lead in nurture never joined.
+export type EmailKind = SequenceId | "welcome" | "newsletter" | "ack";
 
 export interface RenderCtx {
   firstName?: string;
@@ -59,6 +61,8 @@ function greeting(firstName?: string) {
 function footerLine(ctx: RenderCtx) {
   if (ctx.sequence === "ack")
     return "This is a one-time confirmation of a message you sent us at cerealmilk.sh.";
+  if (ctx.sequence === "newsletter")
+    return `You're in ${NEWSLETTER_NAME}, the Cereal Milk list at cerealmilk.sh.`;
   return ctx.sequence === "activation"
     ? "You're getting this because you signed up for Cereal Milk."
     : "You're on the Cereal Milk list at cerealmilk.sh.";

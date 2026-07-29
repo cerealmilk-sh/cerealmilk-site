@@ -1,7 +1,7 @@
 // The page terminus. Two jobs, in order: (1) guide the reader onward with a
 // curated "keep reading" list (from src/lib/journeys.ts, keyed by `path`), so
 // no page is a dead end; (2) the site's primary conversion, a Book-a-demo
-// CTA, with a quieter Field Notes capture beneath it. `source` gives
+// CTA, with a quieter Breakfast Club capture beneath it. `source` gives
 // per-placement attribution on both actions; pass `path` to light up the
 // wayfinding.
 

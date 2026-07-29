@@ -128,7 +128,7 @@ Fired via `track(...)` (React) or a `data-track="…"` attribute (any element):
 | `demo_email_clicked` | the `/demo` email fallback link (`data-track`) |
 | `demo_request_submitted` | `/demo` form completed, visitor sent to Cal.com (props `{src, team_size}`) |
 | `inquiry_submitted` | `/contact` thank-you render (`TrackEvent` on mount) |
-| `newsletter_subscribed` | Field Notes signup succeeds (`source` = placement) |
+| `newsletter_subscribed` | Breakfast Club signup succeeds (`source` = placement) |
 | `waitlist_joined` | **server-side only**, `/api/waitlist` product-waitlist signups |
 | `whatsapp_message_clicked` | the floating founder WhatsApp button (`data-track`) |
 | `referral_click` | share links on `/preorder/thanks` (props `{channel}`: email, whatsapp) |

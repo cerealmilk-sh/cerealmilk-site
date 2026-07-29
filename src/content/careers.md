@@ -39,13 +39,13 @@ Sit with a venture fund and make its Cereal Milk deployment succeed: the pilot s
 
 **Remote (worldwide) · Full-time · Founding role**
 
-Own Cereal Milk's open surface area: the documentation, the Field Notes, the open-source tools, the videos. This is the content engine that brings funds to the product, and you'd run it.
+Own Cereal Milk's open surface area: the documentation, The Breakfast Club, the open-source tools, the videos. This is the content engine that brings funds to the product, and you'd run it.
 
 **What you'll do**
 
 - Turn real deployments into clear, teachable documentation a non-engineer partner at a fund can actually follow.
 - Ship small open-source tools that make the docs runnable.
-- Write the Field Notes and script the videos that put Cereal Milk in front of funds.
+- Write The Breakfast Club and script the videos that put Cereal Milk in front of funds.
 - Instrument what works: you'll live in the analytics and the AI-search audits and tell us what to build next.
 
 **You might be a fit if you**

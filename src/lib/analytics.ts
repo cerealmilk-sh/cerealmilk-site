@@ -15,7 +15,7 @@
 export type AnalyticsEvent =
   | "inquiry_submitted" // /contact brief sent (the primary written lead)
   | "demo_request_submitted" // /demo form completed, visitor sent to Cal.com
-  | "newsletter_subscribed" // Field Notes signup (any placement)
+  | "newsletter_subscribed" // Breakfast Club signup (any placement)
   | "preorder_started" // first focus on the /preorder reservation form
   | "preorder_submitted" // reservation posted, visitor sent to /preorder/thanks
   | "preorder_confirmed"; // /preorder/thanks rendered (the confirmation view)
