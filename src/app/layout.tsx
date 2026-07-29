@@ -29,6 +29,7 @@ import { graph, rootNodes } from "@/lib/jsonld";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { JsonLd } from "@/components/site/JsonLd";
 import { CopyEditor } from "@/components/site/CopyEditor";
+import { VercelAnalytics } from "@/components/site/VercelAnalytics";
 
 // cerealmilk.sh, the product site. This layout carries the site-wide identity:
 // the canonical entity sentence as the default description, the Organization +
@@ -136,6 +137,9 @@ export default function RootLayout({
         <Script src="/consent-analytics.js" strategy="afterInteractive" />
         {/* Core Web Vitals per route, feeds SEO. */}
         <SpeedInsights />
+        {/* Vercel Web Analytics: cookieless traffic, first-party via
+            /_vercel/insights. Honors the same /privacy opt-out as PostHog. */}
+        <VercelAnalytics />
       </body>
     </html>
   );

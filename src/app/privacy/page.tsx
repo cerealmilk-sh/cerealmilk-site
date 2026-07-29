@@ -50,6 +50,10 @@ We use:
   are not linked to your name or email.
 - **Performance metrics (Vercel Speed Insights).** Anonymous, aggregated page-load
   and Core Web Vitals measurements. No cookies, no personal data.
+- **Traffic counts (Vercel Web Analytics).** Anonymous, aggregated page views and
+  referrers, with country-level location. Cookieless: no identifier is stored on
+  your device and visits are not linked across sites or sessions. Turning
+  analytics off on this page turns this off too.
 
 ### Cookies
 
@@ -144,7 +148,7 @@ email is **Resend**.
 The third parties that process data on our behalf:
 
 - **Fly.io**, sign-in service hosting (US region)
-- **Vercel**, website hosting
+- **Vercel**, website hosting, performance metrics and anonymous traffic counts
 - **Upstash**, newsletter/drip state storage (Redis)
 - **PostHog**, website analytics (US region, opt-out on this page)
 - **Resend**, email delivery
