@@ -1,4 +1,4 @@
-Contact Cereal Milk about the Mac app, team pilots, or press. Send a short brief and Daniel replies from daniel@cerealmilk.sh within one business day.
+Contact Cereal Milk about the Mac app, team pilots, or press. Send a short brief and Daniel replies from clippy@cerealmilk.sh within one business day.
 
 ## What happens after you send this
 
@@ -15,6 +15,6 @@ One or two lines on each of these is enough for a useful first reply:
 ## Other ways to reach Cereal Milk
 
 - [Book a demo](/demo) if you would rather talk than write.
-- Email [daniel@cerealmilk.sh](mailto:daniel@cerealmilk.sh) directly if you prefer your own inbox.
+- Email [clippy@cerealmilk.sh](mailto:clippy@cerealmilk.sh) directly if you prefer your own inbox.
 - [Download Cereal Milk for Mac](/download): create your account in the app and the full product is free for 7 days, no card.
 - Subscribe to [The Cereal Milk Field Notes](/newsletter) if you are not ready to talk yet.

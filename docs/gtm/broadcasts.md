@@ -8,9 +8,9 @@ that lands these are copy, not code.
 
 Sending checklist, every time:
 
-- From: `Daniel Hull at Cereal Milk <daniel@updates.cerealmilk.sh>` (or the
+- From: `Clippy @ Cereal Milk <clippy@updates.cerealmilk.sh>` (or the
   verified apex until the updates. subdomain is verified). Reply-to
-  `daniel@cerealmilk.sh`.
+  `clippy@cerealmilk.sh`.
 - Resend Broadcasts injects unsubscribe handling; keep the footer line and use
   the `{{{RESEND_UNSUBSCRIBE_URL}}}` merge tag in both parts.
 - The Field Notes promise is "one email when something ships, no filler". If

@@ -24,7 +24,7 @@ export const SITE_TAGLINE = "The messenger built for AI agents";
 export const AUTHOR = {
   name: "Daniel Hull",
   role: "Founder, Cereal Milk",
-  email: "daniel@cerealmilk.sh",
+  email: "clippy@cerealmilk.sh",
   id: `${SITE_URL}/about#dan`,
   // Optimised square headshot (public/daniel-hull.jpg, 1200x1200). Single source
   // of truth for Dan's photo: the /about portrait, the Person JSON-LD `image`,
@@ -56,7 +56,7 @@ export const BOOK_PATH = "/demo";
 export const CAL_BOOKING_URL =
   "https://cal.com/clippy/30min?overlayCalendar=true";
 export const CONTACT_MAILTO =
-  "mailto:daniel@cerealmilk.sh?subject=Cereal%20Milk%20demo&body=Hi%20Dan%2C%20I%27d%20like%20to%20see%20Cereal%20Milk%20on%20our%20pipeline.";
+  "mailto:clippy@cerealmilk.sh?subject=Cereal%20Milk%20demo&body=Hi%20Dan%2C%20I%27d%20like%20to%20see%20Cereal%20Milk%20on%20our%20pipeline.";
 
 // Daniel's WhatsApp, for the floating "Message Daniel" button on every page
 // (src/components/site/WhatsAppButton.tsx). Digits only, no "+" or spaces

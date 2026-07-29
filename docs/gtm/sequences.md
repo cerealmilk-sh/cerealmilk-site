@@ -1,7 +1,7 @@
 # Cereal Milk · Full lifecycle email copy
 
 Every email below is sent in the founder's voice, from
-`Daniel Hull at Cereal Milk` with reply-to `daniel@cerealmilk.sh`. The renderer
+`Clippy @ Cereal Milk` with reply-to `clippy@cerealmilk.sh`. The renderer
 automatically prepends the greeting (`Hi {first name},` or `Hey,`) and appends
 the sign-off (`Cheers, / Daniel / Founder, Cereal Milk`) and a one-click
 unsubscribe footer (omitted on the transactional acks). Those are omitted here

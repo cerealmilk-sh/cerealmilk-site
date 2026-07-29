@@ -231,7 +231,7 @@ export function contactPageNode(): Node {
     url: `${SITE_URL}/contact`,
     name: "Contact Cereal Milk",
     description:
-      "Contact Cereal Milk about the Mac app, team pilots, or press. Daniel replies from daniel@cerealmilk.sh within one business day.",
+      "Contact Cereal Milk about the Mac app, team pilots, or press. Daniel replies from clippy@cerealmilk.sh within one business day.",
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": ORG_ID },
     mainEntity: { "@id": ORG_ID },

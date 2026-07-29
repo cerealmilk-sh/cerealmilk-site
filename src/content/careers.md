@@ -57,6 +57,6 @@ Own Cereal Milk's open surface area: the documentation, the Field Notes, the ope
 
 ## How to apply
 
-Email [daniel@cerealmilk.sh](mailto:daniel@cerealmilk.sh) with a short note on which role fits you and one thing you've shipped that you're proud of: a repo, a piece of writing, an automation, anything real. No cover letter needed. Daniel, the founder, reads every one and replies personally.
+Email [clippy@cerealmilk.sh](mailto:clippy@cerealmilk.sh) with a short note on which role fits you and one thing you've shipped that you're proud of: a repo, a piece of writing, an automation, anything real. No cover letter needed. Daniel, the founder, reads every one and replies personally.
 
 Not sure you're a fit but want to talk anyway? [Send a note](/contact), we'd still like to hear from you.

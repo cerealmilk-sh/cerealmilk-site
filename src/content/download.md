@@ -17,7 +17,7 @@ Cereal Milk is a direct download (not the Mac App Store). It's signed and notari
 
 - **Bring your own model.** The agent runs on the model account you already pay for: Claude, ChatGPT, Gemini, or any OpenAI-compatible endpoint. Nothing extra to subscribe to.
 - **Ask about the open chat.** The conversation you are looking at is attached to every message automatically: summarise it, see where it stands, pull out the commitments. Drafts are typed into the composer for you to read and send yourself; the agent never sends anything.
-- **Rolling it out to a team?** [Book a demo](/demo) and we will set the whole team up together. Prefer email? Write to daniel@cerealmilk.sh and Dan replies within a business day.
+- **Rolling it out to a team?** [Book a demo](/demo) and we will set the whole team up together. Prefer email? Write to clippy@cerealmilk.sh and Dan replies within a business day.
 
 ## Updates
 

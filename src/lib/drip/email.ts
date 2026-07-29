@@ -22,8 +22,8 @@ export const SECURITY_URL = `${SITE_ORIGIN}/security`;
 // used). Until the updates. subdomain is verified in Resend, production
 // overrides this to the verified apex via WAITLIST_EMAIL_FROM.
 const FROM =
-  process.env.WAITLIST_EMAIL_FROM || "Daniel Hull at Cereal Milk <daniel@updates.cerealmilk.sh>";
-const REPLY_TO = process.env.WAITLIST_EMAIL_REPLY_TO || "daniel@cerealmilk.sh";
+  process.env.WAITLIST_EMAIL_FROM || "Daniel Hull at Cereal Milk <clippy@updates.cerealmilk.sh>";
+const REPLY_TO = process.env.WAITLIST_EMAIL_REPLY_TO || "clippy@cerealmilk.sh";
 
 // A block is either a paragraph (string) or a CTA link line. Steps describe
 // their body as blocks; the renderer turns the same blocks into both text and

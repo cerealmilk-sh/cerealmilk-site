@@ -21,5 +21,5 @@ The habits from running against live fund data are in the app's bones:
 ## Talk to us
 
 - [Book a demo](/demo) with Dan.
-- [Send a brief](/contact), replies come from daniel@cerealmilk.sh within one business day.
+- [Send a brief](/contact), replies come from clippy@cerealmilk.sh within one business day.
 - We are [hiring](/careers).

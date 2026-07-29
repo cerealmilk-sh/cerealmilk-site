@@ -80,7 +80,7 @@ usage, so a fast starter gets fewer emails.
 ## 3. The sequences
 
 Plain-text-first, founder voice (signed "Daniel, Founder, Cereal Milk"), from
-`Daniel Hull at Cereal Milk`, reply-to `daniel@cerealmilk.sh`, each with a
+`Clippy @ Cereal Milk`, reply-to `clippy@cerealmilk.sh`, each with a
 one-click unsubscribe footer (RFC 8058 headers included; transactional acks
 carry neither). The renderer turns one set of "blocks" into both a
 `text/plain` part and a minimal mirrored HTML part.
@@ -180,9 +180,10 @@ and body `{ "type": "...", "email": "you@co.com", "name"?: "Jane" }`:
 Everything is rollout-safe: each unset var disables its slice and nothing else.
 
 1. **Sender** (LIVE): `RESEND_API_KEY` (send-only is enough for lifecycle) and
-   `WAITLIST_EMAIL_FROM="Daniel Hull at Cereal Milk <daniel@cerealmilk.sh>"`.
-   When `updates.cerealmilk.sh` is verified in Resend, flip FROM to
-   `daniel@updates.cerealmilk.sh` (env change only).
+   `WAITLIST_EMAIL_FROM="Clippy @ Cereal Milk <clippy@cerealmilk.sh>"` (the
+   value live in prod; the display name was shortened after Gmail truncated
+   the longer one). When `updates.cerealmilk.sh` is verified in Resend, flip
+   FROM to `clippy@updates.cerealmilk.sh` (env change only).
 2. **Store**: create an Upstash Redis DB and set `UPSTASH_REDIS_REST_URL` +
    `UPSTASH_REDIS_REST_TOKEN` (the Vercel Marketplace `KV_REST_API_*` names
    work too). Until then the drip is inert and welcomes still send.
