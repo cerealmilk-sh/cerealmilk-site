@@ -13,9 +13,15 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
+// Weights are 400/500/600 only. IBM Plex Mono is not a variable font, so every
+// declared weight is a separate file plus its own @font-face block in the
+// render-blocking stylesheet. 300 was declared but never rendered: the only
+// font-light on the site is the hero subline, which is sans (Inter, a variable
+// font that covers 300 natively). Re-add a weight here only when something
+// actually sets it on a mono element.
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"],
   variable: "--font-ibm-plex-mono",
 });
 
