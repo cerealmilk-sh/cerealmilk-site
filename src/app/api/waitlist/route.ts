@@ -3,6 +3,7 @@ import { sendEmail } from "@/lib/drip/email";
 import { markPreordered, startCourse, startWaitlist } from "@/lib/drip/engine";
 import { COURSE_DAY1 } from "@/lib/drip/sequences";
 import { NEWSLETTER_NAME, SITE_URL } from "@/lib/site";
+import { getPostHogClient } from "@/lib/posthog-server";
 
 // Every email-capture form on cerealmilk.sh posts here, the studio newsletter forms
 // (header/footer/Terminus, source: "footer" | "home" | "work/…"), the docs
@@ -201,6 +202,44 @@ export async function POST(req: Request) {
     await startWaitlist(email, name).catch((err) =>
       console.error("[waitlist] nurture enrol failed", err)
     );
+  }
+
+  // Server-side ground truth: fires for every non-dropped signup so the
+  // conversion is counted even when client-side tracking is blocked or the
+  // submission came from a no-JS form post.
+  const posthog = getPostHogClient();
+  if (posthog) {
+    let phEvent: string;
+    if (isPreorder) {
+      phEvent = "preorder_submitted";
+    } else if (isProduct) {
+      phEvent = "waitlist_joined";
+    } else {
+      phEvent = "newsletter_subscribed";
+    }
+    // Analytics must never fail the signup: a dead PostHog endpoint logs
+    // and the lead still goes through.
+    try {
+      posthog.identify({
+        distinctId: email,
+        properties: {
+          email,
+          ...(name ? { name } : {}),
+          lead_source: source,
+        },
+      });
+      posthog.capture({
+        distinctId: email,
+        event: phEvent,
+        properties: {
+          source,
+          ...(isPreorder && plan ? { plan } : {}),
+        },
+      });
+      await posthog.flush();
+    } catch (err) {
+      console.error("[waitlist] posthog capture failed", err);
+    }
   }
 
   if (isFormPost) {
