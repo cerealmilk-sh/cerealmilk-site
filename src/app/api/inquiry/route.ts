@@ -6,7 +6,7 @@ import {
   underRateLimit,
   verifyInquiryToken,
 } from "@/lib/inquiry-guard";
-import { getPostHogClient } from "@/lib/posthog-server";
+import { getPostHogClient, posthogCookieDistinctId } from "@/lib/posthog-server";
 
 // The /contact inquiry endpoint. Deliberately simple and agent-friendly: it
 // accepts a normal HTML <form> POST (so a browsing agent: ChatGPT Agent,
@@ -213,6 +213,16 @@ export async function POST(req: Request) {
           subscribed_newsletter: subscribe,
         },
       });
+      const anonId = posthogCookieDistinctId(req);
+      if (anonId && anonId !== email) {
+        // The same merge posthog-js performs on identify(): the browser's
+        // anonymous journey (pageviews, CTA clicks) folds into the lead.
+        posthog.capture({
+          distinctId: email,
+          event: "$identify",
+          properties: { $anon_distinct_id: anonId },
+        });
+      }
       await posthog.flush();
     } catch (err) {
       console.error("[inquiry] posthog capture failed", err);

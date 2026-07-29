@@ -105,7 +105,11 @@ design), plus **server-side lead capture** (live 2026-07-29, PR #3): the
 `preorder_submitted` through `posthog-node` (`src/lib/posthog-server.ts`),
 identified by the submitter's email. These fire for every accepted
 submission, so lead conversions are counted even when the client-side event
-is blocked by an ad-blocker or the form was posted without JS. Four of those
+is blocked by an ad-blocker or the form was posted without JS. When the post
+carries the visitor's PostHog cookie the route also sends `$identify` with
+`$anon_distinct_id`, so the lead and their anonymous browsing history become
+one person; with no cookie (PostHog fully blocked) the lead stays keyed by
+email alone. Four of those
 names also fire client-side (table above): funnels stay accurate because
 PostHog counts unique persons per step, but raw trend counts include both
 paths, so break down or filter by `$lib` (`web` = client, `posthog-node` =
