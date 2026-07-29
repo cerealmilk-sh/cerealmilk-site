@@ -11,7 +11,7 @@
 // captures the reservation and 303-redirects preorder posts to
 // /preorder/thanks (see src/app/api/waitlist/route.ts).
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { PLANS } from "@/lib/pricing";
 import { setPerson, track } from "@/lib/analytics";
 
@@ -19,20 +19,27 @@ const FIELD =
   "mt-2 h-10 w-full rounded-md border border-edge-2 bg-transparent px-3 text-[14px] text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-ink-faint";
 const LABEL = "block text-[14px] font-medium text-ink";
 
+const DEFAULT_PLAN = PLANS.find((p) => p.popular)?.id ?? PLANS[0].id;
+
+// Inbound ?plan= (the /pricing cards link here per plan) preselects the
+// matching radio. Read as an external snapshot: null during SSR and the
+// hydration pass, so the page stays static.
+const subscribeNever = () => () => {};
+function readLinkedPlan() {
+  const p = new URLSearchParams(window.location.search).get("plan");
+  return p && PLANS.some((x) => x.id === p) ? (p as typeof DEFAULT_PLAN) : null;
+}
+
 export function PreorderForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [plan, setPlan] = useState(PLANS.find((p) => p.popular)?.id ?? PLANS[0].id);
+  // The link's preselection seeds the radio; a choice the visitor makes wins.
+  const linkedPlan = useSyncExternalStore(subscribeNever, readLinkedPlan, () => null);
+  const [chosenPlan, setChosenPlan] = useState<typeof DEFAULT_PLAN | null>(null);
+  const plan = chosenPlan ?? linkedPlan ?? DEFAULT_PLAN;
   const [honeypot, setHoneypot] = useState("");
   const [sending, setSending] = useState(false);
   const [started, setStarted] = useState(false);
-
-  // Inbound ?plan= (the /pricing cards link here per plan) preselects the
-  // matching radio. Client-only, after hydration, so the page stays static.
-  useEffect(() => {
-    const p = new URLSearchParams(window.location.search).get("plan");
-    if (p && PLANS.some((x) => x.id === p)) setPlan(p as typeof plan);
-  }, []);
 
   function markStarted() {
     if (started) return;
@@ -155,7 +162,7 @@ export function PreorderForm() {
                 value={p.id}
                 checked={plan === p.id}
                 onFocus={markStarted}
-                onChange={() => setPlan(p.id)}
+                onChange={() => setChosenPlan(p.id)}
                 className="mt-1"
               />
               <span>

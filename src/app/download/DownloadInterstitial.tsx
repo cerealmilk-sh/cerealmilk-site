@@ -9,7 +9,7 @@
 // Platform detection lives in src/lib/platform.ts.
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import { Logo } from "@/components/site/Logo";
 import { WorkspaceDemo } from "@/components/landing/WorkspaceDemo";
 import { Platform, PLATFORM_DOWNLOAD, usePlatform } from "@/lib/platform";
@@ -36,18 +36,20 @@ function DownloadIcon() {
   );
 }
 
+// Attribution passthrough: /download?src=hero forwards src to the file
+// route so the server-side download log keeps the placement. Read from
+// window.location as an external snapshot (avoids a useSearchParams
+// Suspense edge; the server and hydration passes see the default).
+const subscribeNever = () => () => {};
+function readSrc() {
+  const q = new URLSearchParams(window.location.search).get("src");
+  return q && /^[\w-]{1,64}$/.test(q) ? q : "download";
+}
+
 export function DownloadInterstitial() {
   const platform = usePlatform();
   const firedRef = useRef(false);
-  // Attribution passthrough: /download?src=hero forwards src to the file
-  // route so the server-side download log keeps the placement. Read from
-  // window.location after mount (avoids a useSearchParams Suspense edge).
-  const [src, setSrc] = useState("download");
-
-  useEffect(() => {
-    const q = new URLSearchParams(window.location.search).get("src");
-    if (q && /^[\w-]{1,64}$/.test(q)) setSrc(q);
-  }, []);
+  const src = useSyncExternalStore(subscribeNever, readSrc, () => "download");
 
   const target =
     platform === Platform.Mac || platform === Platform.Windows
