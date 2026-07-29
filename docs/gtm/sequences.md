@@ -320,7 +320,7 @@ put an agent next to them live.
 If you haven't picked a slot yet (or the calendar didn't load), here's the
 direct link:
 
-**[Book your 30 minutes →](https://cal.com/danieljh/30min)**
+**[Book your 30 minutes →](https://cal.com/clippy/30min?overlayCalendar=true)**
 
 Anything you want the demo to cover, just reply to this email; it comes
 straight to my real inbox.
