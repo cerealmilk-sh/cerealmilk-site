@@ -123,9 +123,9 @@ export default function RootLayout({
             production build and off-localhost, so nothing ships to visitors.
             See CopyEditor.tsx + EditableCopy.tsx + api/dev/*. */}
         <CopyEditor />
-        {/* Consent-gated analytics (PostHog + banner), shared same-origin across
-            the landing, /docs, and /sentry. Inert until a key is set in the
-            file. See public/consent-analytics.js + ANALYTICS.md. */}
+        {/* Analytics (PostHog, on by default with a /privacy opt-out), shared
+            same-origin across all apex surfaces. Inert until a key is set.
+            See public/consent-analytics.js + ANALYTICS.md. */}
         {process.env.NEXT_PUBLIC_POSTHOG_KEY ? (
           <script
             dangerouslySetInnerHTML={{

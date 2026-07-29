@@ -18,7 +18,7 @@ export function GET() {
       title: "Cereal Milk public API",
       version: "2026-07-09",
       description:
-        "The public action endpoints on cerealmilk.sh: submit an inquiry (a demo request, a fund pilot, a question) and join The Cereal Milk Field Notes. Cereal Milk is a native Mac app for venture investors that puts WhatsApp, LinkedIn, and Gmail in one window and syncs the conversations you choose to Attio or Affinity. Download the app at https://cerealmilk.sh/download (creating an account starts a 7-day free trial, no card); a walkthrough with the founder can be booked at https://cerealmilk.sh/demo.",
+        "The public action endpoints on cerealmilk.sh: submit an inquiry (a demo request, a fund pilot, a question) and join The Cereal Milk Field Notes. Cereal Milk is the messenger built for AI agents: a desktop app for Mac and Windows that puts WhatsApp in one fast window with an AI agent beside every chat, running on your own model account. Download the app at https://cerealmilk.sh/download (creating an account starts a 7-day free trial, no card); a walkthrough with the founder can be booked at https://cerealmilk.sh/demo.",
       contact: { name: "Cereal Milk", email: "daniel@cerealmilk.sh", url: `${SITE_URL}/contact` },
     },
     servers: [{ url: SITE_URL }],
@@ -70,10 +70,11 @@ export function GET() {
             },
             "303": {
               description:
-                "Form (non-JSON) callers are redirected to /contact?sent=1.",
+                "Form (non-JSON) callers are redirected to /contact?sent=1; for source=demo, on to the Cal.com booking page with name and email prefilled.",
             },
             "400": {
-              description: "A valid email and a message are both required.",
+              description:
+                "Invalid request. A valid email is always required; a message is required except for source=demo, where one is synthesized.",
             },
           },
         },
@@ -121,7 +122,7 @@ export function GET() {
       schemas: {
         Inquiry: {
           type: "object",
-          required: ["email", "message"],
+          required: ["email"],
           properties: {
             name: { type: "string", description: "The sender's name." },
             email: {
@@ -143,6 +144,12 @@ export function GET() {
               type: "boolean",
               description:
                 "Opt in to The Cereal Milk Field Notes newsletter. Never auto-subscribed.",
+            },
+            source: {
+              type: "string",
+              enum: ["contact", "demo"],
+              description:
+                "Where the inquiry came from: contact (default) or demo, the /demo booking form. For source=demo a message is optional.",
             },
           },
         },

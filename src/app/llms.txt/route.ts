@@ -38,7 +38,7 @@ export function GET() {
     "",
     `> ${CANONICAL_SENTENCE}`,
     "",
-    `${PERSON_SENTENCE} The app is a native Mac client that wraps the official WhatsApp Web, LinkedIn, and Gmail (no unofficial APIs, so the user's number and accounts stay safe), docks the Attio or Affinity record beside every chat, and syncs only the conversations the user chooses, behind a server-enforced privacy gate. It grew out of an engineering studio that shipped 62 projects for 68 venture funds and firms.`,
+    `${PERSON_SENTENCE} The app is a desktop client for Mac and Windows that wraps the official WhatsApp Web (no unofficial APIs, so the user's number stays safe) and puts an AI agent beside every chat; LinkedIn and Gmail are the next channels. The agent runs on the user's own model account (Claude, ChatGPT, Gemini, or any OpenAI-compatible endpoint), drafts into the composer, and never sends anything itself. Cereal Milk grew out of an engineering studio that shipped 62 projects for 68 venture funds and firms.`,
     "",
     `Get Cereal Milk: download the app for Mac or Windows from ${SITE_URL}/download (the page detects the visitor's platform and starts the right installer) and create an account in the app; that starts a 7-day free trial of the full product, no card. When the trial ends, pick Starter or Business inside the app. Business bills per seat and its checkout creates your team; a walkthrough with the founder can be booked at ${SITE_URL}/demo. Pricing: ${PRICE_LINE} Written inquiries: ${SITE_URL}/contact or ${AUTHOR.email} (replies within one business day). Newsletter (${NEWSLETTER_NAME}): ${SITE_URL}/newsletter.`,
     "",

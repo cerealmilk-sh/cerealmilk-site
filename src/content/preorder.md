@@ -1,4 +1,4 @@
-Pre-order Cereal Milk by reserving a founding seat: no card and no charge at reservation. Cereal Milk rolls out in waves, and every install is set up personally with the founder. Reserving takes two minutes, locks your pricing at today's published rate, and puts you in the founding cohort for first access when your wave opens. There are 100 founding seats.
+Pre-order Cereal Milk by reserving a founding seat: no card and no charge at reservation. Cereal Milk is live for Mac and Windows, and every founding install is set up personally with the founder. Reserving takes two minutes, locks your pricing at today's published rate, and puts you in the founding cohort. There are 100 founding seats.
 
 ## How reserving works
 
@@ -12,19 +12,19 @@ Founding pricing locks at today's published rate: Starter $30/user/mo or $300/us
 
 ## The agreement
 
-- Private by default: every thread starts closed, and the gate is enforced on the server.
+- Private by default: the agent reads only the chat you have open, on your own model account.
 - No charge at reservation, and you can cancel anytime before your seat is set up.
 - Your data stays yours: on your Mac, exportable in one click, never resold.
 
 ## Reserve
 
-Reserve at [cerealmilk.sh/preorder](/preorder): name, work email, and the plan to lock. Your reservation goes straight to the founder; you get a confirmation email now and a personal email when your wave opens. Not ready? [Book a demo](/demo) and see it on your own pipeline first.
+Reserve at [cerealmilk.sh/preorder](/preorder): name, work email, and the plan to lock. Your reservation goes straight to the founder; you get a confirmation email now and a personal email to schedule your setup. Not ready? [Book a demo](/demo) and see it on your own pipeline first.
 
 ## Before you reserve
 
 ### What exactly am I reserving?
 
-A founding seat: first access when your wave opens, your install set up personally on a call with the founder, and your pricing locked at today's published rate for as long as you keep the seat.
+A founding seat: your install set up personally on a call with the founder, and your pricing locked at today's published rate for as long as you keep the seat.
 
 ### Will I be charged today?
 
@@ -32,7 +32,7 @@ No. There is no card field on the page. You pay nothing until your seat is set u
 
 ### Is Cereal Milk live yet?
 
-Yes, in waves. The app ships today to funds being onboarded personally. Pre-ordering puts you in the founding cohort so your wave opens sooner, not on a someday list.
+Yes. Cereal Milk is live for Mac and Windows: anyone can download it and start a 7-day free trial today. A founding seat adds locked founding pricing and personal setup with the founder on top of that.
 
 ### What if I change my mind?
 
@@ -40,7 +40,7 @@ Reply to any email from us and the reservation is gone. No charge was made, so t
 
 ### I'm not on a Mac.
 
-Cereal Milk is Mac-first today and a Windows client is in development. Reserve with your work email and [tell us you're on Windows](/contact), and your seat waits for the Windows build.
+You are covered. Cereal Milk ships for Mac and Windows, and the [download page](/download) starts the right installer for your platform automatically.
 
 ### What happens to my data?
 

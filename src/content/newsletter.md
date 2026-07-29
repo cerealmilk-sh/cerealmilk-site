@@ -6,7 +6,7 @@ Each issue is one of three things:
 
 - A release note that matters: a new channel, a new CRM capability, a meaningful fix.
 - A field note from building the product: what worked, what broke, what changed.
-- Occasionally, something we published in [the open docs](/docs).
+- Occasionally, something we published in [the open repositories](https://github.com/cerealmilk-sh).
 
 ## If you prefer to read on the site
 

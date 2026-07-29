@@ -38,7 +38,7 @@ const PREORDER_FAQ: { q: string; a: string; aNode?: React.ReactNode }[] = [
   },
   {
     q: "Is Cereal Milk live yet?",
-    a: "Yes, in waves. The app ships today to funds being onboarded personally. Pre-ordering puts you in the founding cohort so your wave opens sooner, not on a someday list.",
+    a: "Yes. Cereal Milk is live for Mac and Windows: anyone can download it and start a 7-day free trial today. A founding seat adds locked founding pricing and personal setup with the founder on top of that.",
   },
   {
     q: "What if I change my mind?",
@@ -46,30 +46,29 @@ const PREORDER_FAQ: { q: string; a: string; aNode?: React.ReactNode }[] = [
   },
   {
     q: "I'm not on a Mac.",
-    a: "Cereal Milk is Mac-first today and a Windows client is in development. Reserve with your work email and note Windows on the setup call, and your seat waits for the Windows build.",
+    a: "You are covered. Cereal Milk ships for Mac and Windows, and the download page starts the right installer for your platform automatically.",
     aNode: (
       <>
-        Cereal Milk is Mac-first today and a Windows client is in development. Reserve
-        with your work email and{" "}
-        <Link href="/contact" className={QUIET_LINK}>
-          tell us you&apos;re on Windows
-        </Link>
-        , and your seat waits for the Windows build.
+        You are covered. Cereal Milk ships for Mac and Windows, and the{" "}
+        <Link href="/download" className={QUIET_LINK}>
+          download page
+        </Link>{" "}
+        starts the right installer for your platform automatically.
       </>
     ),
   },
   {
     q: "What happens to my data?",
-    a: "The same rules as every Cereal Milk install: every thread starts private, the sharing gate is enforced on the server, and your Repository lives on your Mac and exports in one click. Reserving stores only your name, email, and chosen plan.",
+    a: "The same rules as every Cereal Milk install: every thread stays private, the agent reads only the chat you have open and runs on your own model account, and any thread exports in one click. Reserving stores only your name, email, and chosen plan.",
     aNode: (
       <>
-        The same rules as every Cereal Milk install: every thread starts private, the
-        sharing gate is{" "}
+        The same rules as every Cereal Milk install: every thread stays private,
+        the agent reads only the chat you have open and runs on{" "}
         <Link href="/security" className={QUIET_LINK}>
-          enforced on the server
+          your own model account
         </Link>
-        , and your Repository lives on your Mac and exports in one click.
-        Reserving stores only your name, email, and chosen plan.
+        , and any thread exports in one click. Reserving stores only your name,
+        email, and chosen plan.
       </>
     ),
   },

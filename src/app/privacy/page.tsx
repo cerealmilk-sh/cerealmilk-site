@@ -1,21 +1,22 @@
 // /privacy, the privacy policy for BOTH surfaces: this website (analytics,
 // cookies, forms) and the Cereal Milk product (the Mac app plus the hosted service it
 // syncs to). Plain, honest, and structured; written as disclosure, not as
-// reviewed-by-counsel boilerplate. Linked from the consent banner
-// (public/consent-analytics.js), the footer, and the /terms "Your data"
-// section. Kept as a self-contained page (not registry-driven) so it stays
+// reviewed-by-counsel boilerplate. Linked from the footer and the /terms
+// "Your data" section; analytics itself loads by default via
+// public/consent-analytics.js, with the opt-out toggle living on this page.
+// Kept as a self-contained page (not registry-driven) so it stays
 // independent of the marketing surface.
 
 import type { Metadata } from "next";
 import { SiteShell } from "@/components/site/SiteShell";
 import { SectionHeading } from "@/components/site/vercel-kit";
 import { Prose } from "@/components/site/Prose";
-import { ConsentReset } from "@/components/site/ConsentReset";
+import { AnalyticsOptOut } from "@/components/site/AnalyticsOptOut";
 import { AUTHOR, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy policy",
-  description: `How ${SITE_NAME} handles your data, on this site and in the Cereal Milk app and hosted service: what is collected, where it is stored, who processes it, and how to get it deleted.`,
+  description: `How ${SITE_NAME} handles your data on this site, in the desktop app, and in the hosted service: what is collected, where it is stored, and how to get it deleted.`,
   alternates: { canonical: "/privacy" },
 };
 
@@ -32,11 +33,11 @@ to understand how it is used and to make it better.
 
 ### What we collect, and when
 
-Nothing analytics-related loads until you choose **Accept** on the consent
-banner. If you **Decline** (or ignore the banner), no analytics scripts run, no
-cookies are set, and no data is sent.
+Analytics runs by default so we can see how the site is used. If you would
+rather not be counted, use the opt-out button at the bottom of this page: the
+choice is remembered in your browser and no further data is sent.
 
-If you accept, we use:
+We use:
 
 - **Product analytics (PostHog, US region).** Page views, referrers, the pages
   you visit, approximate location (country/region, derived from your IP. We do
@@ -52,7 +53,7 @@ If you accept, we use:
 
 ### Cookies
 
-With your consent, PostHog sets first-party cookies (and uses local storage) to
+PostHog sets first-party cookies (and uses local storage) to
 recognise a returning browser across a session, so a visit is not double-counted.
 These are analytics cookies only. There is no advertising, and we do not sell or
 share your data with advertisers.
@@ -63,7 +64,7 @@ When you send a brief via the contact form, book a demo, or join the Field
 Notes newsletter, we use the details you provide (name, email, and your
 message) solely to reply to you and, if you opt in, to send the newsletter.
 Email is sent through Resend, our email provider. That is separate from the
-analytics above and happens whether or not you accept analytics. You can
+analytics above and is unaffected by the analytics opt-out. You can
 unsubscribe from any email at any time.
 
 ### Data we route first-party
@@ -75,32 +76,41 @@ does not change what is collected or who processes it.
 
 ## The Cereal Milk product
 
-The ${SITE_NAME} Mac app puts your WhatsApp, LinkedIn, and Gmail in one window
-and syncs the conversations you choose to your CRM (Attio or Affinity) through
-the ${SITE_NAME} hosted service. Because the product's whole job is handling
-your conversations, here is exactly what that means for your data.
+The ${SITE_NAME} desktop app puts your WhatsApp in one fast window with an
+AI agent beside every chat, running on the model account you connect. Because
+the product's whole job is handling your conversations, here is exactly what
+that means for your data.
 
 ### What the app reads, and when
 
 The app reads only the single conversation you are actively viewing, and only
-when you act: when you sync it, or when you have turned on auto-sync for that
-specific conversation. It does not crawl your accounts or read chats in the
-background. Nothing leaves your Mac until you choose to sync it; the privacy
-gate that decides what may sync is enforced on our server, not just in the app.
+when you act: when you ask the agent, export a thread, or use a snippet. It
+does not crawl your accounts or read chats in the background. Conversation
+content stays on your machine. When you ask the agent about a chat, that
+content goes to the model provider you connected (Claude, ChatGPT, Gemini, or
+your own OpenAI-compatible endpoint) under your agreement with that provider,
+and nowhere else: ${SITE_NAME} runs no model and stores no conversations.
+
+### Anonymous app telemetry
+
+From app version 0.2.6, the desktop app sends anonymous telemetry so crashes
+and bugs get found and fixed: crash signals, scrubbed error summaries (first
+line only, file paths redacted), and usage counts (launches, sign-ins, how
+often the agent is used, update events), each tagged with a random
+per-install id, the app version, and the platform. Never message content,
+never contact data, and never linked to your account. Processor: PostHog (US
+region). The off switch is in the app: Settings, General, "Share anonymous
+usage data".
 
 ### What the hosted service stores
 
-When you choose to sync a conversation, the hosted service stores:
+The hosted service stores your account only:
 
-- **Message content** of the conversations you synced, including attachments
-  and media in those conversations.
-- **Contact details** of the people in those conversations (names, phone
-  numbers, email addresses, profile links), so messages can be matched to the
-  right CRM record.
-- **Your CRM credentials**, the per-workspace API keys you connect for Attio
-  or Affinity, stored to write synced notes into your CRM on your behalf.
-- **Account and workspace data**: your sign-in identity, workspace membership,
-  and subscription state.
+- **Account data**: your sign-in identity (email, name, and Google account
+  linkage if you use it) and session state.
+
+Conversation content, contact details, and credentials for your channels are
+never sent to or stored by ${SITE_NAME}'s servers.
 
 The app never sees or stores your WhatsApp, LinkedIn, or Google passwords: you
 sign in to each service directly, inside its own web interface.
@@ -125,24 +135,23 @@ email is **Resend**.
 
 The third parties that process data on our behalf:
 
-- **Fly.io**, application hosting (Frankfurt, EU)
-- **Supabase**, database hosting (Postgres)
+- **Fly.io**, sign-in service hosting (US region)
 - **Vercel**, website hosting
-- **PostHog**, analytics and telemetry (US region)
+- **Upstash**, newsletter/drip state storage (Redis)
+- **PostHog**, website analytics (US region, opt-out on this page)
 - **Resend**, email delivery
 
-**Attio and Affinity** are a different case: they are your CRM, connected by
-you. Conversations you sync are written into your own CRM workspace and are
-governed there by your agreement with that CRM, not by this policy.
+**Your model provider** is a different case: the AI agent runs on the Claude,
+ChatGPT, Gemini, or OpenAI-compatible account you connect, so what you ask it
+to read is governed by your agreement with that provider, not by this policy.
 
 ### Retention and deletion
 
-Synced content stays in the hosted service for as long as your workspace is
-active, so your CRM history keeps working. Delete requests are honoured in
-full: email **${AUTHOR.email}** and we delete your workspace's stored
-conversations, contacts, credentials, and account data. Note that notes already
-written into your Attio or Affinity workspace live in your CRM and are yours to
-keep or delete there.
+Your conversations are not stored by ${SITE_NAME}, so there is nothing of
+them to retain. Account data is kept while your account exists. Delete
+requests are honoured in full: email **${AUTHOR.email}** and we delete your
+sign-in identity and session data. Anything you exported lives on your own
+machine and is yours.
 
 ### Your rights (GDPR)
 
@@ -154,8 +163,7 @@ UK, you can ask us:
 - to **correct** it,
 - to **delete** it,
 - to **restrict or object** to how it is used, and
-- to **withdraw consent** at any time where consent is the basis (site
-  analytics; withdraw with the button below).
+- to **opt out of site analytics** at any time (the button below).
 
 Email **${AUTHOR.email}**; requests go straight to the founder. If you believe
 we have not handled your data properly, you also have the right to complain to
@@ -163,8 +171,7 @@ your local data-protection authority.
 
 ## Changes
 
-If this policy changes materially, we will update this page and, for site
-analytics, the consent banner will ask again.
+If this policy changes materially, we will update this page.
 `;
 
 export default function Page() {
@@ -181,7 +188,7 @@ export default function Page() {
           <Prose source={POLICY} />
         </div>
         <div className="mt-10 border-t border-edge pt-8">
-          <ConsentReset />
+          <AnalyticsOptOut />
         </div>
       </article>
     </SiteShell>

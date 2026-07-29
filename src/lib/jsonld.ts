@@ -39,7 +39,7 @@ export function rootNodes(): Node[] {
       email: AUTHOR.email,
       founder: { "@id": PERSON_ID },
       // Entity corroboration. Add LinkedIn/Crunchbase/X URLs here as those
-      // profiles go live, see docs/geo/off-site-kit.md.
+      // profiles go live.
       sameAs: [GITHUB_ORG_URL, YOUTUBE_URL],
       areaServed: "Worldwide",
       // How to reach Cereal Milk, stated in the graph so a model can describe the path,
@@ -52,15 +52,19 @@ export function rootNodes(): Node[] {
         availableLanguage: "en",
       },
       knowsAbout: [
-        "venture capital",
-        "B2B sales",
-        "professional services",
+        "AI agents",
         "WhatsApp",
         "LinkedIn",
-        "Attio",
-        "Affinity",
-        "CRM",
+        "Gmail",
+        "Model Context Protocol",
+        "Claude",
+        "ChatGPT",
+        "Gemini",
         "macOS",
+        "Windows",
+        "B2B sales",
+        "venture capital",
+        "professional services",
       ],
     },
     {
@@ -193,7 +197,10 @@ export function breadcrumbNode(
   return {
     "@type": "BreadcrumbList",
     "@id": `${SITE_URL}${pagePath}#breadcrumbs`,
-    itemListElement: crumbs.map((c, i) => ({
+    itemListElement: (pagePath === "/"
+      ? crumbs
+      : [{ name: "Home", path: "/" }, ...crumbs]
+    ).map((c, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: c.name,
@@ -260,6 +267,8 @@ export function jobPostingNode(opts: {
   description: string;
   datePosted: string;
   employmentType?: string;
+  /** ISO date the posting expires; Google Jobs wants one. */
+  validThrough?: string;
 }): Node {
   return {
     "@type": "JobPosting",
@@ -270,6 +279,7 @@ export function jobPostingNode(opts: {
     employmentType: opts.employmentType ?? "FULL_TIME",
     hiringOrganization: { "@id": ORG_ID },
     jobLocationType: "TELECOMMUTE",
+    validThrough: opts.validThrough ?? "2026-12-31",
     directApply: false,
     url: `${SITE_URL}/careers#${opts.id}`,
     isPartOf: { "@id": WEBSITE_ID },
@@ -292,17 +302,28 @@ export function softwareAppNode(opts: {
   featureList?: string[];
 }): Node {
   const offers = opts.offers?.length
-    ? opts.offers.map((o) => ({
-        "@type": "Offer",
-        name: o.name,
-        price: String(o.price),
-        priceCurrency: o.priceCurrency ?? "USD",
-        // Per user per month; UnitPriceSpecification is heavier than search
-        // engines need, so the cadence is stated in the description.
-        description: `${o.name} plan, per user per month, billed monthly or yearly.`,
-        url: `${SITE_URL}/pricing`,
-        availability: "https://schema.org/OnlineOnly",
-      }))
+    ? [
+        {
+          "@type": "Offer",
+          name: "Free trial",
+          price: "0",
+          priceCurrency: "USD",
+          description: "7-day full-access free trial, no card required.",
+          url: `${SITE_URL}/download`,
+          availability: "https://schema.org/OnlineOnly",
+        },
+        ...opts.offers.map((o) => ({
+          "@type": "Offer",
+          name: o.name,
+          price: String(o.price),
+          priceCurrency: o.priceCurrency ?? "USD",
+          // Per user per month; UnitPriceSpecification is heavier than search
+          // engines need, so the cadence is stated in the description.
+          description: `${o.name} plan, per user per month, billed monthly or yearly.`,
+          url: `${SITE_URL}/pricing`,
+          availability: "https://schema.org/OnlineOnly",
+        })),
+      ]
     : opts.price
       ? {
           "@type": "Offer",
@@ -318,6 +339,8 @@ export function softwareAppNode(opts: {
     description: opts.description,
     url: `${SITE_URL}${opts.path}`,
     applicationCategory: opts.category,
+    downloadUrl: `${SITE_URL}/download`,
+    installUrl: `${SITE_URL}/download`,
     ...(opts.operatingSystem ? { operatingSystem: opts.operatingSystem } : {}),
     ...(opts.featureList ? { featureList: opts.featureList } : {}),
     ...(offers ? { offers } : {}),

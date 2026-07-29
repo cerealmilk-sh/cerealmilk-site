@@ -18,7 +18,7 @@ export function GET() {
     "",
     `> ${CANONICAL_SENTENCE}`,
     "",
-    `Index: ${SITE_URL}/llms.txt · Docs corpus: ${SITE_URL}/docs/llms-full.txt`,
+    `Index: ${SITE_URL}/llms.txt`,
     "",
     "---",
     "",

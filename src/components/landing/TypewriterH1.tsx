@@ -54,17 +54,16 @@ export function TypewriterH1({ text }: { text: string }) {
     <h1
       className="relative text-4xl font-medium leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
       style={{ fontFamily: "var(--font-ibm-plex-mono), monospace" }}
-      aria-label={text}
     >
       <span className="invisible" aria-hidden>
         <Segmented text={text} upTo={text.length} />
       </span>
-      <span aria-hidden className="absolute inset-0">
+      <span className="absolute inset-0">
         <span>
           <Segmented text={text} upTo={count} />
           {/* Zero net width (-mr cancels ml + w) so the caret can never wrap
               the line when the headline exactly fills the container. */}
-          <span className="cm-caret ml-0.5 inline-block h-[1em] w-3 -mr-3.5 translate-y-0.5 bg-current" />
+          <span aria-hidden className="cm-caret ml-0.5 inline-block h-[1em] w-3 -mr-3.5 translate-y-0.5 bg-current" />
         </span>
       </span>
     </h1>

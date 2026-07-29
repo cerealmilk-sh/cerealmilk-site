@@ -148,7 +148,7 @@ export default async function Page({
                   type="text"
                   autoComplete="organization"
                   className={FIELD}
-                  placeholder="Company name, and Attio or Affinity (solo is fine too)"
+                  placeholder="Company name and team size (solo is fine too)"
                 />
               </div>
 

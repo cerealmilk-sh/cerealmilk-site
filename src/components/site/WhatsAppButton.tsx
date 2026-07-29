@@ -1,6 +1,6 @@
 // Floating "chat with the founder" button, rendered on every page via the root
 // layout (wrapped in a .studio context so the palette resolves consistently). A
-// plain link to wa.me (no JS), so it works server-rendered; the consent-gated
+// plain link to wa.me (no JS), so it works server-rendered; the shared
 // analytics loader auto-captures the click via [data-track]. Hidden
 // automatically when CONTACT_WHATSAPP is unset. Shows Daniel's headshot with a
 // small WhatsApp badge so it reads as "talk to this person"; avatar-only on

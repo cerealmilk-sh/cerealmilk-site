@@ -37,7 +37,7 @@ const NEXT_STEPS = [
 ];
 
 const SHARE_TEXT =
-  "I just reserved a founding seat for Cereal Milk, the Mac app that puts WhatsApp, LinkedIn, and Gmail in one window and files the threads that matter to your CRM. No card to reserve:";
+  "I just reserved a founding seat for Cereal Milk, the desktop app that puts WhatsApp in one fast window with an AI agent beside every chat. No card to reserve:";
 const SHARE_URL = `${SITE_URL}/preorder?src=referral`;
 
 export default function Page() {

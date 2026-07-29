@@ -1,4 +1,4 @@
-Download Cereal Milk for [Mac](/download/CerealMilk.dmg) or [Windows](/download/CerealMilk.exe). The download page detects your platform and starts the right installer automatically. WhatsApp in one fast window with an AI agent beside every chat, running on the model account you already have (Claude, ChatGPT, Gemini, or any OpenAI-compatible endpoint). Free 7-day full-access trial, no card. Mac: macOS 12 or later, Apple Silicon. Windows: Windows 10 or later.
+Download Cereal Milk for [Mac](/download/CerealMilk.dmg) or [Windows](/download/CerealMilk.exe). The download page detects your platform and starts the right installer automatically. It is the alternative to keeping WhatsApp Web open in a browser tab all day. WhatsApp in one fast window with an AI agent beside every chat, running on the model account you already have (Claude, ChatGPT, Gemini, or any OpenAI-compatible endpoint). Free 7-day full-access trial, no card. Mac: macOS 12 or later, Apple Silicon. Windows: Windows 10 or later.
 
 ## Install on Mac (3 steps)
 

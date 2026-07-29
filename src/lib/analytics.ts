@@ -1,7 +1,7 @@
 // Typed wrapper over the global window.track() that public/consent-analytics.js
-// installs once PostHog loads (which only happens after the visitor consents).
-// Safe to call anywhere: it no-ops on the server and before consent, and never
-// throws into product code.
+// installs once PostHog loads (on every visit, unless the visitor has opted
+// out on /privacy). Safe to call anywhere: it no-ops on the server and before
+// PostHog is up, and never throws into product code.
 
 // The typed events fired via track(). The [data-track] attributes auto-captured
 // by consent-analytics.js form the rest of the taxonomy: demo_cta_clicked
@@ -29,7 +29,7 @@ export function track(
 }
 
 // Lead identification: forwards to window.setPerson(), which the loader wires
-// to posthog.setPersonProperties() after consent. Call it at the moment a
+// to posthog.setPersonProperties() once PostHog is up. Call it at the moment a
 // visitor self-identifies (types an email into a form) with only the fields
 // they actually gave us: { email, name?, lead_source }. Because the loader
 // runs PostHog with person_profiles: "identified_only", this call is what
@@ -45,6 +45,10 @@ declare global {
   interface Window {
     track?: (event: string, props?: Record<string, unknown>) => void;
     setPerson?: (props: Record<string, unknown>) => void;
-    __xConsent?: { reset: () => void; grant: () => void };
+    __cmAnalytics?: {
+      optOut: () => void;
+      optIn: () => void;
+      isOptedOut: () => boolean;
+    };
   }
 }

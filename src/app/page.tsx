@@ -48,30 +48,31 @@ const FOOTER_HREF = `${DOWNLOAD_PATH}?src=home-footer`;
 const HOME_FAQ: { q: string; a: string; aNode?: React.ReactNode }[] = [
   {
     q: "Is this a native Mac app?",
-    a: "Yes. Cereal Milk is a real, keyboard-first Mac app, not just another browser tab. It runs the official WhatsApp Web, LinkedIn, and Gmail in one native window with a command palette, CRM sync, snippets, and relationship insights, and turns the chats you choose into structured records your agents can act on.",
+    a: "Yes, and a Windows app too. Cereal Milk is a real, keyboard-first desktop app, not just another browser tab. It runs the official WhatsApp Web in one fast window with a command palette, snippets, and an AI agent beside every chat. LinkedIn and Gmail are next.",
   },
   {
     q: "What do AI agents get out of it?",
-    a: "Reach. Your deals happen in chat, and chat is the one surface your agents cannot touch. Cereal Milk files the conversations you choose to Attio or Affinity and exports any thread as clean Markdown in one click, so the relationships in your phone become structured records your agents can read and act on: draft the follow-up, update the deal, or brief you before the call, all from the same records you sync by hand.",
+    a: "Reach. Your deals happen in chat, and chat is the one surface your agents cannot touch. Cereal Milk puts an AI agent beside every conversation and exports any thread as clean Markdown in one click, so the agent can summarise the thread, pull out the commitments, draft the follow-up, or brief you before the call. It runs on your own Claude, ChatGPT, Gemini, or OpenAI-compatible account.",
   },
   {
     q: "Does Cereal Milk work with MCP and my other AI tools?",
-    a: "Yes. Cereal Milk has a built-in agent that works your threads and your CRM, and it speaks MCP, the Model Context Protocol. Add the servers your stack already exposes, Attio, Affinity, your notes or calendar, with one command, and the agent can use their tools while it works alongside you. It stays hands-off by design: its writes are staged as proposals you review, every tool call is logged, and nothing files to your CRM until you approve it.",
+    a: "Yes. Cereal Milk has a built-in agent that works alongside you, and it speaks MCP, the Model Context Protocol. Add the servers your stack already exposes, your CRM, your notes, your calendar, with one command, and the agent can use their tools while it works. It stays hands-off by design: its writes are staged as proposals you review, every tool call is logged, and nothing changes anywhere until you approve it.",
   },
   {
     q: "How does Cereal Milk connect to my accounts?",
-    a: "Cereal Milk runs the official WhatsApp Web and LinkedIn inside Apple's WebKit, the same engine as Safari, so to those services it looks like an ordinary browser. It never bulk-sends, automates, or scrapes; you always hit send yourself, and it reads only the chat you have open, when you ask. Nothing ever acts as you in the background.",
+    a: "Cereal Milk runs the official WhatsApp Web inside a hardened desktop browser shell, so to WhatsApp it looks like an ordinary browser. It never bulk-sends, automates, or scrapes; you always hit send yourself, and the agent reads only the chat you have open, when you ask. Nothing ever acts as you in the background.",
   },
   {
     q: "Does it read my messages?",
-    a: "Only the chat you have open, and only when you ask. It never enumerates your chats or scrolls history in the background. Everything stays private until you share it, and the sharing gate is enforced server-side.",
+    a: "Only the chat you have open, and only when you ask. It never enumerates your chats or scrolls history in the background. The agent runs on the model account you connect, so what it reads goes to your own provider and nowhere else. Everything else stays on your machine.",
     aNode: (
       <>
         Only the chat you have open, and only when you ask. It never enumerates
-        your chats or scrolls history in the background. Everything stays
-        private until you share it, and the sharing gate is{" "}
+        your chats or scrolls history in the background. The agent runs on the
+        model account you connect, so what it reads goes to your own provider
+        and nowhere else. More on the{" "}
         <Link href="/security" className={QUIET_LINK}>
-          enforced server-side
+          security page
         </Link>
         .
       </>
@@ -110,6 +111,22 @@ const HOME_FAQ: { q: string; a: string; aNode?: React.ReactNode }[] = [
   {
     q: "Is there a Windows version?",
     a: "Yes. Cereal Milk ships for Mac and Windows. The download page detects your platform and starts the right installer automatically, so the same button works for everyone.",
+  },
+  {
+    q: "Is Cereal Milk a unified inbox?",
+    a: "That is where it is headed. Today Cereal Milk gives WhatsApp its own fast window with an AI agent beside every chat; LinkedIn and Gmail join it next, side by side and one keystroke apart. Sessions stay live, notifications land in one place, and you never juggle browser tabs again.",
+  },
+  {
+    q: "Is Cereal Milk like Superhuman, but for WhatsApp and LinkedIn?",
+    a: "That is a fair shorthand. Cereal Milk brings the keyboard-first, one-window discipline of a fast email client to WhatsApp, and adds an AI agent beside every chat, running on your own model account. Superhuman speeds up email; Cereal Milk covers the chats where your deals actually happen, with LinkedIn and Gmail next.",
+  },
+  {
+    q: "Does the AI agent work in LinkedIn messages too?",
+    a: "Not yet. Today the agent works beside your WhatsApp chats: summarise a thread, pull out commitments, draft a reply. LinkedIn and Gmail are the next channels, and the agent extends to them as they ship. Drafts always land in the composer and you always hit send yourself.",
+  },
+  {
+    q: "How does Cereal Milk help me triage a full inbox?",
+    a: "Your WhatsApp gets one fast window and one pass of triage. Notifications land in one place, you see who is waiting on you and who went quiet, and the agent summarises any thread and pulls out the commitments before you reply.",
   },
 ];
 
@@ -238,18 +255,18 @@ function KeystrokeWindow() {
       <div className="p-4 font-mono text-xs leading-relaxed">
         <div className="text-white/80">
           <span className="text-white/30">❯</span>{" "}
-          <span className="text-brand-light">⌘⇧S</span> sync this chat
+          <span className="text-brand-light">⌘⇧S</span> export this chat
         </div>
         <div className="mt-3 space-y-1.5 text-white/60">
           <div className="flex items-center gap-2">
             <span className="select-none font-mono text-brand-light">⠋</span>
-            <span>Filing the open conversation…</span>
+            <span>Exporting the open conversation…</span>
           </div>
-          <div className="ml-5 text-white/40">→ match record: riva-series-a (Attio)</div>
-          <div className="ml-5 text-white/40">→ privacy gate: 1 message withheld</div>
-          <div className="ml-5 text-white/40">→ note created on the record</div>
+          <div className="ml-5 text-white/40">→ agent context: riva-series-a</div>
+          <div className="ml-5 text-white/40">→ privacy: 1 message withheld</div>
+          <div className="ml-5 text-white/40">→ clean Markdown, ready for your agent</div>
         </div>
-        <div className="mt-3 text-emerald-300/90">✓ filed · nothing else moved</div>
+        <div className="mt-3 text-emerald-300/90">✓ exported · nothing else moved</div>
       </div>
       <div className="border-t border-white/5 p-2">
         <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-[#2a2a2a]/60 px-3 py-1.5">
@@ -271,12 +288,12 @@ function KeystrokeWindow() {
   );
 }
 
-/** 3 · Your CRM: the file-to menu (Attio or Affinity, chosen per workspace). */
+/** 3 · Your stack: the agent's MCP tool menu beside the export options. */
 function CrmWindow() {
   const targets = [
-    { name: "Attio", hint: "⌘O", note: "inline record edits" },
-    { name: "Affinity", hint: "", note: "same gate, same sync" },
-    { name: "Markdown export", hint: "", note: "any thread, one click" },
+    { name: "Markdown export", hint: "⌘O", note: "any thread, one click" },
+    { name: "Your CRM (MCP)", hint: "", note: "proposals you review" },
+    { name: "Notes and calendar (MCP)", hint: "", note: "same review flow" },
     { name: "Contact card", hint: "", note: "" },
   ];
   return (
@@ -410,7 +427,7 @@ function GateWindow() {
           </div>
         ))}
         <div className="px-2 py-2 text-white/30">
-          server-enforced: a private message is refused before a note exists
+          on your model account: the agent reads only the chat you have open
         </div>
       </div>
     </div>
@@ -428,13 +445,13 @@ export default function Page() {
             name: "Cereal Milk",
             description: entry.description,
             category: "BusinessApplication",
-            operatingSystem: "macOS, Windows",
+            operatingSystem: "macOS 12.0 or later (Apple Silicon), Windows 10 or later",
             offers: PLANS.map((p) => ({ name: p.name, price: p.monthly })),
             featureList: [
-              "WhatsApp, LinkedIn, and Gmail in one native Mac window",
-              "CRM inspector for Attio and Affinity beside every chat",
-              "Selective conversation sync with a server-enforced privacy gate",
-              "Command palette, snippets, and relationship insights",
+              "WhatsApp in one fast desktop window on Mac and Windows (LinkedIn and Gmail next)",
+              "AI agent beside every chat, on your own Claude, ChatGPT, Gemini, or OpenAI-compatible account",
+              "MCP support with review-before-write proposals",
+              "Command palette, snippets, and one-click Markdown export of any thread",
             ],
           }),
           faqNode("/", HOME_FAQ)
@@ -482,8 +499,8 @@ export default function Page() {
           <div className="flex flex-col items-center justify-center gap-2.5 px-4 sm:flex-row sm:gap-3.5">
             {[
               { value: "68", label: "funds and firms behind the practice" },
-              { value: "3", label: "channels your agents can finally reach" },
-              { value: "1", label: "keystroke files a chat your agents can act on" },
+              { value: "0", label: "unofficial APIs, so your number stays yours" },
+              { value: "1", label: "keystroke exports a chat your agent can act on" },
             ].map((s) => (
               <div
                 key={s.label}
@@ -512,9 +529,9 @@ export default function Page() {
               title={<T id="feat.channels.title">Run every channel in one window</T>}
               lede={
                 <T id="feat.channels.lede">
-                  WhatsApp, LinkedIn, and Gmail stay live in one native Mac app.
-                  Switch on a keystroke; nothing reloads, nothing drops, and one
-                  place pings you when a founder replies.
+                  WhatsApp stays live in one desktop app on Mac and Windows:
+                  nothing reloads, nothing drops, and one place pings you when a
+                  founder replies. LinkedIn and Gmail are next.
                 </T>
               }
               visual={<ChannelsWindow />}
@@ -522,12 +539,12 @@ export default function Page() {
             <FeatureRow
               id="feature-file"
               kicker="One Keystroke"
-              title={<T id="feat.file.title">File a chat in one keystroke</T>}
+              title={<T id="feat.file.title">Export a chat in one keystroke</T>}
               lede={
                 <T id="feat.file.lede">
-                  Hit the shortcut and the open conversation lands on its record.
-                  Nothing is bulk-scraped and nothing files by accident, so the
-                  pipeline in your CRM finally matches the one in your phone.
+                  Hit the shortcut and the open conversation is exported as clean
+                  Markdown, ready for your agent, your notes, or your CRM. Nothing
+                  is bulk-scraped and nothing leaves the app by accident.
                 </T>
               }
               visual={<KeystrokeWindow />}
@@ -536,13 +553,13 @@ export default function Page() {
             <FeatureRow
               id="feature-crm"
               kicker="Your Stack"
-              title={<T id="feat.crm.title">Works with the CRM you already run</T>}
+              title={<T id="feat.crm.title">Works with the stack you already run</T>}
               lede={
                 <T id="feat.crm.lede">
-                  Attio or Affinity, chosen per workspace, with the same selective
-                  sync against either. No new system of record, no migration: once a
-                  chat is on the record, your agents reach it through the CRM your
-                  team already runs on.
+                  The agent speaks MCP, the Model Context Protocol. Add the
+                  servers your tools already expose, your CRM, your notes, your
+                  calendar, and the agent can use them beside your chats. No new
+                  system of record, no migration.
                 </T>
               }
               visual={<CrmWindow />}
@@ -551,14 +568,14 @@ export default function Page() {
               id="feature-privacy"
               kicker="Privacy Gate"
               title={
-                <T id="feat.privacy.title">Private by default, enforced on the server</T>
+                <T id="feat.privacy.title">Private by default</T>
               }
               lede={
                 <T id="feat.privacy.lede">
-                  Every thread starts closed, new and imported alike. You share a
-                  whole thread or the one line that matters; a private message is
-                  refused server-side before a note is ever created, so private
-                  content cannot sync by accident.
+                  Every thread stays yours. The agent reads only the chat you
+                  have open, when you ask, and it runs on the model account you
+                  connect, so your conversations never flow through servers of
+                  ours. You always hit send yourself.
                 </T>
               }
               visual={<GateWindow />}

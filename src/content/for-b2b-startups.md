@@ -1,4 +1,4 @@
-Cereal Milk for B2B startups: founder-led sales finally has a system of record. Your best pipeline is in WhatsApp threads and LinkedIn DMs, not your CRM. Cereal Milk puts every channel a prospect moves through in one keyboard-first Mac window, files the lines that matter to Attio or Affinity, and keeps every promise you make on the record.
+Cereal Milk for B2B startups: founder-led sales, finally with leverage. Your best pipeline is in WhatsApp threads, not your CRM. Cereal Milk puts founder-led sales in one keyboard-first desktop window, with an AI agent that drafts the follow-up and keeps every promise you make from slipping. LinkedIn and Gmail are next.
 
 ## Your pipeline is forty scrolls up
 
@@ -21,4 +21,4 @@ Two plans, per user: Starter $30 a month or $300 a year, Business $40 a month or
 ## Get it
 
 - [Book a demo](/demo): 30 minutes on a screen-share with the founder, on a live pipeline.
-- [Download Cereal Milk for Mac](/download): create your account in the app and the full product is free for 7 days, no card. macOS 12 or later (Apple Silicon).
+- [Download Cereal Milk for Mac or Windows](/download): create your account in the app and the full product is free for 7 days, no card. macOS 12 or later (Apple Silicon), or Windows 10 or later.

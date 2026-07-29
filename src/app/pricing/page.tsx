@@ -46,7 +46,7 @@ const PRICING_FAQ: { q: string; a: string; aNode?: React.ReactNode }[] = [
   },
   {
     q: "What is the difference between Starter and Business?",
-    a: "Starter is for one person. Business is for a team: everyone shares one CRM of record, team privacy controls are enforced server-side, and billing is per seat, so inviting a teammate just adds a seat. Checkout creates your team; guided setup and CRM mapping on a call are included.",
+    a: "Starter is for one person. Business is for a team: billing is per seat, so inviting a teammate just adds a seat, and checkout creates your team. Guided setup on a call is included with Business.",
   },
   {
     q: "Monthly or yearly?",

@@ -13,13 +13,13 @@ export const SITE_NAME = "Cereal Milk";
 // llms.txt blockquote, default meta description, Organization JSON-LD.
 // Never paraphrase it (see PRODUCT-SITE-SPEC.md).
 export const CANONICAL_SENTENCE =
-  "Cereal Milk is a premium native Mac app that puts WhatsApp, LinkedIn, and Gmail in one window and syncs the conversations you choose to Attio or Affinity.";
+  "Cereal Milk is the messenger built for AI agents: a desktop app for Mac and Windows that puts WhatsApp in one fast window with an AI agent beside every chat, running on your own Claude, ChatGPT, Gemini, or OpenAI-compatible account.";
 
 // The canonical person sentence: /about lede, ProfilePage, byline bios.
 export const PERSON_SENTENCE =
-  "Daniel Hull is the founder of Cereal Milk, the company behind the Cereal Milk Mac app for people who close in chat.";
+  "Daniel Hull is the founder of Cereal Milk, the company behind the Cereal Milk desktop app that puts WhatsApp in one fast window with an AI agent beside every chat.";
 
-export const SITE_TAGLINE = "The communication platform for people who close in chat";
+export const SITE_TAGLINE = "The messenger built for AI agents";
 
 export const AUTHOR = {
   name: "Daniel Hull",
@@ -60,7 +60,7 @@ export const CONTACT_MAILTO =
 // Daniel's WhatsApp, for the floating "Message Daniel" button on every page
 // (src/components/site/WhatsAppButton.tsx). Digits only, no "+" or spaces
 // (wa.me requirement). Leave CONTACT_WHATSAPP empty to hide the button.
-export const CONTACT_WHATSAPP = "447960957063";
+export const CONTACT_WHATSAPP = "14484425660";
 export const CONTACT_WHATSAPP_URL = CONTACT_WHATSAPP
   ? `https://wa.me/${CONTACT_WHATSAPP}?text=${encodeURIComponent("Hi Daniel, ")}`
   : "";

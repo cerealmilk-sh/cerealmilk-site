@@ -4,8 +4,8 @@ Two plans, per user: Starter $30 a month or $300 a year, Business $40 a month or
 
 One dealmaker: investors, founders, independents.
 
-- WhatsApp, LinkedIn, and Gmail in one Mac window
-- Unlimited sync to Attio or Affinity
+- WhatsApp in one fast desktop window (LinkedIn and Gmail next)
+- One-click Markdown export and MCP tools
 - Relationship insights and AI drafting
 - Private by default: you choose what syncs
 

@@ -1,7 +1,7 @@
 // The evergreen DMG path, as a route handler instead of a next.config.ts
 // redirect: the redirect could never log anything, which is why "has anyone
 // downloaded the app?" used to be unanswerable first-party (GitHub only keeps
-// an aggregate counter; the PostHog click event is consent-gated and
+// an aggregate counter; the PostHog click event is client-side and
 // ad-blockable; bookmarks/emails/curl never touched the tracked button).
 //
 // Every GET is logged SERVER-side (see src/lib/download-track.ts for the

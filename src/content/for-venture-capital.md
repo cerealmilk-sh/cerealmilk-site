@@ -1,4 +1,4 @@
-Cereal Milk for venture capital: the deal messenger. Sourcing happens in DMs, diligence happens in group chats, LPs live on WhatsApp. Cereal Milk puts every channel a deal moves through in one keyboard-first Mac window, with the Attio or Affinity record live beside every chat, and every deal on the record.
+Cereal Milk for venture capital: the deal messenger. Sourcing happens in DMs. Diligence happens in group chats. LPs live on WhatsApp. Cereal Milk puts your deal-flow WhatsApp in one keyboard-first desktop window, with an AI agent beside every chat that briefs you, drafts the reply, and keeps every deal moving. LinkedIn and Gmail are next.
 
 ## Your best deals have no record
 
@@ -21,4 +21,4 @@ Two plans, per user: Starter $30 a month or $300 a year, Business $40 a month or
 ## Get it
 
 - [Book a demo](/demo): 30 minutes on a screen-share with the founder, on a live pipeline.
-- [Download Cereal Milk for Mac](/download): create your account in the app and the full product is free for 7 days, no card. macOS 12 or later (Apple Silicon).
+- [Download Cereal Milk for Mac or Windows](/download): create your account in the app and the full product is free for 7 days, no card. macOS 12 or later (Apple Silicon), or Windows 10 or later.
