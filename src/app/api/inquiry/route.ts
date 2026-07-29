@@ -29,6 +29,20 @@ import { getPostHogClient, posthogCookieDistinctId } from "@/lib/posthog-server"
 // signed form token on contact form posts, content heuristics, and a per-IP
 // rate limit. Anything dropped still gets the success response (bots move on,
 // nothing to probe) and is logged with its reason for auditing.
+//
+// Silent to the sender is never silent to us. Vercel logs roll off and nobody
+// reads them on a schedule, so both ways a lead can vanish are also PostHog
+// events, which are queryable and can carry a dashboard alert:
+//
+//   lead_notification_failed, Resend would not take the inbox copy (after one
+//     retry). Carries the whole brief, so the lead is recoverable from the
+//     event itself even though the email never arrived.
+//   inquiry_dropped, a spam gate ate the submission. Carries the reason and
+//     the identity, so a false positive is both countable and recoverable.
+//
+// The lead events themselves also carry notification_delivered / ack_delivered,
+// so "did my inbox copy actually send" is a property on the conversion rather
+// than a separate hunt through logs.
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -36,6 +50,10 @@ export const dynamic = "force-dynamic";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const FROM = process.env.WAITLIST_EMAIL_FROM || "Cereal Milk <daniel@updates.cerealmilk.sh>";
 const TO = process.env.INQUIRY_TO || AUTHOR.email;
+
+// One PostHog person collects every dropped submission (see the dropped()
+// helper): the drops are a spam counter, not people worth tracking.
+const DROPPED_DISTINCT_ID = "inquiry-dropped";
 
 function backToForm(params: string, source: "contact" | "demo" = "contact") {
   return NextResponse.redirect(`${SITE_URL}/${source}?${params}`, 303);
@@ -136,9 +154,33 @@ export async function POST(req: Request) {
   }
 
   // Every dropped submission gets the same success response a real one gets
-  // (nothing for a bot to probe), plus a reason in the log for auditing.
-  const dropped = (reason: string) => {
+  // (nothing for a bot to probe), plus a reason in the log for auditing and an
+  // inquiry_dropped event so false positives are countable long after the log
+  // has rolled off. The event is keyed to one fixed distinct id, not the
+  // submitted email: a spam wave must not mint thousands of PostHog people.
+  // The identity rides along as properties, so a real lead caught by a
+  // heuristic can still be read off the event and answered by hand.
+  const dropped = async (reason: string) => {
     console.warn(`[inquiry] dropped (${reason})`, { email, name: name.slice(0, 40) });
+    const posthog = getPostHogClient();
+    if (posthog) {
+      try {
+        posthog.capture({
+          distinctId: DROPPED_DISTINCT_ID,
+          event: "inquiry_dropped",
+          properties: {
+            reason,
+            source,
+            lead_email: email,
+            lead_name: name,
+            lead_firm: firm,
+          },
+        });
+        await posthog.flush();
+      } catch (err) {
+        console.error("[inquiry] dropped-event capture failed", err);
+      }
+    }
     if (isJson) return NextResponse.json({ ok: true });
     return source === "demo" ? onToCalendar(name, email) : backToForm("sent=1");
   };
@@ -171,17 +213,32 @@ export async function POST(req: Request) {
   // Volume cap, last: only well-formed submissions spend a Redis op.
   if (!(await underRateLimit(clientIp(req)))) return dropped("rate-limit");
 
-  await sendInquiry({ name, email, firm, message, source }).catch((err) =>
-    console.error("[inquiry] send failed", err)
+  const notified = await sendInquiry({ name, email, firm, message, source }).catch(
+    (err): SendResult => {
+      console.error("[inquiry] send failed", err);
+      return "failed";
+    }
   );
+  if (notified === "failed") {
+    // Loud, greppable, and paired with the PostHog event below: a real lead
+    // came in and the inbox copy did not go out.
+    console.error("[inquiry] NOTIFICATION FAILED, lead reached PostHog only", {
+      email,
+      firm,
+      source,
+    });
+  }
 
   // Acknowledge the sender: a one-time transactional confirmation (no
   // unsubscribe machinery) so a demo request that never reached the calendar
   // still carries the booking link, and a contact inquiry knows the reply
   // window. Best-effort, after the spam gates, never blocks the submission.
-  await sendInquiryAck({ name, email, source }).catch((err) =>
-    console.error("[inquiry] ack failed", err)
-  );
+  // sendEmail reports failure by returning false rather than throwing, so the
+  // boolean is the signal here and the catch is only for the unexpected.
+  const acked = await sendInquiryAck({ name, email, source }).catch((err) => {
+    console.error("[inquiry] ack failed", err);
+    return false;
+  });
 
   // Opt-in newsletter only. Never auto-subscribe. Forward to the existing
   // capture endpoint so the Field Notes welcome + audience logic stays in one
@@ -220,8 +277,26 @@ export async function POST(req: Request) {
           ...(firm ? { firm } : {}),
           has_name: Boolean(name),
           subscribed_newsletter: subscribe,
+          notification_delivered: notified === "sent",
+          ack_delivered: acked,
         },
       });
+      // The inbox copy never went out. Carry the whole brief on the event so
+      // the lead survives in full, and alert on this in PostHog: it is the
+      // only signal that a real request is sitting unanswered.
+      if (notified === "failed") {
+        posthog.capture({
+          distinctId: email,
+          event: "lead_notification_failed",
+          properties: {
+            source,
+            lead_email: email,
+            lead_name: name,
+            lead_firm: firm,
+            lead_message: message,
+          },
+        });
+      }
       const anonId = posthogCookieDistinctId(req);
       if (anonId && anonId !== email) {
         // The same merge posthog-js performs on identify(): the browser's
@@ -252,7 +327,12 @@ interface Inquiry {
   source: "contact" | "demo";
 }
 
-async function sendInquiry({ name, email, firm, message, source }: Inquiry) {
+// "unconfigured" is the local-dev path (no key, the brief goes to the log and
+// nothing is wrong); "failed" means a configured provider refused a real lead
+// and somebody needs to know.
+type SendResult = "sent" | "unconfigured" | "failed";
+
+async function sendInquiry({ name, email, firm, message, source }: Inquiry): Promise<SendResult> {
   const apiKey = process.env.RESEND_API_KEY;
   const subject =
     source === "demo"
@@ -272,23 +352,35 @@ async function sendInquiry({ name, email, firm, message, source }: Inquiry) {
 
   if (!apiKey) {
     console.log("[inquiry] RESEND_API_KEY unset, would email inquiry:\n" + text);
-    return;
+    return "unconfigured";
   }
 
-  const r = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { authorization: `Bearer ${apiKey}`, "content-type": "application/json" },
-    body: JSON.stringify({
-      from: FROM,
-      to: [TO],
-      reply_to: email,
-      subject,
-      text,
-    }),
-  });
-  if (!r.ok) {
-    console.error("[inquiry] resend responded", r.status, await r.text().catch(() => ""));
+  // Two attempts. A rate limit or a 5xx is a blip worth one more try; a 4xx is
+  // a fact about the request (bad payload, unverified sender, revoked key) and
+  // will fail identically a second later, so it returns straight away.
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const r = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { authorization: `Bearer ${apiKey}`, "content-type": "application/json" },
+        body: JSON.stringify({
+          from: FROM,
+          to: [TO],
+          reply_to: email,
+          subject,
+          text,
+        }),
+      });
+      if (r.ok) return "sent";
+      const body = await r.text().catch(() => "");
+      console.error(`[inquiry] resend responded (attempt ${attempt})`, r.status, body);
+      if (r.status !== 429 && r.status < 500) return "failed";
+    } catch (err) {
+      console.error(`[inquiry] resend request threw (attempt ${attempt})`, err);
+    }
+    if (attempt === 1) await new Promise((resolve) => setTimeout(resolve, 500));
   }
+  return "failed";
 }
 
 // The sender's confirmation, through the shared drip transport (one from, one
@@ -300,10 +392,10 @@ async function sendInquiryAck({
   name,
   email,
   source,
-}: Pick<Inquiry, "name" | "email" | "source">) {
+}: Pick<Inquiry, "name" | "email" | "source">): Promise<boolean> {
   const firstName = firstNameOf(name);
   if (source === "demo") {
-    await sendEmail({
+    return sendEmail({
       to: email,
       subject: "Your Cereal Milk demo: pick a time",
       firstName,
@@ -315,9 +407,8 @@ async function sendInquiryAck({
         "Anything you want the demo to cover, just reply to this email; it comes straight to my real inbox.",
       ],
     });
-    return;
   }
-  await sendEmail({
+  return sendEmail({
     to: email,
     subject: "Got your message",
     firstName,
