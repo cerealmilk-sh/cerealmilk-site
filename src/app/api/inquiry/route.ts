@@ -142,11 +142,9 @@ export async function POST(req: Request) {
   // sent. (The form's own JS used to compose this client-side; a bot could
   // ride the same path with a payload.)
   if (source === "demo") {
-    const teamSize = String(raw.team_size ?? "").trim().slice(0, 40);
     const src = String(raw.src ?? "").trim().slice(0, 40);
     message = [
       "Demo request via the cerealmilk.sh/demo form.",
-      teamSize ? `Team size: ${teamSize}` : "",
       src && !src.includes("://") ? `Source: ${src}` : "",
     ]
       .filter(Boolean)
@@ -401,7 +399,7 @@ async function sendInquiryAck({
       firstName,
       sequence: "ack",
       blocks: [
-        "Got your demo request, thank you. It's 30 minutes on a screen-share with me, on your own pipeline: bring the threads where your deals actually happen and we'll put an agent next to them live.",
+        "Got your demo request, thank you. It's 30 minutes on a screen-share with me, on your own messages: bring the conversations you actually work in and we'll put an agent next to them live.",
         "If you haven't picked a slot yet (or the calendar didn't load), here's the direct link:",
         { label: "Book your 30 minutes →", href: CAL_BOOKING_URL },
         "Anything you want the demo to cover, just reply to this email; it comes straight to my real inbox.",

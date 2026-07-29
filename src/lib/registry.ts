@@ -138,7 +138,7 @@ export const PAGES: PageEntry[] = [
     path: "/demo",
     title: "Book a demo",
     description:
-      "Book a 30-minute demo of Cereal Milk. On a screen-share, Dan walks you through WhatsApp with an AI agent beside every chat, and what ships next.",
+      "Book a 30-minute demo of Cereal Milk. On a screen-share, Dan opens the app on your own messages: WhatsApp with an AI agent beside every chat. Three fields, then pick a time.",
     section: "book",
     datePublished: D,
     dateModified: "2026-07-29",
