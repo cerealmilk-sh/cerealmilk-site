@@ -15,13 +15,14 @@ import type { SequenceId } from "./types";
 export const SITE_ORIGIN = SITE_URL;
 export const DOWNLOAD_URL = `${SITE_ORIGIN}/download`;
 export const PREORDER_URL = `${SITE_ORIGIN}/preorder`;
-// The AI-spend course lives on the docs site (served under /docs via the apex
-// proxy). Every course email links its chapters back here.
-export const AI_SPEND_COURSE_URL = `${SITE_ORIGIN}/docs/learn/ai-spend`;
+export const SECURITY_URL = `${SITE_ORIGIN}/security`;
 
 // From a Resend-verified sending domain; replies route to the real inbox. Both
-// overridable via env, no code change (same vars the welcome email already used).
-const FROM = process.env.WAITLIST_EMAIL_FROM || "Daniel Hull <daniel@updates.cerealmilk.sh>";
+// overridable via env, no code change (same vars the welcome email already
+// used). Until the updates. subdomain is verified in Resend, production
+// overrides this to the verified apex via WAITLIST_EMAIL_FROM.
+const FROM =
+  process.env.WAITLIST_EMAIL_FROM || "Daniel Hull at Cereal Milk <daniel@updates.cerealmilk.sh>";
 const REPLY_TO = process.env.WAITLIST_EMAIL_REPLY_TO || "daniel@cerealmilk.sh";
 
 // A block is either a paragraph (string) or a CTA link line. Steps describe
@@ -37,24 +38,30 @@ function esc(s: string) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
+// "welcome" is the inline Day-0 note a signup gets; "ack" is a one-time
+// transactional confirmation (an inquiry or demo request), which carries no
+// unsubscribe machinery because there is no list to leave.
+export type EmailKind = SequenceId | "welcome" | "ack";
+
 export interface RenderCtx {
   firstName?: string;
   unsubUrl: string;
-  sequence: SequenceId | "welcome";
+  sequence: EmailKind;
 }
 
 function greeting(firstName?: string) {
   return firstName ? `Hi ${firstName},` : "Hey,";
 }
 
-// The footer adapts to who's getting the mail: a waitlist subscriber vs. a
-// paying customer in onboarding. Unsub link is always present.
+// The footer adapts to who's getting the mail: a subscriber in nurture vs. a
+// customer in onboarding vs. a one-time confirmation. Unsub link is always
+// present except on acks.
 function footerLine(ctx: RenderCtx) {
-  if (ctx.sequence === "course")
-    return "You signed up for the free Optimize Your Fund's AI Spend email course at cerealmilk.sh.";
+  if (ctx.sequence === "ack")
+    return "This is a one-time confirmation of a message you sent us at cerealmilk.sh.";
   return ctx.sequence === "activation"
     ? "You're getting this because you signed up for Cereal Milk."
-    : "You're on the Cereal Milk waitlist at cerealmilk.sh.";
+    : "You're on the Cereal Milk list at cerealmilk.sh.";
 }
 
 export function renderText(blocks: Block[], ctx: RenderCtx): string {
@@ -70,7 +77,11 @@ export function renderText(blocks: Block[], ctx: RenderCtx): string {
     lines.push("");
   }
   lines.push("Cheers,", "Daniel", "Founder, Cereal Milk", "");
-  lines.push(`${footerLine(ctx)} If you'd rather not hear from me, unsubscribe: ${ctx.unsubUrl}`);
+  lines.push(
+    ctx.sequence === "ack"
+      ? footerLine(ctx)
+      : `${footerLine(ctx)} If you'd rather not hear from me, unsubscribe: ${ctx.unsubUrl}`
+  );
   return lines.join("\n");
 }
 
@@ -90,7 +101,7 @@ export function renderHtml(blocks: Block[], ctx: RenderCtx): string {
   <p style="${p}">${esc(greeting(ctx.firstName))}</p>
 ${body}
   <p style="${p}">Cheers,<br>Daniel<br>Founder, Cereal Milk</p>
-  <p style="margin:0;font-size:13px;line-height:1.5;color:#6b7280;">${esc(footerLine(ctx))} If you'd rather not hear from me, <a href="${ctx.unsubUrl}" style="color:#6b7280;">unsubscribe here</a>.</p>
+  <p style="margin:0;font-size:13px;line-height:1.5;color:#6b7280;">${esc(footerLine(ctx))}${ctx.sequence === "ack" ? "" : ` If you'd rather not hear from me, <a href="${ctx.unsubUrl}" style="color:#6b7280;">unsubscribe here</a>.`}</p>
 </body>
 </html>`;
 }
@@ -104,7 +115,7 @@ interface SendArgs {
   subject: string;
   blocks: Block[];
   firstName?: string;
-  sequence: SequenceId | "welcome";
+  sequence: EmailKind;
 }
 
 // The single Resend send path used by the welcome email and every drip step.
@@ -130,11 +141,16 @@ export async function sendEmail({ to, subject, blocks, firstName, sequence }: Se
         text: renderText(blocks, ctx),
         html: renderHtml(blocks, ctx),
         // RFC 8058 one-click unsubscribe, keeps Gmail/Yahoo happy; the visible
-        // link in the footer works too.
-        headers: {
-          "List-Unsubscribe": `<${unsubUrl}>, <mailto:${REPLY_TO}?subject=unsubscribe>`,
-          "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
-        },
+        // link in the footer works too. Acks are one-time transactional
+        // confirmations, not list mail, so they carry no unsubscribe headers.
+        ...(sequence === "ack"
+          ? {}
+          : {
+              headers: {
+                "List-Unsubscribe": `<${unsubUrl}>, <mailto:${REPLY_TO}?subject=unsubscribe>`,
+                "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+              },
+            }),
       }),
     });
     if (!r.ok) {

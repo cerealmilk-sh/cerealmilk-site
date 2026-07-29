@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { sendEmail, firstNameOf } from "@/lib/drip/email";
 import { AUTHOR, CAL_BOOKING_URL, SITE_URL } from "@/lib/site";
 import {
   clientIp,
@@ -174,6 +175,14 @@ export async function POST(req: Request) {
     console.error("[inquiry] send failed", err)
   );
 
+  // Acknowledge the sender: a one-time transactional confirmation (no
+  // unsubscribe machinery) so a demo request that never reached the calendar
+  // still carries the booking link, and a contact inquiry knows the reply
+  // window. Best-effort, after the spam gates, never blocks the submission.
+  await sendInquiryAck({ name, email, source }).catch((err) =>
+    console.error("[inquiry] ack failed", err)
+  );
+
   // Opt-in newsletter only. Never auto-subscribe. Forward to the existing
   // capture endpoint so the Field Notes welcome + audience logic stays in one
   // place; best-effort and non-blocking.
@@ -270,4 +279,42 @@ async function sendInquiry({ name, email, firm, message, source }: Inquiry) {
   if (!r.ok) {
     console.error("[inquiry] resend responded", r.status, await r.text().catch(() => ""));
   }
+}
+
+// The sender's confirmation, through the shared drip transport (one from, one
+// reply-to, plain-text-first) as an "ack": one-time transactional, so it
+// carries no unsubscribe footer or headers. Demo requests get the booking
+// link again in case the redirect never completed; contact inquiries get the
+// honest reply window.
+async function sendInquiryAck({
+  name,
+  email,
+  source,
+}: Pick<Inquiry, "name" | "email" | "source">) {
+  const firstName = firstNameOf(name);
+  if (source === "demo") {
+    await sendEmail({
+      to: email,
+      subject: "Your Cereal Milk demo: pick a time",
+      firstName,
+      sequence: "ack",
+      blocks: [
+        "Got your demo request, thank you. It's 30 minutes on a screen-share with me, on your own pipeline: bring the threads where your deals actually happen and we'll put an agent next to them live.",
+        "If you haven't picked a slot yet (or the calendar didn't load), here's the direct link:",
+        { label: "Book your 30 minutes →", href: CAL_BOOKING_URL },
+        "Anything you want the demo to cover, just reply to this email; it comes straight to my real inbox.",
+      ],
+    });
+    return;
+  }
+  await sendEmail({
+    to: email,
+    subject: "Got your message",
+    firstName,
+    sequence: "ack",
+    blocks: [
+      "Thanks for writing in. Your message landed in my real inbox (no ticket queue here), and I reply personally within one business day.",
+      "If it's time-sensitive, reply to this email with URGENT in the subject and I'll get to it first.",
+    ],
+  });
 }

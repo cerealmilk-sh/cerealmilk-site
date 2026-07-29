@@ -1,227 +1,336 @@
 # Cereal Milk · Full lifecycle email copy
 
-Every email below is sent in the founder's voice. The renderer automatically
-prepends the greeting (`Hi {first name},` or `Hey,`) and appends the sign-off
-(`Cheers, / Daniel / Founder, Cereal Milk`) and a one-click unsubscribe footer. Those
-are omitted here to keep the copy readable. Links are shown as **[label](url)**.
+Every email below is sent in the founder's voice, from
+`Daniel Hull at Cereal Milk` with reply-to `daniel@cerealmilk.sh`. The renderer
+automatically prepends the greeting (`Hi {first name},` or `Hey,`) and appends
+the sign-off (`Cheers, / Daniel / Founder, Cereal Milk`) and a one-click
+unsubscribe footer (omitted on the transactional acks). Those are omitted here
+to keep the copy readable. Links are shown as **[label](url)**. Prices render
+from `src/lib/pricing.ts` at send time; the numbers below are today's.
 
-Source of truth: `cereal-milk-site/src/lib/drip/sequences.ts` (drips) and
-`src/app/api/waitlist/route.ts` (the Day-0 welcome).
-
----
-
-## Day 0: Welcome (sent inline on signup)
-
-**Subject:** Thanks for joining the Cereal Milk waitlist
-
-I'm Daniel, founder of Cereal Milk. Thanks for signing up for the waitlist. It
-genuinely means a lot.
-
-Cereal Milk is the native Mac client for WhatsApp & LinkedIn: it syncs the conversations
-that matter to Attio or Affinity, gives you a command palette and relationship
-insights, and keeps everything private by default.
-
-We're onboarding new teams in waves. I'll personally email you the moment a seat
-opens.
-
-If you'd rather not wait, you can claim a seat now and we'll get you set up today:
-priority onboarding, a dedicated Slack channel with me and the team, and
-white-glove CRM mapping.
-
-**[Claim your seat →](https://cerealmilk.sh/preorder)**
-
-And if Cereal Milk isn't the right fit, just hit reply and tell me why. Whatever's
-holding you back genuinely shapes what we build next.
+Source of truth: `src/lib/drip/sequences.ts` (drips),
+`src/app/api/waitlist/route.ts` (Day-0 welcomes + preorder confirmation), and
+`src/app/api/inquiry/route.ts` (inquiry/demo acks). Rewritten 2026-07-29 to the
+"messenger built for AI agents" positioning (WhatsApp today, LinkedIn and Gmail
+next, agent on your own model account); the old WhatsApp+LinkedIn/CRM-sync copy
+and the five-email AI-spend course (dead `/docs` links) were retired the same
+day.
 
 ---
 
-# Nurture sequence (waitlist → pre-order)
+## Day 0 · Product welcome (inline on product signup)
 
-## N1 · +2 days
+**Subject:** Welcome to Cereal Milk (start here)
 
-**Subject:** Where your best deals go to die
+I'm Daniel, founder of Cereal Milk. Thanks for signing up. It genuinely means a
+lot.
+
+Cereal Milk is the messenger built for AI agents: WhatsApp in one fast desktop
+window with an AI agent beside every chat, running on your own Claude, ChatGPT,
+Gemini, or OpenAI-compatible account. It summarises threads, pulls out
+commitments, and drafts replies you send yourself. LinkedIn and Gmail are next.
+
+The good news: there's nothing to wait for. The app is live for Mac and
+Windows, and creating your account starts a free 7-day trial of the full
+product, no card.
+
+**[Download Cereal Milk for Mac or Windows →](https://cerealmilk.sh/download)**
+
+And if Cereal Milk isn't the right fit, just hit reply and tell me why.
+Whatever's holding you back genuinely shapes what we build next.
+
+## Day 0 · Field Notes welcome (inline on newsletter signup)
+
+**Subject:** You're on The Cereal Milk Field Notes
+
+I'm Daniel, founder of Cereal Milk. We make the Cereal Milk desktop app: the
+messenger built for AI agents. It puts WhatsApp in one fast window, with an AI
+agent beside every chat that runs on your own model account. LinkedIn and Gmail
+are next.
+
+You'll get one email when something new ships: a new release, a new capability,
+or a field note from the build. No schedule, no filler: if nothing shipped, you
+hear nothing.
+
+In the meantime: how funds run it is at cerealmilk.sh/for/venture-capital, and
+pricing is published in full at cerealmilk.sh/pricing.
+
+**[See Cereal Milk on your own pipeline →](https://cerealmilk.sh/demo)**
+
+And if the conversations that pay you happen somewhere Cereal Milk doesn't
+reach yet, hit reply and tell me. I read everything.
+
+## Day 0 · Pre-order confirmation (inline on /preorder reservation)
+
+**Subject:** Your Cereal Milk founding seat is reserved
+
+I'm Daniel, founder of Cereal Milk. Your founding seat is reserved: no charge
+was made, and none will be until your seat is set up and you decide to keep it.
+
+You locked the {Starter $30/user/mo or $300/yr · Business $40/user/mo or
+$396/yr} plan at today's published rate. It never rises for a founding seat,
+and you can switch plans before setup.
+
+What happens next: founding installs are set up first, personally, on a call
+with me. You'll get an email from me shortly with a link to pick your setup
+time. We do install, accounts, and your agent's model connection together in
+about 30 minutes, and it's free to try after the call either way.
+
+No need to wait for the call to look around: the app is live for Mac and
+Windows at cerealmilk.sh/download, and creating your account starts a free
+7-day trial, no card.
+
+Change your mind anytime before setup: just reply to this email and the
+reservation is gone, no questions.
+
+And if someone you trade deals with should be in the founding cohort too, send
+them cerealmilk.sh/preorder. Seats are capped at 100, and a forward from you
+beats anything I could write.
+
+---
+
+## Nurture (N1–N6), anchor: signup
+
+### N1 · Day +2 · Where your best deals go to die
 
 Quick one. The best conversation you had this week probably happened in a
-WhatsApp thread or a LinkedIn DM, and there's no record of it anywhere.
+WhatsApp thread, and to every AI tool you use, it doesn't exist.
 
-The deck that arrives in a thread about padel. The warm intro that lands in a
-LinkedIn message. Terms hashed out across two apps, between the small talk. None
-of it reaches your CRM, so a few weeks later you're rebuilding the relationship
-from memory.
+The deck that arrives in a thread about padel. The intro that lands between the
+small talk. The terms agreed across three apps and closed on a call. That's the
+real pipeline, and it's invisible to your agents, so a few weeks later someone
+rebuilds it from memory, or nobody does.
 
-That's the gap Cereal Milk closes: it runs the real WhatsApp Web and LinkedIn in one
-native Mac window and files the lines that matter to Attio or Affinity, only the
-ones you pick.
+That's the gap Cereal Milk closes: WhatsApp in one fast desktop window with an
+AI agent beside every chat, running on your own Claude, ChatGPT, or Gemini
+account. It summarises the thread, pulls out the commitments, and drafts the
+follow-up for you to send. LinkedIn and Gmail are next.
 
-Where do your deals actually happen: WhatsApp, LinkedIn, both? Hit reply and
+It's live now, and the full product is free for 7 days, no card:
+
+**[Download Cereal Milk for Mac or Windows →](https://cerealmilk.sh/download)**
+
+Where do your deals actually happen: WhatsApp, LinkedIn, email? Hit reply and
 tell me; it genuinely shapes what we build next.
 
-## N2 · +4 days
+### N2 · Day +4 · Will this get my WhatsApp number banned?
 
-**Subject:** Will this get my WhatsApp number banned?
+The first thing people ask me about Cereal Milk: will this get my number
+banned? Fair question. Your number carries a decade of relationships, and most
+"WhatsApp AI" tools genuinely put it at risk.
 
-The first thing people ask me about Cereal Milk: will this get my number or LinkedIn
-account banned? Fair question: most "WhatsApp CRM" tools absolutely will.
+They ride reverse-engineered APIs and scraped sockets, and when WhatsApp
+notices, it's your number that gets banned. Cereal Milk uses none of it.
 
-They bolt onto a reverse-engineered API: Baileys, whatsapp-web.js, LinkedIn
-Voyager scraping. That's what gets accounts banned. Cereal Milk uses none of it.
+Under the hood it's the official web.whatsapp.com running inside a hardened
+desktop browser shell, so to WhatsApp you look like an ordinary browser.
+Nothing bulk-sends, automates, or scrapes in the background. The agent's drafts
+land in the composer, and you always hit send yourself.
 
-Under the hood it's the official web.whatsapp.com and linkedin.com/messaging
-running inside Apple's WebKit, the same engine as Safari. To WhatsApp and
-LinkedIn, you're just a person on the web client. Nothing automates, bulk-sends,
-or scrapes in the background, and you always hit send yourself.
+Try it on your own number, free for a week, no card:
 
-If you'd rather not wait for the next wave, you can claim a seat now and we'll get
-you set up today.
+**[Download Cereal Milk for Mac or Windows →](https://cerealmilk.sh/download)**
 
-**[Claim your seat →](https://cerealmilk.sh/preorder)**
+Still sceptical? Reply with the sharpest version of the question and I'll
+answer it straight.
 
-## N3 · +7 days
+### N3 · Day +7 · An agent that reads one chat, not your life
 
-**Subject:** Some conversations were never meant for the record
+Your WhatsApp is your life, not just your deal flow. So the agent in Cereal
+Milk is built around one rule: it reads only the chat you have open, and only
+when you ask.
 
-Most CRM tools ask you to trust a toggle. Cereal Milk makes the separation a fact of the
-system.
+It never enumerates your chats or scrolls history in the background. And it
+runs on the model account you connect, your own Claude, ChatGPT, Gemini, or
+OpenAI-compatible endpoint, so what it reads goes to your own provider under
+your own agreement. Cereal Milk runs no model of its own, and your
+conversations never flow through servers of ours.
 
-Every thread is born private. You share a whole conversation as the record, or
-surface a single line, and the other twelve messages never move. The sync gate
-lives on the server, so even if a sync ran this instant, a private message would
-be refused before it left your Mac.
+The padel banter, the contact who vents, the thing someone told you in
+confidence: none of it is the agent's business, so none of it is in reach.
+That's not a privacy policy, it's how the product is wired.
 
-Your padel banter, the contact who vents, the thing someone told you in
-confidence: the noise stays with you, and only the signal you choose ever
-leaves. That's not a privacy policy, it's how the product is wired.
+**[How the privacy model works →](https://cerealmilk.sh/security)**
 
-When you're ready, your seat is here:
+Or just see it on your own machine, free for a week:
 
-**[Claim your seat →](https://cerealmilk.sh/preorder)**
+**[Download Cereal Milk for Mac or Windows →](https://cerealmilk.sh/download)**
 
-## N4 · +10 days
-
-**Subject:** A day in the Cereal Milk cockpit
+### N4 · Day +10 · A day in the Cereal Milk cockpit
 
 Here's what using Cereal Milk actually feels like.
 
-WhatsApp and LinkedIn live in one window: flip between them with ⌘1 and ⌘2, both
-sessions stay live. A command palette on ⌘K runs everything: sync a thread, drop
-a snippet, export a chat as a deal note, jump to a contact, without touching the
-mouse.
+WhatsApp lives in one fast window that never reloads. ⌘K runs everything:
+switch chats, ask the agent, drop a snippet, export a thread, without touching
+the mouse. ⌘⇧S turns the open conversation into clean Markdown, ready for your
+notes, your CRM, or whatever agent you point at it.
 
-Sync a conversation and Cereal Milk reads it back as a relationship: who leads, who gets
-the last word, the tone, and how much has actually reached your CRM. A native
-inspector docks beside the chat showing who you're talking to and their CRM
-record, so you file the line that matters in one keystroke: no tab-switch, no
-"I'll log it later."
+The agent sits beside the chat: summarise the thread, pull out the commitments,
+draft the reply in your voice. Drafts land in the composer, you always hit
+send. And it speaks MCP, so it can use the tools your stack already exposes
+(your CRM, your notes, your calendar), with every write staged as a proposal
+you review.
 
-It's the client a power user would build for themselves. Want yours set up today?
+It's the client a power user would build for themselves. Yours is a download
+away:
 
-**[Claim your seat →](https://cerealmilk.sh/preorder)**
+**[Download Cereal Milk for Mac or Windows →](https://cerealmilk.sh/download)**
 
-## N5 · +14 days  *(skipped for non-macOS segment)*
+### N5 · Day +14 · Lock your price while we're small
 
-**Subject:** Want to skip the line?
+Cereal Milk is priced simply: Starter $30 per user a month or $300 a year,
+Business $40 a month for teams. Every plan starts with a 7-day free trial, no
+card.
 
-We're onboarding new teams in waves, and I'll email you the moment your seat
-opens. But if you'd rather not wait, you don't have to.
+But if you already know chat is where your work lives, there's a better deal.
+The founding cohort is capped at 100 seats. Reserving one costs nothing today,
+no card, and locks your pricing at today's published rate for as long as you
+keep the seat. It never rises for a founding seat, and your install is set up
+personally on a call with me.
 
-Pay for your first year up front, $108, billed yearly ($9/mo), and we'll set
-you up today: a priority setup call within 24 hours, a dedicated private Slack
-channel with the founders, and white-glove CRM mapping for Attio or Affinity.
-Cancel anytime.
+**[Reserve your founding seat →](https://cerealmilk.sh/preorder)**
 
-**[Pay & get onboarded →](https://cerealmilk.sh/preorder)**
+Or start with the free trial and decide later:
 
-Or just reply with whatever's holding you back. I read every one.
+**[Download Cereal Milk for Mac or Windows →](https://cerealmilk.sh/download)**
 
-## N6 · +21 days
+Either way, reply with whatever's holding you back. I read every one.
 
-**Subject:** Should I keep you on the list?
+### N6 · Day +21 · Should I keep you on the list?
 
 I don't want to clutter your inbox, so this is the last you'll hear from me
 unless you'd like otherwise.
 
-If Cereal Milk still sounds useful: running WhatsApp and LinkedIn from one native window,
-with your deals finally reaching the CRM. You can claim a seat here and we'll
-onboard you today:
+If Cereal Milk still sounds useful (WhatsApp in one fast window, an AI agent
+beside every chat on your own model account, and the deals in your DMs finally
+within reach of your tools), the whole product is free for 7 days, no card:
 
-**[Claim your seat →](https://cerealmilk.sh/preorder)**
+**[Download Cereal Milk for Mac or Windows →](https://cerealmilk.sh/download)**
 
-And if it's not the right fit, just hit reply and tell me why. Whatever's holding
-you back genuinely shapes what we build next. Either way, thanks for the time.
+And if it's not the right fit, just hit reply and tell me why. Whatever's
+holding you back genuinely shapes what we build next. Either way, thanks for
+the time.
 
 ---
 
-# Activation sequence (purchase → first synced thread)
+## Activation (A1–A6), anchor: account creation (`converted`)
 
-## A1 · +0 days (instant on purchase)
+### A1 · Day +0 · You're in: your Cereal Milk trial starts now
 
-**Subject:** You're in, let's get Cereal Milk set up
+You're in: welcome to Cereal Milk, and thank you. Your account is live and your
+7-day free trial of the full product started the moment you created it. No
+card, nothing to cancel.
 
-You're in: welcome to Cereal Milk, and thank you. I'm genuinely glad you're here.
+If the app isn't on this machine yet, grab it here (Mac and Windows):
 
-First step is the app itself. Download it, open it once (macOS will ask you to
-approve it, about 30 seconds), and sign in:
+**[Download Cereal Milk for Mac or Windows →](https://cerealmilk.sh/download)**
 
-**[Download Cereal Milk →](https://cerealmilk.sh/download)**
+Here's the week in three small steps: connect WhatsApp and your model today,
+ask the agent one real thing tomorrow, and by the end of the week the deals in
+your DMs are finally within reach of your tools.
 
-Over the next few days I'll send a couple of short notes to get you to your first
-synced thread. Prefer a call? Reply and we'll find a time, and your private Slack
-channel with the founders is the fastest way to reach us.
+I'll send a couple of short notes to walk you through it. Reply to any of
+them; they come to my real inbox.
 
-## A2 · +1 day  *(skipped if WhatsApp + LinkedIn already connected)*
+### A2 · Day +1 · Two connections and you're live *(skips if `whatsapp_connected`)*
 
-**Subject:** Step 1: connect WhatsApp & LinkedIn
+Once Cereal Milk is open, there are exactly two connections to make, and both
+take about a minute.
 
-Once Cereal Milk is open, the first thing to do is connect your two channels.
+One: scan the WhatsApp QR with your phone, the same way you would for WhatsApp
+Web. It's the official web client in a hardened shell, so your session stays
+live in one fast window that never reloads.
 
-Scan the WhatsApp Web QR the way you would in a browser, and sign in to LinkedIn
-in the next tab. Both sessions stay live in the background, so from then on you
-flip between them with ⌘1 and ⌘2 without anything reloading.
+Two: connect your model. Claude and ChatGPT use the sign-in you already have;
+Gemini and OpenAI-compatible endpoints take an API key. That puts the agent
+beside every chat, running on your own account.
 
-That's all the channel setup there is, and nothing syncs anywhere yet.
-Everything stays private until you say so.
+And that's all the setup there is. Nothing syncs anywhere, and the agent reads
+only the chat you have open, when you ask.
 
-## A3 · +3 days  *(skipped if CRM already linked)*
+### A3 · Day +2 · Ask the agent one thing today *(skips if `first_insight`)*
 
-**Subject:** Step 2: link Attio or Affinity
+Here's the one action that makes Cereal Milk click. Open the thread that
+actually matters this week (a live deal, a warm intro, a client going quiet)
+and ask the agent for the summary.
 
-Now point Cereal Milk at your CRM. Pick Attio or Affinity as the record of choice for
-your workspace. You can switch later and history re-syncs.
+Watch it read just that thread and hand back the state of play: what was
+agreed, who owes whom what, and the follow-up drafted in your voice. The draft
+lands in the composer, so the whole loop is one keystroke, and then you hit
+send.
 
-Once it's linked, the inspector beside each chat shows the matching contact and
-how it matched, so you always know who you're talking to without leaving the
-thread. A matching phone, email, or LinkedIn profile links in one click; a fuzzy
-name is only ever suggested, never filed on a stranger.
+That's the moment the product earns its keep: the low-grade dread that
+something, somewhere, went unanswered starts to go.
 
-Stuck on the mapping? That's exactly what your Slack channel is for, reply here
-too and I'll jump in.
+If the answer comes back off-key, tell me. Reply with what you asked and what
+you got, and I'll tune it or show you a better prompt.
 
-## A4 · +5 days  *(skipped if first sync already done)*
+### A4 · Day +4 · ⌘K, ⌘⇧S, and the rest of the cockpit *(skips if `first_sync`)*
 
-**Subject:** Share your first thread (the 2-minute version)
+A few keystrokes that turn Cereal Milk from a chat window into a cockpit.
 
-Here's the one action that makes Cereal Milk click: share your first thread.
+⌘K is the command palette: every action in the app, fuzzy-searched. ⌘⇧S
+exports the open chat as clean Markdown, ready to paste into your notes, your
+CRM, or any agent you run. Snippets take variables and land in the composer on
+any channel, and you still hit send.
 
-Open a conversation that actually matters, a live deal, a warm intro, and hit
-Sync (or ⌘K → Sync). It files to the matching contact as a clean, timestamped
-note in your CRM's own voice, deduped so a thread is one note, not thirteen
-ragged copies. Want to share just one line instead? You can: the rest never
-moves.
+And if your stack speaks MCP, add your servers (your CRM, your notes, your
+calendar) and the agent can use their tools right beside the chat, with every
+write staged as a proposal you review before anything changes.
 
-Do it once and the value is obvious. If anything's in the way, reply here or drop
-it in your Slack channel and we'll sort it in minutes.
+Try the export on a thread you'd normally rebuild from memory. That's the
+habit that compounds.
 
-## A5 · +10 days
+### A5 · Day +6 · Your trial wraps up tomorrow
 
-**Subject:** How's Cereal Milk feeling?
+An honest heads-up: tomorrow is day 7, the last day of your free trial.
 
-You've had Cereal Milk for a week or so now, how's it feeling?
+If Cereal Milk has earned its place, keeping it is simple: Starter is $30 per
+user a month or $300 a year, Business for teams is $40 a month. Pick a plan
+inside the app, monthly or yearly, cancel anytime, no usage meters.
 
-If it's earning its place, the next step is just letting it run: flip your active
-threads to Shared and every new message files itself, hands-off. And the
-relationship insights get sharper the more you sync: who leads, the tone, how
-much has reached the CRM.
+If you're not sure yet, that's useful too: reply and tell me what's missing,
+and if you just need more time, say so and I'll extend your trial. I'd rather
+you decide with a real answer than a countdown.
 
-Mostly, though, I want to hear what isn't working. Reply to this, or tell me in
-your Slack channel: what would make Cereal Milk a daily driver for you? Every bit of it
-shapes what we ship next.
+### A6 · Day +10 · How's Cereal Milk feeling?
+
+You've had Cereal Milk for a week and a half now, how's it feeling?
+
+Mostly I want to hear what isn't working: the chat the agent misread, the
+keystroke you reached for that wasn't there, the channel you need next.
+LinkedIn and Gmail are on the way, and where they land in the queue is
+genuinely shaped by these replies.
+
+What would make Cereal Milk the first thing you open in the morning? Reply and
+tell me. I read everything, and the good ones ship.
+
+---
+
+## Transactional acks (inline from /api/inquiry, no unsubscribe footer)
+
+### Demo request ack
+
+**Subject:** Your Cereal Milk demo: pick a time
+
+Got your demo request, thank you. It's 30 minutes on a screen-share with me, on
+your own pipeline: bring the threads where your deals actually happen and we'll
+put an agent next to them live.
+
+If you haven't picked a slot yet (or the calendar didn't load), here's the
+direct link:
+
+**[Book your 30 minutes →](https://cal.com/danieljh/30min)**
+
+Anything you want the demo to cover, just reply to this email; it comes
+straight to my real inbox.
+
+### Contact inquiry ack
+
+**Subject:** Got your message
+
+Thanks for writing in. Your message landed in my real inbox (no ticket queue
+here), and I reply personally within one business day.
+
+If it's time-sensitive, reply to this email with URGENT in the subject and
+I'll get to it first.

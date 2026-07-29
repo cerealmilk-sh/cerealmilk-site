@@ -1,17 +1,18 @@
 import { NextResponse } from "next/server";
-import { sendEmail } from "@/lib/drip/email";
-import { markPreordered, startCourse, startWaitlist } from "@/lib/drip/engine";
-import { COURSE_DAY1 } from "@/lib/drip/sequences";
+import { sendEmail, DOWNLOAD_URL, PREORDER_URL } from "@/lib/drip/email";
+import { markPreordered, startWaitlist } from "@/lib/drip/engine";
+import { STARTER, BUSINESS, TRIAL_DAYS } from "@/lib/pricing";
 import { NEWSLETTER_NAME, SITE_URL } from "@/lib/site";
 import { getPostHogClient } from "@/lib/posthog-server";
 
-// Every email-capture form on cerealmilk.sh posts here, the studio newsletter forms
-// (header/footer/Terminus, source: "footer" | "home" | "work/…"), the docs
-// site's form (form-encoded POST), and the Mac-app product page (source:
-// "app"). Rollout-safe and provider-agnostic: it forwards each signup to
-// whatever is configured in the environment, and if nothing is set it logs and
-// still succeeds: so the form works the moment it ships, and pointing it at a
-// real list later is just an env var, no code change.
+// Every email-capture form on cerealmilk.sh posts here: the newsletter forms
+// (header/footer/Terminus, source: "footer" | "home" | …), the /preorder form
+// (source: "preorder"), and any product signup (source: "app" | "waitlist",
+// also the documented path in openapi.json). Rollout-safe and
+// provider-agnostic: it forwards each signup to whatever is configured in the
+// environment, and if nothing is set it logs and still succeeds: so the form
+// works the moment it ships, and pointing it at a real list later is just an
+// env var, no code change.
 //
 //   WAITLIST_WEBHOOK_URL. POST the JSON entry to any endpoint
 //                                          (Zapier / Make / your own handler).
@@ -21,12 +22,15 @@ import { getPostHogClient } from "@/lib/posthog-server";
 // (a transient provider hiccup shouldn't lose a lead or show an error).
 //
 // The `source` field decides the journey:
-//   "app"           → Cereal Milk waitlist: a single Day-0 product welcome.
-//                     The payment/onboarding nurture drip is OFF while the app
-//                     is invite-only (see below).
-//   anything else   → Field Notes subscriber: newsletter welcome, NO product
-//                     email (a fund partner signing up on a case study must
-//                     never get "claim your seat" product emails).
+//   "app"/"waitlist" → product lead: Day-0 product welcome + the nurture drip.
+//   "preorder"       → founding reservation: confirmation email, no nurture.
+//   anything else    → Field Notes subscriber: newsletter welcome, NO product
+//                      drip (a reader subscribing on an article must never get
+//                      "reserve your seat" product emails).
+//
+// (The "ai-spend-course" source was retired 2026-07-29 with the docs site its
+// five chapter emails linked to; a stray post carrying it now gets the
+// newsletter journey.)
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -38,8 +42,8 @@ function bad(error: string) {
 }
 
 export async function POST(req: Request) {
-  // JSON from the site's own forms; form-encoded from the docs site (a plain
-  // HTML <form> post, no JS). That one gets a redirect back, not JSON.
+  // JSON from the site's own forms; form-encoded from any plain HTML <form>
+  // post (no JS). That one gets a redirect back, not JSON.
   let raw: Record<string, unknown> = {};
   let isFormPost = false;
   const contentType = req.headers.get("content-type") ?? "";
@@ -68,9 +72,6 @@ export async function POST(req: Request) {
   const name = String(raw.name ?? "").trim();
   const source = String(raw.source ?? "waitlist").trim().slice(0, 64) || "waitlist";
   const isProduct = source === "app" || source === "waitlist";
-  // The AI-spend email course: a five-day drip, not a product or newsletter
-  // signup. Day 1 lands inline below; days 2–5 are enrolled after.
-  const isCourse = source === "ai-spend-course";
   // A founding pre-order reservation from /preorder: carries the plan the
   // visitor chose to lock, gets its own confirmation email, and redirects
   // no-JS posts to the confirmation page.
@@ -159,14 +160,10 @@ export async function POST(req: Request) {
 
   // Welcome email (Day 0): best-effort, sent whenever Resend is configured,
   // independent of where the contact is stored. Never blocks or fails the
-  // signup. Product signups get the founder's waitlist note; everyone else
+  // signup. Product signups get the founder's product welcome; everyone else
   // gets the Field Notes welcome.
   if (resendKey) {
-    if (isCourse) {
-      await sendCourseDay1Email(email, name).catch((err) =>
-        console.error("[waitlist] course day-1 email failed", err)
-      );
-    } else if (isPreorder) {
+    if (isPreorder) {
       await sendPreorderConfirmationEmail(email, name, plan).catch((err) =>
         console.error("[waitlist] preorder confirmation failed", err)
       );
@@ -178,22 +175,13 @@ export async function POST(req: Request) {
     }
   }
 
-  // AI-spend course: enrol the timed tail (days 2–5). Store-gated, so with the
-  // drip store off the Day-1 email above still lands and the rest are simply
-  // inert until UPSTASH_* is set. Never blocks or fails the signup.
-  if (isCourse) {
-    await startCourse(email, name).catch((err) =>
-      console.error("[waitlist] course enrol failed", err)
-    );
-  }
-
   // Lifecycle enrollment (store-gated: all no-ops until UPSTASH_* is set).
-  // Product waitlist signups enter the nurture sequence, whose job is now to
-  // convert them into a founding pre-order (re-enabled 2026-07-14 with the
-  // /preorder launch; it was off during the invite-only era). A reservation
-  // marks the contact converted so nurture ends and never pitches someone who
-  // already reserved; activation still waits for the real setup. Newsletter
-  // and course signups are untouched: no product drip for them.
+  // Product signups enter the nurture sequence, whose job is to get them to
+  // download the app and start the trial (with the founding seat as the
+  // price-lock offer). A reservation marks the contact converted so nurture
+  // ends and never pitches someone who already reserved; activation still
+  // waits for the real account creation. Newsletter signups are untouched: no
+  // product drip for them.
   if (isPreorder) {
     await markPreordered(email, name).catch((err) =>
       console.error("[waitlist] preorder lifecycle mark failed", err)
@@ -252,9 +240,10 @@ export async function POST(req: Request) {
 }
 
 // The pre-order confirmation (the transactional receipt for a reservation):
-// confirm the seat, set expectations in order, restate the agreement, and
-// make the referral ask. Sent through the same shared transport as every
-// other email (one path, one from/reply-to, one unsubscribe footer).
+// confirm the seat, restate what was locked with the real numbers, set
+// expectations in order, and make the referral ask. Sent through the same
+// shared transport as every other email (one path, one from/reply-to, one
+// unsubscribe footer).
 async function sendPreorderConfirmationEmail(
   email: string,
   name: string,
@@ -263,9 +252,9 @@ async function sendPreorderConfirmationEmail(
   const firstName = name.split(/\s+/).filter(Boolean)[0] || undefined;
   const planLine =
     plan === "business"
-      ? "You locked the Business plan at today's published rate."
+      ? `You locked the Business plan at today's published rate: $${BUSINESS.monthly} per user a month, or $${BUSINESS.yearly} a year.`
       : plan === "starter"
-        ? "You locked the Starter plan at today's published rate."
+        ? `You locked the Starter plan at today's published rate: $${STARTER.monthly} per user a month, or $${STARTER.yearly} a year.`
         : "You locked today's published pricing.";
   await sendEmail({
     to: email,
@@ -275,14 +264,15 @@ async function sendPreorderConfirmationEmail(
     blocks: [
       "I'm Daniel, founder of Cereal Milk. Your founding seat is reserved: no charge was made, and none will be until your seat is set up and you decide to keep it.",
       `${planLine} It never rises for a founding seat, and you can switch plans before setup.`,
-      "What happens next: founding seats are onboarded first, in the order they reserved. When your wave opens you get a personal email from me with a link to pick your setup call. Install, accounts, and CRM mapping are done with you in about 30 minutes, and your free trial starts there.",
+      "What happens next: founding installs are set up first, personally, on a call with me. You'll get an email from me shortly with a link to pick your setup time. We do install, accounts, and your agent's model connection together in about 30 minutes, and it's free to try after the call either way.",
+      `No need to wait for the call to look around: the app is live for Mac and Windows at ${DOWNLOAD_URL}, and creating your account starts a free ${TRIAL_DAYS}-day trial, no card.`,
       "Change your mind anytime before setup: just reply to this email and the reservation is gone, no questions.",
-      `And if someone you trade deals with should be in the founding cohort too, send them ${SITE_URL}/preorder. Seats are capped, and a forward from you beats anything I could write.`,
+      `And if someone you trade deals with should be in the founding cohort too, send them ${PREORDER_URL}. Seats are capped at 100, and a forward from you beats anything I could write.`,
     ],
   });
 }
 
-// The founder's Day-0 welcome for the Mac-app waitlist: a plain, personal note
+// The founder's Day-0 welcome for a product signup: a plain, personal note
 // (not a designed template), sent through the same shared transport as every
 // drip step so the from/reply-to, plain-text-first rendering, and one-click
 // unsubscribe headers all stay in one place (see src/lib/drip/email.ts).
@@ -290,36 +280,22 @@ async function sendProductWelcomeEmail(email: string, name: string) {
   const firstName = name.split(/\s+/).filter(Boolean)[0] || undefined;
   await sendEmail({
     to: email,
-    subject: "Thanks for joining the Cereal Milk waitlist",
+    subject: "Welcome to Cereal Milk (start here)",
     firstName,
     sequence: "welcome",
     blocks: [
-      "I'm Daniel, founder of Cereal Milk. Thanks for signing up for the Cereal Milk waitlist. It genuinely means a lot.",
-      "Cereal Milk is the native Mac client for WhatsApp & LinkedIn: it syncs the conversations that matter to Attio or Affinity, gives you a command palette and relationship insights, and keeps everything private by default.",
-      "We're onboarding new teams in waves, and I'll personally email you the moment a spot opens.",
+      "I'm Daniel, founder of Cereal Milk. Thanks for signing up. It genuinely means a lot.",
+      "Cereal Milk is the messenger built for AI agents: WhatsApp in one fast desktop window with an AI agent beside every chat, running on your own Claude, ChatGPT, Gemini, or OpenAI-compatible account. It summarises threads, pulls out commitments, and drafts replies you send yourself. LinkedIn and Gmail are next.",
+      `The good news: there's nothing to wait for. The app is live for Mac and Windows, and creating your account starts a free ${TRIAL_DAYS}-day trial of the full product, no card.`,
+      { label: "Download Cereal Milk for Mac or Windows →", href: DOWNLOAD_URL },
       "And if Cereal Milk isn't the right fit, just hit reply and tell me why. Whatever's holding you back genuinely shapes what we build next.",
     ],
   });
 }
 
-// Day 1 of the AI-spend email course, sent inline so it lands the moment
-// someone signs up, through the same shared transport as every drip step. The
-// remaining four days are enrolled via startCourse (see above). Content lives in
-// the sequence file so all five emails stay together.
-async function sendCourseDay1Email(email: string, name: string) {
-  const firstName = name.split(/\s+/).filter(Boolean)[0] || undefined;
-  await sendEmail({
-    to: email,
-    subject: COURSE_DAY1.subject,
-    firstName,
-    sequence: "course",
-    blocks: COURSE_DAY1.blocks,
-  });
-}
-
-// The Field Notes welcome, for everyone who subscribed on the site or the
-// docs. Light product framing, no drip; the next email they get is a real
-// issue. Links go to live pages only (/demo, /pricing, /docs).
+// The Field Notes welcome, for everyone who subscribed on the site. Light
+// product framing, no drip; the next email they get is a real issue. Links go
+// to live pages only (/demo, /pricing, /for/venture-capital).
 async function sendFieldNotesWelcomeEmail(email: string, name: string) {
   const firstName = name.split(/\s+/).filter(Boolean)[0] || undefined;
   await sendEmail({
@@ -330,7 +306,7 @@ async function sendFieldNotesWelcomeEmail(email: string, name: string) {
     blocks: [
       "I'm Daniel, founder of Cereal Milk. We make the Cereal Milk desktop app: the messenger built for AI agents. It puts WhatsApp in one fast window, with an AI agent beside every chat that runs on your own model account. LinkedIn and Gmail are next.",
       "You'll get one email when something new ships: a new release, a new capability, or a field note from the build. No schedule, no filler: if nothing shipped, you hear nothing.",
-      `In the meantime: the docs cover how we wire AI and agents into deal workflows (${SITE_URL}/docs), and pricing is published in full at ${SITE_URL}/pricing.`,
+      `In the meantime: how funds run it is at ${SITE_URL}/for/venture-capital, and pricing is published in full at ${SITE_URL}/pricing.`,
       { label: "See Cereal Milk on your own pipeline →", href: `${SITE_URL}/demo` },
       "And if the conversations that pay you happen somewhere Cereal Milk doesn't reach yet, hit reply and tell me. I read everything.",
     ],
