@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cereal Milk brand concepts (CER-6 / CER-7)</title>
+<style>
+  :root {
+    --ink: #1b1d22;
+    --paper: #f6f5f2;
+    --card-light: #ffffff;
+    --card-dark: #0a0a0a;
+    --edge: #e3e1dc;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font: 15px/1.55 -apple-system, "Segoe UI", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    padding: 48px 24px 96px;
+  }
+  main { max-width: 1040px; margin: 0 auto; }
+  h1 { font-size: 26px; letter-spacing: -0.01em; }
+  h2 { font-size: 19px; margin: 56px 0 6px; }
+  h3 { font-size: 15px; margin: 28px 0 10px; }
+  p.lede { color: #565a63; max-width: 64ch; margin-top: 8px; }
+  .notice {
+    margin-top: 20px; padding: 10px 14px; border-radius: 8px;
+    background: #fdf6e3; border: 1px solid #ecd9a0; font-size: 14px;
+  }
+  .swatches { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .swatch {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 12px 6px 6px; background: var(--card-light);
+    border: 1px solid var(--edge); border-radius: 8px;
+    font-family: ui-monospace, Menlo, monospace; font-size: 12.5px;
+  }
+  .swatch i { width: 26px; height: 26px; border-radius: 6px; display: block; border: 1px solid rgba(0,0,0,.12); }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 720px) { .duo { grid-template-columns: 1fr; } }
+  .canvas {
+    border-radius: 12px; border: 1px solid var(--edge);
+    padding: 28px; display: flex; flex-wrap: wrap;
+    align-items: center; gap: 28px; overflow-x: auto;
+  }
+  .canvas.light { background: var(--card-light); color: #0a0a0a; }
+  .canvas.dark { background: var(--card-dark); color: #ededed; border-color: #26262a; }
+  .canvas svg { display: block; flex: none; }
+  .stack { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: none; }
+  .stack small { font-size: 11px; color: #8a8d95; font-family: ui-monospace, Menlo, monospace; }
+  .canvas.dark .stack small { color: #6e7178; }
+  .round { border-radius: 50%; overflow: hidden; width: max-content; }
+  .cap { font-size: 13px; color: #565a63; margin-top: 8px; max-width: 72ch; }
+  footer { margin-top: 72px; font-size: 13px; color: #8a8d95; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- ============ CER-6 logo concepts ============ -->
+    <symbol id="bowl-mark" viewBox="0 0 14 14">
+      <rect width="14" height="14" rx="2.24" fill="#0a0a0a"/>
+      <g shape-rendering="crispEdges">
+        <rect x="4" y="3" width="1" height="1" fill="#c4a86a"/>
+        <rect x="7" y="2" width="1" height="1" fill="#c4a86a"/>
+        <rect x="9" y="4" width="1" height="1" fill="#c4a86a"/>
+        <rect x="2" y="6" width="10" height="1" fill="#318dff"/>
+        <rect x="2" y="7" width="10" height="1" fill="#ededed"/>
+        <rect x="3" y="8" width="8" height="1" fill="#ededed"/>
+        <rect x="4" y="9" width="6" height="1" fill="#ededed"/>
+        <rect x="5" y="10" width="4" height="1" fill="#a1a1a1"/>
+        <rect x="6" y="11" width="2" height="1" fill="#a1a1a1"/>
+      </g>
+    </symbol>
+    <symbol id="splash-mark" viewBox="0 0 14 14">
+      <rect width="14" height="14" rx="2.24" fill="#0a0a0a"/>
+      <g shape-rendering="crispEdges">
+        <rect x="4" y="3" width="1" height="1" fill="#c4a86a"/>
+        <rect x="7" y="2" width="1" height="1" fill="#c4a86a"/>
+        <rect x="9" y="4" width="1" height="1" fill="#c4a86a"/>
+        <rect x="8" y="5" width="1" height="1" fill="#ededed"/>
+        <rect x="10" y="5" width="1" height="1" fill="#ededed"/>
+        <rect x="2" y="6" width="10" height="1" fill="#318dff"/>
+        <rect x="2" y="7" width="10" height="1" fill="#ededed"/>
+        <rect x="3" y="8" width="8" height="1" fill="#ededed"/>
+        <rect x="4" y="9" width="6" height="1" fill="#ededed"/>
+        <rect x="5" y="10" width="4" height="1" fill="#a1a1a1"/>
+        <rect x="6" y="11" width="2" height="1" fill="#a1a1a1"/>
+      </g>
+    </symbol>
+    <symbol id="word" viewBox="0 0 57 7">
+      <g shape-rendering="crispEdges">
+        <rect x="1" y="0" width="3" height="1"/><rect x="0" y="1" width="1" height="1"/><rect x="4" y="1" width="1" height="1"/><rect x="0" y="2" width="1" height="1"/><rect x="0" y="3" width="1" height="1"/><rect x="0" y="4" width="1" height="1"/><rect x="0" y="5" width="1" height="1"/><rect x="4" y="5" width="1" height="1"/><rect x="1" y="6" width="3" height="1"/>
+        <rect x="6" y="0" width="5" height="1"/><rect x="6" y="1" width="1" height="1"/><rect x="6" y="2" width="1" height="1"/><rect x="6" y="3" width="4" height="1"/><rect x="6" y="4" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="6" y="6" width="5" height="1"/>
+        <rect x="12" y="0" width="4" height="1"/><rect x="12" y="1" width="1" height="1"/><rect x="16" y="1" width="1" height="1"/><rect x="12" y="2" width="1" height="1"/><rect x="16" y="2" width="1" height="1"/><rect x="12" y="3" width="4" height="1"/><rect x="12" y="4" width="1" height="1"/><rect x="14" y="4" width="1" height="1"/><rect x="12" y="5" width="1" height="1"/><rect x="15" y="5" width="1" height="1"/><rect x="12" y="6" width="1" height="1"/><rect x="16" y="6" width="1" height="1"/>
+        <rect x="18" y="0" width="5" height="1"/><rect x="18" y="1" width="1" height="1"/><rect x="18" y="2" width="1" height="1"/><rect x="18" y="3" width="4" height="1"/><rect x="18" y="4" width="1" height="1"/><rect x="18" y="5" width="1" height="1"/><rect x="18" y="6" width="5" height="1"/>
+        <rect x="25" y="0" width="3" height="1"/><rect x="24" y="1" width="1" height="1"/><rect x="28" y="1" width="1" height="1"/><rect x="24" y="2" width="1" height="1"/><rect x="28" y="2" width="1" height="1"/><rect x="24" y="3" width="5" height="1"/><rect x="24" y="4" width="1" height="1"/><rect x="28" y="4" width="1" height="1"/><rect x="24" y="5" width="1" height="1"/><rect x="28" y="5" width="1" height="1"/><rect x="24" y="6" width="1" height="1"/><rect x="28" y="6" width="1" height="1"/>
+        <rect x="30" y="0" width="1" height="1"/><rect x="30" y="1" width="1" height="1"/><rect x="30" y="2" width="1" height="1"/><rect x="30" y="3" width="1" height="1"/><rect x="30" y="4" width="1" height="1"/><rect x="30" y="5" width="1" height="1"/><rect x="30" y="6" width="5" height="1"/>
+        <rect x="36" y="0" width="1" height="1"/><rect x="40" y="0" width="1" height="1"/><rect x="36" y="1" width="2" height="1"/><rect x="39" y="1" width="2" height="1"/><rect x="36" y="2" width="1" height="1"/><rect x="38" y="2" width="1" height="1"/><rect x="40" y="2" width="1" height="1"/><rect x="36" y="3" width="1" height="1"/><rect x="38" y="3" width="1" height="1"/><rect x="40" y="3" width="1" height="1"/><rect x="36" y="4" width="1" height="1"/><rect x="40" y="4" width="1" height="1"/><rect x="36" y="5" width="1" height="1"/><rect x="40" y="5" width="1" height="1"/><rect x="36" y="6" width="1" height="1"/><rect x="40" y="6" width="1" height="1"/>
+        <rect x="42" y="0" width="3" height="1"/><rect x="43" y="1" width="1" height="1"/><rect x="43" y="2" width="1" height="1"/><rect x="43" y="3" width="1" height="1"/><rect x="43" y="4" width="1" height="1"/><rect x="43" y="5" width="1" height="1"/><rect x="42" y="6" width="3" height="1"/>
+        <rect x="46" y="0" width="1" height="1"/><rect x="46" y="1" width="1" height="1"/><rect x="46" y="2" width="1" height="1"/><rect x="46" y="3" width="1" height="1"/><rect x="46" y="4" width="1" height="1"/><rect x="46" y="5" width="1" height="1"/><rect x="46" y="6" width="5" height="1"/>
+        <rect x="52" y="0" width="1" height="1"/><rect x="56" y="0" width="1" height="1"/><rect x="52" y="1" width="1" height="1"/><rect x="55" y="1" width="1" height="1"/><rect x="52" y="2" width="1" height="1"/><rect x="54" y="2" width="1" height="1"/><rect x="52" y="3" width="2" height="1"/><rect x="52" y="4" width="1" height="1"/><rect x="54" y="4" width="1" height="1"/><rect x="52" y="5" width="1" height="1"/><rect x="55" y="5" width="1" height="1"/><rect x="52" y="6" width="1" height="1"/><rect x="56" y="6" width="1" height="1"/>
+      </g>
+    </symbol>
+    <symbol id="lockup-a" viewBox="0 0 91.96 14">
+      <use href="#bowl-mark" width="14" height="14"/>
+      <use href="#word" x="19" y="2.52" width="72.96" height="8.96" fill="currentColor"/>
+    </symbol>
+    <symbol id="lockup-b" viewBox="0 0 91.96 14">
+      <use href="#splash-mark" width="14" height="14"/>
+      <use href="#word" x="19" y="2.52" width="72.96" height="8.96" fill="currentColor"/>
+    </symbol>
+    <symbol id="monogram-c" viewBox="0 0 14 14">
+      <rect width="14" height="14" rx="2.24" fill="#0a0a0a"/>
+      <g shape-rendering="crispEdges">
+        <g fill="#ededed">
+          <rect x="2" y="2" width="3" height="1"/><rect x="1" y="3" width="1" height="1"/><rect x="5" y="3" width="1" height="1"/><rect x="1" y="4" width="1" height="1"/><rect x="1" y="5" width="1" height="1"/><rect x="1" y="6" width="1" height="1"/><rect x="1" y="7" width="1" height="1"/><rect x="5" y="7" width="1" height="1"/><rect x="2" y="8" width="3" height="1"/>
+        </g>
+        <g fill="#c4a86a">
+          <rect x="8" y="2" width="1" height="1"/><rect x="12" y="2" width="1" height="1"/><rect x="8" y="3" width="2" height="1"/><rect x="11" y="3" width="2" height="1"/><rect x="8" y="4" width="1" height="1"/><rect x="10" y="4" width="1" height="1"/><rect x="12" y="4" width="1" height="1"/><rect x="8" y="5" width="1" height="1"/><rect x="10" y="5" width="1" height="1"/><rect x="12" y="5" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="12" y="6" width="1" height="1"/><rect x="8" y="7" width="1" height="1"/><rect x="12" y="7" width="1" height="1"/><rect x="8" y="8" width="1" height="1"/><rect x="12" y="8" width="1" height="1"/>
+        </g>
+        <rect x="1" y="10" width="12" height="1" fill="#318dff"/>
+        <rect x="2" y="11" width="10" height="1" fill="#ededed"/>
+      </g>
+    </symbol>
+    <symbol id="wordmark-d" viewBox="0 0 57 13">
+      <g shape-rendering="crispEdges">
+        <g fill="#c4a86a">
+          <rect x="38" y="1" width="1" height="1"/><rect x="41" y="0" width="1" height="1"/><rect x="44" y="2" width="1" height="1"/>
+        </g>
+        <g fill="currentColor" transform="translate(0 4)">
+          <rect x="1" y="0" width="3" height="1"/><rect x="0" y="1" width="1" height="1"/><rect x="4" y="1" width="1" height="1"/><rect x="0" y="2" width="1" height="1"/><rect x="0" y="3" width="1" height="1"/><rect x="0" y="4" width="1" height="1"/><rect x="0" y="5" width="1" height="1"/><rect x="4" y="5" width="1" height="1"/><rect x="1" y="6" width="3" height="1"/>
+          <rect x="6" y="0" width="5" height="1"/><rect x="6" y="1" width="1" height="1"/><rect x="6" y="2" width="1" height="1"/><rect x="6" y="3" width="4" height="1"/><rect x="6" y="4" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="6" y="6" width="5" height="1"/>
+          <rect x="12" y="0" width="4" height="1"/><rect x="12" y="1" width="1" height="1"/><rect x="16" y="1" width="1" height="1"/><rect x="12" y="2" width="1" height="1"/><rect x="16" y="2" width="1" height="1"/><rect x="12" y="3" width="4" height="1"/><rect x="12" y="4" width="1" height="1"/><rect x="14" y="4" width="1" height="1"/><rect x="12" y="5" width="1" height="1"/><rect x="15" y="5" width="1" height="1"/><rect x="12" y="6" width="1" height="1"/><rect x="16" y="6" width="1" height="1"/>
+          <rect x="18" y="0" width="5" height="1"/><rect x="18" y="1" width="1" height="1"/><rect x="18" y="2" width="1" height="1"/><rect x="18" y="3" width="4" height="1"/><rect x="18" y="4" width="1" height="1"/><rect x="18" y="5" width="1" height="1"/><rect x="18" y="6" width="5" height="1"/>
+          <rect x="25" y="0" width="3" height="1"/><rect x="24" y="1" width="1" height="1"/><rect x="28" y="1" width="1" height="1"/><rect x="24" y="2" width="1" height="1"/><rect x="28" y="2" width="1" height="1"/><rect x="24" y="3" width="5" height="1"/><rect x="24" y="4" width="1" height="1"/><rect x="28" y="4" width="1" height="1"/><rect x="24" y="5" width="1" height="1"/><rect x="28" y="5" width="1" height="1"/><rect x="24" y="6" width="1" height="1"/><rect x="28" y="6" width="1" height="1"/>
+          <rect x="30" y="0" width="1" height="1"/><rect x="30" y="1" width="1" height="1"/><rect x="30" y="2" width="1" height="1"/><rect x="30" y="3" width="1" height="1"/><rect x="30" y="4" width="1" height="1"/><rect x="30" y="5" width="1" height="1"/><rect x="30" y="6" width="5" height="1"/>
+        </g>
+        <g fill="#c4a86a" transform="translate(36 4)">
+          <rect x="0" y="0" width="1" height="1"/><rect x="4" y="0" width="1" height="1"/><rect x="0" y="1" width="2" height="1"/><rect x="3" y="1" width="2" height="1"/><rect x="0" y="2" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="4" y="2" width="1" height="1"/><rect x="0" y="3" width="1" height="1"/><rect x="2" y="3" width="1" height="1"/><rect x="4" y="3" width="1" height="1"/><rect x="0" y="4" width="1" height="1"/><rect x="4" y="4" width="1" height="1"/><rect x="0" y="5" width="1" height="1"/><rect x="4" y="5" width="1" height="1"/><rect x="0" y="6" width="1" height="1"/><rect x="4" y="6" width="1" height="1"/>
+          <rect x="6" y="0" width="3" height="1"/><rect x="7" y="1" width="1" height="1"/><rect x="7" y="2" width="1" height="1"/><rect x="7" y="3" width="1" height="1"/><rect x="7" y="4" width="1" height="1"/><rect x="7" y="5" width="1" height="1"/><rect x="6" y="6" width="3" height="1"/>
+          <rect x="10" y="0" width="1" height="1"/><rect x="10" y="1" width="1" height="1"/><rect x="10" y="2" width="1" height="1"/><rect x="10" y="3" width="1" height="1"/><rect x="10" y="4" width="1" height="1"/><rect x="10" y="5" width="1" height="1"/><rect x="10" y="6" width="5" height="1"/>
+          <rect x="16" y="0" width="1" height="1"/><rect x="20" y="0" width="1" height="1"/><rect x="16" y="1" width="1" height="1"/><rect x="19" y="1" width="1" height="1"/><rect x="16" y="2" width="1" height="1"/><rect x="18" y="2" width="1" height="1"/><rect x="16" y="3" width="2" height="1"/><rect x="16" y="4" width="1" height="1"/><rect x="18" y="4" width="1" height="1"/><rect x="16" y="5" width="1" height="1"/><rect x="19" y="5" width="1" height="1"/><rect x="16" y="6" width="1" height="1"/><rect x="20" y="6" width="1" height="1"/>
+        </g>
+        <rect x="36" y="12" width="21" height="1" fill="#318dff"/>
+      </g>
+    </symbol>
+    <!-- ============ CER-7 clippy avatar concepts ============ -->
+    <symbol id="clip-a" viewBox="0 0 14 14">
+      <rect width="14" height="14" fill="#0a0a0a"/>
+      <g fill="#c4a86a" shape-rendering="crispEdges">
+        <rect x="6" y="2" width="3" height="1"/>
+        <rect x="5" y="3" width="1" height="7"/>
+        <rect x="7" y="4" width="1" height="7"/>
+        <rect x="9" y="3" width="1" height="8"/>
+        <rect x="7" y="11" width="3" height="1"/>
+      </g>
+    </symbol>
+    <symbol id="clip-b" viewBox="0 0 14 14">
+      <rect width="14" height="14" fill="#0a0a0a"/>
+      <g shape-rendering="crispEdges">
+        <g fill="#c4a86a">
+          <rect x="6" y="1" width="3" height="1"/>
+          <rect x="5" y="2" width="1" height="6"/>
+          <rect x="7" y="3" width="1" height="5"/>
+          <rect x="9" y="2" width="1" height="6"/>
+        </g>
+        <rect x="2" y="8" width="10" height="1" fill="#318dff"/>
+        <rect x="2" y="9" width="10" height="1" fill="#ededed"/>
+        <rect x="3" y="10" width="8" height="1" fill="#ededed"/>
+        <rect x="4" y="11" width="6" height="1" fill="#a1a1a1"/>
+      </g>
+    </symbol>
+    <symbol id="clip-c" viewBox="0 0 14 14">
+      <rect width="14" height="14" fill="#0a0a0a"/>
+      <g shape-rendering="crispEdges">
+        <g fill="#ededed">
+          <rect x="6" y="2" width="3" height="1"/>
+          <rect x="5" y="3" width="1" height="7"/>
+          <rect x="7" y="4" width="1" height="7"/>
+          <rect x="9" y="3" width="1" height="8"/>
+          <rect x="7" y="11" width="3" height="1"/>
+        </g>
+        <rect x="7" y="3" width="1" height="1" fill="#c4a86a"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<main>
+  <h1>Cereal Milk brand concepts</h1>
+  <p class="lede">Working concepts for CER-6 (logo) and CER-7 (clippy profile picture).
+     Everything builds on the established pixel milk-bowl direction from the
+     <code>brand/milk-bowl-mark</code> branch: 14x14 cell grid, flat cells, crisp edges,
+     near-black tile, and the hand-drawn 5x7 bitmap alphabet.</p>
+  <div class="notice"><strong>Status: concepts for review, not final.</strong>
+     Nothing in this folder ships. Winners get folded into
+     <code>scripts/generate-brand-assets.py</code> and <code>Logo.tsx</code>.</div>
+
+  <h2>Palette (brand tokens)</h2>
+  <div class="swatches">
+    <span class="swatch"><i style="background:#0a0a0a"></i>#0a0a0a tile</span>
+    <span class="swatch"><i style="background:#c4a86a"></i>#c4a86a cereal gold</span>
+    <span class="swatch"><i style="background:#318dff"></i>#318dff bowl rim</span>
+    <span class="swatch"><i style="background:#ededed"></i>#ededed milk</span>
+    <span class="swatch"><i style="background:#a1a1a1"></i>#a1a1a1 bowl base</span>
+  </div>
+
+  <h2>CER-6 &middot; Logo concepts</h2>
+
+  <h3>A. Bowl lockup (the canonical direction, packaged)</h3>
+  <div class="duo">
+    <div class="canvas light">
+      <div class="stack"><svg width="368" height="56"><use href="#lockup-a"/></svg><small>56px</small></div>
+      <div class="stack"><svg width="184" height="28"><use href="#lockup-a"/></svg><small>28px nav</small></div>
+    </div>
+    <div class="canvas dark">
+      <div class="stack"><svg width="368" height="56"><use href="#lockup-a"/></svg><small>56px</small></div>
+      <div class="stack"><svg width="184" height="28"><use href="#lockup-a"/></svg><small>28px nav</small></div>
+    </div>
+  </div>
+  <p class="cap">The mark exactly as established, plus the bitmap wordmark at 0.64 of
+     tile height, as one standalone SVG. This is the safe pick: it turns the
+     in-progress branch work into a reusable lockup asset.</p>
+
+  <h3>B. Splash lockup</h3>
+  <div class="duo">
+    <div class="canvas light">
+      <div class="stack"><svg width="368" height="56"><use href="#lockup-b"/></svg><small>56px</small></div>
+      <div class="stack"><svg width="184" height="28"><use href="#lockup-b"/></svg><small>28px nav</small></div>
+    </div>
+    <div class="canvas dark">
+      <div class="stack"><svg width="368" height="56"><use href="#lockup-b"/></svg><small>56px</small></div>
+      <div class="stack"><svg width="184" height="28"><use href="#lockup-b"/></svg><small>28px nav</small></div>
+    </div>
+  </div>
+  <p class="cap">Same lockup, but the lowest cereal square kicks up two milk cells off
+     the rim. Adds motion; slightly busier at favicon sizes.</p>
+
+  <h3>C. CM monogram tile</h3>
+  <div class="duo">
+    <div class="canvas light">
+      <div class="stack"><svg width="112" height="112"><use href="#monogram-c"/></svg><small>112px</small></div>
+      <div class="stack"><svg width="48" height="48"><use href="#monogram-c"/></svg><small>48px</small></div>
+      <div class="stack"><svg width="32" height="32"><use href="#monogram-c"/></svg><small>32px</small></div>
+    </div>
+    <div class="canvas dark">
+      <div class="stack"><svg width="112" height="112"><use href="#monogram-c"/></svg><small>112px</small></div>
+      <div class="stack"><svg width="48" height="48"><use href="#monogram-c"/></svg><small>48px</small></div>
+      <div class="stack"><svg width="32" height="32"><use href="#monogram-c"/></svg><small>32px</small></div>
+    </div>
+  </div>
+  <p class="cap">A companion tile, not a replacement: C in milk, M in gold, over the
+     rim stripe. For contexts where the bowl silhouette gets muddy or where a
+     lettered mark is expected.</p>
+
+  <h3>D. Wordmark-first, tile-free</h3>
+  <div class="duo">
+    <div class="canvas light" style="color:#0a0a0a">
+      <div class="stack"><svg width="342" height="78"><use href="#wordmark-d"/></svg><small>78px</small></div>
+    </div>
+    <div class="canvas dark">
+      <div class="stack"><svg width="342" height="78"><use href="#wordmark-d"/></svg><small>78px</small></div>
+    </div>
+  </div>
+  <p class="cap">For wide surfaces that already sit on brand canvas: CEREAL in ink,
+     MILK in cereal gold catching three falling squares, blue rim stripe beneath.
+     Known question: gold on white runs light; this one lives best on dark.</p>
+
+  <h2>CER-7 &middot; clippy profile picture concepts</h2>
+  <p class="lede">clippy is the org's committing agent (GitHub: clippycommits), so:
+     a pixel paperclip, drawn on the same grid as the bowl. All three are
+     full-bleed squares; the circle previews show the usual social crop.</p>
+
+  <h3>A. Brass clip</h3>
+  <div class="duo">
+    <div class="canvas light">
+      <div class="stack"><svg width="196" height="196"><use href="#clip-a"/></svg><small>196px</small></div>
+      <div class="stack"><svg width="48" height="48"><use href="#clip-a"/></svg><small>48px</small></div>
+      <div class="stack"><svg width="32" height="32"><use href="#clip-a"/></svg><small>32px</small></div>
+      <div class="stack"><span class="round"><svg width="64" height="64"><use href="#clip-a"/></svg></span><small>circle 64px</small></div>
+    </div>
+    <div class="canvas dark">
+      <div class="stack"><svg width="196" height="196"><use href="#clip-a"/></svg><small>196px</small></div>
+      <div class="stack"><svg width="48" height="48"><use href="#clip-a"/></svg><small>48px</small></div>
+      <div class="stack"><svg width="32" height="32"><use href="#clip-a"/></svg><small>32px</small></div>
+      <div class="stack"><span class="round"><svg width="64" height="64"><use href="#clip-a"/></svg></span><small>circle 64px</small></div>
+    </div>
+  </div>
+  <p class="cap">The plainest read: cereal-gold clip on the brand tile.</p>
+
+  <h3>B. Clip in the milk</h3>
+  <div class="duo">
+    <div class="canvas light">
+      <div class="stack"><svg width="196" height="196"><use href="#clip-b"/></svg><small>196px</small></div>
+      <div class="stack"><svg width="48" height="48"><use href="#clip-b"/></svg><small>48px</small></div>
+      <div class="stack"><svg width="32" height="32"><use href="#clip-b"/></svg><small>32px</small></div>
+      <div class="stack"><span class="round"><svg width="64" height="64"><use href="#clip-b"/></svg></span><small>circle 64px</small></div>
+    </div>
+    <div class="canvas dark">
+      <div class="stack"><svg width="196" height="196"><use href="#clip-b"/></svg><small>196px</small></div>
+      <div class="stack"><svg width="48" height="48"><use href="#clip-b"/></svg><small>48px</small></div>
+      <div class="stack"><svg width="32" height="32"><use href="#clip-b"/></svg><small>32px</small></div>
+      <div class="stack"><span class="round"><svg width="64" height="64"><use href="#clip-b"/></svg></span><small>circle 64px</small></div>
+    </div>
+  </div>
+  <p class="cap">The clip plunges into the bowl's rim stripe and milk steps: the
+     tightest visual tie between the agent and the product mark.</p>
+
+  <h3>C. Clip with the cereal</h3>
+  <div class="duo">
+    <div class="canvas light">
+      <div class="stack"><svg width="196" height="196"><use href="#clip-c"/></svg><small>196px</small></div>
+      <div class="stack"><svg width="48" height="48"><use href="#clip-c"/></svg><small>48px</small></div>
+      <div class="stack"><svg width="32" height="32"><use href="#clip-c"/></svg><small>32px</small></div>
+      <div class="stack"><span class="round"><svg width="64" height="64"><use href="#clip-c"/></svg></span><small>circle 64px</small></div>
+    </div>
+    <div class="canvas dark">
+      <div class="stack"><svg width="196" height="196"><use href="#clip-c"/></svg><small>196px</small></div>
+      <div class="stack"><svg width="48" height="48"><use href="#clip-c"/></svg><small>48px</small></div>
+      <div class="stack"><svg width="32" height="32"><use href="#clip-c"/></svg><small>32px</small></div>
+      <div class="stack"><span class="round"><svg width="64" height="64"><use href="#clip-c"/></svg></span><small>circle 64px</small></div>
+    </div>
+  </div>
+  <p class="cap">Milk-white clip gripping one gold cereal square: highest contrast of
+     the three and the strongest read at 32px.</p>
+
+  <footer>
+    Concepts for CER-6 and CER-7, drafted 2026-07-29. Source SVGs sit next to
+    this file in <code>brand/concepts/</code>. Not final; nothing here ships
+    until a human picks winners and folds them into the brand asset pipeline.
+  </footer>
+</main>
+</body>
+</html>

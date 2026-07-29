@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" role="img" aria-label="clippy">
+  <!-- Avatar B (CER-7): clippy dunked in the product. The gold paperclip
+       plunges into the milk bowl: its rails run straight into the blue
+       rim stripe and the milk steps from the canonical mark, so the
+       avatar and the logo read as one family. Same 14x14 grid, same
+       palette, full-bleed square for social masks. -->
+  <rect width="14" height="14" fill="#0a0a0a"/>
+  <g shape-rendering="crispEdges">
+    <!-- the clip, in cereal gold, top cap and three rails -->
+    <g fill="#c4a86a">
+      <rect x="6" y="1" width="3" height="1"/>
+      <rect x="5" y="2" width="1" height="6"/>
+      <rect x="7" y="3" width="1" height="5"/>
+      <rect x="9" y="2" width="1" height="6"/>
+    </g>
+    <!-- the milk it lands in: rim, milk steps, base -->
+    <rect x="2" y="8" width="10" height="1" fill="#318dff"/>
+    <rect x="2" y="9" width="10" height="1" fill="#ededed"/>
+    <rect x="3" y="10" width="8" height="1" fill="#ededed"/>
+    <rect x="4" y="11" width="6" height="1" fill="#a1a1a1"/>
+  </g>
+</svg>
