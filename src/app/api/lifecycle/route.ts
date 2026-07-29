@@ -17,14 +17,15 @@ import type { SignalKey } from "@/lib/drip/types";
 // anyway until the store is configured.
 //
 // Body: { "type": "<event>", "email": "you@co.com", "name"?: "Jane Doe" }
-//   converted: purchased; stops nurture, starts activation
+//   converted: created an account (trial started; a purchase lands here too
+//              once billing ships); stops nurture, starts activation
 //   replied, replied to a drip; pause and hand to a human
 //   unsubscribed, hard stop
-//   whatsapp_connected   ┐
-//   linkedin_connected   │ usage signals, let the matching activation
-//   crm_linked           │ step skip itself
-//   first_sync           │
-//   first_insight        ┘
+//   whatsapp_connected → activation A2 (connect) skips
+//   first_insight (first agent ask) → A3 (first ask) skips
+//   first_sync (first thread export) → A4 (cockpit) skips
+//   linkedin_connected, crm_linked: accepted and recorded, reserved for the
+//   next channels and the MCP/CRM step as they ship
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

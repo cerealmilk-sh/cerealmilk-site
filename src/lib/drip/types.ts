@@ -5,7 +5,7 @@
 
 export type SegmentId = "mac" | "non_mac";
 
-export type SequenceId = "nurture" | "activation" | "course";
+export type SequenceId = "nurture" | "activation";
 
 // Usage signals the Mac app reports (via POST /api/lifecycle). Setting one to
 // true lets the activation sequence *skip* the step that would have nudged it,

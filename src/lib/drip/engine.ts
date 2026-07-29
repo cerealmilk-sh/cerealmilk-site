@@ -23,11 +23,12 @@ import type { Contact, SegmentId, SignalKey, SequenceId } from "./types";
 const dayOf = (iso: string) => iso.slice(0, 10);
 const ONE_DAY = 86_400_000;
 
-// Sequences run activation before nurture so a paying customer's onboarding
-// always takes priority over any leftover nurture step. The AI-spend course is
-// independent of the product funnel and runs last, so it never delays onboarding
-// under the one-email-per-day cap.
-const ORDER: SequenceId[] = ["activation", "nurture", "course"];
+// Sequences run activation before nurture so a customer's onboarding always
+// takes priority over any leftover nurture step under the one-email-per-day
+// cap. (The AI-spend course sequence was retired 2026-07-29 with the docs site
+// it linked to; any in-flight `course` state on stored contacts is simply
+// ignored from here on.)
+const ORDER: SequenceId[] = ["activation", "nurture"];
 
 // The core. Mutates `c`, sends at most one email (frequency cap: one drip per
 // contact per day), persists, and adds/removes the contact from the active set.
@@ -115,23 +116,6 @@ export async function startWaitlist(email: string, name?: string, segment: Segme
   await processContact(c);
 }
 
-// A signup for the AI-spend email course. Day 1 is sent inline by /api/waitlist
-// (so it lands immediately and works with just RESEND_API_KEY); this enrolls the
-// timed tail, days 2–5. Anchored on now: an existing contact who signs up later
-// still gets a clean five-day cadence, not a burst. Idempotent: a repeat signup
-// never restarts the sequence.
-export async function startCourse(email: string, name?: string) {
-  if (!storeEnabled()) return;
-  const c = await loadOrCreate(email, "mac", name);
-  c.sequences.course ??= {
-    startedAt: new Date().toISOString(),
-    step: 0,
-    done: false,
-    sentAt: {},
-  };
-  await processContact(c);
-}
-
 // A founding pre-order reservation. Marks the contact converted so nurture
 // ends (its job, driving the pre-order, is done) but does NOT start
 // activation: that anchors on the real setup/purchase, when the seat is
@@ -144,7 +128,9 @@ export async function markPreordered(email: string, name?: string) {
   await processContact(c);
 }
 
-// A purchase. Stops nurture, anchors and starts activation, and fires its Day-0
+// A conversion: the contact created an account, which starts the free trial
+// (the `converted` lifecycle signal; a purchase also lands here once billing
+// ships). Stops nurture, anchors and starts activation, and fires its Day-0
 // welcome inline so it lands immediately, not on the next cron tick.
 export async function markConverted(email: string, name?: string) {
   if (!storeEnabled()) return;
