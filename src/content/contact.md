@@ -17,4 +17,4 @@ One or two lines on each of these is enough for a useful first reply:
 - [Book a demo](/demo) if you would rather talk than write.
 - Email [daniel@cerealmilk.sh](mailto:daniel@cerealmilk.sh) directly if you prefer your own inbox.
 - [Download Cereal Milk for Mac](/download): create your account in the app and the full product is free for 7 days, no card.
-- Subscribe to [The Cereal Milk Field Notes](/newsletter) if you are not ready to talk yet.
+- Subscribe to [The Breakfast Club](/newsletter) if you are not ready to talk yet.

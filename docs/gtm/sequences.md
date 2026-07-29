@@ -39,9 +39,9 @@ product, no card.
 And if Cereal Milk isn't the right fit, just hit reply and tell me why.
 Whatever's holding you back genuinely shapes what we build next.
 
-## Day 0 · Field Notes welcome (inline on newsletter signup)
+## Day 0 · Breakfast Club welcome (inline on newsletter signup)
 
-**Subject:** You're on The Cereal Milk Field Notes
+**Subject:** You're in The Breakfast Club
 
 I'm Daniel, founder of Cereal Milk. We make the Cereal Milk desktop app: the
 messenger built for AI agents. It puts WhatsApp in one fast window, with an AI
@@ -49,7 +49,7 @@ agent beside every chat that runs on your own model account. LinkedIn and Gmail
 are next.
 
 You'll get one email when something new ships: a new release, a new capability,
-or a field note from the build. No schedule, no filler: if nothing shipped, you
+or a note from the build. No schedule, no filler: if nothing shipped, you
 hear nothing.
 
 In the meantime: how funds run it is at cerealmilk.sh/for/venture-capital, and

@@ -185,7 +185,7 @@ hand-roll their own versions.
 ### 5.3 Footer
 Vercel-style: `border-t border-edge`, bg-bg, py-16. Container grid: 4–5
 columns of links: column heading 14px ink, links 14px ink-dim → hover ink,
-leading-8. Keep every existing footer link and the Field Notes subscribe block
+leading-8. Keep every existing footer link and the Breakfast Club subscribe block
 (restyle: 14px input `bg-transparent border border-edge-2 rounded-md h-10` +
 primary pill submit). Bottom row: `Cereal Milk` mark, © line, theme toggle.
 

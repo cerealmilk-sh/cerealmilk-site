@@ -4,7 +4,7 @@
 > the GTM docs live alongside the code they describe (`src/lib/drip/*`).
 > `sequences.md` is **derived** from `src/lib/drip/sequences.ts`, keep it in
 > sync when the copy in code changes. `broadcasts.md` holds the one-off
-> marketing emails for the Field Notes list.
+> marketing emails for The Breakfast Club list.
 >
 > **Rewritten 2026-07-29** to the shipped product ("the messenger built for AI
 > agents": WhatsApp today, LinkedIn and Gmail next, agent on the customer's own
@@ -29,7 +29,7 @@ and the `/api/{waitlist,inquiry,cron/drip,lifecycle,unsubscribe}` routes.
 
 ```
    Visitor on cerealmilk.sh
-   ├── newsletter form ──► POST /api/waitlist ──► Field Notes welcome (no drip)
+   ├── newsletter form ──► POST /api/waitlist ──► Breakfast Club welcome (no drip)
    ├── /contact · /demo ─► POST /api/inquiry ──► brief to Daniel + ack to sender
    ├── product signup ───► POST /api/waitlist ──► product welcome + NURTURE
    └── /preorder ────────► POST /api/waitlist ──► confirmation, converted=true
@@ -193,7 +193,7 @@ Everything is rollout-safe: each unset var disables its slice and nothing else.
 5. **Usage signals**: have the app POST `whatsapp_connected` /
    `first_insight` / `first_sync` the same way.
 6. **Audience + broadcasts**: needs the full-access Resend key; create the
-   Field Notes audience, set `RESEND_AUDIENCE_ID`, and send `broadcasts.md`
+   Breakfast Club audience, set `RESEND_AUDIENCE_ID`, and send `broadcasts.md`
    content through Resend Broadcasts.
 
 Manual cron trigger (smoke test):

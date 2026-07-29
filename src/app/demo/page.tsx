@@ -14,7 +14,7 @@ import { Crosshair, SectionHeading } from "@/components/site/vercel-kit";
 // visitor lands on the Cal.com booking page with name and email prefilled.
 // The ?src= param on inbound links is attribution only and is read
 // client-side in DemoRequestForm, so the page stays static. No Terminus: the
-// secondary capture is the bordered Field Notes block at the end.
+// secondary capture is the bordered Breakfast Club block at the end.
 
 const entry = pageByPath("/demo")!;
 
@@ -95,7 +95,7 @@ export default function Page() {
             {NEWSLETTER_NAME}
           </p>
           <h2 className="mt-3 text-[24px] leading-[1.2] text-ink">
-            Not ready to talk? Get the Field Notes instead.
+            Not ready to talk? Join the club instead.
           </h2>
           <div className="mt-5">
             <NewsletterForm source="demo" />

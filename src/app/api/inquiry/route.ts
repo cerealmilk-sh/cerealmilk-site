@@ -88,7 +88,7 @@ export function GET() {
       { name: "firm", required: false, type: "string", description: "The fund or firm, and which CRM it runs (Attio or Affinity)." },
       { name: "message", required: true, type: "string", description: "What the sender needs: the problem and what a good outcome looks like." },
       { name: "source", required: false, type: "string", description: "Where the inquiry came from: \"contact\" (default) or \"demo\" (the /demo booking form)." },
-      { name: "subscribe", required: false, type: "boolean", description: "Opt in to The Cereal Milk Field Notes newsletter. Never auto-subscribed." },
+      { name: "subscribe", required: false, type: "boolean", description: "Opt in to The Breakfast Club, the Cereal Milk newsletter. Never auto-subscribed." },
     ],
     example: {
       name: "Jordan Rivera",
@@ -241,7 +241,7 @@ export async function POST(req: Request) {
   });
 
   // Opt-in newsletter only. Never auto-subscribe. Forward to the existing
-  // capture endpoint so the Field Notes welcome + audience logic stays in one
+  // capture endpoint so the Breakfast Club welcome + audience logic stays in one
   // place; best-effort and non-blocking.
   if (subscribe) {
     fetch(`${SITE_URL}/api/waitlist`, {

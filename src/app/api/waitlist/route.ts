@@ -24,7 +24,7 @@ import { getPostHogClient, posthogCookieDistinctId } from "@/lib/posthog-server"
 // The `source` field decides the journey:
 //   "app"/"waitlist" → product lead: Day-0 product welcome + the nurture drip.
 //   "preorder"       → founding reservation: confirmation email, no nurture.
-//   anything else    → Field Notes subscriber: newsletter welcome, NO product
+//   anything else    → Breakfast Club subscriber: newsletter welcome, NO product
 //                      drip (a reader subscribing on an article must never get
 //                      "reserve your seat" product emails).
 //
@@ -161,14 +161,14 @@ export async function POST(req: Request) {
   // Welcome email (Day 0): best-effort, sent whenever Resend is configured,
   // independent of where the contact is stored. Never blocks or fails the
   // signup. Product signups get the founder's product welcome; everyone else
-  // gets the Field Notes welcome.
+  // gets the Breakfast Club welcome.
   if (resendKey) {
     if (isPreorder) {
       await sendPreorderConfirmationEmail(email, name, plan).catch((err) =>
         console.error("[waitlist] preorder confirmation failed", err)
       );
     } else {
-      const welcome = isProduct ? sendProductWelcomeEmail : sendFieldNotesWelcomeEmail;
+      const welcome = isProduct ? sendProductWelcomeEmail : sendBreakfastClubWelcomeEmail;
       await welcome(email, name).catch((err) =>
         console.error("[waitlist] welcome email failed", err)
       );
@@ -303,19 +303,19 @@ async function sendProductWelcomeEmail(email: string, name: string) {
   });
 }
 
-// The Field Notes welcome, for everyone who subscribed on the site. Light
+// The Breakfast Club welcome, for everyone who subscribed on the site. Light
 // product framing, no drip; the next email they get is a real issue. Links go
 // to live pages only (/demo, /pricing, /for/venture-capital).
-async function sendFieldNotesWelcomeEmail(email: string, name: string) {
+async function sendBreakfastClubWelcomeEmail(email: string, name: string) {
   const firstName = name.split(/\s+/).filter(Boolean)[0] || undefined;
   await sendEmail({
     to: email,
-    subject: `You're on ${NEWSLETTER_NAME}`,
+    subject: `You're in ${NEWSLETTER_NAME}`,
     firstName,
-    sequence: "welcome",
+    sequence: "newsletter",
     blocks: [
       "I'm Daniel, founder of Cereal Milk. We make the Cereal Milk desktop app: the messenger built for AI agents. It puts WhatsApp in one fast window, with an AI agent beside every chat that runs on your own model account. LinkedIn and Gmail are next.",
-      "You'll get one email when something new ships: a new release, a new capability, or a field note from the build. No schedule, no filler: if nothing shipped, you hear nothing.",
+      "You'll get one email when something new ships: a new release, a new capability, or a note from the build. No schedule, no filler: if nothing shipped, you hear nothing.",
       `In the meantime: how funds run it is at ${SITE_URL}/for/venture-capital, and pricing is published in full at ${SITE_URL}/pricing.`,
       { label: "See Cereal Milk on your own pipeline →", href: `${SITE_URL}/demo` },
       "And if the conversations that pay you happen somewhere Cereal Milk doesn't reach yet, hit reply and tell me. I read everything.",

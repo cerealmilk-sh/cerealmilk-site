@@ -44,9 +44,12 @@ export const YOUTUBE_CHANNEL_ID = "UC1MogjCVseg7rGXwtxrdUww";
 export const YOUTUBE_HANDLE = "danieljhull";
 export const YOUTUBE_URL = "https://www.youtube.com/@danieljhull";
 
-export const NEWSLETTER_NAME = "The Cereal Milk Field Notes";
+// Renamed from "The Cereal Milk Field Notes" on 2026-07-29. The name carries
+// the breakfast register on its own, so surrounding copy supplies the brand
+// ("The Breakfast Club, the Cereal Milk list") rather than the name itself.
+export const NEWSLETTER_NAME = "The Breakfast Club";
 export const NEWSLETTER_PITCH =
-  "One email when something ships: new releases, new capabilities, and field notes from the build. No spam, unsubscribe anytime.";
+  "One email when something ships: new releases, new capabilities, and notes from the build. No spam, unsubscribe anytime.";
 
 // The demo funnel. Every primary CTA on the site points here; the page embeds
 // the Cal.com scheduler (see src/app/demo/page.tsx).

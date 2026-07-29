@@ -182,9 +182,9 @@ export const PAGES: PageEntry[] = [
   },
   {
     path: "/newsletter",
-    title: "The Cereal Milk Field Notes",
+    title: "The Breakfast Club",
     description:
-      "The Cereal Milk Field Notes is one email when something ships: new releases, new agent capabilities, and field notes from the build. No spam, unsubscribe anytime.",
+      "The Breakfast Club is one email when something ships from Cereal Milk: new releases, new capabilities, and notes from the build. No spam, unsubscribe anytime.",
     section: "company",
     datePublished: "2026-07-02",
     dateModified: "2026-07-29",
