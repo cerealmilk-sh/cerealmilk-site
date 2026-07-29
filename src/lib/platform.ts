@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 // Client-side platform detection, the same pattern superset.sh uses for its
 // download UX: the server render is platform-neutral (navigator does not
@@ -32,12 +32,14 @@ function detectPlatform(): Platform {
   return Platform.Unknown;
 }
 
+// The platform never changes within a page's lifetime, so it reads as an
+// external snapshot: the server and the hydration pass see Unknown, the
+// first client render after hydration sees the real platform. No effect,
+// no post-mount setState.
+const subscribeNever = () => () => {};
+
 export function usePlatform(): Platform {
-  const [platform, setPlatform] = useState<Platform>(Platform.Unknown);
-  useEffect(() => {
-    setPlatform(detectPlatform());
-  }, []);
-  return platform;
+  return useSyncExternalStore(subscribeNever, detectPlatform, () => Platform.Unknown);
 }
 
 // What each downloadable platform is called and which evergreen route serves

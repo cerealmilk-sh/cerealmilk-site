@@ -38,7 +38,6 @@ export function TypewriterH1({ text }: { text: string }) {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    setCount(0);
     let i = 0;
     let timer: ReturnType<typeof setTimeout>;
     const tick = () => {
@@ -46,7 +45,13 @@ export function TypewriterH1({ text }: { text: string }) {
       setCount(i);
       if (i < text.length) timer = setTimeout(tick, TYPE_MS);
     };
-    timer = setTimeout(tick, START_DELAY_MS);
+    // The blank-out runs from a 0ms timer, not synchronously in the effect
+    // (the hooks lint bans that): still effectively immediate, then the
+    // caret waits START_DELAY_MS before typing, as before.
+    timer = setTimeout(() => {
+      setCount(0);
+      timer = setTimeout(tick, START_DELAY_MS);
+    }, 0);
     return () => clearTimeout(timer);
   }, [text]);
 
