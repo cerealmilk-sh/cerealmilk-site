@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57 13" role="img" aria-label="Cereal Milk">
+  <!-- Concept D (CER-6): a tile-free wordmark-first lockup for headers and
+       wide surfaces. CEREAL sets in currentColor, MILK in cereal gold with
+       three gold squares tumbling into it and the blue rim stripe beneath,
+       so the bowl story survives without the tile. Same 5x7 bitmap
+       alphabet and palette as the mark. Known question for review: gold
+       on white is light; the dark canvas is its home turf. -->
+  <g shape-rendering="crispEdges">
+    <!-- cereal squares falling into MILK -->
+    <g fill="#c4a86a">
+      <rect x="38" y="1" width="1" height="1"/>
+      <rect x="41" y="0" width="1" height="1"/>
+      <rect x="44" y="2" width="1" height="1"/>
+    </g>
+    <!-- CEREAL, in currentColor -->
+    <g fill="currentColor" transform="translate(0 4)">
+      <rect x="1" y="0" width="3" height="1"/>
+      <rect x="0" y="1" width="1" height="1"/>
+      <rect x="4" y="1" width="1" height="1"/>
+      <rect x="0" y="2" width="1" height="1"/>
+      <rect x="0" y="3" width="1" height="1"/>
+      <rect x="0" y="4" width="1" height="1"/>
+      <rect x="0" y="5" width="1" height="1"/>
+      <rect x="4" y="5" width="1" height="1"/>
+      <rect x="1" y="6" width="3" height="1"/>
+      <rect x="6" y="0" width="5" height="1"/>
+      <rect x="6" y="1" width="1" height="1"/>
+      <rect x="6" y="2" width="1" height="1"/>
+      <rect x="6" y="3" width="4" height="1"/>
+      <rect x="6" y="4" width="1" height="1"/>
+      <rect x="6" y="5" width="1" height="1"/>
+      <rect x="6" y="6" width="5" height="1"/>
+      <rect x="12" y="0" width="4" height="1"/>
+      <rect x="12" y="1" width="1" height="1"/>
+      <rect x="16" y="1" width="1" height="1"/>
+      <rect x="12" y="2" width="1" height="1"/>
+      <rect x="16" y="2" width="1" height="1"/>
+      <rect x="12" y="3" width="4" height="1"/>
+      <rect x="12" y="4" width="1" height="1"/>
+      <rect x="14" y="4" width="1" height="1"/>
+      <rect x="12" y="5" width="1" height="1"/>
+      <rect x="15" y="5" width="1" height="1"/>
+      <rect x="12" y="6" width="1" height="1"/>
+      <rect x="16" y="6" width="1" height="1"/>
+      <rect x="18" y="0" width="5" height="1"/>
+      <rect x="18" y="1" width="1" height="1"/>
+      <rect x="18" y="2" width="1" height="1"/>
+      <rect x="18" y="3" width="4" height="1"/>
+      <rect x="18" y="4" width="1" height="1"/>
+      <rect x="18" y="5" width="1" height="1"/>
+      <rect x="18" y="6" width="5" height="1"/>
+      <rect x="25" y="0" width="3" height="1"/>
+      <rect x="24" y="1" width="1" height="1"/>
+      <rect x="28" y="1" width="1" height="1"/>
+      <rect x="24" y="2" width="1" height="1"/>
+      <rect x="28" y="2" width="1" height="1"/>
+      <rect x="24" y="3" width="5" height="1"/>
+      <rect x="24" y="4" width="1" height="1"/>
+      <rect x="28" y="4" width="1" height="1"/>
+      <rect x="24" y="5" width="1" height="1"/>
+      <rect x="28" y="5" width="1" height="1"/>
+      <rect x="24" y="6" width="1" height="1"/>
+      <rect x="28" y="6" width="1" height="1"/>
+      <rect x="30" y="0" width="1" height="1"/>
+      <rect x="30" y="1" width="1" height="1"/>
+      <rect x="30" y="2" width="1" height="1"/>
+      <rect x="30" y="3" width="1" height="1"/>
+      <rect x="30" y="4" width="1" height="1"/>
+      <rect x="30" y="5" width="1" height="1"/>
+      <rect x="30" y="6" width="5" height="1"/>
+    </g>
+    <!-- MILK, in cereal gold -->
+    <g fill="#c4a86a" transform="translate(36 4)">
+      <rect x="0" y="0" width="1" height="1"/>
+      <rect x="4" y="0" width="1" height="1"/>
+      <rect x="0" y="1" width="2" height="1"/>
+      <rect x="3" y="1" width="2" height="1"/>
+      <rect x="0" y="2" width="1" height="1"/>
+      <rect x="2" y="2" width="1" height="1"/>
+      <rect x="4" y="2" width="1" height="1"/>
+      <rect x="0" y="3" width="1" height="1"/>
+      <rect x="2" y="3" width="1" height="1"/>
+      <rect x="4" y="3" width="1" height="1"/>
+      <rect x="0" y="4" width="1" height="1"/>
+      <rect x="4" y="4" width="1" height="1"/>
+      <rect x="0" y="5" width="1" height="1"/>
+      <rect x="4" y="5" width="1" height="1"/>
+      <rect x="0" y="6" width="1" height="1"/>
+      <rect x="4" y="6" width="1" height="1"/>
+      <rect x="6" y="0" width="3" height="1"/>
+      <rect x="7" y="1" width="1" height="1"/>
+      <rect x="7" y="2" width="1" height="1"/>
+      <rect x="7" y="3" width="1" height="1"/>
+      <rect x="7" y="4" width="1" height="1"/>
+      <rect x="7" y="5" width="1" height="1"/>
+      <rect x="6" y="6" width="3" height="1"/>
+      <rect x="10" y="0" width="1" height="1"/>
+      <rect x="10" y="1" width="1" height="1"/>
+      <rect x="10" y="2" width="1" height="1"/>
+      <rect x="10" y="3" width="1" height="1"/>
+      <rect x="10" y="4" width="1" height="1"/>
+      <rect x="10" y="5" width="1" height="1"/>
+      <rect x="10" y="6" width="5" height="1"/>
+      <rect x="16" y="0" width="1" height="1"/>
+      <rect x="20" y="0" width="1" height="1"/>
+      <rect x="16" y="1" width="1" height="1"/>
+      <rect x="19" y="1" width="1" height="1"/>
+      <rect x="16" y="2" width="1" height="1"/>
+      <rect x="18" y="2" width="1" height="1"/>
+      <rect x="16" y="3" width="2" height="1"/>
+      <rect x="16" y="4" width="1" height="1"/>
+      <rect x="18" y="4" width="1" height="1"/>
+      <rect x="16" y="5" width="1" height="1"/>
+      <rect x="19" y="5" width="1" height="1"/>
+      <rect x="16" y="6" width="1" height="1"/>
+      <rect x="20" y="6" width="1" height="1"/>
+    </g>
+    <!-- blue rim stripe under MILK -->
+    <rect x="36" y="12" width="21" height="1" fill="#318dff"/>
+  </g>
+</svg>

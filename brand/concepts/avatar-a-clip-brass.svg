@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" role="img" aria-label="clippy">
+  <!-- Avatar A (CER-7): clippy as a pixel paperclip in cereal gold on the
+       brand near-black tile. Same 14x14 grid language as the milk-bowl
+       mark. Clip anatomy: top cap joins the outer rails, the bottom cap
+       joins the right rail to the inner rail, the left rail ends free at
+       the mouth. Full-bleed square: social platforms apply their own
+       mask. Legible at 48px (each cell is about 3.4px). -->
+  <rect width="14" height="14" fill="#0a0a0a"/>
+  <g fill="#c4a86a" shape-rendering="crispEdges">
+    <!-- top cap -->
+    <rect x="6" y="2" width="3" height="1"/>
+    <!-- left rail, free end at the mouth -->
+    <rect x="5" y="3" width="1" height="7"/>
+    <!-- inner rail -->
+    <rect x="7" y="4" width="1" height="7"/>
+    <!-- right rail -->
+    <rect x="9" y="3" width="1" height="8"/>
+    <!-- bottom cap -->
+    <rect x="7" y="11" width="3" height="1"/>
+  </g>
+</svg>
