@@ -3,7 +3,7 @@ import { sendEmail } from "@/lib/drip/email";
 import { markPreordered, startCourse, startWaitlist } from "@/lib/drip/engine";
 import { COURSE_DAY1 } from "@/lib/drip/sequences";
 import { NEWSLETTER_NAME, SITE_URL } from "@/lib/site";
-import { getPostHogClient } from "@/lib/posthog-server";
+import { getPostHogClient, posthogCookieDistinctId } from "@/lib/posthog-server";
 
 // Every email-capture form on cerealmilk.sh posts here, the studio newsletter forms
 // (header/footer/Terminus, source: "footer" | "home" | "work/…"), the docs
@@ -236,6 +236,16 @@ export async function POST(req: Request) {
           ...(isPreorder && plan ? { plan } : {}),
         },
       });
+      const anonId = posthogCookieDistinctId(req);
+      if (anonId && anonId !== email) {
+        // The same merge posthog-js performs on identify(): the browser's
+        // anonymous journey (pageviews, CTA clicks) folds into the lead.
+        posthog.capture({
+          distinctId: email,
+          event: "$identify",
+          properties: { $anon_distinct_id: anonId },
+        });
+      }
       await posthog.flush();
     } catch (err) {
       console.error("[waitlist] posthog capture failed", err);

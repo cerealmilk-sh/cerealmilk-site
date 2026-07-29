@@ -33,3 +33,22 @@ export function getPostHogClient(): PostHog | null {
   }
   return _client;
 }
+
+// The posthog-js cookie (ph_<key>_posthog, URL-encoded JSON) carries the
+// browser's anonymous distinct_id. Forms post same-origin, so it rides along
+// and lets the route merge the lead into the visitor's browsing journey.
+// Absent (PostHog ad-blocked, curl, no-JS first visit) this returns null and
+// the lead stays keyed by email alone.
+export function posthogCookieDistinctId(req: Request): string | null {
+  if (!KEY) return null;
+  const match = (req.headers.get("cookie") ?? "").match(
+    new RegExp(`ph_${KEY}_posthog=([^;]+)`)
+  );
+  if (!match) return null;
+  try {
+    const id = JSON.parse(decodeURIComponent(match[1])).distinct_id;
+    return typeof id === "string" && id && id.length <= 200 ? id : null;
+  } catch {
+    return null;
+  }
+}
