@@ -19,7 +19,7 @@ import { getPostHogClient, posthogCookieDistinctId } from "@/lib/posthog-server"
 //
 //   RESEND_API_KEY, required to actually send (falls back to a log).
 //   WAITLIST_EMAIL_FROM, verified sending identity (shared with the drip).
-//   INQUIRY_TO, override the destination inbox (defaults to dan@).
+//   INQUIRY_TO, override the destination inbox (defaults to AUTHOR.email).
 //
 // A hidden honeypot field ("company_website") catches naive bots: real people
 // and form-filling agents leave it empty, scripts fill every field. A filled
@@ -48,7 +48,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const FROM = process.env.WAITLIST_EMAIL_FROM || "Cereal Milk <daniel@updates.cerealmilk.sh>";
+const FROM = process.env.WAITLIST_EMAIL_FROM || "Cereal Milk <clippy@updates.cerealmilk.sh>";
 const TO = process.env.INQUIRY_TO || AUTHOR.email;
 
 // One PostHog person collects every dropped submission (see the dropped()

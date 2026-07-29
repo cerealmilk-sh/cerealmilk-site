@@ -75,7 +75,7 @@ export async function GET(req: Request) {
     return page(
       "Unsubscribe",
       "That link didn't work.",
-      'This unsubscribe link is invalid or has expired, so nothing was changed. Use the link from a recent email, or write to <a href="mailto:daniel@cerealmilk.sh" style="color:#0064ff;text-decoration:none;">daniel@cerealmilk.sh</a> and we\'ll take you off the list by hand.'
+      'This unsubscribe link is invalid or has expired, so nothing was changed. Use the link from a recent email, or write to <a href="mailto:clippy@cerealmilk.sh" style="color:#0064ff;text-decoration:none;">clippy@cerealmilk.sh</a> and we\'ll take you off the list by hand.'
     );
   }
 

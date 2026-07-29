@@ -34,7 +34,7 @@ function stripLede(md: string, lede: string): string {
 const ERRORS: Record<string, string> = {
   email: "Please enter a valid work email so we can reply.",
   message: "Please add a short message so we know what you need.",
-  "1": "Something went wrong sending that. Email daniel@cerealmilk.sh directly and it will get through.",
+  "1": "Something went wrong sending that. Email clippy@cerealmilk.sh directly and it will get through.",
 };
 
 export default async function Page({

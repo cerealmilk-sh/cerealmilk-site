@@ -18,5 +18,5 @@ Daniel Hull, the founder. If Cereal Milk is not right for you, you will hear tha
 
 ## Rather not book a slot?
 
-- Email [daniel@cerealmilk.sh](mailto:daniel@cerealmilk.sh) and Dan replies with times, usually within a day.
+- Email [clippy@cerealmilk.sh](mailto:clippy@cerealmilk.sh) and Dan replies with times, usually within a day.
 - Not ready to talk? Read about [getting Cereal Milk for Mac](/download) first.

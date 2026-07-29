@@ -149,7 +149,7 @@ export const PAGES: PageEntry[] = [
     path: "/contact",
     title: "Contact Cereal Milk",
     description:
-      "Contact Cereal Milk about the desktop app, team pilots, or press. Send a short brief and Daniel replies from daniel@cerealmilk.sh within one business day.",
+      "Contact Cereal Milk about the desktop app, team pilots, or press. Send a short brief and Daniel replies from clippy@cerealmilk.sh within one business day.",
     section: "book",
     datePublished: "2026-07-02",
     dateModified: "2026-07-29",
