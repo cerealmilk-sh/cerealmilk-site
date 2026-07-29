@@ -21,12 +21,14 @@ exactly as before with no key set.
 ### 1. Create the PostHog project and paste the key ✅ DONE
 
 The project lives on PostHog **US cloud** (https://us.posthog.com, the data
-region). The live **Project API key** (`phc_…`, a *public* client-side key,
-safe to commit) is already set in **`public/consent-analytics.js`**, and both
-the loader's `UI_HOST` and the `/ingest` reverse proxy in `next.config.ts` point
-at the US endpoints (`us.i.posthog.com` / `us-assets.i.posthog.com`). To rotate
-the key, edit `POSTHOG_KEY` in that file (and the fallback in
-`src/lib/download-track.ts`).
+region). The live **Project API key** (`phc_…`, a *public* client-side key)
+lives in the Vercel env as `NEXT_PUBLIC_POSTHOG_KEY`: the layout injects it
+into the page as `window.__CM_POSTHOG_KEY` for the loader, and
+`src/lib/download-track.ts` and `src/lib/posthog-server.ts` read it directly.
+Both the loader's `UI_HOST` and the `/ingest` reverse proxy in
+`next.config.ts` point at the US endpoints (`us.i.posthog.com` /
+`us-assets.i.posthog.com`). To rotate the key, update the Vercel env var and
+redeploy.
 
 Still optional in PostHog → **Settings → Recordings**: toggle **Record user
 sessions ON**
@@ -54,6 +56,7 @@ That's it. Deploy, visit the live site, and data flows.
 | Typed event + person helpers (`track()`, `setPerson()`) | `src/lib/analytics.ts` |
 | Fire-once-on-mount tracker (for redirect conversions) | `src/components/site/TrackEvent.tsx` |
 | Server-side download logging (dmg + exe share it) | `src/lib/download-track.ts`, routes `src/app/download/CerealMilk.dmg/route.ts`, `src/app/download/CerealMilk.exe/route.ts` |
+| Server-side lead capture (inquiry, demo, newsletter, waitlist, preorder) | `src/lib/posthog-server.ts`, routes `src/app/api/inquiry/route.ts`, `src/app/api/waitlist/route.ts` |
 | Privacy & cookies policy + opt-out toggle | `src/app/privacy/page.tsx`, `src/components/site/AnalyticsOptOut.tsx` |
 | Docs injection | `growth-docs/src/components/Head.astro` |
 | Sentry injection | `skill-audit/webapp/public/sentry/index.html` (repo `cerealmilk-sh/skill-audit`) |
@@ -87,6 +90,7 @@ Fired via `track(...)` (React) or a `data-track="…"` attribute (any element):
 | `demo_request_submitted` | `/demo` form completed, visitor sent to Cal.com (props `{src, team_size}`) |
 | `inquiry_submitted` | `/contact` thank-you render (`TrackEvent` on mount) |
 | `newsletter_subscribed` | Field Notes signup succeeds (`source` = placement) |
+| `waitlist_joined` | **server-side only**, `/api/waitlist` product-waitlist signups |
 | `whatsapp_message_clicked` | the floating founder WhatsApp button (`data-track`) |
 | `referral_click` | share links on `/preorder/thanks` (props `{channel}`: email, whatsapp) |
 | `preorder_started` / `preorder_submitted` / `preorder_confirmed` | the `/preorder` reservation flow (legacy surfaces since the download-first funnel went live 2026-07-14; still real events while the pages exist) |
@@ -94,9 +98,19 @@ Fired via `track(...)` (React) or a `data-track="…"` attribute (any element):
 PostHog **autocapture** also records all clicks/pageviews, so you get data on
 everything else for free. The named ones exist for clean funnels.
 
-**Server-side stages** (no client event by design; one analytics path only):
-`dmg_download_requested` above, plus lead capture: form posts land in the
-Resend audience + `WAITLIST_WEBHOOK_URL` with their `source`; the confirmation
+**Server-side stages:** `dmg_download_requested` above (no client event by
+design), plus **server-side lead capture** (live 2026-07-29, PR #3): the
+`/api/inquiry` and `/api/waitlist` routes capture `inquiry_submitted`,
+`demo_request_submitted`, `newsletter_subscribed`, `waitlist_joined` and
+`preorder_submitted` through `posthog-node` (`src/lib/posthog-server.ts`),
+identified by the submitter's email. These fire for every accepted
+submission, so lead conversions are counted even when the client-side event
+is blocked by an ad-blocker or the form was posted without JS. Four of those
+names also fire client-side (table above): funnels stay accurate because
+PostHog counts unique persons per step, but raw trend counts include both
+paths, so break down or filter by `$lib` (`web` = client, `posthog-node` =
+server) when one path is wanted. Lead form posts also land in the Resend
+audience + `WAITLIST_WEBHOOK_URL` with their `source`; the confirmation
 email and every nurture step go through `src/lib/drip/` and are auditable in
 the Resend dashboard and the daily `/api/cron/drip` tick result
 (`{processed, sent}`).
@@ -196,9 +210,11 @@ funnel as historical.
 
 - On by default with a persistent, honored opt-out on `/privacy`; the policy
   discloses exactly what is collected.
-- The one server-side event (`dmg_download_requested`) is anonymous by
+- Server-side download logging (`dmg_download_requested`) is anonymous by
   construction: random per-hit `distinct_id`, `$process_person_profile:
   false`, no cookie, IPs reduced to a salted hash before leaving the process.
+- Server-side lead events are identified by the email the visitor typed into
+  the form, the same self-identification bar as the client-side `setPerson`.
 - US data region; client analytics served first-party via `/ingest`.
 - Session replay masks **all** form inputs and any `[data-ph-mask]` element.
 - Person profiles only for people who self-identify (a form) or sign in.

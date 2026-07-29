@@ -188,29 +188,35 @@ export async function POST(req: Request) {
   // Server-side ground truth: fires for every non-dropped submission so the
   // conversion is counted even when the client-side TrackEvent is blocked by
   // an ad-blocker or a no-JS form post.
+  // Analytics must never fail the submission: a dead PostHog endpoint logs
+  // and the lead still goes through.
   const posthog = getPostHogClient();
   if (posthog) {
     const event = source === "demo" ? "demo_request_submitted" : "inquiry_submitted";
-    posthog.identify({
-      distinctId: email,
-      properties: {
-        email,
-        ...(name ? { name } : {}),
-        ...(firm ? { company: firm } : {}),
-        lead_source: source,
-      },
-    });
-    posthog.capture({
-      distinctId: email,
-      event,
-      properties: {
-        source,
-        ...(firm ? { firm } : {}),
-        has_name: Boolean(name),
-        subscribed_newsletter: subscribe,
-      },
-    });
-    await posthog.flush();
+    try {
+      posthog.identify({
+        distinctId: email,
+        properties: {
+          email,
+          ...(name ? { name } : {}),
+          ...(firm ? { company: firm } : {}),
+          lead_source: source,
+        },
+      });
+      posthog.capture({
+        distinctId: email,
+        event,
+        properties: {
+          source,
+          ...(firm ? { firm } : {}),
+          has_name: Boolean(name),
+          subscribed_newsletter: subscribe,
+        },
+      });
+      await posthog.flush();
+    } catch (err) {
+      console.error("[inquiry] posthog capture failed", err);
+    }
   }
 
   if (isJson) return NextResponse.json({ ok: true });

@@ -217,23 +217,29 @@ export async function POST(req: Request) {
     } else {
       phEvent = "newsletter_subscribed";
     }
-    posthog.identify({
-      distinctId: email,
-      properties: {
-        email,
-        ...(name ? { name } : {}),
-        lead_source: source,
-      },
-    });
-    posthog.capture({
-      distinctId: email,
-      event: phEvent,
-      properties: {
-        source,
-        ...(isPreorder && plan ? { plan } : {}),
-      },
-    });
-    await posthog.flush();
+    // Analytics must never fail the signup: a dead PostHog endpoint logs
+    // and the lead still goes through.
+    try {
+      posthog.identify({
+        distinctId: email,
+        properties: {
+          email,
+          ...(name ? { name } : {}),
+          lead_source: source,
+        },
+      });
+      posthog.capture({
+        distinctId: email,
+        event: phEvent,
+        properties: {
+          source,
+          ...(isPreorder && plan ? { plan } : {}),
+        },
+      });
+      await posthog.flush();
+    } catch (err) {
+      console.error("[waitlist] posthog capture failed", err);
+    }
   }
 
   if (isFormPost) {
