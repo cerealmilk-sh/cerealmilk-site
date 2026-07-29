@@ -91,16 +91,21 @@ content goes to the model provider you connected (Claude, ChatGPT, Gemini, or
 your own OpenAI-compatible endpoint) under your agreement with that provider,
 and nowhere else: ${SITE_NAME} runs no model and stores no conversations.
 
-### Anonymous app telemetry
+### App telemetry
 
-From app version 0.2.6, the desktop app sends anonymous telemetry so crashes
-and bugs get found and fixed: crash signals, scrubbed error summaries (first
-line only, file paths redacted), and usage counts (launches, sign-ins, how
-often the agent is used, update events), each tagged with a random
-per-install id, the app version, and the platform. Never message content,
-never contact data, and never linked to your account. Processor: PostHog (US
-region). The off switch is in the app: Settings, General, "Share anonymous
-usage data".
+From app version 0.2.6, the desktop app sends telemetry so crashes and bugs
+get found and fixed: crash signals, scrubbed error summaries (first line
+only, file paths redacted), and usage counts (launches, sign-ins, how often
+the agent is used, update events), each tagged with the app version and the
+platform. Never message content and never contact data.
+
+Until you sign in, telemetry is anonymous: events carry only a random
+per-install id. From app version 0.2.14, once you sign in, telemetry is
+linked to your account (your user id, plus the email and name on the
+account) so we can understand how individual users experience the product
+and fix what breaks for them. Signing out returns the app to the anonymous
+id. Processor: PostHog (US region). The off switch covers both modes and is
+in the app: Settings, General, "Share usage data".
 
 ### What the hosted service stores
 
@@ -117,10 +122,13 @@ sign in to each service directly, inside its own web interface.
 
 ### Product telemetry
 
-The app sends usage telemetry (feature usage, errors, performance) to PostHog
-under a **pseudonymous per-workspace identifier**, not your name or email.
-Telemetry never includes message content or contact details. We also keep a
-first-party copy of the same events for our own dashboards.
+The app sends usage telemetry (feature usage, errors, performance) to
+PostHog; see "App telemetry" above for exactly what it carries and how it is
+identified before and after sign-in. The sign-in service also records
+sign-up and sign-in events to PostHog under your account's user id, and may
+connect them to your earlier anonymous browsing of this site (the analytics
+cookies described above) so we can see which visits become users. Telemetry
+never includes message content or contact details.
 
 ### Where it is stored
 
