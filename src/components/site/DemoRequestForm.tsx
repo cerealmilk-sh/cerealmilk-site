@@ -1,16 +1,17 @@
 "use client";
 
 // The /demo lead form: the standard B2B demo flow, form first, scheduler
-// second. Collects the minimum Dan needs to prep the call, posts it to
-// /api/inquiry (best-effort, keepalive so the redirect doesn't cancel it),
-// then sends the visitor to the Cal.com booking page with name and email
-// prefilled. The ?src= attribution param on inbound /demo links is read here,
-// client-side, so the page itself stays static.
+// second. Three fields, the fewest that still let the founder prep the call:
+// every extra field on a demo form costs completions, and team size was
+// answering itself on the call anyway. It posts to /api/inquiry (best-effort,
+// keepalive so the redirect doesn't cancel it), then sends the visitor to the
+// booking page with name and email prefilled. The ?src= attribution param on
+// inbound /demo links is read here, client-side, so the page stays static.
 //
 // Progressive enhancement: the <form> also carries a real action/method, so
 // with JavaScript off the browser posts form-encoded to /api/inquiry, which
-// captures the lead and 303-redirects source=demo posts to the same Cal.com
-// booking page (see src/app/api/inquiry/route.ts).
+// captures the lead and 303-redirects source=demo posts to the same booking
+// page (see src/app/api/inquiry/route.ts).
 
 import { useState } from "react";
 import { CAL_BOOKING_URL } from "@/lib/site";
@@ -20,13 +21,10 @@ const FIELD =
   "mt-2 h-10 w-full rounded-md border border-edge-2 bg-transparent px-3 text-[14px] text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-ink-faint";
 const LABEL = "block text-[14px] font-medium text-ink";
 
-const TEAM_SIZES = ["Just me", "2 to 10", "11 to 50", "50+"];
-
 export function DemoRequestForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [firm, setFirm] = useState("");
-  const [teamSize, setTeamSize] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [sending, setSending] = useState(false);
 
@@ -47,7 +45,6 @@ export function DemoRequestForm() {
         name,
         email,
         firm,
-        team_size: teamSize,
         src,
         source: "demo",
         company_website: honeypot,
@@ -60,12 +57,9 @@ export function DemoRequestForm() {
       email,
       lead_source: "demo_request",
       ...(name ? { name } : {}),
-      ...(teamSize ? { lead_team_size: teamSize } : {}),
+      ...(firm ? { company: firm } : {}),
     });
-    track("demo_request_submitted", {
-      src,
-      team_size: teamSize || undefined,
-    });
+    track("demo_request_submitted", { src });
 
     const cal = new URL(CAL_BOOKING_URL);
     cal.searchParams.set("name", name);
@@ -81,7 +75,7 @@ export function DemoRequestForm() {
       className="grid gap-5"
     >
       {/* Tells /api/inquiry this is the demo flow; a no-JS form post gets
-          redirected on to the Cal.com booking page. */}
+          redirected on to the booking page. */}
       <input type="hidden" name="source" value="demo" />
       {/* Honeypot: off-screen, hidden from assistive tech; scripts fill it
           and the API silently drops the lead. */}
@@ -98,85 +92,62 @@ export function DemoRequestForm() {
         />
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="demo-name" className={LABEL}>
-            Your name
-          </label>
-          <input
-            id="demo-name"
-            name="name"
-            type="text"
-            required
-            autoComplete="name"
-            className={FIELD}
-            placeholder="Jane Partner"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="demo-email" className={LABEL}>
-            Work email
-          </label>
-          <input
-            id="demo-email"
-            name="email"
-            type="email"
-            required
-            autoComplete="email"
-            className={FIELD}
-            placeholder="jane@company.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+      <div>
+        <label htmlFor="demo-name" className={LABEL}>
+          Your name
+        </label>
+        <input
+          id="demo-name"
+          name="name"
+          type="text"
+          required
+          autoComplete="name"
+          className={FIELD}
+          placeholder="Jane Cooper"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="demo-firm" className={LABEL}>
-            Company or firm
-          </label>
-          <input
-            id="demo-firm"
-            name="firm"
-            type="text"
-            required
-            autoComplete="organization"
-            className={FIELD}
-            placeholder="Example Ventures"
-            value={firm}
-            onChange={(e) => setFirm(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="demo-team" className={LABEL}>
-            Investment team size{" "}
-            <span className="font-normal text-ink-faint">(optional)</span>
-          </label>
-          <select
-            id="demo-team"
-            name="team_size"
-            className={`${FIELD} appearance-none ${teamSize ? "" : "text-ink-faint"}`}
-            value={teamSize}
-            onChange={(e) => setTeamSize(e.target.value)}
-          >
-            <option value="">Select</option>
-            {TEAM_SIZES.map((s) => (
-              <option key={s} value={s} className="text-ink">
-                {s}
-              </option>
-            ))}
-          </select>
-        </div>
+      <div>
+        <label htmlFor="demo-email" className={LABEL}>
+          Work email
+        </label>
+        <input
+          id="demo-email"
+          name="email"
+          type="email"
+          required
+          autoComplete="email"
+          className={FIELD}
+          placeholder="jane@company.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="demo-firm" className={LABEL}>
+          Company
+        </label>
+        <input
+          id="demo-firm"
+          name="firm"
+          type="text"
+          required
+          autoComplete="organization"
+          className={FIELD}
+          placeholder="Cooper and Co"
+          value={firm}
+          onChange={(e) => setFirm(e.target.value)}
+        />
       </div>
 
       <div>
         <button
           type="submit"
           disabled={sending}
-          className="inline-flex h-10 items-center justify-center rounded-full bg-accent px-5 text-sm font-medium text-accent-ink transition-colors hover:bg-accent-dim disabled:opacity-60"
+          className="inline-flex h-10 w-full items-center justify-center rounded-full bg-accent px-5 text-sm font-medium text-accent-ink transition-colors hover:bg-accent-dim disabled:opacity-60"
         >
           {sending ? "Opening the calendar…" : "Pick a time"}
         </button>
