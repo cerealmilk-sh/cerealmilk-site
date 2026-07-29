@@ -3,7 +3,10 @@
 Site-wide web analytics across all surfaces of `cerealmilk.sh`
 (landing, `/docs`, `/sentry`). **PostHog** (US cloud) for traffic, funnels,
 conversion events, and session replay; **Vercel Speed Insights** for Core Web
-Vitals. Analytics is **on by default** (no consent banner) with an opt-out
+Vitals; **Vercel Web Analytics** for cookieless traffic counts (the
+platform-side check on PostHog's numbers: it is measured at the edge, so
+ad-blockers that drop PostHog do not drop it). Analytics is **on by default**
+(no consent banner) with an opt-out
 toggle on `/privacy`. Because `/docs` and `/sentry` are reverse-proxied under
 the apex, all surfaces are same-origin and share **one** opt-out choice and
 **one** dataset.
@@ -35,14 +38,26 @@ sessions ON**
    (session replay is off by default; the code is already configured for it,
    with all form inputs masked).
 
-### 2. Turn on the Vercel products (landing project)
+### 2. Turn on the Vercel products (landing project) ✅ DONE
 
-In the **`Cereal Milk`** Vercel project dashboard (team `cerealmilk`; that project owns
-the apex domain):
-- **Speed Insights** tab → Enable. (The `<SpeedInsights/>` component is already
-  in `layout.tsx`; the dashboard toggle starts collection.)
+Project **`cerealmilk-site`**, team `clippycommits-projects`, plan Hobby (that
+project owns the apex domain). **Speed Insights** and **Web Analytics** are
+both enabled and collecting, and both are free on Hobby.
 
-That's it. Deploy, visit the live site, and data flows.
+No dashboard click was needed for either: shipping a production deploy that
+imports the package is what activates the product. Web Analytics flipped from
+off to on the moment the `@vercel/analytics` deploy went live on 2026-07-29.
+Worth knowing, because the dashboard is the *only* way to turn one of these
+**off** again: there is no public REST API for the toggle
+(`PATCH /v9/projects/:id` rejects a `webAnalytics` property outright).
+
+**How to check state without the dashboard**, since the toggle is invisible
+from the CLI: the platform serves the loader only while the product is on, so
+`curl -o /dev/null -w '%{http_code}' https://cerealmilk.sh/_vercel/insights/script.js`
+returns 200 when Web Analytics is live and 404 when it is not. Same shape for
+`/_vercel/speed-insights/script.js`. The authoritative view is
+`GET /v9/projects/:id`, where `features.webAnalytics` plus an `enabledAt` on
+`webAnalytics` / `speedInsights` tell you the same thing.
 
 ---
 
@@ -52,7 +67,8 @@ That's it. Deploy, visit the live site, and data flows.
 |---|---|
 | Shared loader + opt-out plumbing + `window.track()` + `window.setPerson()` | `public/consent-analytics.js` |
 | Reverse proxy (`/ingest` → PostHog US) + `skipTrailingSlashRedirect` | `next.config.ts` |
-| Loads the script + `<SpeedInsights/>` | `src/app/layout.tsx` |
+| Loads the script + `<SpeedInsights/>` + `<VercelAnalytics/>` | `src/app/layout.tsx` |
+| Vercel Web Analytics, opt-out honored via `beforeSend` | `src/components/site/VercelAnalytics.tsx` |
 | Typed event + person helpers (`track()`, `setPerson()`) | `src/lib/analytics.ts` |
 | Fire-once-on-mount tracker (for redirect conversions) | `src/components/site/TrackEvent.tsx` |
 | Server-side download logging (dmg + exe share it) | `src/lib/download-track.ts`, routes `src/app/download/CerealMilk.dmg/route.ts`, `src/app/download/CerealMilk.exe/route.ts` |
@@ -72,6 +88,29 @@ opt-out toggle (`window.__cmAnalytics`) backed by PostHog's own persisted
 `opt_out_capturing()`, shared across all apex surfaces. A pre-2026-07-29
 banner-era `localStorage['cereal-milk-consent'] = "denied"` is migrated to
 that opt-out on first visit, then the legacy key is removed.
+
+**One toggle covers Vercel too.** `<VercelAnalytics/>` reads that same
+`window.__cmAnalytics.isOptedOut()` in its `beforeSend` and returns null when
+the visitor has opted out, so Web Analytics events are dropped in the browser
+before they are sent. That keeps the one-opt-out-choice rule true site-wide.
+Two known gaps, both deliberate and both fail-open (they count, rather than
+drop, when the answer is unknown):
+
+1. PostHog's opt-out is what holds the state, so a visitor who opted out and
+   then started blocking PostHog reads as opted **in** to Vercel.
+2. `consent-analytics.js` is `afterInteractive`, so if `<Analytics/>` mounts
+   first, `window.__cmAnalytics` is still undefined and that visitor's **first
+   pageview** is sent. Later events in the session are gated correctly.
+
+Closing (2) means either delaying the pageview until the loader boots, which
+costs real counts on short visits and defeats the point of having a reliable
+edge counter, or reading PostHog's `__ph_opt_in_out_*` localStorage key
+directly, which couples us to PostHog internals. Neither trade looked worth it
+for one anonymous, cookieless, device-identifier-free pageview. Revisit if the
+privacy posture tightens.
+
+Speed Insights is deliberately left outside the toggle entirely: it is
+anonymous, cookieless performance sampling with no per-visitor data.
 
 ---
 
